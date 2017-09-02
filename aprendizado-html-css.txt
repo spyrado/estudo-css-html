@@ -1,0 +1,44 @@
+******************************************************************** HTML ********************************************************************
+
+-------------------------------- TAGS Lembrete --------------------------------
+
+<main> -> indica conteúdo principal.
+<blockquote> - indica citação.
+<cite> - indica autor de citação.
+<aside> - conteúdo auxiliar ao conteúdo principal, como links relacionados ao conteúdo
+<article> - conteúdo que, por si só, já tem um sentido completo, como um post de um blog ou uma notícia
+<header> - cabeçalho da página ou de uma região dela
+<footer> - mesma ideia da tag <header> para o rodapé
+<section> - parte/seção de uma página ou texto.
+<nav> - indica ali existe navegação pelo site.
+
+
+
+
+******************************************************************** CSS ********************************************************************
+
+
+
+-------------------------------- FLOAT --------------------------------
+
+OBS: Flutua um elemento porem o mantem na mesma linha de posição original,
+qualquer elemento que esteja abaixo de um elemento com float, ficará lado a lado,
+a menos que se use a propriedade CLEAR, para limpar a flutuação.
+
+left -> flutua um elemento a esquerda.
+
+right -> flutua um elemento a direita.
+
+-------------------------------- CLEAR --------------------------------
+
+right -> limpa a flutuação a direita.
+
+left -> limpa a flutuação a esquerda.
+
+both -> limpa a flutuação de ambos.
+
+-------------------------------- POSITION --------------------------------
+
+Absolute -> Posição Absoluta com relação a janela, ou a algum elemento em tordo dele com o valor definido como relativo.
+
+Relative -> Posicionamento será relativo ao local atual do elemento na tela.
