@@ -11,13 +11,59 @@
 <footer> - mesma ideia da tag <header> para o rodapé
 <section> - parte/seção de uma página ou texto.
 <nav> - indica ali existe navegação pelo site.
+<time> - Usado para definir data/hora.
 
 
 
 
 ******************************************************************** CSS ********************************************************************
 
+-------------------------------- UNIDADE DE MEDIDA --------------------------------
 
+IMPORTANTE! -> Definir a porcentagem da fonte no html{ font-size: X ;} e NÃO DO body{}
+Assim conseguimos ter total controle da propriedade font-size em TODA a PAGINA.
+  
+PORCENTAGEM:
+    
+Ao Utilizar a "unidade de medida PORCENTAGEM, ela se baseia, 
+com base na largura(width) de seu elemento pai para fazer o cálculo da porcentagem.
+
+Exemplo:
+
+Temos uma div.pai com width de 720px;
+e uma div.filha com padding de 20px e width de 250px,
+SE alterarmos padding para 10% resultará em 72px de padding, pois 10%
+de 720px(seu elemento pai) é 72px.
+O mesmo ocorre para o width, se colocarmos 10% seu tamanho será reduzido
+para 72px.
+
+EM:
+
+IMPORTATE ! USA A FONTE DO ELEMENTO COMO REFERÊNCIA.
+
+Calculo EM 1.25em x tamanho da fonte do elemento igual tamanho em pixels.
+
+EX: 1.25em x 16px igual a 20px.
+    1.25em X 20px igual a 25px.
+
+REM:
+
+IMPORTATE ! USA A FONTE DO NAVEGADOR COMO REFERÊNCIA.
+
+Calculo REM 1.25rem x tamanho da fonte do navegador igual tamanho em pixels.
+
+EX: 1.25rem x 16px igual a 20px.
+    1.25rem X 20px igual a 25px.
+
+A vantagem de se utilizar REM é que ele facilita a manutenção do seu código, basta alterar o tamanho da fonte no html,
+e ele já redimenciosa todo o resto, isso não ocorre com pixels.
+
+Tem um porem, rem faz a medida com base na ALTURA da fonte, será que você quer por exemplo, definir a LARGURA de um elemento,
+com base na ALTURA da fonte?
+
+CH:
+
+CH seria a medida da largura do caracter 0(ZERO) 
 
 -------------------------------- FLOAT --------------------------------
 
@@ -42,3 +88,8 @@ both -> limpa a flutuação de ambos.
 Absolute -> Posição Absoluta com relação a janela, ou a algum elemento em tordo dele com o valor definido como relativo.
 
 Relative -> Posicionamento será relativo ao local atual do elemento na tela.
+
+Fixed -> Será fixo com relação a tela.
+
+-------------------------------- TEXT-INDENT --------------------------------
+
