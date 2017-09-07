@@ -18,6 +18,40 @@
 
 ******************************************************************** CSS ********************************************************************
 
+--------------------------- BACKGROUND GRADIENT --------------------------
+
+background-image: linear-gradient(de onde pra onde, cor porcentagem,cor porcentagem, até quantas cores quiser).
+
+background-size: 100%(width) 200px(height); caso a imagem não tenha essa altura ela quebrará em várias imagens de 200px.
+
+background-repeat: define o tipo de repetição na imagem.
+
+-------------------------------- SOMBRAS --------------------------------
+
+text-shadow: direita esquerda cor;
+
+box-shadow: direita esquerda cor OU direita esquerda borda cor.
+
+opacity: 0~1 0 regulamos o nível de transparencia do elemento pelo opacity 0 ele fica invisivel e 1 ele fica totalmente visivel 0.5 ele fica meio termo.
+
+-------------------------------- TRANSFORM --------------------------------
+
+IMPORTANTE ! -> A propriedade não funciona em elementos com a propriedade display definida como inline.
+
+transform: rotate(30deg); -> Faz com que um elemento rotacione de acordo com os graus(deg) definidos.
+
+transform: scale(1.5); -> Aumenta ou diminui o elemento de acordo com o parâmetro, se for > 1 ele aumenta o elemento, se for < 1 ele diminui o elemento.
+
+transform: skew(20deg) -> Entorta o elemento \ \ de acordo com os graus(deg) definidos.
+
+transform: translate(X, Y) -> Muda o elemento de posição para qualquer lugar da tela.
+
+Agora resta a questão: como fazer a translação? Com um pouco de trigonometria, chegamos nas seguintes fórmulas para o quanto temos que transladar na horizontal e na vertical.
+
+Na horizontal: cos(45) * (altura - largura) + largura
+
+Na vertical: -1 * sen(45) * altura
+
 -------------------------------- UNIDADE DE MEDIDA --------------------------------
 
 IMPORTANTE! -> Definir a porcentagem da fonte no html{ font-size: X ;} e NÃO DO body{}
@@ -39,7 +73,7 @@ para 72px.
 
 EM:
 
-IMPORTATE ! USA A FONTE DO ELEMENTO COMO REFERÊNCIA.
+IMPORTATE ! USA A FONTE DO ELEMENTO PAI COMO REFERÊNCIA.
 
 Calculo EM 1.25em x tamanho da fonte do elemento igual tamanho em pixels.
 
@@ -63,7 +97,23 @@ com base na ALTURA da fonte?
 
 CH:
 
-CH seria a medida da largura do caracter 0(ZERO) 
+CH seria a medida da largura do caracter "zero".
+
+
+RESUMO DAS MEDIDAS:
+
+PX é sempre px
+
+EM é medido com base na fonte do seu elemento pai.
+
+REM é medido com base na fonte do navegador.
+
+CH tem como base a largura do caractere zero da fonte usada;
+
+PORCENTAGEM tem como base ou a largura do elemento pai ou o font-size do elemento anterior.
+
+
+PIXEL É UMA MEDIDA ABSOLUTA, EM REM CH % São medidas RELATIVAS.
 
 -------------------------------- FLOAT --------------------------------
 
