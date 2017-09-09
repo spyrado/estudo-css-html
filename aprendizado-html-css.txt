@@ -18,17 +18,59 @@
 
 ******************************************************************** CSS ********************************************************************
 
+-------------------------------- SELETORES AVANÇADOS CSS --------------------------------
+
+SELETOR ~ (Seleciona DEPOIS de outros elementos):
+
+li ~ li -> o TIO(~) Seleciona elementos que estão DEPOIS de outros elementos
+
+Exemplo ~;
+
+ul li ~ li{
+    background-color: red;
+}
+
+      <ul>
+          <li></li> 
+          <li></li> <- ficará com fundo vermelho
+          <li></li> <- ficará com fundo vermelho
+          .... // caso tenha mais li's ele continuará a deixar com o fundo vermelho.
+      </ul>
+      
+      
+SELETOR  + (LOGO Depois) :
+
+exemplo: queremos tirar a indentação do PRIMEIRO parágrafo, se usarmos img ~ p não funcionará, pois o tio seleciona depois do elemento.
+
+Agora se utilizarmos o +, daria certo, pois o + pega o elemento LOGO depois,
+EXEMPLO: img + p
+
+    <img src="" alt="">
+    <p></p> (COM img + p PEGARIA SOMENTE(Logo Depois) AQUI)
+    <p></p> (COM img ~ p PEGARIA(Depois do elemento) AQUI)
+    <p></p> (COM img ~ p PEGARIA(Depois do elemento) AQUI)
+
+
 --------------------------- BACKGROUND GRADIENT --------------------------
 
+IMPORTANTE! Repetimos a mesma cor duas vezes quando queremos dizer para o navegador que ela tem que ir de x porcentagem até x porcentagem,
+Exemplo: red 20%, red 40%, blue 40%, blue 100%.
+
 background-image: linear-gradient(de onde pra onde, cor porcentagem,cor porcentagem, até quantas cores quiser).
+
+background-image: radial-gradient(ellipse at bottom left, rgba(60, 29, 61, 0.8),rgba(60, 29, 61, 0.8) 65%, #000 65%, #000 70%, transparent 70%, transparent);
 
 background-size: 100%(width) 200px(height); caso a imagem não tenha essa altura ela quebrará em várias imagens de 200px.
 
 background-repeat: define o tipo de repetição na imagem.
 
+background-position: define a posição de uma imagem dentro de seu elemento pai.
+
+
+
 -------------------------------- SOMBRAS --------------------------------
 
-text-shadow: direita esquerda cor;
+text-shadow: direita esquerda espalhamento cor;
 
 box-shadow: direita esquerda cor OU direita esquerda borda cor.
 
