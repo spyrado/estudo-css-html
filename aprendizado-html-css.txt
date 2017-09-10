@@ -18,38 +18,114 @@
 
 ******************************************************************** CSS ********************************************************************
 
--------------------------------- SELETORES AVANÇADOS CSS --------------------------------
+-------------------------------- PSEUDOCLASSES --------------------------------
 
-SELETOR ~ (Seleciona DEPOIS de outros elementos):
 
-li ~ li -> o TIO(~) Seleciona elementos que estão DEPOIS de outros elementos
+:first-child - > seleciona o primeiro filho
+:last-child - > seleciona o ultimo filho
+:nth-child - > aqui podemos brincar um pouco, podemos intercalar os estilos de acordo com os parâmetros passados.
 
-Exemplo ~;
+EXEMPLO:
 
-ul li ~ li{
-    background-color: red;
+Generalizando: :nth-child(xn + c)
+
+Em que:
+
+x é a periodicidade, de quantos em quantos elementos será aplicado o estilo;
+c é o ponto de partida;
+n é a variável, que começa em 0 (zero).
+
+li:nth-child(2n+1){
+    color: blue;
 }
 
-      <ul>
-          <li></li> 
-          <li></li> <- ficará com fundo vermelho
-          <li></li> <- ficará com fundo vermelho
-          .... // caso tenha mais li's ele continuará a deixar com o fundo vermelho.
-      </ul>
-      
-      
-SELETOR  + (LOGO Depois) :
+<ul>
+    <li>texto</li> <- estilo aplicado aqui
+    <li>texto</li>
+    <li>texto</li> <- estilo aplicado aqui
+    <li>texto</li>
+</ul>
 
-exemplo: queremos tirar a indentação do PRIMEIRO parágrafo, se usarmos img ~ p não funcionará, pois o tio seleciona depois do elemento.
+EXEMPLO 2:
 
-Agora se utilizarmos o +, daria certo, pois o + pega o elemento LOGO depois,
-EXEMPLO: img + p
+li:nth-child(2n+2){
+    color: blue;
+}
+
+<ul>
+    <li>texto</li> 
+    <li>texto</li> <- estilo aplicado aqui
+    <li>texto</li> 
+    <li>texto</li> <- estilo aplicado aqui
+</ul>
+
+EXEMPLO 3:
+
+li:nth-child(odd){ <- pegaria todos os ímpares
+    color: blue;
+}
+
+li:nth-child(even){ <- pegaria todos os pares
+    color: blue;
+}
+
+:nth-of-type - > seleciona por tipo de elemento.
+
+:hover - > ao passar o mouse faz algo.
+:focus
+:active
+:checked
+
+-------------------------------- SELETORES AVANÇADOS CSS --------------------------------
+
+>>>> SELETOR ~ (Seleciona DEPOIS de outros elementos): <<<<
+
+ul ~ li{ background-color: red; } -> seleciona todos os li DEPOIS do elemento UL 
+
+ul div ~ li { background-color: red; } -> seleciona todos os li que estão dentro do UL E que estão DEPOIS da primeira DIV
+<ul>
+   <div>div</div>
+    <li>algo</li>
+    <li>algo</li>
+    <div>div</div>
+    <li>algo</li>
+    <div>div</div>
+    <li>algo</li>
+    <div>
+        <li>li dentro da div</li>
+    </div>
+</ul>
+<li>li fora do ul</li> <- Somente esse elemento será afetado pelo background.
+      
+>>>> SELETOR  + (IMEDIATAMENTE Depois) : <<<<
+
+img + p{ background-color: red; }
 
     <img src="" alt="">
-    <p></p> (COM img + p PEGARIA SOMENTE(Logo Depois) AQUI)
-    <p></p> (COM img ~ p PEGARIA(Depois do elemento) AQUI)
-    <p></p> (COM img ~ p PEGARIA(Depois do elemento) AQUI)
+    <p></p> <- APENAS este ficaria com a cor de fundo vermelha, pois o elemento p que vem IMEDIATAMENTE DEPOIS de img é o primeiro P.
+    <p></p> 
+    <p></p> 
+    
+img + p { background-color: red;}
 
+    <img src="" alt="">
+    <div></div> <- Neste caso, tem uma div IMEDIATAMENTE APÓS a tag img, então o seletor css img + p acima não funcionará.
+    <p></p> 
+    <p></p> 
+    <p></p> 
+    
+    
+>>>> SELETOR  > (Seleciona os filhos somente) : <<<<
+
+div > p -> selecionará apenas os seus filhos.
+
+<div> <- pai
+    <p>texto</p> - <- filho da div
+        <blockquote> <- filho da div
+            <p>aaaa</p> <- filho do bloquote
+        </blockquote>
+    <p>aaaa</p> <- filho da div
+</div>
 
 --------------------------- BACKGROUND GRADIENT --------------------------
 
