@@ -1,5 +1,16 @@
 ******************************************************************** HTML ********************************************************************
 
+-------------------------------- ATRIBUTOS --------------------------------
+
+tabindex="1" -> propriedade de tag HTML, combinado com a pseudoclasse :focus no css, quando o usuário apertar tab no navegador ele pode ter a experiência de verificar os efeitos sem precisar posicionar o mouse encima(:hover) por ex.
+
+-------------------------------- ATRIBUTOS CUSTOMIZAVEIS --------------------------------
+
+ recurso do HTML 5 que são os atributos customizados. A partir dessa versão do HTML, podemos criar nossos próprios atributos em qualquer elemento do HTML sem deixá-lo inválido; basta que esse atributo comece com data-. Por exemplo:
+
+<!-- a declaração abaixo é válida a partir do HTML 5 -->
+<a href="#" data-legenda="Clique em mim">Link</a>
+
 -------------------------------- TAGS Lembrete --------------------------------
 
 <main> -> indica conteúdo principal.
@@ -17,6 +28,27 @@
 
 
 ******************************************************************** CSS ********************************************************************
+-------------------------------- PROPRIEDADE DISPLAY --------------------------------
+
+inline -> deixa elementos na mesma linha, elemenos inline não podem ter altura definida.
+block -> todo elemento definido como block ocupa a linha inteira, ou seja, não deixa outro elemento ocupar a mesma linha que ele
+inline-block -> podemos definir largura e altura 
+none -> some com o elemento.
+
+-------------------------------- PSEUDOELEMENTOS --------------------------------
+
+IMPORTANTE! 
+A propriedade content é exclusiva dos pseudoelementos before e after, menos que não for utiliza-lo DEVE coloca-lo junto ao seu css.
+
+EX:
+
+a:after{
+    content: ""; <- deixe-o vazio, CASO não for utilizado, mas deve coloca-lo msm que vazio, é obrigatório, SE não o navegador não le.
+}
+
+:first-letter -> permite estilizar a primeira letra de um parágrafo por exemplo( p:firs-letter )
+:before -> antes
+:after -> depois
 
 -------------------------------- PSEUDOCLASSES --------------------------------
 
@@ -24,6 +56,8 @@
 :first-child - > seleciona o primeiro filho
 :last-child - > seleciona o ultimo filho
 :nth-child - > aqui podemos brincar um pouco, podemos intercalar os estilos de acordo com os parâmetros passados.
+:nth-last-child -> seleciona o ultimo filho
+:nth-last-of-type - seleciona o ultimo tipo de elemento.
 
 EXEMPLO:
 

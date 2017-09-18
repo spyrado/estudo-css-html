@@ -1,0 +1,5 @@
+Bom a explicação é simples.
+
+CONSEGUIMOS centralizar elementos com valores definidos "block" com margin 0 auto;
+pois por padrão o block tem sua altura e largura definidas, fazendo com que o "auto",
+tenha referencia para deslocar o elemento.

@@ -1,0 +1,22 @@
+*{ margin: 0; padding: 0; }
+ul, .principal{
+	text-align: 	center; 
+	/*Centralizamos pelo elemento pai pois como eles tem o comportamento de texto
+	então para centralizar é pelo elemento pai
+	Um exemplo é a tag <p> CONTEUDO </p>
+	o p é o elemento pai, e o texto dentro dele o filho,
+	por isso alinhamos parágrafos com text-align center.*/
+}
+li, .secundaria	{
+	width: 	30%;
+	display: inline; /* Funciona do mesmo modo para o display: inline; porem as propriedades width e height não funcionarão.*/						*/
+	margin-right: 	.5rem;
+}
+
+ul li{
+	background-color: 	red;
+}
+
+.secundaria{
+	background-color: 	blue;
+}

@@ -1,0 +1,5 @@
+Bom a explicação é simples.
+
+Não conseguimos centralizar elementos com margin 0 auto;
+com inline e inline-block
+pois ambos tem o compartamento de texto, isso faz com que eles não tenham largura nem altura definidas, por isso o "auto", não funciona, ele não tem referencia de tamanho.
