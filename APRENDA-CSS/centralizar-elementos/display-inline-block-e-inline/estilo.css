@@ -9,7 +9,7 @@ ul, .principal{
 }
 li, .secundaria	{
 	width: 	30%;
-	display: inline; /* Funciona do mesmo modo para o display: inline; porem as propriedades width e height não funcionarão.*/						*/
+	display: inline-block; /* Funciona do mesmo modo para o display: inline; porem as propriedades width e height não funcionarão.*/						*/
 	margin-right: 	.5rem;
 }
 

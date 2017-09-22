@@ -4,6 +4,11 @@
 
 tabindex="1" -> propriedade de tag HTML, combinado com a pseudoclasse :focus no css, quando o usuário apertar tab no navegador ele pode ter a experiência de verificar os efeitos sem precisar posicionar o mouse encima(:hover) por ex.
 
+colspan="2" -> Usado em tabelas para em vez de ocupar apenas uma cédula, ocupe 2 por exemplo.
+
+rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <td> para aquela coluna na linha seguinte.
+
+
 -------------------------------- ATRIBUTOS CUSTOMIZAVEIS --------------------------------
 
  recurso do HTML 5 que são os atributos customizados. A partir dessa versão do HTML, podemos criar nossos próprios atributos em qualquer elemento do HTML sem deixá-lo inválido; basta que esse atributo comece com data-. Por exemplo:
@@ -23,11 +28,37 @@ tabindex="1" -> propriedade de tag HTML, combinado com a pseudoclasse :focus no 
 <section> - parte/seção de uma página ou texto.
 <nav> - indica ali existe navegação pelo site.
 <time> - Usado para definir data/hora.
+<table> - Cria uma tabela
+<thead> - Define o Cabeçalho da tabela Mais SEMANTICO.
+<tbody> - Define o corpo da tabela Mais SEMANTICO.
+<tfoot> - Define o "rodape" da tabela Mais SEMANTICO.
+<th> - indica o Cabeçalho.
+<tr> - cria a linha da tabela
+<td> - cria a coluna da tabela.
+<dl> - cria a lista
+<dt> - Define o Nome ou titulo
+<dd> - Define a descrição desse nome ou titulo
 
 
 
 
 ******************************************************************** CSS ********************************************************************
+
+-------------------------------- VERTICAL-ALIGN --------------------------------
+
+IMPORTANTE! A propriedade vertical-align define o alinhamento vertical de um elemento.
+
+middle ->
+
+-------------------------------- BORDER --------------------------------
+
+IMPORTANTE!! -> border-collapse E border-spacing É utilizado APENAS na tag <table>.
+
+border-collapse: separate; -> separa as bordars
+border-collapse: collapse; -> já é padrão vir definido como collapse(juntas);
+
+border-spacing: 5px; -> define o tamanho do espaço entre as bordas.
+
 -------------------------------- PROPRIEDADE DISPLAY --------------------------------
 
 inline -> deixa elementos na mesma linha, elemenos inline não podem ter altura definida.
