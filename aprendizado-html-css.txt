@@ -35,7 +35,7 @@ rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <
 <th> - indica o Cabeçalho.
 <tr> - cria a linha da tabela
 <td> - cria a coluna da tabela.
-<dl> - cria a lista
+<dl> - cria a lista IMPORTANTE Neste caso, o elemento <dl> é o mais adequado. Estamos descrevendo um único item, detalhando características dele, ao invés de <table>
 <dt> - Define o Nome ou titulo
 <dd> - Define a descrição desse nome ou titulo
 
@@ -43,6 +43,57 @@ rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <
 
 
 ******************************************************************** CSS ********************************************************************
+
+-------------------------------- ANIMATION --------------------------------
+
+animation: nomeAnimação TempoAnimação;
+
+animation: aparece 2s;
+OU
+animation: aparece 2s ease; -> podemos colocar todos os tipos de suavização igual no transition(ease, ease-in, ease-ou, linear etc..)
+
+@keyframes aparece{
+  0%{
+    opacity: 0;
+  }
+  100%{
+  opacity: 1;
+  }
+}
+
+definimos um keyframes, e especificamos os pontos chaves da nossa animação, nesse caso, começara com 0 de opacidade e quando chegar nos 100% ficara com 100% de opacidade.
+
+animation-direction - > define a direção da animação.
+
+Exemplo, animation-direction: alternate; a animação ira ficar alternando o seu comportamento.
+
+animation-timing-function: ease-in; -> propriedade que se coloca os (ease, ease-in, ease-in-out etc.)
+
+animation-play-state: paused; ou running -> dizemos nessa propriedade se queremos que a animação continue ou pare, normalmente usamos no :hover essa propriedade.
+
+-------------------------------- TRANSITION --------------------------------
+
+Faz a transição de uma ou mais PROPRIEDADES, o tempo dessa transição você que define, a PROPRIEDADE que sofrera com o transition deve estar no :hover ou :focus.
+
+transition: transform 1s, box-shadow 3s;
+transition: all 2s;
+transition: color 3s;
+
+transition-delay -> define depois de quanto tempo a transição vai começar, exemplo:
+
+transition: transform 1s, box-shadow 3s;
+transition-delay: 0s, 2s; -> aqui eu estou dizendo que minha primeira transição(transform no caso) n teria delay pra começar, e minha segunda transição( box-shadow no caso) teria um DELAY de 2s para começar a fazer a sua propria transição box-shadow de 3segundos no caso.
+
+                            TIPOS DE SUAVIZAÇÃO
+                            (Colocar depois do tempo)
+                            
+linear -> sem suavização, sem na mesma velocidade.
+ease -> com suavização
+ease-in -> com suavização no começo.(demora mais pra aparecer no começo e vai mais rapido no final)
+
+ease-out -> com suavização no final.(vai mais rapido no COMEÇO e demora mais no FINAL)
+ease-in-out -> com suavização no começo e no final.
+
 
 -------------------------------- VERTICAL-ALIGN --------------------------------
 
