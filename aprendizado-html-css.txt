@@ -71,9 +71,21 @@ animation-timing-function: ease-in; -> propriedade que se coloca os (ease, ease-
 
 animation-play-state: paused; ou running -> dizemos nessa propriedade se queremos que a animação continue ou pare, normalmente usamos no :hover essa propriedade.
 
+animation-delay: -> da um tempo para iniciar a animação.
+
+animation-fill-mode: backwards; -> faz com que a animação já começe do começo.
+animation-fill-mode: forwards; -> mantem o estilo final da animação mesmo após ela terminar de executar.
+animation-fill-mode: both; -> faz o serviço do backwards e forwards.
+animation-fill-mode: none;
+
+O banner do Twitter fica aparecendo antes da animação começar. Isso indica que o estilo inicial da animação não é aplicado ao elemento antes que ela comece por padrão. Porém, podemos mudar esse comportamento.
+A especificação de animações define uma propriedade chamada animation-fill-mode. Essa propriedade nos permite fazer com que o navegador aplique o estilo inicial de uma animação antes mesmo de ela começar (valor backwards), mantenha o estilo final de uma animação mesmo após ela terminar de executar (valor forwards) ou ainda faça as duas coisas (valor both).
+
 -------------------------------- TRANSITION --------------------------------
 
 Faz a transição de uma ou mais PROPRIEDADES, o tempo dessa transição você que define, a PROPRIEDADE que sofrera com o transition deve estar no :hover ou :focus.
+
+PORQUE NÃO COLOCAR O TRANSITION NO HOVER? Não colocamos no HOVER/FOCUS, pois o efeito da transição só iria acontecer quando colocassemos o mouse encima, se tirassemos o mouse de cima ele NÃO voltaria com efeito, ele simplesmente cortaria o efeito.
 
 transition: transform 1s, box-shadow 3s;
 transition: all 2s;
