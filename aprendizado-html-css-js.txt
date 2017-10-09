@@ -1,3 +1,61 @@
+******************************************************************** JavaScript ********************************************************************
+
+document -> é o DOM da página, se colocarmos somente document dentro de um console.log(document); aparecera todo o conteudo da página.
+
+---------------------------- METODOS/FUNÇÕES DO DOCUMENT ----------------------------
+
+querySelector("SEU SELETOR CSS AQUI"); -> A função querySelector faz a busca através de seletores CSS para trazer o HTML que você está interessado.(IMPORTANTE, essa função retorna APENAS 1 ELEMENTO(mesmo que esse elemento tenha varias classes, ele retorna apenas o primeiro)).
+
+querySelectorAll -> ao contrario da querySelector, que seleciona apenas 1 elemento, a querySelectorAll, seleciona todos os elementos ele é um VETOR.
+
+x.textContent -> pega o conteudo do texto.
+
+variavel.toFixed(2) -> limita o numero a duas casas decimais.
+
+---------------------------- Como Estilizar CSS ----------------------------
+
+x.style.nomepropriedade = x.style.color, OBS: CASO
+A PROPRIEDADE TENHA O TRACINHO - em JS nós retiramos o tracinho e deixamos o nome da propriedade em camelCase, Exemplo: x.style.backgroundColor = "red";
+
+x.classList -> Retorna um VETOR com todas as classes do cara selecionado.
+
+DENTRO DA classList temos o metodo .add("nomeclasse"); SEM O PONTO DA CLASSE, Pois o metodo já se refere a uma classe, que basicamente, pega o vetor de classes da classList e adiciona uma nova classe a ela.
+
+---------------------------- Tipos de funções ----------------------------
+
+---------------------------- Funções nomeadas ----------------------------
+
+function nomeFunction(){
+    alert("Oi");
+}
+
+Vantagens, caso essa função se repita mais de uma vez, é mais vantajoso fazer uma função nomeada, para poder fazer o reaproveitamento de código, Exemplo:
+
+x.addEventListener("click", nomeFunction); -> ja executará a mensagem. 
+
+---------------------------- Funções Anônimas ----------------------------
+
+Creio que são feitas quando não é necessário a aparição da mesma mais de uma vez.
+
+x.addEventListener("click", function(){ 
+    alert("Ola"); 
+});
+
+---------------------------- EVENTOS JS ----------------------------
+
+IMPORTANTE!
+
+Ele sabe que todo elemento de entrada, isto é, que recebe entrada do usuário possui a propriedade value enquanto elementos que exibem informações apenas possuem a propriedade textContent como é o caso da nossa tag span.
+
+Previnir comportamento padrão de um evento( o botão por exemplo tem o comportamento padrão de recarregar a página ).
+
+function(event){
+    event.preventDefault();
+}
+
+no código acima, eu quero dizer para o evento, não fazer o seu comportamento padrão.
+
+
 ******************************************************************** HTML ********************************************************************
 
 -------------------------------- ATRIBUTOS --------------------------------
@@ -43,6 +101,46 @@ rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <
 
 
 ******************************************************************** CSS ********************************************************************
+
+-------------------------------- FLEXBOX --------------------------------
+
+IMPORTANTE, ao colocar display flex, todos os seus filhos vão para a esquerda como se fosse float(left) e passam a ter o mesmo tamanho.
+
+IMPORTANTE Podemos ter containers FLEXBOX DENTRO DE containers FLEXBOX, resumindo, tanto o pai quando os filhos podem ter a propriedade display flex;
+
+display: flex; -> faz com que o elemento se comporte como um FLEXBOX.
+
+align-items: center; -> centraliza os elementos.
+
+justify-content: space-between; -> justifica o elemento com o espaço(s) entre o elemento(s)(space-between);
+
+flex-direction: column; -> Faz com que os filhos fiquem em forma de coluna
+flex-direction: column-reverse; -> Colunna reversa, isso é, se era 1 2 3 fica 3 2 1
+flex-direction: row; -> Faz com que seus filhos fiquem em formado de linha.
+flex-direction: row-reverse; -> linha reversa em vez de 1 2 3 fica 3 2 1
+
+flex: 1; -> Quero dizer ao container(PAI) FLEXBOX que cada caixinha tem que ter a mesma proporção.
+EXEMPLO:
+.caixinha{
+  display flex;
+  flex-direction: column;
+  flex: 1;
+}
+.caixinha:nth-child(2){
+  flex: 2; -> Quero dizer ao container pai que a segunda caixinha será maior que as com               flex: 1;
+}
+
+flex-grow -> Determina quanto o elemento selecionado deve crescer.
+flex-shrink -> Determina quanto o elemento deve diminuir.
+flex-basis -> Determina qual o tamanho minimo que o elemento deve ter.
+
+
+por padrão o flexbox deixa tudo em uma linha só, com o flex-wrap: wrap; podemos quebrar a linha.
+flex-wrap: wrap;
+juntamente com o flex: 1 1 45% decidimos quantos elementos vão ficar dentro daquele container antes de quebrar a linha.
+
+oder: 1; -> define quem aparecerá primeiro independente da ORDEM do HTML. (SEO ACESSIBILIDADE)
+
 
 -------------------------------- ANIMATION --------------------------------
 
