@@ -2,6 +2,47 @@
 
 document -> é o DOM da página, se colocarmos somente document dentro de um console.log(document); aparecera todo o conteudo da página.
 
+---------------------------- JSON JS ------------------------------
+JSON.parse(respostaServidor'string') -> converte o banco de dados que estava em formato de string para o formato em que o JavaScript possa trabalhar, EXEMPLO:
+
+//tras a resposta do texto que foi requisitado ao servidor.
+var resposta = xhr.responseText;
+//Com o JSON eu converto a string em objeto JavaScript.
+var objPacientes = JSON.parse(resposta);
+
+
+---------------------------- AJAX JS ------------------------------
+
+var xhtml = new XMLHttpRequest(); -> Um objeto responsavel por fazer Requisições HTTP, XML? sim, ele costumava fazer o transporte de dados do tipo XML, mas hoje em dia ele consegue trafegar outros tipos de dados também, como texto e outras coisas.
+
+xhtml.open("TipoDaRequisição(get,post,etc)", "url(endereço que queremos)"); -> abre a conexão, com o endereço que a gente quer.
+
+xhtml.send(); -> pega a requisição criada(xhtml.open), e envia a requisição para a url.
+
+//após abrir a conexao e enviá-la, devemos pedir para o xhtml, ao carregar, se conseguio receber os dados pedidos xhtml.responseText (A resposta do texto).
+xhtml.addEventListener("load", function(){
+        //tras a resposta do texto que foi requisitado ao servidor.
+        console.log(xhr.responseText);
+    });
+
+xhtml.status -> verifica o retorno do url requisitada, se o retorno for == 200 quer dizer que tudo ocorreu bem, se o erro for 404, significa que a página não foi encontrada, enfim, o xhtml.status retorna o tipo de status se foi erro se não foi etc.
+---------------------------- ARVORE NODE ------------------------------
+
+x.appendChild(); -> NODE significa COLOQUE COMO FILHO
+x.parentNode -> NODE significa que estou SELECIONANDO o PAI do elemento SELECIONADO(x).
+
+
+
+---------------------------- PALAVRAS RESERVADAS JS ------------------------------
+
+this -> em javascript o this se refere ao dono do evento referido naquele momento, EXEMPLO:
+
+pacientes.forEach(function(paciente){
+    paciente.addEventListener("dblclick", function(){
+        this.remove();
+    });
+});
+
 ---------------------------- METODOS/FUNÇÕES DO DOCUMENT ----------------------------
 
 querySelector("SEU SELETOR CSS AQUI"); -> A função querySelector faz a busca através de seletores CSS para trazer o HTML que você está interessado.(IMPORTANTE, essa função retorna APENAS 1 ELEMENTO(mesmo que esse elemento tenha varias classes, ele retorna apenas o primeiro)).
@@ -10,7 +51,84 @@ querySelectorAll -> ao contrario da querySelector, que seleciona apenas 1 elemen
 
 x.textContent -> pega o conteudo do texto.
 
-variavel.toFixed(2) -> limita o numero a duas casas decimais.
+x.toFixed(2) -> limita o numero a duas casas decimais.
+
+x.addEventListener("nomeEvento", funçãoAqui); -> Adiciona um escutador de evento, seja de click do mouse de rolagem enfim.
+
+x.appendChild(); -> NODE significa COLOQUE COMO FILHO
+
+document.createElement("nomeElemento") -> Cria um elemento.
+Exemplo:
+
+ var form = document.querySelector("#form-adiciona");
+        
+        var nome = form.nome.value;
+        var peso = form.peso.value;
+        var altura = form.altura.value;
+        var gordura = form.gordura.value;
+        
+        /* Aqui eu estou criando o elemento PAI(TR) e seus Futuros FILHOS(TD) */
+        var pacienteTr = document.createElement("tr");
+        var nomeTd = document.createElement("td");
+        var pesoTd = document.createElement("td");
+        var alturaTd = document.createElement("td");
+        var gorduraTd = document.createElement("td");
+        var imcTd = document.createElement("td");
+        
+        /* Estou dando valor para as TD'S */
+        nomeTd.textContent = nome;
+        pesoTd.textContent = peso;
+        alturaTd.textContent = altura;
+        gorduraTd.textContent = gordura;
+        
+        /* Aqui eu faço o futuro virar realidade, e falo pro JS, Coloque como filho do pacienteTr(PAI) todos os meus TDS*/
+        pacienteTr.appendChild(nomeTd);
+        pacienteTr.appendChild(pesoTd);
+        pacienteTr.appendChild(alturaTd);
+        pacienteTr.appendChild(gorduraTd);
+        
+        
+x.remove(); -> remove o elemento selecionado.
+
+x.tagName -> retornará o nome da tag selecionada em MAIÚCCULO, exemplo:
+
+ execute document.querySelector('h1').tagName. O console te retornará o nome da tag do elemento em maiúsculo ("H1").
+ 
+.toLowerCase(); -> deixa todas as letras minúsculas.
+string.substr(numMinimo, numMaximo); -> verifica a string entre o numero x e y, exemplo:
+
+var string = "Alura";
+var resultado = string.substr(1, 4);
+
+// lura
+
+---------------------------- PROPRIEDADES JS ------------------------------
+
+
+Não, innerHTML é uma propriedade, não uma função, então ela recebe o novo conteúdo, ou seja, utilizamos um sinal de igual (=):
+document.querySelector("#alura").innerHTML = "Novo texto"
+
+x.innerHTML -> Edita o html INTERNO de determinado elemento, exemplo:
+
+Temos uma ul com varias li's
+
+<ul class=".msg-erro-ul">
+    <li>bla bla</li>
+    <li>bla bla</li>
+</ul>
+
+var ul = document.querySelector(".msg-erro-ul");
+ul.innerHTML = "";
+
+Quando eu dou o valor em branco para meu ul, ul.innerHTML = "";, TODO o conteúdo dele será limpado.
+
+Ficará assim 
+
+<ul class=".msg-erro-ul">
+</ul>
+
+Utilizamos innerHTML quando queremos EDITAR alguma coisa.
+
 
 ---------------------------- Como Estilizar CSS ----------------------------
 
@@ -22,6 +140,54 @@ x.classList -> Retorna um VETOR com todas as classes do cara selecionado.
 DENTRO DA classList temos o metodo .add("nomeclasse"); SEM O PONTO DA CLASSE, Pois o metodo já se refere a uma classe, que basicamente, pega o vetor de classes da classList e adiciona uma nova classe a ela.
 
 ---------------------------- Tipos de funções ----------------------------
+Temos as funções nomeadas, que podemos reutilizar elas.
+
+function nameFunction(){
+}
+
+E temos as funções anônimas, que normalmente se usa em casos específicos, que preferencialmente não se repitão novamente.
+
+function(){}
+
+---------------------------- Tipos de for --------------------------------
+
+
+Temos o for normal.
+
+    for(var i = 0; i < variavel.lenght; i++){
+    }
+    
+Temos o forEach que pega um vetor e percorre ele como se fosse um for normal.
+
+function exibeMsgErro(erros){ -> recebendo meu vetor de erros.
+     var ul = document.querySelector(".msg-erro-ul"); -> selecionando a ul
+    erros.forEach(function(erro){ -> criando um forEach e dizendo para cada item do meu vetor, faça algo, o parâmetro que eu passo na função, corresponde ao meu vetor erros.
+    
+    // E aqui eu crio uma li, adiciono conteudo a ela e uma classe, depois adiciono ela dentro da ul existente.
+        var li = document.createElement("li");
+        li.textContent = erro;
+        li.classList.add("msg-erro");
+        ul.appendChild(li);
+    });
+}
+
+
+---------------------------- Javascript Formulário ----------------------------
+
+var btnAdd =  document.querySelector("#adicionar-paciente");
+
+btnAdd.addEventListener("click", function(event){
+    event.preventDefalt();
+    
+var form = document.querySelector("seletorForm");
+
+var nome = form.nome.value; -> Pega o valor do nome do formulário.
+
+var peso = form.peso.value -> Pega o valor do peso do formulário.
+
+});
+
+form.reset(); -> limpa os dados dos campos.
 
 ---------------------------- Funções nomeadas ----------------------------
 
@@ -54,6 +220,113 @@ function(event){
 }
 
 no código acima, eu quero dizer para o evento, não fazer o seu comportamento padrão.
+
+event.preventDefault(); -> previne o comportamento padrão.
+
+event.target -> escuta e traz o evento selecionado.
+
+click -> Ao clicar faz algo.
+dblclick -> Ao clicar duas vezes faz algo.
+input -> Toda vez que recebe um digito ou tira faz algo.
+
+---------------------------- REGEX Regular Expressions ----------------------------
+
+
+Toda linguagem de programação tem um Regex Engine, ele consiste em, receber um target(alvo) e um regex(pattern/padrão), dito isso tudo, ele é usado para obter o match(resultado).
+
+var expressao = new RegExp(target, regex;
+
+
+
+Construtor  Regex
+
+/padrão/flags
+new RegExp(padrão[, flags])
+
+var expressao = new RegExp(busca, "i");
+    //se a busca não tiver algum dado que bate com a expressao,
+    //remove o paciente
+    if(!expressao.test(nomePaciente))
+        paciente.classList.add("invisivel");
+
+
+
+
+
+SINTAX -> var nomeVariavel = / EXPRESSAO /
+
+---------------------------- REGEX META-CHARS ----------------------------
+
+^ -> A string deve iniciar com o padrão. /^oi/ -> oi deve aparecer no inicio da string
+$ -> A string deve terminar com o padrão. /cat$/ -> cart deve aparecer no final da string
+. -> Coincide com qualquer caracter, exceto uma nova linha. ex: a3@
+\s -> Caracter de espaço em branco.
+\d -> Qualquer dígito numérico. ex 3465987980
+\w -> Qualquer caracter alfanumérico(letra ou numero). ex a3 -> inclusive string vazia(que conta como um caracter de letra).
+
+\s significa whitespace e é um atalho para [ \t\r\n\f].
+\w significa word char e é uma atalho para [A-Za-z0-9_].
+
+Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significado especial), devemos utilizar o caractere \ exemplo: \. ou \* 
+
+---------------------------- REGEX Quantificadores ----------------------------
+
+? -> 0 ou 1 vez.
+* -> 0 ou mais vezes.
++ -> 1 ou mais vezes.
+{n} -> exatamente n vezes.
+{n,} -> no mínimo n vezes.
+{n,m} -> no minimo n vezes, no máximo m vezes.
+
+() -> agrupe os caracteres ou metacaracteres em um subpadrao.
+[] -> Define uma classe de caracteres que podem aparecer naquela posição.
+- -> O hiffen juntamente com uma classe de caracteres significa de oq até oq, exemplo:
+[a-z] -> de a até z em minúsculo.
+[0-9] -> de 0 até 9.
+[1-36-9] -> Definimos uma classe com os números de 1-3 e 6-9
+
+---------------------------- EXEMPLO DE REGEX ----------------------------
+
+var cep = /^\d{5}-\d{3}/ - > aqui estou dizendo que, deve começar com 5 digitos E terminar com 3 digitos.
+
+---------------------------- EXERCÍCIOS RESOLVIDOS REGEX ----------------------------
+
+DATA: 28 de Março de 1991 - > [1-3]?\d\s+de\s+[A-Z][a-zç]{3,8}\s+de\s+\d{4}
+CPF: 444.444.555-55 -> \d{3}\.?\d{3}\.?\d{3}[.-]?\d{2}
+PLACA DE CARRO: KMG-8089 -> [A-Z]{3}-\d{4}
+
+---------------------------- OBJETOS JAVASCRIPT ----------------------------
+
+Para criar um objeto basta fazer o seguinte:
+
+
+ function obtemPacienteDoFormulario(form){
+        //AQUI EU CRIO O OBJETO
+            var paciente = {
+                nome: form.nome.value,
+                peso: form.peso.value,
+                altura: form.altura.value,
+                gordura: form.gordura.value
+            }
+            
+            return paciente;
+        }
+        
+Pronto, temos o objeto paciente criado, para acessar as propriedades/CARACTERISTICAS desse objeto utilizamos o .(ponto), exemplo:
+
+var nome = paciente.nome; -> essa linha eu estou dizendo que minha variavel nome vai receber o valor da propriedade nome do objeto paciente.
+
+
+
+
+---------------------------- ARRAYS JAVASCRIPT ----------------------------
+
+Como criar um array?
+
+var nomeVariavel = []; -> cria um array vazio.
+
+nomeVariavel.push("alguma coisa"); -> o .push adiciona itens ao array.
+
 
 
 ******************************************************************** HTML ********************************************************************
@@ -101,6 +374,18 @@ rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <
 
 
 ******************************************************************** CSS ********************************************************************
+
+-------------------------------- SELETORES DE ATRIBUTOS --------------------------------
+
+O cifrão representa que queremos que o atributo termine com um valor.
+
+[src$=".jpg"]
+
+
+
+Se quisermos selecionar todos os links que começam com http://, podemos usar o seletor:
+
+[href^="http://"]
 
 -------------------------------- FLEXBOX --------------------------------
 
@@ -487,3 +772,6 @@ Fixed -> Será fixo com relação a tela.
 
 -------------------------------- TEXT-INDENT --------------------------------
 
+*********************** ATALHOS TECLADOS ***********************
+
+No Sublime é CTRL+SHIFT+D e no Bracket CTRL+D. Se nao for nenhum desses seu editor, da uma googlada com "nome do seu editor + duplicate line shorcut".
