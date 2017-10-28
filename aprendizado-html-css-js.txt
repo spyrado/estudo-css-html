@@ -257,9 +257,8 @@ SINTAX -> var nomeVariavel = / EXPRESSAO /
 
 ---------------------------- REGEX META-CHARS ----------------------------
 
-^ -> A string deve iniciar com o padrão. /^oi/ -> oi deve aparecer no inicio da string
-$ -> A string deve terminar com o padrão. /cat$/ -> cart deve aparecer no final da string
-. -> Coincide com qualquer caracter, exceto uma nova linha. ex: a3@
+
+
 \s -> Caracter de espaço em branco.
 \d -> Qualquer dígito numérico. ex 3465987980
 \w -> Qualquer caracter alfanumérico(letra ou numero). ex a3 -> inclusive string vazia(que conta como um caracter de letra).
@@ -278,12 +277,54 @@ Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significa
 {n,} -> no mínimo n vezes.
 {n,m} -> no minimo n vezes, no máximo m vezes.
 
-() -> agrupe os caracteres ou metacaracteres em um subpadrao.
+---------------------------- REGEX Classes de char - [] ----------------------------
 [] -> Define uma classe de caracteres que podem aparecer naquela posição.
-- -> O hiffen juntamente com uma classe de caracteres significa de oq até oq, exemplo:
-[a-z] -> de a até z em minúsculo.
-[0-9] -> de 0 até 9.
-[1-36-9] -> Definimos uma classe com os números de 1-3 e 6-9
+() -> Define grupos.
+(([A-Za-z\d]+)\.)+ -> Aqui eu quero dizer o seguinte, letras e numeros                             podem aparecer uma ou mais vezes, ISOLO com 
+                      grupo ([A-Za-z\d]+) para dizer que apenas esses eu quero que apareça uma ou mais vezes, após isso eu defino que o .(ponto) deve aparecer uma vez, e englobo TODA a regex e falo, essa regra pode acontecer uma ou mais vezes, resultados validos:
+                      ALgO57. ALgO57. ALgO57.ALgO57.asdas
+                      
+(?:de\s+) -> O ?: Non-capturing group, você agrupa as informações
+             que não deseja entre (), exemplo, (de\s+), e coloca o
+             ?: para dizer para sua programação, que não deseja essa informação.
+             Exemplo:
+             ALVO: 21 de Maio de 1993
+             REGEX: ([1-3]?\d)\s+(?:de\s+)?([A-Z][a-zç]{3,8})\s+(?:de\s+)?(\d{4})
+             RESULTADO do ?: para a aplicação: 21 Maio 1993
+             Resumindo, o ?: juntamente com o grupo (?:) é útil para filtrar apenas as informações que queremos NA APLICAÇÃO.
+| -> para definir dentro de um grupo que queremos um OU outro usamos o caractere | (pipe) exemplo: (caelum.com.br | alura.com.br)
+             
+             
+[A-Z] -> Letras de A até Z.
+[123] -> 1,2 ou 3.
+\d -> Todos os digitos [0-9]
+\s -> whitespace [ \t\r\n\f]
+\w -> Qualquer caracter alfanumérico(letra ou numero) wordchar [A-Za-z0-9_]
+. -> Qualquer caracter, exceto uma nova linha. ex: a3@
+
+
+-------------------------------- REGEX Âncora ------------------------------
+
+     IMPORTANTE: Âncoras marcam uma posição específica no alvo, por isso não é possível combiná-las com um quantifier.
+
+\b -> Âncora, seleciona tudo que não contem 
+      wordchar(\w ([A-Za-z0-9_])) seja no inicio, no final ou em ambos os lados da palavra buscada, depende de onde nossa âncora esteja.
+      exemplo:
+      ALVO: dialogo dia melodia diafragma dialeto radial bom-dia
+      REGEX: 1° busca: \bdia  2° busca: dia\b    3° busca: \bdia\b
+      RESULTADO: 1°busca: dialogo dia diafragma dialeto bom-dia
+                 2°busca:  dia melodia bom-dia
+                 3°busca:  dia bom-dia
+                 
+\B -> Âncora, é o inverso do \b ele extrai palavras internas como o único
+      que não foi extraido do exemplo acima, radial 
+
+^ -> A string deve iniciar com o padrão. /^oi/ -> oi deve aparecer no inicio da string
+
+$ -> A string deve terminar com o padrão. /cat$/ -> cart deve aparecer no final da string
+
+
+
 
 ---------------------------- EXEMPLO DE REGEX ----------------------------
 
@@ -295,6 +336,17 @@ DATA: 28 de Março de 1991 - > [1-3]?\d\s+de\s+[A-Z][a-zç]{3,8}\s+de\s+\d{4}
 CPF: 444.444.555-55 -> \d{3}\.?\d{3}\.?\d{3}[.-]?\d{2}
 PLACA DE CARRO: KMG-8089 -> [A-Z]{3}-\d{4}
 
+FILTRANDO NOME DO EMAIL: 
+    REGEX: ([a-z.]{4,14}[a-z\d])@(?:caelum.com.br|alura.com.br)$
+    EMAIL: super.mario2@caelum.com.br
+    RESULTADO DO FILTRO GROUP: super.mario2
+Validando Email:
+^([A-Za-z\d]+([\.a-zA-Z\-]+)?)\@(?:[a-zA-Z\d]+\.?(?:[a-zA-Z\d]+)?\.?(?:[a-zA-Z\d]+)?(?:.com|.com.br|.info|.JP))$
+lista de email:
+donkey.kong@kart.com.br
+bowser1@games.info 
+super-mario@nintendo.JP
+TEAM.donkey-kong@MARIO.kart1.nintendo.com
 ---------------------------- OBJETOS JAVASCRIPT ----------------------------
 
 Para criar um objeto basta fazer o seguinte:
