@@ -136,6 +136,8 @@ x.style.nomepropriedade = x.style.color, OBS: CASO
 A PROPRIEDADE TENHA O TRACINHO - em JS nós retiramos o tracinho e deixamos o nome da propriedade em camelCase, Exemplo: x.style.backgroundColor = "red";
 
 x.classList -> Retorna um VETOR com todas as classes do cara selecionado.
+x.classList.add("nomeClasse"); -> Adiciona uma nova classe.
+x.classList.remove("nomeClasse"); -> Remove a classe.
 
 DENTRO DA classList temos o metodo .add("nomeclasse"); SEM O PONTO DA CLASSE, Pois o metodo já se refere a uma classe, que basicamente, pega o vetor de classes da classList e adiciona uma nova classe a ela.
 
@@ -228,6 +230,7 @@ event.target -> escuta e traz o evento selecionado.
 click -> Ao clicar faz algo.
 dblclick -> Ao clicar duas vezes faz algo.
 input -> Toda vez que recebe um digito ou tira faz algo.
+load -> Toda vez que a página é carregada, faz algo.
 
 ---------------------------- REGEX Regular Expressions ----------------------------
 
@@ -261,10 +264,12 @@ SINTAX -> var nomeVariavel = / EXPRESSAO /
 
 \s -> Caracter de espaço em branco.
 \d -> Qualquer dígito numérico. ex 3465987980
-\w -> Qualquer caracter alfanumérico(letra ou numero). ex a3 -> inclusive string vazia(que conta como um caracter de letra).
+\D -> Tudo que não é um digito (negação de \d) [^\d]
 
-\s significa whitespace e é um atalho para [ \t\r\n\f].
-\w significa word char e é uma atalho para [A-Za-z0-9_].
+\s -> significa whitespace e é um atalho para [ \t\r\n\f].
+\w -> significa word char e é uma atalho para [A-Za-z0-9_].
+\W -> Tudo que não é um wordchar (negação de word-char) [^\w]
+
 
 Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significado especial), devemos utilizar o caractere \ exemplo: \. ou \* 
 
@@ -276,6 +281,8 @@ Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significa
 {n} -> exatamente n vezes.
 {n,} -> no mínimo n vezes.
 {n,m} -> no minimo n vezes, no máximo m vezes.
+?=n	Matches any string that is followed by a specific string n
+?!n	Matches any string that is not followed by a specific string n
 
 ---------------------------- REGEX Classes de char - [] ----------------------------
 [] -> Define uma classe de caracteres que podem aparecer naquela posição.
@@ -297,10 +304,7 @@ Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significa
              
 [A-Z] -> Letras de A até Z.
 [123] -> 1,2 ou 3.
-\d -> Todos os digitos [0-9]
-\s -> whitespace [ \t\r\n\f]
-\w -> Qualquer caracter alfanumérico(letra ou numero) wordchar [A-Za-z0-9_]
-. -> Qualquer caracter, exceto uma nova linha. ex: a3@
+
 
 
 -------------------------------- REGEX Âncora ------------------------------
@@ -323,12 +327,134 @@ Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significa
 
 $ -> A string deve terminar com o padrão. /cat$/ -> cart deve aparecer no final da string
 
+-------------------------------- REGEX GRUPOS ------------------------------
 
+(\w+) -> grupo de wordchars
+(\w+)? -> grupo opcional
+(?:\w+) -> non-capturing group
+
+Ganancioso ou preguiçoso
+
+--------------------- REGEX Ganancioso ou preguiçoso -----------------------
+
+Nosso meta-char +, * e {} são gananciosos, nessa regex ele não nos obedece:
+    ALVO: <h1 class="text-left">Expressões regulares</h1>
+    REGEX: <h1.+>
+    RESULTADO: <h1 class="text-left">Expressões regulares</h1>
+    Éra para ele parar aqui <h1 class="text-left">, porém o + é ganancioso, ele seleciona tudo pela frente e só para no último > do nosso alvo, e as vezes não é isso que desejamos, para corrigir isso, temos que fazer o meta-char + ficar PREGUIÇOSO colocamos uma ?(INTERROGAÇÃO) logo a frente dele, dará outro significado a interrogação, elá falará para o nosso + parar no PRIMEIRO sinal de maior que achar, o resultado agora é outro:
+    
+    ALVO: <h1 class="text-left">Expressões regulares</h1>
+    REGEX: <h1.+?>
+    RESULTADO: <h1 class="text-left">
+    
+Meta-char ganancioso {}
+    ALVO: <h1 class="text-left">Expressões regulares</h1>
+    REGEX: <h1.{1,10}
+    RESULTADO: <h1 class="te
+    RESUMO: Selecionou os 10.
+    
+Meta-char preguiçoso {}
+    ALVO: <h1 class="text-left">Expressões regulares</h1>
+    REGEX: <h1.{1,50}?
+    RESULTADO: <h1 
+    RESUMO: Selecionou apenas 1, pois não defini o que vai depois dele.
+    
+Meta-char preguiçoso {}
+    ALVO: <h1 class="text-left">Expressões regulares</h1>
+    REGEX: <h1.{1,50}?>
+    RESULTADO: <h1 class="text-left">
+    RESUMO: Agora ele seleciona apenas até aonde eu preciso, não utiliza os 50, apenas o necessario para chegar no >
+
+    
+
+
+---------------------------- Regex Backreference ---------------------------
+
+um backreference, referencia algum grupo anterior, nós referênciamos grupos pelo seu indice, exemplo:
+    ALVO: <h1 class="text-left">Expressões regulares</h1>
+    REGEX ERRADO: <(h1|h2).+?>([\s\wõãí]+)</(h1|h2)>
+        Ao utilizar pipe ( | ), ele pega ou um ou outro, então corremos o risco dele selecionar um html errado, como <h1></h2>m e não queremos isso, então usamos backreference para esses tipos de casos.
+    REGEX CORRETO: <(h1|h2).+?>([\s\wõãí]+)</\1>
+        Esse \1, indica que eu quero o indice do primeiro grupo, nesse caso (h1|h2), então estou dizendo ou só vai ter h1 nas pontas ou só h2, 
+
+---------------------------- Regex NEGAÇÃO ---------------------------
+
+Para fazer a negação de algo, fazemos da seguinte forma:
+^ -> nega um ou mais caracteres.
+REGEX: <h1[^>]+?>
+    [^>]+ Ao contrario do nosso [a-z]+ que dizemos que queremos itens de a-z uma ou mais vezes, quando colocamos a negação ^ dizemos que pode tudo, menos o que eu determinar entre [^].
+    
+-------------------------------- REGEX Flags ------------------------------
+
+g -> para fazer um match global, no alvo inteiro.
+    se retirar o g do seu regex, ele vai parar no primeiro alvo que encontrou, exemplo.
+        ALVO: 11 AA 22
+        REGEX SEM g: \d{2}
+        RESULTADO: 11
+            Ele apenas irá encontrar o 11 pois não definimos o regex como global, caso fosse global, ele acharia tanto o 11 como o 22, pois ambos são 2 digitos
+
+i -> significa ignorecase, ou seja, independente de letra maiúscula ou minúscula
+    Exemplo:
+        var str = "Visit W3Schools";
+        var patt1 = /w3schools/i;
+        var result = str.match(patt1);
+        document.getElementById("demo").innerHTML = result;
+        Resultado: W3Schools
+    meu padrão definido foi em minúsculo, então ele deveria procurar somente por letras minusculas em nosso alvo, porém eu passo uma flag dizendo, ignora o CaseSensitive, procure por tudo que bate com o padrão, tanto faz se for maiusculo ou minúsculo.
+
+m -> significa multiline, para aplicar a regex linha por linha. Nesse caso, as âncoras ^ e $ selecionam o início e o fim de uma linha, e não da string inteira.
+
+-------------------------------- REGEX Metodos ------------------------------
+objRegex.exec(alvoAqui) -> executa a regex e devolve um array com as informações sobre o match.
+
+objRegex.test(alvoAqui) -> ela simplesmente testa se a regex existe dentro do nosso alvo, se existe irá retornar true.
+
+result.index -> Especifica o índice no qual inicia o próximo resultado.
+objRegex.lastIndex; -> devolve a última posição do match:
+
+        var alvo = "11a22b33c";
+        var objRegex = /(\d\d)(\w)/g;
+        var resultado = null;
+        while(resultado = objRegex.exec(alvo)){
+            console.log(resultado);
+            console.log(resultado.index);
+            console.log(objRegex.lastIndex); //devolve a última posição do match: 
+            
+        }
+alvo.replace(regex, 'algo a ser substituido');
+    Utilizando replace com regex:
+        var anoMesDia = '2007-12-31'
+        var exp = /-/g;
+        anoMesDia = anoMesDia.replace(exp, '/');
+        "2007/12/31"
+
+alvo.split(separador); -> Cria um array com cada item considerando o separador utilizado.
+
+alvo.match(regex) -> retorna o resultado em um vetor com base na expressão regular, exemplo:
+    var codigos = 'A121B12112C12212F12G01';
+    var exp = /[A-Za-z]\d+/g
+    var codigosExtraidos = codigos.match(exp);
+    codigosExtraidos
+    (5) ["A121", "B12112", "C12212", "F12", "G01"]
+    codigosExtraidos[0]
+    "A121"
 
 
 ---------------------------- EXEMPLO DE REGEX ----------------------------
 
 var cep = /^\d{5}-\d{3}/ - > aqui estou dizendo que, deve começar com 5 digitos E terminar com 3 digitos.
+
+        var alvo = "11a22b33c";
+        var objRegex = /(\d\d)(\w)/g;
+        var resultado = null;
+        while(resultado = objRegex.exec(alvo)){
+            console.log(resultado[0]); //devolve o match inteiro: 11a
+            console.log(resultado[1]); //devolve o primeiro grupo: 11
+            console.log(resultado[2]); //devolve o segundo grupo a
+            console.log(resultado.index); //devolve a posição onde o match começo no alvo: 0
+            console.log(regex.lastIndex); //devolve a última posição do match: 3
+        }
+
 
 ---------------------------- EXERCÍCIOS RESOLVIDOS REGEX ----------------------------
 
@@ -341,7 +467,11 @@ FILTRANDO NOME DO EMAIL:
     EMAIL: super.mario2@caelum.com.br
     RESULTADO DO FILTRO GROUP: super.mario2
 Validando Email:
-^([A-Za-z\d]+([\.a-zA-Z\-]+)?)\@(?:[a-zA-Z\d]+\.?(?:[a-zA-Z\d]+)?\.?(?:[a-zA-Z\d]+)?(?:.com|.com.br|.info|.JP))$
+
+REGEX 1°:^([A-Za-z\d]+([\.a-zA-Z\-]+)?)\@(?:[a-zA-Z\d]+\.?(?:[a-zA-Z\d]+)?\.?(?:[a-zA-Z\d]+)?(?:.com|.com.br|.info|.JP))$
+
+REGEX 2°: (^[a-zA-Z0-9]+[\w\.\-]*)\@(?:(?:[A-Za-z\d]+)\.)+[A-Za-z]{2,4}$
+
 lista de email:
 donkey.kong@kart.com.br
 bowser1@games.info 
