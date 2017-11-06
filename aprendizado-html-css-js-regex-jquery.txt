@@ -16,6 +16,7 @@ var objPacientes = JSON.parse(resposta);
 var xhtml = new XMLHttpRequest(); -> Um objeto responsavel por fazer Requisições HTTP, XML? sim, ele costumava fazer o transporte de dados do tipo XML, mas hoje em dia ele consegue trafegar outros tipos de dados também, como texto e outras coisas.
 
 xhtml.open("TipoDaRequisição(get,post,etc)", "url(endereço que queremos)"); -> abre a conexão, com o endereço que a gente quer.
+    No caso do TipoDaRequisição, será GET, pois quero passar uma url.
 
 xhtml.send(); -> pega a requisição criada(xhtml.open), e envia a requisição para a url.
 
@@ -130,7 +131,7 @@ Ficará assim
 Utilizamos innerHTML quando queremos EDITAR alguma coisa.
 
 
----------------------------- Como Estilizar CSS ----------------------------
+---------------------------- JavaScript CSS ----------------------------
 
 x.style.nomepropriedade = x.style.color, OBS: CASO
 A PROPRIEDADE TENHA O TRACINHO - em JS nós retiramos o tracinho e deixamos o nome da propriedade em camelCase, Exemplo: x.style.backgroundColor = "red";
