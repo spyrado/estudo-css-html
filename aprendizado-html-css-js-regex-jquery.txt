@@ -1,4 +1,76 @@
-******************************************************************** JavaScript ********************************************************************
+******************************************************************** jQuery ********************************************************************
+
+---------------------------- Eventos jQuery ------------------------------
+
+SINTAX: variavel.on("nomeEvento", função{
+    //conteudo da função
+});
+
+campo.on("click",function(){
+    console.log("Campo clicado");
+});
+
+---------------------------- Função Seletora jQuery ------------------------------
+
+A função seletora aceita como parâmetro seletores CSS.
+
+var frase = jQuery(".frase");
+    OU o famoso dolar, que é a mesma coisa, só é um atalho que faz referência ao seletor jQuery
+        var frase = $(".frase");
+        
+---------------------------- Funções jQuery ------------------------------
+
+
+
+.on("nomeEvento", função); -> recebe dois parâmetros, o nome do evento a
+    escutar e uma função com a ação que deve executar.
+
+.text(); -> PEGA o conteúdo de texto do elemento, exemplo:
+    var frase = $(".frase").text();
+    
+.text("string"); -> ATRIBUI um conteudo de texto ao elemento, exemplo:
+    var frase = $(".frase");
+        var texto = "alguma coisa";
+            frase.text(texto);
+            
+A função .val() pode ser usada para pegar de elementos como <input>, <textarea> e <select>.
+            
+.val() -> PEGA o valor de INPUT(s)  exemplo:
+    var campo = $(".campo-nome").val();
+    
+.val(valorQualquer); -> ATRIBUI um valor a INPUT(s) exemplo:
+    $(".campo-nome").val("alguma coisa");
+
+            
+---------------------------- Evento com função Nomeada jQuery  ------------------------------
+
+varName.on("eventName", functionName);
+
+---------------------------- Evento com função Anônima jQuery ------------------------------
+
+varName.on("eventName", function(event){
+    
+});
+
+---------------------------- jQuery Versões ------------------------------
+
+----- VERSÃO .min -------
+
+A grande diferença está na minificação da versão de produção em relação a versão de desenvolvimento. Minificar é o processo de reduzir o tamanho de um arquivo fazendo certos processos como remover comentários, trocar nome de váriaveis por nomes menores, remover espaços entre outras técnicas.
+A versão de produção, por ser minificada, tem um tamanho reduzido, sendo incrívelmente 30% do peso da versão de desenvolvimento. Utilizar a versão de produção quando estamos disponibilizando a versão final do nosso website para o usuário é de extrema importância, pois conseguimos onerar menos a banda de nossos usuários, algo que é bem interessante nos dias de hoje, já com o aumento dos acessos a website via mobile a maioria dos usuários depende de redes 3G e 4G, que são naturalmente mais limitadas.
+
+Mas já ao desenvolver um website, é comum utilizarmos a versão de desenvolvimento, pois podemos ver como uma determinada função do jQuery foi implementada e fica mais fácil debuggar em caso de necessidade.
+
+----- VERSÃO SLIM -------
+
+A versão slim não possuí as funções de animação nem de AJAX do jQuery normal.
+
+Por ela não possuir estes dois módulos do jQuery, ela chega a ser 20% menor do que a versão normal, onerando menos a banda do usuário quando ele acessa um site que utiliza a versão slim.
+
+Ela é útil para desenvolvedores que querem utilizar o jQuery apenas para a manipulação do DOM, escutar eventos, adicionar ou remover classes ou criar elementos, permitindo estes desenvolvedores terem acesso a uma versão mais simples do framework, pois muitas vezes queremos fazer animações utilizando algum recurso do CSS3 ou utilizar alguma outra biblioteca específica para requisições AJAX.
+
+
+******************************************************************** JavaScript ****************************************************************
 
 document -> é o DOM da página, se colocarmos somente document dentro de um console.log(document); aparecera todo o conteudo da página.
 
@@ -210,7 +282,7 @@ x.addEventListener("click", function(){
     alert("Ola"); 
 });
 
----------------------------- EVENTOS JS ----------------------------
+---------------------------- EVENTOS JavaScript ----------------------------
 
 IMPORTANTE!
 
