@@ -10,6 +10,38 @@ campo.on("click",function(){
     console.log("Campo clicado");
 });
 
+IMPORTANTE!
+Alguns evento no jQuery tem atalhos para eventos comuns, como click focus blur, o atalho seria o seguinte:
+
+campo.click(function(){
+    console.log("Campo clicado");
+});
+
+-------------- Eventos jQuery --------------
+
+ready -> assim que a pagina carrega, o evento é disparádo, diferente do
+    onload do javascript puro, que ele necessita que tudo da página seja carregado para disparar o evento(videos imagens tudo).
+        exemplo:
+            $(document).ready(function(){
+                atualizaTamanhoFrase();
+                iniciaContadores();
+                iniciaCronometro();
+                $("#botao-reiniciar").click(reiniciaJogo);
+            });
+            
+ATALHO PARA ready:
+
+    $(function(){
+        atualizaTamanhoFrase();
+        iniciaContadores();
+        iniciaCronometro();
+        $("#botao-reiniciar").click(reiniciaJogo);
+    });
+
+
+
+
+
 ---------------------------- Função Seletora jQuery ------------------------------
 
 A função seletora aceita como parâmetro seletores CSS.
@@ -20,7 +52,19 @@ var frase = jQuery(".frase");
         
 ---------------------------- Funções jQuery ------------------------------
 
+.css("nomePropriedade", "valorPropriedade");
 
+.removeAttr("nomeAtributo"); -> REMOVE o atributo.
+
+.attr("nomeAtributo"); -> PEGA o valor do atributo.
+
+.attr("nomeAtributo", valorAtributo); -> ATRIBUI um novo valor ao 
+    atributo:
+    IMPORTANTE, CASO O ATRIBUTO NÃO TENHA VALOR, COMO O DISABLED, SEU VALOR É TRUE OU FALSE.
+        EXEMPLO:
+        Como vimos no capítulo, para colocar o atributo disabled em um elemento, nós utilizamos a função attr. Mas como ele não recebe nenhum valor, temos que informar isso, "habilitando-o" na função, passando o valor true (verdadeiro) por parâmetro.
+
+.one("nomeEvento", função); -> Mesma funcionalidade do .on, POREM ele só vai executar o evento APENAS UMA VEZ(ONE).
 
 .on("nomeEvento", função); -> recebe dois parâmetros, o nome do evento a
     escutar e uma função com a ação que deve executar.
@@ -116,7 +160,7 @@ pacientes.forEach(function(paciente){
     });
 });
 
----------------------------- METODOS/FUNÇÕES DO DOCUMENT ----------------------------
+---------------------------- METODOS/FUNÇÕES JAVASCRIPT / Document ----------------------------
 
 querySelector("SEU SELETOR CSS AQUI"); -> A função querySelector faz a busca através de seletores CSS para trazer o HTML que você está interessado.(IMPORTANTE, essa função retorna APENAS 1 ELEMENTO(mesmo que esse elemento tenha varias classes, ele retorna apenas o primeiro)).
 
@@ -175,6 +219,25 @@ var resultado = string.substr(1, 4);
 
 // lura
 
+setInterval(nomeFuncao, tempoDeIntervalo); -> 
+    Executa uma função de tanto em tanto tempo, até você definir 
+    quando parar o intervalo com o clearInterval(id);
+    
+clearInterval(id); -> Limpa o intervalo da função setInterval
+    isto é, ele para o funcionamento da mesma.
+        exemplo:
+            var id = setInterval(function(){
+                //faz algo.
+                if(esse algo chegar ao objetivo)
+                    clearInterval(id); -> para o funcionamento do 
+                        setInterval
+            }, 1000); -> faz algo a cada 1000 milisegundos(1segundo);
+
+Caso queria uma função que só execute UMA vez em determinado tempo, utilizamos o setTimeout, que segue quase a mesma lógica da explicação acima, porem não necessita de clearInterval, pois executará apenas uma vez.
+
+setTimeout(nomeFuncao, tempoDeIntervalo); -> Executa uma única vez a
+    a função definida, no tempo definido.
+    
 ---------------------------- PROPRIEDADES JS ------------------------------
 
 
@@ -303,7 +366,10 @@ event.target -> escuta e traz o evento selecionado.
 click -> Ao clicar faz algo.
 dblclick -> Ao clicar duas vezes faz algo.
 input -> Toda vez que recebe um digito ou tira faz algo.
-load -> Toda vez que a página é carregada, faz algo.
+load -> Toda vez que a página é carregada TOTALMENTE, faz algo.
+ready -> Função EXCLUSIVA do jQuery
+    Assim que a página é carregada ele já executa a função, não precisa esperar imagens/videos/etc ser carregado também como é no evento de load do javascript puro.
+focus -> Toda vez que um campo ganha o foco para ser digitado.
 
 ---------------------------- REGEX Regular Expressions ----------------------------
 
