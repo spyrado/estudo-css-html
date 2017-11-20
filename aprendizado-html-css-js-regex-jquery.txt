@@ -40,8 +40,6 @@ ATALHO PARA ready:
 
 
 
-
-
 ---------------------------- Função Seletora jQuery ------------------------------
 
 A função seletora aceita como parâmetro seletores CSS.
@@ -50,9 +48,176 @@ var frase = jQuery(".frase");
     OU o famoso dolar, que é a mesma coisa, só é um atalho que faz referência ao seletor jQuery
         var frase = $(".frase");
         
+---------------------------- Funções jQuery ANIMATION------------------------------
+
+scrollTop:
+
+x.animate({objeto: algo}, tempoParaAnimacao); -> cria animações customizadas, 
+    EXEMPLO:
+        function scrollPlacar() {
+            var posicaoPlacar = $(".placar").offset().top;
+
+            $("html, body").animate({
+                scrollTop: posicaoPlacar+"px"
+            }, 1000);
+        }
+    RESULTADO:
+        pega o html e body, para ter referência do tamanho da página,
+        depois vai scrollar até a posição do placar.
+
+x.offset().top -> retorna a posição do TOP do elemento.
+
+x.offset().left -> retorna a posição do LEFT do elemento.
+
+x.offset() -> retorna a posição do elemento (top e left do elemento).
+
+x.top() -> para a animação que estiver acontecendo no momento.
+
+x.fadeTo("milissegundos",opacidade de 0 a 1) -> Faz uma animação diminuindo a 
+    opacidade do elemento.
+
+x.fadeToggle("millisegundos") -> aparece ou desaparece com o tempo.
+
+x.fadeIn("millisegundos"); -> o elemento vai aparecendo ao longo do tempo.
+
+x.fadeOut("millisegundos"); -> o elemento vai desaparecendo ao longo do tempo.
+
+
+x.slideToggle("milisegundos") -> faz uma animação para cima se tiver para 
+    baixo, e para baixo se tiver para cima.
+
+x.slideUp("milisegundos") -> faz uma animação para CIMA.
+
+x.slideDown("milisegundos") -> faz uma animação para BAIXO.
+
+x.toggle(); -> se tiver escondido ele mostra, se não tiver ele esconde.
+
+x.hide(); -> esconde o elemento.
+
+x.show(); -> exibe o elemento.
+      
 ---------------------------- Funções jQuery ------------------------------
 
-.css("nomePropriedade", "valorPropriedade");
+x.is(":visible"); -> O jQuery possui a função is que permite consultar uma  
+    pseudo class. Toda vez que um elemento esta com display diferente de none ele ganha a pseudo classe :visible . A função is retorna true caso o elemento esteja visível. Se ele estiver visível, precisamos escondê-lo e isso é feito através da função hide. Para exibir o elemento, é usada a função show.
+
+x.hasClass("nomeClasse") -> retorna true se o elemento possui a classe,
+    e false se não possuir.
+        EXEMPLO DE UTILIZAÇÃO:        
+            $('#botao-promocao').click(function() {
+
+              var promocoes = $('.promocoes');
+              if(promocoes.hasClass('invisivel')) {
+
+                promocoes.removeClass('invisivel');
+              } else {
+                promocoes.addClass('invisivel');
+              }
+
+            });
+
+var x = $("<tagHTML>"); -> cria um elemento html.
+    EXEMPLO:
+        var linha  = $("<tr>"); -> CRIA um elemento TR.
+
+elemento.parent("seletor") -> Pega o elemento e procura por um pai com o mesmo nome do seletor colocado como parâmeto:
+    EXEMPLO:
+        HTML:
+            <section>
+                <div>
+                    <h1>Olá</h1>
+                </div>
+                <div class="segunda"> <-- retorna apenas esta div.
+                    <h1>Mundo</h1>
+                </div>
+            </section>
+        JQUERY:
+            $("h1").parent(".segunda");
+        RESULTADO:
+            O código $("h1").parent(".segunda"); seleciona todos os h1s da página, e busca em cada um deles por um pai com a classe segunda. Neste caso, retornando apenas a div inferior.
+
+elemento.parent().parent(); -> acessa o pai do pai do elemento, e assim por diante.
+    EXEMPLO:
+este é o pai do td-><tr> <- .parent().parent(), acessa aqui (o pai do <tr>)
+                        <td>Nicolas</td>
+                        <td>1</td>
+este é o pai do a  ---> <td>   <--- .parent(), acessa aqui ( o pai do <a>)
+este é o elemento --->      <a href="#" class="btn-remove"><i class="small
+                            material-icons">delete</i></a>
+                        </td>
+                    </tr>
+    JQUERY:
+         $(".btn-remove").click(function(event){
+            event.preventDefault();
+            $(this).parent().parent().remove();
+        });
+    
+
+elemento.parent(); -> acessa o pai do elemento.
+    EXEMPLO:
+        HTML: 
+            <div>
+                sou uma div
+                <p>Olá</p>
+            </div>
+        jQuery:
+            $("p").parent().css({"color": "red", "border": "2px solid red"});
+        Resultado:
+            A <div> que é o PAI do <p> fica estilizada com cor red e borda red.
+
+elemento.prepend("string") -> adiciona uma string no COMEÇO do elemento 
+    selecionado, SEMPRE COMO FILHO do elemento.
+
+elemento.append("string") -> adiciona uma string no FINAL do elemento 
+    selecionado, SEMPRE COMO FILHO do elemento.
+        EXEMPLO:
+            function inserePlacar(){
+                var corpoTabela = $(".placar").find("tbody");
+                var usuario = "Nicolas";
+                var numPalavras = $("#contador-palavras").text();
+    string -->  var linha = "<tr>"+
+                                "<td>"+usuario+"</td>"+
+                                "<td>"+numPalavras+"</td>"+
+                            "</tr>";
+                corpoTabela.append(linha);
+            }
+
+.find() -> Obtenha os descendentes de cada elemento no conjunto atual de
+    elementos correspondentes, filtrados por um seletor, objeto jQuery ou elemento, exemplo:
+        HTML:
+            <section class="placar">
+            <h3 class="center">Placar</h3>
+            <table class="centered bordered">
+        jQuery:
+            var placar = $(".placar").find("table");
+            console.log(placar);
+        Resultado:
+            [table.centered.bordered, prevObject: jQuery.fn.init(1)]
+
+
+.toggleClass("nomeClasse", false); //sempre retira
+
+.toggleClass("nomeClasse", true); //sempre adiciona
+
+.toggleClass("nomeClasse") -> Adiciona OU Remove uma ou MAIS classes, se 
+    já existir a classe, ele remove, se não existir, ele adiciona.
+
+.removeClass("nomeClasse"); -> Remove uma classe de um elemento.
+
+.addClass("nomeClasse"); -> Adiciona uma classe ao elemento.
+
+Devemos usar a função css() do jQuery que recebe o nome da propriedade:
+    var x = elemento.css("background-color"); -> RECEBE a cor do elemento selecionado.
+
+        Também é possivel recuperar mais de um valor passando um array de propriedades, por exemplo:
+            var valores = $("div").css(["background-color","width"]);
+
+                O resultado é um objeto que possui todos os valores. Por exemplo para acessar o width podemos escrever:
+                    valores.width
+
+
+.css("nomePropriedade", "valorPropriedade"); -> Adiciona um css a um 
+    elemento.
 
 .removeAttr("nomeAtributo"); -> REMOVE o atributo.
 
@@ -212,6 +377,7 @@ x.tagName -> retornará o nome da tag selecionada em MAIÚCCULO, exemplo:
  execute document.querySelector('h1').tagName. O console te retornará o nome da tag do elemento em maiúsculo ("H1").
  
 .toLowerCase(); -> deixa todas as letras minúsculas.
+
 string.substr(numMinimo, numMaximo); -> verifica a string entre o numero x e y, exemplo:
 
 var string = "Alura";
@@ -371,6 +537,10 @@ ready -> Função EXCLUSIVA do jQuery
     Assim que a página é carregada ele já executa a função, não precisa esperar imagens/videos/etc ser carregado também como é no evento de load do javascript puro.
 focus -> Toda vez que um campo ganha o foco para ser digitado.
 
+mouseenter -> Toda vez que o mouse passa em cima, ele ativa o evento.
+
+mouseleave -> Toda vez que o mouse sai do elemento, ele ativa o evento.
+
 ---------------------------- REGEX Regular Expressions ----------------------------
 
 
@@ -426,7 +596,7 @@ Lembrando também, se quisermos procurar pelo * ou . literalmente (sem significa
 ---------------------------- REGEX Classes de char - [] ----------------------------
 [] -> Define uma classe de caracteres que podem aparecer naquela posição.
 () -> Define grupos.
-(([A-Za-z\d]+)\.)+ -> Aqui eu quero dizer o seguinte, letras e numeros                             podem aparecer uma ou mais vezes, ISOLO com 
+(([A-Za-z\d]+)\.)+ -> Aqui eu quero dizer o seguinte, letras e numeros podem aparecer uma ou mais vezes, ISOLO com 
                       grupo ([A-Za-z\d]+) para dizer que apenas esses eu quero que apareça uma ou mais vezes, após isso eu defino que o .(ponto) deve aparecer uma vez, e englobo TODA a regex e falo, essa regra pode acontecer uma ou mais vezes, resultados validos:
                       ALgO57. ALgO57. ALgO57.ALgO57.asdas
                       
@@ -813,9 +983,39 @@ ease-in-out -> com suavização no começo e no final.
 
 -------------------------------- VERTICAL-ALIGN --------------------------------
 
-IMPORTANTE! A propriedade vertical-align define o alinhamento vertical de um elemento.
+IMPORTANTE!
+A propriedade vertical-align pode ser usada em dois contextos:
 
-middle ->
+    1°CONTEXTO:
+    
+    Para alinhar verticalmente uma caixa de elementos inline dentro de sua caixa de linha. Por exemplo, poderia ser usado para alinhar verticalmente um  <img> em uma linha de texto:
+    
+    2°CONTEXTO:
+    
+    Para alinhar verticalmente o conteudo de uma celula em uma tabela(table-cell):
+    
+
+/* keyword values */
+vertical-align: baseline;
+vertical-align: sub;
+vertical-align: super;
+vertical-align: text-top;
+vertical-align: text-bottom;
+vertical-align: middle;
+vertical-align: top;
+vertical-align: bottom;
+
+/* <length> values */
+vertical-align: 10em;
+vertical-align: 4px;
+
+/* <percentage> values */
+vertical-align: 20%;
+
+/* Global values */
+vertical-align: inherit;
+vertical-align: initial;
+vertical-align: unset;
 
 -------------------------------- BORDER --------------------------------
 
