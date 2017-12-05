@@ -1,4 +1,123 @@
+******************************************************************** PHP ********************************************************************
+
+
+
+---------------------------- Funções PHP ------------------------------
+
+Criando uma função:
+    function functionName($param){
+        //conteudo...
+    }
+    
+ $resultSoma = soma(70,55); - > variável recebendo valor da função.
+        function soma($a,$b){
+            $result = $a + $b;
+            return $result;
+        }
+
+count($array) -> retorna o numero de elementos que a variável (ou array) 
+    tem.
+    
+sizeof($array) -> retorna o tamanho da variavel(ou array).
+
+
+---------------------------- TAGS ------------------------------
+
+Se um arquivo for código PHP puro, é preferível omitir a tag de fechamento no final do arquivo. Prevenindo a existência de espaços ou linhas em branco após a tag, que podem causar efeitos indesejáveis.
+    EXEMPLO:
+        <?php
+            echo "Hello world";
+
+            // ... mais código
+
+            echo "última instrução";
+
+            // o script termina aqui, sem tag de fechamento PHP
+            
+<?php ?> -> Tag normal.
+
+<?= ?> -> shot tag, é a mesma coisa que <?php echo   ; ?>.
+    só funciona com o short_open_tag está ativo no arquivo
+    php.ini.
+        NOTA: 5.4.0	A tag <?= sempre está disponível, independente do da configuração short_open_tag ini.
+            EXEMPLO:
+                <?= $nome; ?>
+
 ******************************************************************** jQuery ********************************************************************
+
+---------------------------- AJAX jQuery ------------------------------
+
+Pegando informações do servidor via get com jQuery.
+Documentação: https://api.jquery.com/jquery.get/
+
+$.get("url", função(parâmetro)); -> 
+    1° Como primeiro parâmetro passamos a url que desejamos consumir via
+    Ajax.
+    2° Como segundo parâmetro passamos uma função com um parâmetro, esse parâmetro é quem vai receber os dados que foram puxados do servidor, e é com esse parâmetro que teremos acesso as informações do servidor.
+    EXEMPLO PRÁTICO:
+        function fraseAleatoria() {
+
+            $.get('http://localhost:3000/frases', function(retorno) {
+
+                console.log(retorno[0].texto);
+            });
+        }
+EXIBINDO ERROS AJAX
+
+.fail(function) -> Se a requisição falhar, executa esta função.(.fail()).
+    EXEMPLO:
+        function fraseAleatoria(){ 
+            $.get("http://localhost:3000/frases", trocaFraseAleatoria)
+            .fail(function(){
+                $("#erro").toggle();
+                setTimeout(function(){
+                    $("#erro").toggle();
+                }, 5000);
+            });
+        }
+
+.always() -> Se a requisição tiver sucesso ou fracasso, esta função 
+    executará mesmo assim.
+        EXEMPLO:
+            function fraseAleatoria(){
+                var spinner = $("#spinner"), erro = $("#erro");
+                spinner.toggle();
+                $.get("http://localhost:3000/fraases", trocaFraseAleatoria)
+                .fail(function(){
+                    erro.slideDown();
+                    setTimeout(function(){
+                        erro.slideUp();
+                    },5000);
+                })
+                .always(function(){
+                    spinner.toggle();
+                });
+            }
+
+--------------- Buscando dados com get AJAX ---------------
+
+
+var fraseId = $("#frase-id").val(); -> pegamos o id do campo.
+var dados = {id: fraseId}; -> colocamos o valor desse campo, na propriedade
+    desejada, no caso queremos o id.
+$.get("http://localhost:3000/frases", dados, trocaFrase); -> passamos o 
+    objeto dados como 2° Parâmetro( IMPORTANTE, TEM QUE SER COMO SEGUNDO PARÂMETRO), e depois passamos a função que irá retornar o objeto buscado, para nós.
+        EXEMPLO 1: $.get("http://localhost:3000/frases", dados, function(data){
+            console.log(data);
+        });
+        EXEMPLO 2:
+            function buscaFrase(){
+                var fraseId = $("#frase-id").val();
+                var dados = {id: fraseId};
+                console.log("id escolhido foi:" +fraseId);
+                $.get("http://localhost:3000/frases", dados, trocaFrase);
+            }
+            
+            function trocaFrase(data){
+                $(".frase").text(data.texto);
+                atualizaTempoInicial(data.tempo);
+                atualizaTamanhoFrase();
+            }
 
 ---------------------------- Eventos jQuery ------------------------------
 
@@ -98,6 +217,20 @@ x.show(); -> exibe o elemento.
       
 ---------------------------- Funções jQuery ------------------------------
 
+x.each -> Funciona como o forEach e for normal.
+    EXEMPLO:
+    linhas.each(function(){
+        var usuario = $(this).find("td:nth-child(1)").text();
+        console.log(usuario);
+    });
+    EXEMPLO 2:
+        var letras = ['a', 'b', 'c'];
+
+        $.each(letras, function() {
+
+             console.log(this);
+        });
+    
 x.is(":visible"); -> O jQuery possui a função is que permite consultar uma  
     pseudo class. Toda vez que um elemento esta com display diferente de none ele ganha a pseudo classe :visible . A função is retorna true caso o elemento esteja visível. Se ele estiver visível, precisamos escondê-lo e isso é feito através da função hide. Para exibir o elemento, é usada a função show.
 
@@ -326,6 +459,21 @@ pacientes.forEach(function(paciente){
 });
 
 ---------------------------- METODOS/FUNÇÕES JAVASCRIPT / Document ----------------------------
+
+Junção dos dois metodos de Math(Math.floor() + Math.random()).
+    EXEMPLO:
+        Math.floor((Math.random() * 10) + 1);
+    RESULTADO:
+        Vai gerar um numero aleatório de 1 até 10.
+
+Math.floor(1.6); -> Arredonda o numero para baixo.
+        EXEMPLO:
+            Math.floor(1.9);
+        RESULTADO:  
+            1
+
+Math.random(); -> Gera um numero aleatório 0.XXXXXXXXXXX de 0 até, 
+    0.999999...(não inclui o 1).        
 
 querySelector("SEU SELETOR CSS AQUI"); -> A função querySelector faz a busca através de seletores CSS para trazer o HTML que você está interessado.(IMPORTANTE, essa função retorna APENAS 1 ELEMENTO(mesmo que esse elemento tenha varias classes, ele retorna apenas o primeiro)).
 
