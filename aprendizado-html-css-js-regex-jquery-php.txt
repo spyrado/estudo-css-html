@@ -2,6 +2,14 @@
 
 
 
+-----------------------  IMAGENS VETORIAIS ---------------------
+
+As imagens vetoriais se ajustam conforme o tamanho, não precisando fazer uma imagem para cada tipo de resolução diferente.
+
+Desvantagem: os desenhos vetoriais não servem para fotografias, APENAS para desenhos logotipos, gráficos etc.
+
+
+
 
 ----------------------- PERFORMANCE IMAGENS RESPONSIVAS ---------------------
 
@@ -1619,7 +1627,7 @@ background-position: define a posição de uma imagem dentro de seu elemento pai
 
 text-shadow: direita esquerda espalhamento cor;
 
-box-shadow: direita baixo cor OU direita baixo espalhamento-sombra cor.
+box-shadow: horizontal vertical cor OU horizontal vertical espalhamento-sombra cor.
 
 opacity: 0~1 0 regulamos o nível de transparencia do elemento pelo opacity 0 ele fica invisivel e 1 ele fica totalmente visivel 0.5 ele fica meio termo.
 
