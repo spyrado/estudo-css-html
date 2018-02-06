@@ -1,14 +1,42 @@
 ******************************************************************** Web Design Responsivo ********************************************************************
 
 
+----------------------- SVG -----------------------
+
+São arquivos vetoriais.
+
+podemos criar uma imagem a partir do próprio html, usando a tag SVG e seus conceitos.
+
+EXEMPLO:
+
+  <svg>
+    <circle cx="50" cy="50" r="50" fill="#F4D"></circle>
+  </svg>
+  
+Nesse código SVG, criamos um circulo rosa no próprio HTML.
+
+O grande problema do SVG é o suporte, não suporta android 2 e anteriores, e IE 8 e anteriores, o resto aceita.
+
+Para resolver esse problema, temos que informar 2 arquivos, um PNG(PARA NAVEGADORES ANTIGOS) e um SVG(PARA NAVEGADORES NOVOS)
+
+Solução:
+
+<img src="logo.svg"
+  onerror="this.src='logo.png'; this.onerror=null">
+  
+    O código acima está dizendo SE for navegador que suporta, coloca svg, se não coloque png, o onerror = null, é só para previnir, caso o PNG não encontre também, o onerror vai receber null, se não ele entraria em loop infinito tentando achar os arquivos.
+
+-----------------------  ICON FONTS -----------------------
+
+São icones gerados a partir de fontes de texto, isso é todo ICON FONT, pode ser tratado como um texto.
+
+Podemos mudar a cor do icone, deixar shadow nele, aumentar/diminuir ele sem que ele perca a qualidade.
 
 -----------------------  IMAGENS VETORIAIS ---------------------
 
 As imagens vetoriais se ajustam conforme o tamanho, não precisando fazer uma imagem para cada tipo de resolução diferente.
 
 Desvantagem: os desenhos vetoriais não servem para fotografias, APENAS para desenhos logotipos, gráficos etc.
-
-
 
 
 ----------------------- PERFORMANCE IMAGENS RESPONSIVAS ---------------------
