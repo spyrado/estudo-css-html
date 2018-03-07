@@ -5,6 +5,7 @@ ul, .principal{
 	/* Não centralizamos por aqui, pois os elementos definidos como block são li e .secundario */
 }
 li, .secundaria	{
+    text-align: center;
 	width: 	30%;
 	display: block;
 	margin-right: 	.5rem;

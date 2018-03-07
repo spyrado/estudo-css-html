@@ -1,6 +1,37 @@
 ******************************************************************** Web Design Responsivo ********************************************************************
 
 
+-------------------------- DICAS DE UX PARA MOBILE --------------------------
+
+
+---- USABILIDADE ----
+
+Dedo do usuário -> em média 9mm(milimilimetros) é o tamanho ideal para o dedo dos usuários.
+
+Tabela 
+
+DEDO   PIXELS
+
+7mm     40px -> mínimo
+9mm     50px -> Recomendado
+5mm     30px -> Quando não tem jeito.
+
+É recomendado ter um padding de 2mm(10px) entre os botoes, para melhor experiência do usuário.
+
+---- MOBILE FIRST -----
+
+Utilizando essa tecnica, você já consegue verificar a priorização de conteudo, e ver as limitações que terá no mobile, e poder modificar para uma ideia melhor.
+
+
+---- PRIORIZAÇÃO DE CONTEUDO -----
+
+O Conteudo do site em si, deve ser enchugado e bem planejado, para que as poucas opções que tenha, já sirva para acessar todas as possibilidades do site, tanto no desk como no mobile.
+
+---- CONTENT PARITY ----
+
+Usar todo o conteudo do desktop, no mobile, não deixar de colocar funcionalidades no mobile só por causa que a tela é menor, tudo que estiver no desktop, é bom colocar no mobile também, mesmo que no mobile tenha que ser 2 páginas para conseguir ocupar tanta informação/funcionalidade
+
+
 ----------------------- SVG -----------------------
 
 São arquivos vetoriais.
@@ -1648,6 +1679,8 @@ background-size: 100%(width) 200px(height); caso a imagem não tenha essa altura
 background-repeat: define o tipo de repetição na imagem.
 
 background-position: define a posição de uma imagem dentro de seu elemento pai.
+
+background-size: cover; -> faz com que mesmo que a imagem não tenha 800px ocupe 800px na tela.
 
 
 
