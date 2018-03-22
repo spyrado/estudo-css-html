@@ -1,0 +1,539 @@
+-------------------------  Convenções JS -------------------------
+
+
+this._inputData = data; -> propriedades com (_)underline no começo, indica ao programador, que aquela 
+    propriedade não deve ser alterada.
+    
+_metodoX() -> metodos com underline no começo, indica que aquele metodo não deve ser chamado por fora, APENAS A PROPRIA CLASSE DEVE USÁ-LO.
+
+
+-------------------------  Excessão EXCEPTION JS -------------------------
+
+throw -> lança uma exceção.
+    Exemplo:
+        throw "Erro2"; // gera uma exceção com um valor string
+        throw 42;      // gera uma exceção com o valor 42
+        throw true;    // gera uma exceção com o valor true
+        throw new Error("Esta classe não pode ser instanciada.");
+-------------------------  Curiosidades -------------------------
+
+Em Javascript 0 é considerado FALSE.
+ Exemplo:
+ if(0)
+    Oi
+ else
+    ola
+    
+    o resultado será ola, pois 0 é false.
+    
+
+-------------------------  Operador Ternário -------------------------
+
+ Operador Ternário
+    operador ternário, a expressão (expr1) ? (expr2) : (expr3) é avaliada para expr2 se expr1 é avaliada como TRUE, ou expr3 se expr1 é avaliada como FALSE.
+    
+  SINTAX: condicao ? resultado1 : Senaoresultado2
+  
+  Exemplo:
+  
+  let numeros = [3,2,11,20,8,7];
+  let novosNumeros = numeros.map(item =>  item % 2 ? item * 2 : item);
+  console.log(novosNumeros);
+
+-------------------------  Arrow function -------------------------
+
+Minimizando código com arrow function.
+
+  Exemplo SEM Arrow function:
+  
+    metodo(function(item1){
+        //codigo aqui.
+    });
+  Exemplo COM Arrow function:
+  
+    metodo((item1) => {
+        //código aqui.
+    });
+    
+  Quando se tem apenas UMA instrução no BLOCO DA AERO FUNCTION, eu posso OMITIR OS {} o RETURN e o PONTO E VIRGULA(;).
+  Ficando assim o código, bem mais limpo.
+    
+    .map((item, indice) => item - (indice % 2))
+
+-------------------------  Spread Operator -------------------------
+
+
+Ele sempre pega o primeiro item do vetor e coloca dentro da função.
+
+Exemplo:
+    array = [3,5];
+
+    minhaFuncao(x,y){return x+ y;}
+    
+    minhaFuncao(...array); // minhaFuncao(3,5) seria esse o resultado.
+    
+    SE FIZESSEMOS SEM SPREAD OPERATOR ficaria assim:
+    
+    minhaFuncao(array[0], array[1]); // minhaFuncao(3,5) seria esse o resultado.
+    
+
+O famoso tres pontinhos
+
+... -> O  Spread Operator permite uma expressão ser expandida em locais onde múltiplos argumentos (por chamadas de função) ou múltiplos elementos (por array literais) são esperados.
+
+    Exemplos:
+    
+    Para chamadas de função:
+      minhaFuncao(...objIteravel);
+        function minhaFuncao(x, y, z) { }
+            var args = [0, 1, 2];
+            minhaFuncao(...args);
+            
+    Para array literais:
+      [...objIteravel, 4, 5, 6];
+      
+      var partes = ['ombros', 'joelhos'];
+      var letra = ['cabeca', ...partes, 'e', 'dedos']; // ["cabeca", "ombros", "joelhos", "e", "dedos"]
+      
+    Desestruturação:
+      [a, b, ...objIteravel] = [1, 2, 3, 4, 5];
+      
+      var objIteravel = [3,4,5];
+      
+      var array = [0,1,2];
+
+      array = [...objIteravel]; // array = [3,4,5];
+      
+      
+
+    
+    
+
+----- Transformando um input data, em um Objeto Date() ------
+
+No input de data, recebemos o valor como string.
+
+Para poder manipular a data, teremos que transformar essa STRING de DATA, em um Objeto Date(), para isso devemos fazer o seguinte.
+
+  let data = new Date(this._inputData.value.split("-"));
+  
+  OU
+  
+  let data = new Date(this._inputData.value.replace(/-/g, ","));
+  
+  
+  no primeiro método acontece o seguinte.
+  
+  o split transforma minha string em vetor separando por "-", o resultado ficará assim ["2018","03","14], e o proprio metodo interno do objeto Date, tem um metodo que pega esse array junto ele como string, e separa por virgula ele, ele utiliza esse método, ["2018","03","14].join(","); esse metodo vai pegar o array, transformar em string, e separar por virgula.
+  
+  o segundo método economiza processo(eu acho), pois utilizamos regex para resolve-lo, ele simplesmente pega a data do tipo string e substitui o - por virgula, ficando assim a string: antes: 2018-03-14 depois com regex 2018,03,14 e é só o que o objeto Date  precisa, uma string de data, separada por virgula.
+  
+   
+
+
+------------------- Melhoria de Performance -------------------------
+
+Fazer um Cache ou caching de coisas que são muito chamadas é uma boa prática, e reduz o tempo de processamento da função ou método.
+
+  Exemplo de caching:
+  
+    constructor(){
+        let $ = document.querySelector.bind(document);
+        
+        this.inputData = $("#data");
+        this.inputQuantidade = $("#quantidade");
+        this.inputValor = $("#valor");
+    }
+    
+    console.log(this.inputData.value);
+    
+    Nesse caso, quando eu criar meu objeto Negociacao, ele já irá percorrer a arvore DOM uma única vez, 
+    e quando eu precisar desses elementos, eu apenas referêncio eles com this, e não faço uma NOVA busca por eles, evitando assim uma má performance.
+
+------------------- Template string (ESTUDAR SOBRE ! ! ! ) -------------------------
+
+  ---- Como funciona? ----
+  
+  Antigamente no ES5 Usavamos a seguinte sintax para concatenar strings:
+  
+    Exemplo utilizando ES5:
+    
+      var nome = "Nicolas";
+      var idade = "23";
+      
+      var msg = "O " + nome + " tem " + idade + " anos."; // exibirá O Nicolas tem 23 anos.
+      
+      
+    Exemplo utilizando ES6:
+    
+      let nome = "Nicolas";
+      let idade = "23";
+      
+      let msg = `O ${nome} tem ${idade} anos.`;
+      
+      IMPORTANTE: Sempre utilize o crase(``) no início e no final, para que o JS possa identificar que é um Template String;
+      
+      
+
+------------------- SHALLOW(RASO) -------------------------
+
+O metodo Object.freeze(nomeObjeto), é um método de segurança SHALLOW(raso), o que eu quero dizer com isso.
+
+Exemplo:
+  constructor(data, quantidade, valor){
+        
+        this._data = new Date(data.getTime()); // não é shallow, pois está recebendo um objeto, e um objeto é mais profundo pois todo objeto tem seus metodos.
+        this._quantidade = quantidade; // shallow
+        this._valor = valor; // shallow
+        
+        Object.freeze(this);
+    }
+    
+    Eu quero dizer que ele só congela o que é da "superfície/ shallow / raso", caso a propriedade seja um objeto, já não é mais (raso, "superfície"), pois todo objeto é mais profundo pois todo objeto tem seus metodos.
+
+------------------- Declaração de Variáveis -------------------------
+
+var -> uso comum no javascript, porem não recomendado, pois ela funciona fora de escopo do bloco também.
+    Utilizando VAR, ele funciona apenas como escopo de função, e NÃO de bloco.
+    
+let -> uso recomendado, pois ela faz juz ao escopo de bloco.
+
+  Exemplo de uso com VAR:
+  
+   // exibira o numero de 0 até 100
+    for(var i = 0; i <= 100; i++){  
+        console.log(i); 
+    } 
+   console.log(i) // exibirá 101, porque? porque variáveis declaradas com var, não possuem escopo de bloco, apenas escopo de função.
+   
+   
+   Exemplo de uso com LET:
+   
+   // exibira o numero de 0 até 100
+    for(let i = 0; i <= 100; i++){  
+        console.log(i); 
+    } 
+   console.log(i) // exibirá " i is not defined ", porque ele não está definido?, pq como let faz juz ao escopo de bloco, a variável i só será enchergada no bloco 
+        declarado.
+   
+------------------- Programação defensiva -------------------------
+
+  Todo objeto pode ser alterado, caso ele tenha o método para ser modificado.
+    Exemplo:
+      constructor(data, quantidade, valor){
+        
+        this._data = data;
+        this._quantidade = quantidade;
+        this._valor = valor;
+        
+        Object.freeze(this); // congelo o objeto, assim ele não pode ser mais modificado.
+    }
+    
+    get data(){
+        return new Date(this._data.getTime());
+    }
+    
+    Nesse exemplo, eu utilizo o metodo freeze, que não deixa a propriedade ser modificada, porem, a nossa propriedade ._data RECEBE UM OBJETO como valor, e todo objeto pode ser alterado, caso ele tenha o método para ser modificado.
+    
+    Logo... 
+    
+    --- ARRAY ---
+    
+    Como impedir que consigam modificar um array?
+      usamos um array vazio [] e concatenamos ele com o metodo .concat(array) e depois colocamos nosso array como parâmetro.
+    get negociacoes(){
+        return [].concat(this._negociacoes);
+    }
+    
+    
+
+------------------- Getters e Setters Javascript -------------------------
+
+  ---- Criando um getter ----
+    get volume(){
+        return this._volume;
+    }
+      var n1 = new Negociacao(new Date(), 2, 500); // Essa linha eu crio um novo objeto0 Negociacao.
+        n1.volume; // essa linha exibe o volume.
+
+
+------------------- Construtor e a Classe -------------------------
+
+  Criamos classes em javascript dessa maneira:
+
+  class NomeClasse {
+
+  }
+
+  Caso tenha construtor ficaria assim,
+
+  class Negociacao {
+
+      constructor(){
+      
+        this.data = new Date();
+        this.quantidade = 1;
+        this.valor = 0.0;
+      }
+
+  }
+--------------------- Trabalhando com objetos ---------------------
+
+  ------ Instanciando o objeto ------
+
+    Ao instanciar o objeto automaticamente o THIS do construtor, passa a ser referenciado pela variável que recebeu o objeto.
+    EXEMPLO:
+      var n1 =  new Negociacao(); -> n1 passa a ser o this do construtor, logo ele tem acesso a todos as suas propriedades.
+      console.log(n1.data);
+      console.log(n1.quantidade);
+
+
+  ------ Métodos de um objeto instanciado --------
+
+      class Negociacao{
+
+          constructor(data, quantidade, valor){
+
+              this.data = data;
+              this.quantidade = quantidade;
+              this.valor = valor;
+          }
+
+          //Esse é o METODO
+          obtemVolume(){
+              return this.quantidade * this.valor;
+          }
+
+
+      }
+
+  ------ Como acessar os metodos de objetos? --------
+
+      após instânciar o seu objeto acesse seus métodos atravez do ponto(.)
+      EXEMPLO:
+          // INSTANCIANDO OBJETO
+          var n1 =  new Negociacao(new Date(), 2, 100);
+
+          // ACESSANDO SEU MÉTODO
+          var volume = n1.obtemVolume();
+
+
+------------------- MVC -------------------------
+
+  MVC:
+
+    Model -> recebe a REGRA DE NEGÓCIO, o banco de dados.
+    View -> Só exibe para o usuário.
+    Controller -> SEMPRE recebe as requisições do usuário.
+
+
+    ---- Ciclo de um MVC ----
+      -- Sem Banco de Dados --
+          Controller -> View
+      -- Com Banco de Dados --
+          Controller -> Model -> Controller > View
+
+---------------------- Programação Orientada a Objetos ---------------------------
+
+  ---- ABSTRAÇÃO ----
+
+      Exemplo:
+
+        Cachorro -> Objeto
+          cor -> propriedade
+            latir(); -> metodo do objeto.
+
+      ISSO FOI UMA ABSTRAÇÃO DO MUNDO REAL PARA O MUNDO DA PROGRAMAÇÃO.
+      
+  ---- ENCAPSULAMENTO ----
+  
+    É proteger o seu código, para que ele não seja alterado, é adicionar camadas de segurança a ele.
+      Exemplo em JAVA:
+        private cor = azul; -> encapsulei minha propriedade cor, e ela só poderá ser modificada, caso eu de acesso a ela através de metodos(setters e getters).
+      Exemplo em JavaScript:
+        Adicione _(underline) a frente da propriedade que você deseja que não seja modificada, para que você e também o futuro programador entenda que
+        aquela variável em questão não pode ser modificada.
+          EXEMPLO:
+            this._data = data;
+            this._quantidade = quantidade;
+            this._valor = valor;
+            
+        e sempre faça metodos de acesso as propriedades,
+          Exemplo:
+                getData(){
+                    return this._data;
+                }
+                getQuantidade(){
+                    return this._quantidade;
+                }
+                getValor(){
+                    return this._valor;
+                }
+    ----- Metodos para encapsular(Deixar mais seguro os dados do seu objeto) ----
+    
+      Utilizar get para chamar os valores das propriedades.
+        get.valor;
+        
+      Utilizar o metodo Object.freeze(nomeObjeto), para congelar o objeto.
+       Exemplo:
+            constructor(data, quantidade, valor){
+
+                this._data = data;
+                this._quantidade = quantidade;
+                this._valor = valor;
+
+                Object.freeze(this);
+            }
+      
+      No exemplo acima, o meu construtor recebe os dados, e assim que eu recebo os dados eu congelo eles, isso é, quando eu instancio um novo objeto, os valores desse objeto não poderá ser alterado.
+      
+      
+------ METODO ESTÁTICO / STATIC METHOD ------
+      
+    Metodos estáticos não podem ser instanciados.
+    Metodos estáticos são acessados diretamente pela classe.
+      Exemplo:
+      METODO ESTÁTICO. nome da classe desse método é DataHelper
+        static dataParaTexto(data){
+          return `${data.getDate()}/${(data.getMonth()+1)}/${data.getFullYear()}`;
+        }
+        
+        ERRADO:
+        let helper = new DataHelper(); //  helper.dataParaTexto(data); -> não é possivel chamar metodos estaticos através de uma instancia da classe.
+        
+        CORRETO:
+        DataHelper.dataParaTexto(data); // metodos estáticos são chamados diretamente da classe.
+        
+    
+
+---------------------- Metodos Javascript ---------------------------
+
+Object.freeze(nomeObjeto); -> congela um objeto: isto é, impede que novas propriedades sejam adicionadas a ele; impede que as propriedades existentes sejam
+    removidas; e impede que propriedades existentes, ou sua inumerabilidade, configurabilidade, ou capacidade de escrita sejam alteradas.
+
+Object.isFrozen(nomeObjeto); -> Verifica se um objeto está congelado, se estiver retorna true, se não estiver retorna false.
+
+bind(this); -> EXEMPLO:
+
+class NegociacaoController {
+
+  adiciona(event) {
+        event.preventDefault();
+
+        let $ = document.querySelector; // SEM BIND
+        
+        let inputData = $('#data');
+        let inputQuantidade =  $('#quantidade');
+        let inputValor = $('#valor');
+
+        console.log(inputData.value);
+        console.log(inputQuantidade.value);
+        console.log(inputValor.value);
+
+  }
+}
+
+Desta forma, ficou menos trabalhoso escrever o código. Mas se o executarmos como está, veremos uma mensagem de erro no navegador.
+
+Não funcionou colocarmos o querySelector na variável $ para criarmos um alias. Por que não funcionou? O querySelector é uma função que pertence ao objeto document - chamaremos tal função de método. Internamente, o querySelector tem uma chamada para o this, que é o contexto pelo qual o método é chamado. Logo, o this é o document. No entanto, quando colocamos o querySelector dentro do $, ele passa a ser executado fora do contexto de document e isto não funciona. O que devemos fazer, então? Queremos tratar o querySelector como uma função separada. Nós queremos que ao colocarmos o querySelector para o $, ele mantenha a associação com o document. Para isto, usaremos o bind() :
+
+class NegociacaoController {
+
+  adiciona(event) {
+        event.preventDefault();
+
+        let $ = document.querySelector.bind(document);
+        let inputData = $('#data');
+        let inputQuantidade =  $('#quantidade');
+        let inputValor = $('#valor');
+
+        console.log(inputData.value);
+        console.log(inputQuantidade.value);
+        console.log(inputValor.value);
+
+  }
+}
+
+array.concat(array, "nicolas"); -> o Array concat, ele concatena tudo 
+    que você passar como parâmetro, e transforma em um array.
+    Exemplo.
+        let listaDeNomes1 = ['Flávio', 'Rogers', 'Júlia'];
+        let listaDeNomes2 = ['Vieira', 'Fernanda', 'Gerson'];
+        let lista = listaDeNomes1.concat(listaDeNomes2);
+
+        exibeNoConsole(lista);
+    Exemplo MELHORADO.
+        let listaDeNomes1 = ['Flávio', 'Rogers', 'Júlia'];
+        let listaDeNomes2 = ['Vieira', 'Fernanda', 'Gerson'];
+        exibeNoConsole([].concat(listaDeNomes1, listaDeNomes2, 'Rômulo'));
+
+array.join(separator) -> O método join () junta-se os elementos de uma 
+    matriz para uma cadeia, e devolve a cadeia.
+    Os elementos serão separados por um separador especificado. O separador padrão é vírgula (,).
+    
+array.reverse() -> Basicamente ele inverte os valores do vetor.
+    Exemplo:
+      let vet = [0,1,2,3];
+      LET vetorReverso = vet.reverse(); // vetorReverso = [3,2,1,0]
+      
+array.filter(callback) -> filter() chama a função callback fornecida, uma vez para cada elemento do array, e constrói um novo array com todos os valores para os quais o callback retornou o valor true ou  um valor que seja convertido para true.
+  Exemplo:
+    function isBigEnough(value) {
+      return value >= 10;
+    }
+
+    var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+    // filtrado é [12, 130, 44]
+    
+arr.map(callback[, thisArg] -> O método map() invoca a função callback passada por argumento para cada elemento do Array e devolve um novo Array como resultado.
+
+    Parâmetros
+    
+    callback
+        Função cujo retorno produz o elemento do novo Array. Recebe três argumentos:
+        
+    valorAtual
+        O valor do elemento original do Array de origem. 
+        
+    indice
+        O índice do elemento atual que está sendo processado no array.
+        
+    array
+        O Array de origem.
+        
+    thisArg
+        Opcional. Valor a ser utilizado como o this no momento da execução da função callback.
+        
+    Exemplo:
+             let data  = new Date(
+            ...
+            this.inputDataValue
+            .split("-")
+            .map(function(item, indice){
+               return item - (indice % 2); 
+            })
+        );
+    Nesse exemplo estou pegando o vetor de uma data["1995","01","24"], uso a função map para percorrer o vetor, e caso o vetor esteja na posição [1] ele decrementa 1 do valor atual do vetor da posição 1.
+    
+    Em resumo, estou fazendo isso.
+    [0] // 1995
+    [1] // 01
+    [2] // 24
+    
+    SINTAX: 
+      return item - (indice % 2);
+    
+    1° loop
+      return 1995 - (0 % 2) // resultado 0, e 1995 - 0 é 1995
+    2° loop
+      return 01 - (1 % 2) // resultado 1, e 01 - 1 é 0
+    3° loop
+      return 24 - (2 % 2) // resultado 0, e 24 - 0 é 24
+      
+    Porque estou reduzindo o mes de uma data? porque o javascript em formato de numero, entende o mes de 0 a 11, 0 seria janeiro e 11 dezembro, caso passe multiplas strings deste modo new Date("1995","01","24"), ele terá o mesmo entendimento de numero, e contará o mês de 0 a 11.
+
+---------------------- ECS5 ---------------------------
+
+(function(){})();
+
+O IIFE significa “Immediately-invoked function expression”, mas podemos chamá-lo de função imediata. Como o próprio nome diz, ela executa a função imediatamente depois de criada. Mas por que usar? Encapsulamento! 
