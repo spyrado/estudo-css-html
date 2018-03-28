@@ -1,3 +1,35 @@
+----------------  Como definir um parâmetro DEFAULT? ----------------
+
+-- CASO NÃO OUVER PARÂMETRO O VALOR PADRÃO SERÁ TEXTO EM BRANCO ( '' ) --
+
+constructor(texto=''){ 
+        this._texto = texto;
+    }
+
+-- CASO NÃO OUVER PARÂMETRO O VALOR PADRÃO DE X E Y SERÁ 0 --
+function calculo(x=0,y=0){ return x+y; } // caso não ouver parâM
+
+----------------------  Como era antes do ES6? ----------------------
+
+//Criando a classe
+function Pessoa(nome, sobrenome) {
+    this.nome = nome;
+    this.sobrenome = sobrenome;
+}
+
+// método de instância
+Pessoa.prototype.obterNomeCompleto = function() {
+    return this.nome + ' ' + this.sobrenome;
+};
+
+// declarando equivalente a método estático
+
+Pessoa.metodoStaticoQualquer = function() {
+
+    console.log('Método estático chamado');
+
+};
+
 -------------------------  Convenções JS -------------------------
 
 
@@ -174,7 +206,96 @@ Fazer um Cache ou caching de coisas que são muito chamadas é uma boa prática,
       IMPORTANTE: Sempre utilize o crase(``) no início e no final, para que o JS possa identificar que é um Template String;
       
       
+Uso de template com innerHTML:
+  Exemplo:
+    
+        _template(){
+        return `
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                        <th>VOLUME</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                </tbody>
+
+                <tfoot>
+                </tfoot>
+            </table>    
+            `;
+    }
+    
+    update(){
+        this._element.innerHTML = this._template();
+    }
+    
+    Eu seleciono um elemento, e coloco dentro dele o template, porque isso funciona, se o retorno é uma string?
+     porque o innerHTML converte sua estrutura html string para DOM.
+      
+      
+    --- Avançando no template String ---
+    
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>DATA</th>
+                <th>QUANTIDADE</th>
+                <th>VALOR</th>
+                <th>VOLUME</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            ${
+                model.map(n => `
+
+                    <tr>
+                        <td>${DateHelper.dataParaTexto(n.data)}</td>
+                        <td>${n.quantidade}</td>
+                        <td>${n.valor}</td>
+                        <td>${n.volume}</td>
+                    </tr>
+
+                `).join('')
+            }
+        </tbody>
+        
+${} -> aceita o retono de apenas uma instrução como é o caso, porem, nada
+    me impede de fazer uma função IMEDIATA OU (Immediately-invoked function expression (IIFE)).
+    
+    Exemplo: 
+        <tfoot>
+            <tr>
+            <td colspan="3"></td>
+            <td>${
+                (function(){
+                    let total = 0;
+                    model.forEach(m => total += m.volume)
+                    return total;
+                })()
+            }</td>
+            </tr>
+        </tfoot>
+        
+    Com isso eu posso colocar mais de uma instrução dentro de ${}
+    
+    --- ENXUGANDO NOSSA LÓGICA ---
+    
+        <tfoot>
+            <tr>
+            <td colspan="3"></td>
+            <td>${
+                model.reduce((total,n) => total + n.volume, 0,0)
+            }</td>
+            </tr>
+        </tfoot>
+        
+    Utilizando o metodo reduce + arrow function, nossa lógica ficou bem mais simples.
 ------------------- SHALLOW(RASO) -------------------------
 
 O metodo Object.freeze(nomeObjeto), é um método de segurança SHALLOW(raso), o que eu quero dizer com isso.
@@ -335,6 +456,8 @@ let -> uso recomendado, pois ela faz juz ao escopo de bloco.
 
 ---------------------- Programação Orientada a Objetos ---------------------------
 
+PRIVATE - APENAS A Própia classe pode ter acesso.
+
   ---- ABSTRAÇÃO ----
 
       Exemplo:
@@ -388,6 +511,13 @@ let -> uso recomendado, pois ela faz juz ao escopo de bloco.
       No exemplo acima, o meu construtor recebe os dados, e assim que eu recebo os dados eu congelo eles, isso é, quando eu instancio um novo objeto, os valores desse objeto não poderá ser alterado.
       
       
+    ---- HERANÇA ----
+    
+    Exemplo de herança:
+    
+    Uma subclasse herda métodos e atributos de sua superclasse
+      
+      
 ------ METODO ESTÁTICO / STATIC METHOD ------
       
     Metodos estáticos não podem ser instanciados.
@@ -404,7 +534,51 @@ let -> uso recomendado, pois ela faz juz ao escopo de bloco.
         CORRETO:
         DataHelper.dataParaTexto(data); // metodos estáticos são chamados diretamente da classe.
         
+    ------ METODO PRIVATE / PRIVATE METHOD ------
     
+    _metodo(texto){
+        // codigo
+    }
+    
+    O método privado só pode ser acessado somente pela própria classe.
+    
+    ------ METODO ABSTRATO / ABSTRACT METHOD ------
+    
+    Em JAVA fazemos assim:
+    
+        // métodos abstratos //
+    não possuem corpo, da mesma forma que
+    as assinaturas de método de uma interface
+
+    public abstract void ligar();
+    public abstract void desligar();
+    
+    EM JAVASCRIPT Não temos metodos abstratos, porem para simular, fazemos assim:
+    
+    Em sua classe PAI, definimos o MESMO metodo da classe filha, e colocamos um erro para que o programador, entenda que DEVE ter aquele metodo na sua classe filha.
+    
+    EXEMPLO:
+    
+    -- CLASSE PAI: --
+    
+    class View{
+    
+        template(){
+
+            throw new Error("O método template deve ser implementado.");
+        }
+    }
+    
+    -- CLASSE FILHA --
+    
+    class MensagemView extends View{
+    
+        template(model){
+            return model.texto ? `<p class="alert alert-info">${model.texto}</p>` : `<p></p>`;
+        }
+    }
+    
+    CASO A CLASSE FILHA NÃO TENHA O METODO TEMPLATE, DISPARARA UM ERRO, CASO ELA TENHA O METODO IMPLEMENTADO, A CLASSE FILHA IRÁ SOBRESCREVER O METODO DA CLASSE PAI.
 
 ---------------------- Metodos Javascript ---------------------------
 
@@ -531,6 +705,15 @@ arr.map(callback[, thisArg] -> O método map() invoca a função callback passad
       return 24 - (2 % 2) // resultado 0, e 24 - 0 é 24
       
     Porque estou reduzindo o mes de uma data? porque o javascript em formato de numero, entende o mes de 0 a 11, 0 seria janeiro e 11 dezembro, caso passe multiplas strings deste modo new Date("1995","01","24"), ele terá o mesmo entendimento de numero, e contará o mês de 0 a 11.
+    
+array.reduce(callback[, valorInicial]) -> acumula um valor e retorna ele.
+    Exemplo:
+        model.reduce((total,n) => total + n.volume, 0,0)
+    Exemplo:
+        [0, 1, 2, 3, 4].reduce(function(valorAnterior, valorAtual, indice, array) {
+          return valorAnterior + valorAtual;
+        },valorInicialDoValorAnterior);
+        // 10
 
 ---------------------- ECS5 ---------------------------
 
