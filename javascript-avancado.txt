@@ -1,3 +1,187 @@
+------------------------ Padroões de Projeto ------------------------
+
+OBSERVER -> Usamos o padrão de projeto Observer sempre que queremos notificar partes do sistema interessadas quando um evento importante for disparado em nosso sistema.
+
+No contexto da nossa aplicação, entendemos um evento como o ato de adicionar ou esvaziar nossa lista de negociações. É a view que está interessada em observar esse evento e tomar uma ação, no caso, se atualizar com base no estado mais atual do modelo.
+
+PROXY -> FAZ A INTERMEDIAÇÃO ENTRE O OBJETO E UMA ARMADILHA, ELE PRIMEIRO EXECUTA A ARMADILHA, E DEPOIS CHAMA O OBJETO.
+
+---------------------------- PROXY ----------------------------
+
+--- IMPORTANTE ---
+
+Metodos/Funções não são lidas com set(apenas metodos/funções que tenham propriedades a serem alteradas), apenas com get.
+
+
+
+--- Declaração  de Proxy ---
+
+Sintax: new Proxy(obj, handler);
+
+let negociacao = new Proxy(Negociacao, {}); -> assim que se declara um proxy, uma vez declarado, ele tem acesso a tudo que A classe Negociacao tem.
+
+--- HANDLER ---
+
+{} -> passamos alguns parâmetros aqui um deles é:
+
+--- HANDLER GET ---
+
+{
+    get: function(obj, propriedade, receiver(proxy)){
+    
+        return Reflect.get(target, prop, receiver); -> retorna o valor da propriedade.
+    }
+}
+
+--- HANDLER SET ---
+
+{
+    set: function(obj, propriedade, value,receiver(proxy)){
+    
+        return Reflect.set(target, prop, value, receiver);
+    }
+}
+
+
+---------------------------- API REFLECT ----------------------------
+
+Reflect.apply(target, thisArgument, argumentsList);
+Reflect.apply(soma, objNumero, []); -> ele aplica a referencia de this, no metodo/função em questão, e caso a função tenha parâmetros, colocamos em argumentsList.
+
+Reflect.get(target, propertyKey[, receiver])
+Reflect.get(objetoOuVetor, propriedadeRequirida, )
+
+
+---------------------------- Reutilização de código através de mixin! ----------------------------
+
+Reflect.apply(Aviao.prototype.voa, this, []);
+
+Um detalhe: foi necessário fazer Aviao.prototype.voa porque métodos criados usando ES6 são adicionados no prototype. Qualquer método adicionando em prototype estará disponível para todas as instâncias.
+
+---------------------------- COMPOSIÇÃO ----------------------------
+
+    class Aviao {
+
+        constructor(nome) {
+            this._nome = nome;
+        }
+
+        voa() {
+            alert(`${this._nome} está voando`);
+        }
+
+        ligaMotor() {
+            console.log('liga o motor');
+    }
+
+    class Passarinho {
+
+        constructor(nome) {
+            this._nome = nome;
+        }
+
+        voa() {
+            // hum..precisamos implementar esse método também!
+        }
+    }
+    
+ Bom sabemos que um Passarinho não é um avião, então não podemos HERDAR de AVIÃO o metodo VOA, pois ele viria com ligaMortor, e um Passarinho não liga motor.
+ 
+ A melhor maneira de fazermos isso é com COMPOSIÇÃO, ela funciona da seguinte forma:
+ 
+         class Aviao {
+
+            constructor(nome) {
+                this._nome = nome;
+            }
+
+            voa() {
+                alert(`${this._nome} está voando`);
+            }
+
+            //mais codigo
+         }
+
+        class Passarinho {
+
+            constructor(nome) {
+                this._nome = nome;
+                // guarda uma instância de avião
+                this._aviao = new Aviao(nome);
+            }
+
+            voa() {
+                // usa o método voa de Aviao
+                this._aviao.voa();
+            }
+        }
+        
+    Ela guarda uma instância de avião, e a utiliza no metodo desejado.
+    
+    Um metodo menos verboso de fazer a Composição
+    
+    --- Menos VERBOSO ---
+    
+    class Passarinho {
+
+        constructor(nome) {
+            this._nome = nome;
+        }
+
+        voa() {
+            // executa o método `voa` de `Avião` usando como contexto a instância de `Passarinho`
+            Reflect.apply(Aviao.prototype.voa, this, []);
+        }
+    } 
+
+---------------- Maneiras de resolver o problema do this dependendo do caso. ----------------
+
+
+class Relogio {
+
+    constructor() {
+        this._segundos = 0;
+
+        setInterval(function () {
+            console.log(++this._segundos);
+          }, 1000);
+    }
+}
+
+var relogio = new Relogio();
+
+O principal erro deste código está na função passada para setInterval, aonde fazemos o ++this._segundos. Como setInterval é global e acessível em qualquer canto do nosso código, ele pertence ao objeto global window, logo seu this aponta para window e não para nossa classe Relogio. Como window não possui a propriedade _segundos, o incremento resultará em NaN, pois não podemos incrementar uma variável que é undefined.
+
+class Relogio {
+
+    constructor() {
+
+        let self = this; // guardando o this que é a instância da classe `Relogio`
+        this._segundos = 0;
+
+        setInterval(function () {
+            console.log(++self._segundos); // acessando a variável self, que é a instância de `Relogio` 
+          }, 1000);
+
+    }
+}
+
+var relogio = new Relogio();
+
+---- Utilizando arrow function ----
+
+class Relogio {
+
+    constructor() {
+        this._segundos = 0;
+        setInterval(() => console.log(++this._segundos), 1000); // usando arrow function. O this é o this de `Relogio`, e não `window`. 
+    }
+}
+
+var relogio = new Relogio();
+
+
+
 ----------------  Como definir um parâmetro DEFAULT? ----------------
 
 -- CASO NÃO OUVER PARÂMETRO O VALOR PADRÃO SERÁ TEXTO EM BRANCO ( '' ) --
@@ -73,6 +257,10 @@ Em Javascript 0 é considerado FALSE.
   console.log(novosNumeros);
 
 -------------------------  Arrow function -------------------------
+
+IMPORTANTE -> Arrow function tem o seu escopo LÉXICO, o que eu quero dizer com isso? que o this de arrow function não é dinâmico.
+
+
 
 Minimizando código com arrow function.
 
@@ -515,6 +703,31 @@ PRIVATE - APENAS A Própia classe pode ter acesso.
     
     Exemplo de herança:
     
+    class MensagemView extends View{
+        constructor(elemento){
+            super(elemento);
+        }
+    }
+    
+    quando só temos parâmetros da classe PAI na classe filha, não precisamos do construtor, ficaria assim:
+    
+    class MensagemView extends View{
+
+    }
+    
+    quando temos parâmetros também na classe filha, nosso constructor fica assim:
+    
+    class MensagemView extends View{
+        constructor(elemento, outroParametro){
+            super(elemento);
+            this._outroParametro = outroParametro;
+        }
+    }
+    
+    no código acima, estamos indicando que o parâmetro ELEMENTO faz parte do construtor da SUPER, e que o outroParametro faz parte da própria classe.
+    
+    
+    
     Uma subclasse herda métodos e atributos de sua superclasse
       
       
@@ -714,6 +927,26 @@ array.reduce(callback[, valorInicial]) -> acumula um valor e retorna ele.
           return valorAnterior + valorAtual;
         },valorInicialDoValorAnterior);
         // 10
+        
+Reflect.apply(target, thisArgument, argumentsList) - >
+    target -> função a ser chamada
+    thisArgument -> contexto da função
+    argumentsList -> array com parâmetros da função.
+    
+    Exemplo:
+        this._listaNegociacoes = new ListaNegociacoes(this, function(model){
+            this._negociacaoView.update(model); 
+        });
+        
+        constructor(contexto, armadilha){
+        
+            this._contexto = contexto; // this da controller
+            this._armadilha = armadilha; // função "injetora"
+        }
+        
+        Reflect.apply(this._armadilha, this._contexto, [this.negociacoes]);
+        
+        
 
 ---------------------- ECS5 ---------------------------
 
