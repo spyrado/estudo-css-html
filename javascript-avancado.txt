@@ -6,13 +6,14 @@ No contexto da nossa aplicação, entendemos um evento como o ato de adicionar o
 
 PROXY -> FAZ A INTERMEDIAÇÃO ENTRE O OBJETO E UMA ARMADILHA, ELE PRIMEIRO EXECUTA A ARMADILHA, E DEPOIS CHAMA O OBJETO.
 
+FACTORY -> Seria uma classe que é especializada em criar determinado tipo de objeto.
+    Não é uma regra, porem geralmente classes criadas com factory utilizam metodos estáticos, para evitar ficar instanciando.
+
 ---------------------------- PROXY ----------------------------
 
 --- IMPORTANTE ---
 
 Metodos/Funções não são lidas com set(apenas metodos/funções que tenham propriedades a serem alteradas), apenas com get.
-
-
 
 --- Declaração  de Proxy ---
 
@@ -26,8 +27,25 @@ let negociacao = new Proxy(Negociacao, {}); -> assim que se declara um proxy, um
 
 --- HANDLER GET ---
 
+TODO GET deve retornar um valor, caso não retorne, a propriedade/metodo chamada retornará o valor "undefined".
+
+-- Valores de target, prop, receiver --:
+
+target -> Objeto em questão.
+prop -> Propriedade chamada.
+receiver -> O próprio proxy.
+target[prop] -> Acessando o valor da propriedade/metodo:
+  Propriedade: negociacao.quantidade;
+                   Retorno 2;
+  Metodo: lista.adiciona(negociacao) ->
+              Retorno ƒ adiciona(negociacao){
+                            this._negociacoes.push(negociacao);
+                        }
+           
+    
+
 {
-    get: function(obj, propriedade, receiver(proxy)){
+    get: function(target, prop, receiver)){
     
         return Reflect.get(target, prop, receiver); -> retorna o valor da propriedade.
     }
@@ -42,6 +60,27 @@ let negociacao = new Proxy(Negociacao, {}); -> assim que se declara um proxy, um
     }
 }
 
+--- Como definir uma armadilha? ---
+
+this._listaNegociacoes = new Proxy(new ListaNegociacoes(),{
+            
+            get: function(target, prop, receiver){
+                
+                if(['adiciona','esvazia'].includes(prop) && typeof target[prop] == 'function'){
+                    
+                    return function(){
+                        
+                        console.log(`Interceptando ${prop}`);   
+                        
+                        Reflect.apply(target[prop], target, arguments);
+                        self._negociacaoView.update(target); --> aqui eu aplico a armadilha
+                    }
+                    
+                }
+                
+                return Reflect.get(target, prop, receiver);
+            }
+        });
 
 ---------------------------- API REFLECT ----------------------------
 
@@ -453,7 +492,7 @@ Uso de template com innerHTML:
             }
         </tbody>
         
-${} -> aceita o retono de apenas uma instrução como é o caso, porem, nada
+${} -> aceita o retoRno de apenas uma instrução como é o caso, porem, nada
     me impede de fazer uma função IMEDIATA OU (Immediately-invoked function expression (IIFE)).
     
     Exemplo: 
@@ -946,7 +985,10 @@ Reflect.apply(target, thisArgument, argumentsList) - >
         
         Reflect.apply(this._armadilha, this._contexto, [this.negociacoes]);
         
-        
+array.includes(valor) -> procura um "valor" dentro do array, e retorna true se encontrar e false caso não encontre.
+    Exemplo: ['adiciona','esvazia'].includes('esvazia');
+
+arguments -> retorna um vetor com os parâmetros que foram passados em uma função.
 
 ---------------------- ECS5 ---------------------------
 

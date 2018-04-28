@@ -1,0 +1,391 @@
+---------------------- Como funciona? ----------------------
+
+O SASS necessita ser compilado, para que todas as suas alterações sejam feitas.
+
+--- Como compilar o SASS? ---
+
+    No prompt de comando, vá até a pasta de destino que contenha o arquivo SCSS, exemplo:
+      projeto/meu-site/css
+      ls
+      estilos.scss  media-queries.css  normalize.css
+    
+    Após chegar a pasta que contem o arquivo .scss
+    
+    Digite o seguinte comando para compilar o arquivo para .css:
+    
+    sass nome-arquivo-scss.scss nome-arquivo-css.css
+    
+---------------------- Compilando e Assistindo ----------------------
+
+    --- COMPILANDO ---
+    
+    sass estilos.scss estilos.css
+    
+    --- ASSISTINDO ---
+    
+    sass --watch estilos.scss:estilos.css
+    
+----- SASS EM RGB -----
+
+Exemplo:
+
+background: rgba($cor-auxiliar, 0.8);
+
+---------------------- SINTAX SASS ----------------------
+
+Sintax: 
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+---------------------- Mixin SASS ----------------------
+
+Como funciona?
+    Utilizamos o mixin, quando queremos criar grupos de declarações CSS, um bom exemplo seria esse:
+    
+    @mixin nome-do-mixin($param){
+        //grupos de declarações CSS aqui...
+    }
+    
+    @mixin border-radius($radius) {
+        -webkit-border-radius: $radius;
+        -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+        border-radius: $radius;
+    }
+    
+    Para criar um mixin utilizando o @mixin logo após o nome dado ao mixin, o mixin pode ou não receber parâmetros.
+
+    Outro exemplo de uso do mixin:
+
+    $radio: 0.3em;
+    
+    @mixin borda-arredondada{
+        -webkit-border-radius: $radio;
+        -moz-border-radius: $radio;
+        -ms-border-radius: $radio;
+        border-radius: $radio;
+    }
+    
+    ---------- MELHOR FORMA DE UTILIZAR MIXIN (IMPORTANTE) ----------
+    
+    @mixin borda-arredondada($raio: 0.3em){
+    
+        -webkit-border-radius: $raio;
+        border-radius: $raio;
+    }
+    
+    Passamos um parâmetro para o mixin, e nele temos a opção de colocar ou não um valor padrão, caso aja em nosso código um seletor que não deve ter 0.3em de border-radius, alteramos ele via parametro.
+    
+    EXEMPLO:
+    
+        .box-maior { @include borda-arredondada(50px); }
+        
+        CASO QUEREMOS O VALOR PADRÃO, apenas incluo normalmente no seletor, sem passar parâmetro(pois já definimos o valor padrão como 0.3em)
+        
+        .box-normal { @include borda-arredondada }
+        
+        
+        
+    
+    
+    ----- @INCLUDE -----
+    
+    utilizamos o @include para incluir o mixin criado ao seletor css.
+        Exemplo:
+            .box { @include border-radius(10px); }
+            
+---------------------- Comentários SASS ----------------------
+
+Para comentar APENAS NO SASS, utilizamos a famosa barra barra ( // ).
+    Exemplo:
+        // Este é um comentário no Sass
+        
+---------------------- Nesting / Aninhamento SASS ----------------------
+
+O Aninhamento do SASS digamos que é uma pre-estrutura css, que se bem feita, facilita a manutenção do código posteriormente.
+
+Exemplo, inicialmente o nome do nav era .menu-principal, se quisesemos mudar ele para .menu-secundario posteriormente, é só ir na estrutura de aninhamento e alterar,  o nome para .menu-secundario, e quando compilasse-mos o sass ele daria todo o nosso css como .menu-secundario.
+
+--- Estrutura de Aninhamento ---
+Exemplo:
+    .menu-principal {
+    
+        position: absolute;
+        right: 0;
+        top: -0.5em;
+        font-size: 1.2em;
+        font-weight: lighter;
+        
+        ul{
+            padding-left: 0;
+        }
+        
+        li{
+            display: inline-block;
+            width: 5em;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+            
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    
+    O resultado dessa estrutura, será o nosso CSS.
+    
+    .menu-principal {
+    
+      position: absolute;
+      right: 0;
+      top: -0.5em;
+      font-size: 1.2em;
+      font-weight: lighter; 
+    }
+    
+    .menu-principal ul {
+        padding-left: 0; 
+    }
+    
+    .menu-principal li {
+        display: inline-block;
+        width: 5em;
+    }
+    
+    .menu-principal a {
+        color: white;
+        text-decoration: none; 
+    }
+    .menu-principal a:hover {
+        text-decoration: underline; 
+    }
+    
+    Lembresse, sempre siga os padrões do CSS na hora de montar a estrutura, o exemplo a seguir é considerada má prática do uso de ANINHAMENTO/NESTING:
+    
+    .menu-principal{
+        border: 1px solid black;
+        ul{
+            font-size: 1.8rem;
+            li{
+                color: red;
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+        
+    Nosso CSS ficaria dessa maneira.
+    
+    .menu-principal {
+      border: 1px solid black; 
+    }
+      .menu-principal ul {
+        font-size: 1.8rem; 
+        }
+        .menu-principal ul li {
+          color: red; 
+          }
+          .menu-principal ul li a {
+            text-decoration: none; 
+            }
+            
+    IMPORTANTE
+   Hierarquia demais em um seletor gera um problema de performance no CSS, poderiamos apenas fazer como no exemplo correto acima, nav ul OU nav li OU nav a enfim.. vai de situação pra situação.
+    
+    --- "concatenando seletores" ---
+    
+    Utilizamos o & comercial para "concatenar" seletores, exemplo:
+    
+    a{
+        color: white;
+        text-decoration: none;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    
+    Resultado:
+    
+    a {
+        color: white;
+        text-decoration: none; 
+    }
+    a:hover {
+        text-decoration: underline; 
+    }
+    
+---------------------- IMPORT UTILIZANDO SASS ----------------------
+
+IMPORTANTE:
+  @import "header";
+    Por padrão o sass entende que arquivos sem extenção já são considerados como .scss, já para declarar um arquivo .css temos que nomea-lo como .css exemplo:
+      @import "header.css";
+
+Qual a principal diferença de importar um SCSS e um CSS ?
+
+  Quando importamos um SCSS ele é concatenado (juntado) no mesmo arquivo. Como se copiássemos todo o código desse arquivo e colássemos no outro.
+
+  Quando importamos um CSS ele mantém a sintaxe de import padrão do CSS.
+
+  @import url("estilos.css");
+  
+Organização de pastas, como css de layout ficar na pasta de layout, scss de ajuda ficar em helpers, o reset.css(normalize.css) ficaria na pasta base, pois é a base de todo o css.
+
+juntando toda a organização de pastas, com a concatenação(@import) do sass é uma maravilha.
+
+---------------------- Alteração nas cores SASS ----------------------
+
+darken(cor, porcentagem) -> deixa determinada cor mais escura, de acordo com o   
+  numero de porcentagem colocado.
+    exemplo: $cor-padrao: darken(#c24e4b, 20); obs: não é preciso colocar 20%, ele já entende que o segundo parâmetro é uma porcentagem.
+  
+lighten(cor, porcentagem) -> deixa determinada cor mais clara, de acordo com o    
+  numero de porcentagem colocado.
+    exemplo: $cor-auxiliar: lighten(#c24e4b, 30); obs: não é preciso colocar 30%, ele já entende que o segundo parâmetro é uma porcentagem.
+    
+Podemos também apenas deixar a função e não dar porcentagem a ela para manter a cor padrão.
+  Dessa maneira:
+    $cor-padrao: darken(#c24e4b, 0);
+    $cor-auxiliar: lighten(#1e2c35, 0);
+    
+lightness(#1e2c35); -> retorna em porcentagem o quão claro é uma cor nesse caso
+  16.2745098039% claro.
+  
+saturate(color, amount) -> Torna a cor mais saturada.
+
+desaturate($color, $amount) -> Torna a cor menos saturada.
+
+grayscale(color) -> Converts a color to grayscale.
+
+
+---------------------- Extend e Placeholder ----------------------
+
+Sintax:
+  -- PLACEHOLDER --
+  
+    %centraliza{
+      width: 940px;
+      margin 0 auto;
+    }
+  
+  -- Aplicar no SASS --
+  
+    .container{
+      @extend %centraliza;
+    }
+    .centro{
+      @extend %centraliza;
+    }
+    .meio{
+      @extend %centraliza;
+    }
+  
+  -- Resultado no CSS --
+  
+    .container, .centro .meio {
+      width: 940px;
+      margin 0 auto;
+    }
+  
+todo código que receber o placeholder, vai extender(herdar) esse valor.
+
+Tambem podemos utilizar @extend com seletores, exemplo:
+
+  .erro {
+    background: #f00;
+  }
+
+  .alerta {
+    border-radius: 3px;
+    @extend .erro
+  }
+  
+  -- Resultado --
+  
+    .erro, .alerta {
+      background: #f00;
+    }
+
+    .alerta {
+      border-radius: 3px;
+    }
+    
+  o alerta herda o background de erro.
+
+---------------------- Diferença entre MIXIN E PLACEHOLDER ----------------------
+
+Quando o mixin é usado em várias regras CSS, o código é repetido em todas elas.
+
+O placeholder agrupa eles e evita o código repetido.
+
+POREM, com o mixin eu posso atribuir valores via parâmetro, com o placeholder teria que ser um código fixo que não costuma mudar, ou se mudar teria que mudar para todos.
+
+---------------------- Media Querys ----------------------
+
+
+
+--- Exemplo de uso com SASS ---
+  header {
+    border-top: 5px solid  $cor-padrao;
+    background: rgba($cor-auxiliar, 0.8);
+    height: 90px;
+    width: 100%;
+    position: absolute;
+    @media (max-width: $ponto-de-quebra) {
+
+      height: auto;
+
+      .container{
+          position: static;
+      }
+      h1 {
+
+          max-width: 50%;
+          margin: 0 auto;
+
+        img {
+            max-width: 100%;
+            margin: .5em auto;
+            display: block;
+        } // fim img
+      }// fim h1
+    }// fim media
+  }// fim header
+  
+  Resultado:
+  
+    header {
+      border-top: 5px solid #c24e4b;
+      background: rgba(30, 44, 53, 0.8);
+      height: 90px;
+      width: 100%;
+      position: absolute; 
+    }
+    @media (max-width: 980px) {
+
+      header {
+        height: auto; 
+      }
+      header .container {
+        position: static; 
+      }
+      header h1 {
+        max-width: 50%;
+        margin: 0 auto; 
+      }
+      header h1 img {
+        max-width: 100%;
+        margin: .5em auto;
+        display: block; 
+      } 
+    }

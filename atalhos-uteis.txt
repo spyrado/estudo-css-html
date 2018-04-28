@@ -1,0 +1,5 @@
+-------------------- ATALHOS UTEIS BRACKETS --------------------
+
+CTRL + SPACE -> MOSTRA A LISTA DE OPÇÕES DE UM PARÂMETRO.
+
+CTRL + SHIFT + ↑ ou CTRL + SHIFT + ↓ -> MOVE A(S) LINHA(S) PARA CIMA OU PARA BAIXO.
