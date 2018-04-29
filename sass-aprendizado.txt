@@ -389,3 +389,64 @@ POREM, com o mixin eu posso atribuir valores via parâmetro, com o placeholder t
         display: block; 
       } 
     }
+
+Mesmo com o CSS ficando com várias media queries sendo repetidas ao longo do código, apenas habilitando a compactação gzip no servidor, já elimina esse problema.
+
+---------------------- Interpolação/Interpolation SASS ----------------------
+
+Concatenando variaveis
+
+You can also use SassScript variables in selectors and property names using #{} interpolation syntax:
+
+$name: foo;
+$attr: border;
+p.#{$name} {
+  #{$attr}-color: blue;
+}
+is compiled to:
+
+p.foo {
+  border-color: blue; }
+It's also possible to use #{} to put SassScript into property values. In most cases this isn't any better than using a variable, but using #{} does mean that any operations near it will be treated as plain CSS. For example:
+
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}
+is compiled to:
+
+p {
+  font: 12px/30px; }
+  
+Podemos também concatenar um media query por exemplo:
+  $mq-mobile: "(max-width: 980px)";
+  @media #{$mq-mobile}
+  
+  Resultado: @media (max-width: 980px)
+  
+  Isso facilita na manutenção do código depois, caso mude para min-width ou mude o tamanho da tela, alteramos na variavel $mq-mobile, e ele replica para o código todo.
+
+---------------------- Compass ----------------------
+
+-- Utilização --
+
+http://compass-style.org/install/
+
+vá até a pasta raiz do projeto, e digite:
+
+compass create -> para criar o compass
+
+compass watch css/estilos.scss -> para assistir as mudanças da pasta (no caso o MEU SCSS se encontra em css/estilos.scss)
+
+-- Configurando seu Compass --
+
+http_path = "/" -> deve ser na pasta raiz do projeto
+css_dir = "css" -> o nome do meu diretorio css
+sass_dir = "css"-> o nome do meu diretorio sass, no meu caso meu arquivo sass se encontra dentro do diretorio do css, por isso repeti css
+images_dir = "imagens" -> nome do diretorio de imagens
+javascripts_dir = "js" -> nome do diretorio de javascript
+
+-- Comentarios automaticos --
+
+Para retirar os comentarios do compass, entre no arquivo de configuração e descomente a linha  line_comments = false
