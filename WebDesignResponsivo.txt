@@ -1,0 +1,314 @@
+******************************************************************** Web Design Responsivo ********************************************************************
+
+
+-------------------------- DICAS DE UX PARA MOBILE --------------------------
+
+
+---- USABILIDADE ----
+
+Dedo do usuário -> em média 9mm(milimilimetros) é o tamanho ideal para o dedo dos usuários.
+
+Tabela 
+
+DEDO   PIXELS
+
+7mm     40px -> mínimo
+9mm     50px -> Recomendado
+5mm     30px -> Quando não tem jeito.
+
+É recomendado ter um padding de 2mm(10px) entre os botoes, para melhor experiência do usuário.
+
+---- MOBILE FIRST -----
+
+Utilizando essa tecnica, você já consegue verificar a priorização de conteudo, e ver as limitações que terá no mobile, e poder modificar para uma ideia melhor.
+
+
+---- PRIORIZAÇÃO DE CONTEUDO -----
+
+O Conteudo do site em si, deve ser enchugado e bem planejado, para que as poucas opções que tenha, já sirva para acessar todas as possibilidades do site, tanto no desk como no mobile.
+
+---- CONTENT PARITY ----
+
+Usar todo o conteudo do desktop, no mobile, não deixar de colocar funcionalidades no mobile só por causa que a tela é menor, tudo que estiver no desktop, é bom colocar no mobile também, mesmo que no mobile tenha que ser 2 páginas para conseguir ocupar tanta informação/funcionalidade
+
+
+----------------------- SVG -----------------------
+
+São arquivos vetoriais.
+
+podemos criar uma imagem a partir do próprio html, usando a tag SVG e seus conceitos.
+
+EXEMPLO:
+
+  <svg>
+    <circle cx="50" cy="50" r="50" fill="#F4D"></circle>
+  </svg>
+  
+Nesse código SVG, criamos um circulo rosa no próprio HTML.
+
+O grande problema do SVG é o suporte, não suporta android 2 e anteriores, e IE 8 e anteriores, o resto aceita.
+
+Para resolver esse problema, temos que informar 2 arquivos, um PNG(PARA NAVEGADORES ANTIGOS) e um SVG(PARA NAVEGADORES NOVOS)
+
+Solução:
+
+<img src="logo.svg"
+  onerror="this.src='logo.png'; this.onerror=null">
+  
+    O código acima está dizendo SE for navegador que suporta, coloca svg, se não coloque png, o onerror = null, é só para previnir, caso o PNG não encontre também, o onerror vai receber null, se não ele entraria em loop infinito tentando achar os arquivos.
+
+-----------------------  ICON FONTS -----------------------
+
+São icones gerados a partir de fontes de texto, isso é todo ICON FONT, pode ser tratado como um texto.
+
+Podemos mudar a cor do icone, deixar shadow nele, aumentar/diminuir ele sem que ele perca a qualidade.
+
+-----------------------  IMAGENS VETORIAIS ---------------------
+
+As imagens vetoriais se ajustam conforme o tamanho, não precisando fazer uma imagem para cada tipo de resolução diferente.
+
+Desvantagem: os desenhos vetoriais não servem para fotografias, APENAS para desenhos logotipos, gráficos etc.
+
+
+----------------------- PERFORMANCE IMAGENS RESPONSIVAS ---------------------
+
+Exemplo: tenho um slide com tamanho de 1000px.
+
+em vez de utilizar essa mesma imagem tanto para desktop, quanto para mobile, eu utilizo a imagem de 1000px para desktop, e faço uma media query com uma imagem de tamanho reduzido para mobile, exemplo, 768px.
+
+A idéia é sempre, minimizar os kbaites, mas sempre tentar manter a qualidade da imagem.
+
+----------------------- IMAGENS RESPONSIVAS ---------------------
+
+NÃO USAR FRAMEWORKS DE RETINA
+
+---- Tipos de pixels ----
+
+Pixel físico -> é aquele pixel do lado do monitor/tela do cliente 4k etc..
+
+Pixel lógico -> é aquele que definimos no css.
+
+Porque é tão importante falar sobre os tipos?
+    Pq em telas de menores resoluções(telas normais), isso não faz tanta diferença,
+    PORÉM em telas de alta resolução uma imagem definida com 100px lógicos no css, pode
+    ficar com 200px no pixel físico(monitores/telas), pois como a resolução é maior, ele obrigatóriamente vai ter mais pixels na tela, fazendo com que a imagem que tinha 100pixels lógicos, passe a ter 200px físicos na prática, e isso faz com que a imagem estique, consequentemente faz com que perca a qualidade de imagem.
+    
+---- Como calcular o DPR? dos pixels ----
+
+DPR = pixels físicos / pixels lógicos. 
+
+Normalmente telas normais, o resultado dessa conta é 1 pra 1, telas de alta resolução podem ir de 1.5, 2, 3,4.
+
+---- Media query imagem ---
+dppx ou Dots per pixel.
+
+@media (resolution: 1dppx){} -> Defini
+
+Exemplo de uso:
+
+Lembrando que o resolution segue a mesma sintax do max-width min etc.
+seria no caso min-resolution, max-resolution etc.
+
+@media (resolution: 1dppx){
+    .logo{
+        background-image url(logo.png); -> logo de 100px
+    }
+}
+
+@media (resolution: 2dppx){
+    .logo{
+        background-image url(logo@2x.png); -> logo de 200px para resoluções de 2dppx pra mais.
+    }
+}
+
+@media (min-resolution: 1.5dppx){ -> ja atende a MAIORIA dos dispositivos.
+    .logo{
+        background-image url(logo@2x.png); -> logo de 200px para resoluções de 2dppx pra mais.
+    }
+}
+@media (min-resolution: 1.5dppx),
+        (-webkit-min-device-pixel-ratio: 1.5){ -> para navegadores antigos.
+    .logo{
+        background-image url(logo@2x.png); -> logo de 200px para resoluções de 2dppx pra mais.
+    }
+}
+
+---- RESUMO ----
+
+- Qualidade visual
+
+@media (min-resolution: 2dppx){
+    .logo{
+        background-image url(logo@2x.png); 
+    }
+}
+
+- Performance
+
+.foto{
+    background-image: url(foto-pequena.jpg); -> aqui temos um kbite menor
+}
+
+@media (min-width: 600px){
+    .foto{
+        background-image: url(foto-grande.jpg); -> aqui temos um kbite maior.
+    }
+}
+
+---- Compressive Imagens ----
+
+Em compressive imagens, pegamos imagens de retina, abaixamos a qualidade da imagem, e aplicamos o código:
+
+.img-retina{
+    background-image: url(img-retina.jpg);
+    background-size: 500px 500px;
+}
+@media (min-resolution: 1.5dppx){
+    .img-retina{
+        background-size: auto;
+    }
+}
+
+--- A TAG IMG Como trata-lá? ---
+
+Abrimos a tag picture, e dentro dela colocamos a imagem principal <img> e dentro das tags <source> colocaremos em que tamanho de tela, irá entrar certa imagem.
+
+<picture>
+  <source media="(min-width: 650px)" srcset="img_pink_flowers.jpg">
+  <source media="(min-width: 465px)" srcset="img_white_flower.jpg">
+  <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;">
+</picture>
+
+--- A TAG IMG Com RETINA ---
+
+Na tag abaixo, estou querendo dizer que, telas retina com 2dppx usa uma imagem em HD, telas sem retina(1x) use o logo normal.
+
+<img src="logo.png" srcset="logohd.png 2x, logo.png 1x">
+
+
+----------------------- Navegador Para Desenvolvedor ---------------------
+
+--------- Google Chrome Canary ---------
+
+https://www.google.com.br/chrome/browser/canary.html
+
+----------------------- COMO DEBUGAR O SITE? ---------------------
+
+Através de:
+
+- Ferramenta do desenvolvedor no Chrome(ou qualquer outro de preferencia).
+- Emuladores.
+- O próprio dispositivo.
+
+----------------------- VIEWPORT ---------------------
+
+meta tag utilizada para adaptar o layout ha dispositivos mobile.
+
+	<meta name="viewport" content="width=device-width"> -> compatível com android
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -> compatível com todos os dispositivos. o initial-scale=1.0 foi acrescentado para corrigir o bug quando rotaciona nos dispositivos IOS
+
+----------------------- CSS3 Media Querys ---------------------
+
+IMPORTANTE: Definir determinadas media querys, nós chamamos isso de BREAK POINTS de CONTEÚDO, isso é, em determinado ponto do nosso layout nós precisamos fazer essa quebra para ajustar o layout.
+
+@media (resolution: 1dppx){
+    //define uma imagem.
+} -> usamos resolution para ajustar as imagens para telas de maior resolução.
+
+@media not all and (max-width: 600px) <- NEGAÇÃO, estou ignorando tudo 
+    que tenha até 600px, isso é, vou aplicar o css apenas acima de 600px
+
+@media screen and (min-width: 400px) <- TELAS(screen) acima de 400px.
+
+@media impressao and (min-width: 400px) <- impressao(print) acima de
+    400px.
+
+@media only screen and (min-width: 400px) <- ONLY da suporte a
+    navegadores antigos que
+    não entendem a sintax mais nova.
+
+--- Diferentes parâmetros e seus significados ---
+
+(min-width: 400px) -> pega telas DE 400px para cima.
+
+(max-width: 400px) -> pega telas ATÉ 400px
+
+(width: 400px) -> pega telas que tem EXATAMENTE 400px.
+
+(height: 400px) -> (min-height: 400px) -> (max-height: 400px) -> os 3 seguem o mesmo conceito do exemplo acima.
+
+(device-width: 400px) -> (device-height: 400px) -> ambos pegam a tela física toda, e
+    não a tela do navegador.
+
+(orientation: portrait) -> quando o dispositivo estiver no modo RETRATO.
+
+(orientation: landscape) -> quando o dispositivo estiver no modo PAISAGEM.
+
+
+----------------------- CSS2 Media Querys ---------------------
+
+@media screen {} <- screen significa TELAS.
+
+@media print {} <- print significa impressão.
+
+----------------------- Como calcular a porcentagem? ---------------------
+
+SINTAX: (pixel-almejado)*100/(tamanho-font-do-elemento-pai) = resultado.
+
+É simples, faça a regra de 3.
+
+EXEMPLO:
+<body> -> 16px
+    <main> -> font-size: 125%; do pai(body) é 20px.
+
+fonte definida no body -> 16px
+
+no main você quer uma fonte de 20px, então a conta a ser feita é 20*100/16 = 125%.
+
+então, em um layout responsivo, coloque font-size 125%, caso queira uma fonta de 20px, baseado no elemento PAI de 16px.
+
+----------------------- Como calcular EM? ---------------------
+
+Calculamos os pixels que queremos e também aplicamos a regra de 3.
+
+EXEMPLO:
+<body> -> 16px
+    <main> -> font-size: 1.25em; do pai(body) é 20px.
+    
+Como que eu sei que da 20px 1.25em?
+Simples.
+Primeiro eu defino o pixel que eu almejo em determinado elemento, exemplo, quero 20px no elemento main.
+então aplico a regra de tres, sabendo que meu elemento pai(O BODY) é 16px, eu faço a seguinte conta:
+20*100/16 = 125% -> 20 de 20px multiplico por 100 e divido por 16 de 16px.
+Sabendo que o resultado deu 125%, traduzindo isso para EM ficaria assim: 125% é = a 1.25em;
+
+mais exemplos:
+
+202.5% = 2.025em;
+100% = 1em;
+90% = .9em;
+10% = .1em;
+
+E assim por diante.
+
+---- Como converter EM em pixel? ----
+
+SINTAX: (porcentagem)%*(font-do-elemento-pai) = resultado.
+
+EXEMPLO:
+    Font-elemento-pai(body no caso): 16px;
+    Alvo: 2.5em; = 250%;
+    CALCULO: 250%*16 = 24px;
+
+
+----------------------- Calculo usado para porcentagens em fontes. ---------------------
+
+<body> -> < se não definido o padrão é 16px
+    <main> -> font-size: 125%; do pai(body) é 20px.
+        <p>
+        <section> -> font-size: 90%; -> 90% de MAIN(seu pai) = 18px.
+            <h1> -> font-size: 150%; -> 150% de SECTION(seu pai) = 27px
+            <p> -> 22px
+            <p> -> 22px
+

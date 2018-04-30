@@ -1,0 +1,474 @@
+******************************* HTML E CSS *******************************
+
+-------------------------------- ATRIBUTOS --------------------------------
+
+tabindex="1" -> propriedade de tag HTML, combinado com a pseudoclasse :focus no css, quando o usuário apertar tab no navegador ele pode ter a experiência de verificar os efeitos sem precisar posicionar o mouse encima(:hover) por ex.
+
+colspan="2" -> Usado em tabelas para em vez de ocupar apenas uma cédula, ocupe 2 por exemplo.
+
+rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <td> para aquela coluna na linha seguinte.
+
+
+-------------------------------- ATRIBUTOS CUSTOMIZAVEIS --------------------------------
+
+ recurso do HTML 5 que são os atributos customizados. A partir dessa versão do HTML, podemos criar nossos próprios atributos em qualquer elemento do HTML sem deixá-lo inválido; basta que esse atributo comece com data-. Por exemplo:
+
+<!-- a declaração abaixo é válida a partir do HTML 5 -->
+<a href="#" data-legenda="Clique em mim">Link</a>
+
+-------------------------------- TAGS Lembrete --------------------------------
+
+<main> -> indica conteúdo principal.
+<blockquote> - indica citação.
+<cite> - indica autor de citação.
+<aside> - conteúdo auxiliar ao conteúdo principal, como links relacionados ao conteúdo
+<article> - conteúdo que, por si só, já tem um sentido completo, como um post de um blog ou uma notícia
+<header> - cabeçalho da página ou de uma região dela
+<footer> - mesma ideia da tag <header> para o rodapé
+<section> - parte/seção de uma página ou texto.
+<nav> - indica ali existe navegação pelo site.
+<time> - Usado para definir data/hora.
+<table> - Cria uma tabela
+<thead> - Define o Cabeçalho da tabela Mais SEMANTICO.
+<tbody> - Define o corpo da tabela Mais SEMANTICO.
+<tfoot> - Define o "rodape" da tabela Mais SEMANTICO.
+<th> - indica o Cabeçalho.
+<tr> - cria a linha da tabela
+<td> - cria a coluna da tabela.
+<dl> - cria a lista IMPORTANTE Neste caso, o elemento <dl> é o mais adequado. Estamos descrevendo um único item, detalhando características dele, ao invés de <table>
+<dt> - Define o Nome ou titulo
+<dd> - Define a descrição desse nome ou titulo
+
+
+
+
+******************************************************************** CSS ********************************************************************
+
+-------------------------------- SELETORES DE ATRIBUTOS --------------------------------
+
+O cifrão representa que queremos que o atributo termine com um valor.
+
+[src$=".jpg"]
+
+
+
+Se quisermos selecionar todos os links que começam com http://, podemos usar o seletor:
+
+[href^="http://"]
+
+-------------------------------- FLEXBOX --------------------------------
+
+IMPORTANTE, ao colocar display flex, todos os seus filhos vão para a esquerda como se fosse float(left) e passam a ter o mesmo tamanho.
+
+IMPORTANTE Podemos ter containers FLEXBOX DENTRO DE containers FLEXBOX, resumindo, tanto o pai quando os filhos podem ter a propriedade display flex;
+
+display: flex; -> faz com que o elemento se comporte como um FLEXBOX.
+
+align-items: center; -> centraliza os elementos.
+
+justify-content: space-between; -> justifica o elemento com o espaço(s) entre o elemento(s)(space-between);
+
+flex-direction: column; -> Faz com que os filhos fiquem em forma de coluna
+flex-direction: column-reverse; -> Colunna reversa, isso é, se era 1 2 3 fica 3 2 1
+flex-direction: row; -> Faz com que seus filhos fiquem em formado de linha.
+flex-direction: row-reverse; -> linha reversa em vez de 1 2 3 fica 3 2 1
+
+flex: 1; -> Quero dizer ao container(PAI) FLEXBOX que cada caixinha tem que ter a mesma proporção.
+EXEMPLO:
+.caixinha{
+  display flex;
+  flex-direction: column;
+  flex: 1;
+}
+.caixinha:nth-child(2){
+  flex: 2; -> Quero dizer ao container pai que a segunda caixinha será maior que as com               flex: 1;
+}
+
+flex-grow -> Determina quanto o elemento selecionado deve crescer.
+flex-shrink -> Determina quanto o elemento deve diminuir.
+flex-basis -> Determina qual o tamanho minimo que o elemento deve ter.
+
+
+por padrão o flexbox deixa tudo em uma linha só, com o flex-wrap: wrap; podemos quebrar a linha.
+flex-wrap: wrap;
+juntamente com o flex: 1 1 45% decidimos quantos elementos vão ficar dentro daquele container antes de quebrar a linha.
+
+oder: 1; -> define quem aparecerá primeiro independente da ORDEM do HTML. (SEO ACESSIBILIDADE)
+
+
+-------------------------------- ANIMATION --------------------------------
+
+animation: nomeAnimação TempoAnimação;
+
+animation: aparece 2s;
+OU
+animation: aparece 2s ease; -> podemos colocar todos os tipos de suavização igual no transition(ease, ease-in, ease-ou, linear etc..)
+
+@keyframes aparece{
+  0%{
+    opacity: 0;
+  }
+  100%{
+  opacity: 1;
+  }
+}
+
+definimos um keyframes, e especificamos os pontos chaves da nossa animação, nesse caso, começara com 0 de opacidade e quando chegar nos 100% ficara com 100% de opacidade.
+
+animation-direction - > define a direção da animação.
+
+Exemplo, animation-direction: alternate; a animação ira ficar alternando o seu comportamento.
+
+animation-timing-function: ease-in; -> propriedade que se coloca os (ease, ease-in, ease-in-out etc.)
+
+animation-play-state: paused; ou running -> dizemos nessa propriedade se queremos que a animação continue ou pare, normalmente usamos no :hover essa propriedade.
+
+animation-delay: -> da um tempo para iniciar a animação.
+
+animation-fill-mode: backwards; -> faz com que a animação já começe do começo.
+animation-fill-mode: forwards; -> mantem o estilo final da animação mesmo após ela terminar de executar.
+animation-fill-mode: both; -> faz o serviço do backwards e forwards.
+animation-fill-mode: none;
+
+O banner do Twitter fica aparecendo antes da animação começar. Isso indica que o estilo inicial da animação não é aplicado ao elemento antes que ela comece por padrão. Porém, podemos mudar esse comportamento.
+A especificação de animações define uma propriedade chamada animation-fill-mode. Essa propriedade nos permite fazer com que o navegador aplique o estilo inicial de uma animação antes mesmo de ela começar (valor backwards), mantenha o estilo final de uma animação mesmo após ela terminar de executar (valor forwards) ou ainda faça as duas coisas (valor both).
+
+-------------------------------- TRANSITION --------------------------------
+
+Faz a transição de uma ou mais PROPRIEDADES, o tempo dessa transição você que define, a PROPRIEDADE que sofrera com o transition deve estar no :hover ou :focus.
+
+PORQUE NÃO COLOCAR O TRANSITION NO HOVER? Não colocamos no HOVER/FOCUS, pois o efeito da transição só iria acontecer quando colocassemos o mouse encima, se tirassemos o mouse de cima ele NÃO voltaria com efeito, ele simplesmente cortaria o efeito.
+
+transition: transform 1s, box-shadow 3s;
+transition: all 2s;
+transition: color 3s;
+
+transition-delay -> define depois de quanto tempo a transição vai começar, exemplo:
+
+transition: transform 1s, box-shadow 3s;
+transition-delay: 0s, 2s; -> aqui eu estou dizendo que minha primeira transição(transform no caso) n teria delay pra começar, e minha segunda transição( box-shadow no caso) teria um DELAY de 2s para começar a fazer a sua propria transição box-shadow de 3segundos no caso.
+
+                            TIPOS DE SUAVIZAÇÃO
+                            (Colocar depois do tempo)
+                            
+linear -> sem suavização, sem na mesma velocidade.
+ease -> com suavização
+ease-in -> com suavização no começo.(demora mais pra aparecer no começo e vai mais rapido no final)
+
+ease-out -> com suavização no final.(vai mais rapido no COMEÇO e demora mais no FINAL)
+ease-in-out -> com suavização no começo e no final.
+
+
+-------------------------------- VERTICAL-ALIGN --------------------------------
+
+IMPORTANTE!
+A propriedade vertical-align pode ser usada em dois contextos:
+
+    1°CONTEXTO:
+    
+    Para alinhar verticalmente uma caixa de elementos inline dentro de sua caixa de linha. Por exemplo, poderia ser usado para alinhar verticalmente um  <img> em uma linha de texto:
+    
+    2°CONTEXTO:
+    
+    Para alinhar verticalmente o conteudo de uma celula em uma tabela(table-cell):
+    
+
+/* keyword values */
+vertical-align: baseline;
+vertical-align: sub;
+vertical-align: super;
+vertical-align: text-top;
+vertical-align: text-bottom;
+vertical-align: middle;
+vertical-align: top;
+vertical-align: bottom;
+
+/* <length> values */
+vertical-align: 10em;
+vertical-align: 4px;
+
+/* <percentage> values */
+vertical-align: 20%;
+
+/* Global values */
+vertical-align: inherit;
+vertical-align: initial;
+vertical-align: unset;
+
+-------------------------------- BORDER --------------------------------
+
+IMPORTANTE!! -> border-collapse E border-spacing É utilizado APENAS na tag <table>.
+
+border-collapse: separate; -> separa as bordars
+border-collapse: collapse; -> já é padrão vir definido como collapse(juntas);
+
+border-spacing: 5px; -> define o tamanho do espaço entre as bordas.
+
+-------------------------------- PROPRIEDADE DISPLAY --------------------------------
+
+inline -> deixa elementos na mesma linha, elemenos inline não podem ter altura definida.
+block -> todo elemento definido como block ocupa a linha inteira, ou seja, não deixa outro elemento ocupar a mesma linha que ele
+inline-block -> podemos definir largura e altura 
+none -> some com o elemento.
+
+-------------------------------- PSEUDOELEMENTOS --------------------------------
+
+IMPORTANTE! 
+A propriedade content é exclusiva dos pseudoelementos before e after, menos que não for utiliza-lo DEVE coloca-lo junto ao seu css.
+
+EX:
+
+a:after{
+    content: ""; <- deixe-o vazio, CASO não for utilizado, mas deve coloca-lo msm que vazio, é obrigatório, SE não o navegador não le.
+}
+
+:first-letter -> permite estilizar a primeira letra de um parágrafo por exemplo( p:firs-letter )
+:before -> antes
+:after -> depois
+
+-------------------------------- PSEUDOCLASSES --------------------------------
+
+
+:first-child - > seleciona o primeiro filho
+:last-child - > seleciona o ultimo filho
+:nth-child - > aqui podemos brincar um pouco, podemos intercalar os estilos de acordo com os parâmetros passados.
+:nth-last-child -> seleciona o ultimo filho
+:nth-last-of-type - seleciona o ultimo tipo de elemento.
+
+EXEMPLO:
+
+Generalizando: :nth-child(xn + c)
+
+Em que:
+
+x é a periodicidade, de quantos em quantos elementos será aplicado o estilo;
+c é o ponto de partida;
+n é a variável, que começa em 0 (zero).
+
+li:nth-child(2n+1){
+    color: blue;
+}
+
+<ul>
+    <li>texto</li> <- estilo aplicado aqui
+    <li>texto</li>
+    <li>texto</li> <- estilo aplicado aqui
+    <li>texto</li>
+</ul>
+
+EXEMPLO 2:
+
+li:nth-child(2n+2){
+    color: blue;
+}
+
+<ul>
+    <li>texto</li> 
+    <li>texto</li> <- estilo aplicado aqui
+    <li>texto</li> 
+    <li>texto</li> <- estilo aplicado aqui
+</ul>
+
+EXEMPLO 3:
+
+li:nth-child(odd){ <- pegaria todos os ímpares
+    color: blue;
+}
+
+li:nth-child(even){ <- pegaria todos os pares
+    color: blue;
+}
+
+:nth-of-type - > seleciona por tipo de elemento.
+
+:hover - > ao passar o mouse faz algo.
+:focus
+:active
+:checked
+
+-------------------------------- SELETORES AVANÇADOS CSS --------------------------------
+
+>>>> SELETOR ~ (Seleciona DEPOIS de outros elementos): <<<<
+
+ul ~ li{ background-color: red; } -> seleciona todos os li DEPOIS do elemento UL 
+
+ul div ~ li { background-color: red; } -> seleciona todos os li que estão dentro do UL E que estão DEPOIS da primeira DIV
+<ul>
+   <div>div</div>
+    <li>algo</li>
+    <li>algo</li>
+    <div>div</div>
+    <li>algo</li>
+    <div>div</div>
+    <li>algo</li>
+    <div>
+        <li>li dentro da div</li>
+    </div>
+</ul>
+<li>li fora do ul</li> <- Somente esse elemento será afetado pelo background.
+      
+>>>> SELETOR  + (IMEDIATAMENTE Depois) : <<<<
+
+img + p{ background-color: red; }
+
+    <img src="" alt="">
+    <p></p> <- APENAS este ficaria com a cor de fundo vermelha, pois o elemento p que vem IMEDIATAMENTE DEPOIS de img é o primeiro P.
+    <p></p> 
+    <p></p> 
+    
+img + p { background-color: red;}
+
+    <img src="" alt="">
+    <div></div> <- Neste caso, tem uma div IMEDIATAMENTE APÓS a tag img, então o seletor css img + p acima não funcionará.
+    <p></p> 
+    <p></p> 
+    <p></p> 
+    
+    
+>>>> SELETOR  > (Seleciona os filhos somente) : <<<<
+
+div > p -> selecionará apenas os seus filhos.
+
+<div> <- pai
+    <p>texto</p> - <- filho da div
+        <blockquote> <- filho da div
+            <p>aaaa</p> <- filho do bloquote
+        </blockquote>
+    <p>aaaa</p> <- filho da div
+</div>
+
+--------------------------- BACKGROUND GRADIENT --------------------------
+
+IMPORTANTE! Repetimos a mesma cor duas vezes quando queremos dizer para o navegador que ela tem que ir de x porcentagem até x porcentagem,
+Exemplo: red 20%, red 40%, blue 40%, blue 100%.
+
+background-image: linear-gradient(de onde pra onde, cor porcentagem,cor porcentagem, até quantas cores quiser).
+
+background-image: radial-gradient(ellipse at bottom left, rgba(60, 29, 61, 0.8),rgba(60, 29, 61, 0.8) 65%, #000 65%, #000 70%, transparent 70%, transparent);
+
+background-size: 100%(width) 200px(height); caso a imagem não tenha essa altura ela quebrará em várias imagens de 200px.
+
+background-repeat: define o tipo de repetição na imagem.
+
+background-position: define a posição de uma imagem dentro de seu elemento pai.
+
+background-size: cover; -> faz com que mesmo que a imagem não tenha 800px ocupe 800px na tela.
+
+
+
+-------------------------------- SOMBRAS --------------------------------
+
+text-shadow: direita esquerda espalhamento cor;
+
+box-shadow: horizontal vertical cor OU horizontal vertical espalhamento-sombra cor.
+
+opacity: 0~1 0 regulamos o nível de transparencia do elemento pelo opacity 0 ele fica invisivel e 1 ele fica totalmente visivel 0.5 ele fica meio termo.
+
+-------------------------------- TRANSFORM --------------------------------
+
+IMPORTANTE ! -> A propriedade não funciona em elementos com a propriedade display definida como inline.
+
+transform: rotate(30deg); -> Faz com que um elemento rotacione de acordo com os graus(deg) definidos.
+
+transform: scale(1.5); -> Aumenta ou diminui o elemento de acordo com o parâmetro, se for > 1 ele aumenta o elemento, se for < 1 ele diminui o elemento.
+
+transform: skew(20deg) -> Entorta o elemento \ \ de acordo com os graus(deg) definidos.
+
+transform: translate(X, Y) -> Muda o elemento de posição para qualquer lugar da tela.
+
+Agora resta a questão: como fazer a translação? Com um pouco de trigonometria, chegamos nas seguintes fórmulas para o quanto temos que transladar na horizontal e na vertical.
+
+Na horizontal: cos(45) * (altura - largura) + largura
+
+Na vertical: -1 * sen(45) * altura
+
+-------------------------------- UNIDADE DE MEDIDA --------------------------------
+
+IMPORTANTE! -> Definir a porcentagem da fonte no html{ font-size: X ;} e NÃO DO body{}
+Assim conseguimos ter total controle da propriedade font-size em TODA a PAGINA.
+  
+PORCENTAGEM:
+    
+Ao Utilizar a "unidade de medida PORCENTAGEM, ela se baseia, 
+com base na largura(width) de seu elemento pai para fazer o cálculo da porcentagem.
+
+Exemplo:
+
+Temos uma div.pai com width de 720px;
+e uma div.filha com padding de 20px e width de 250px,
+SE alterarmos padding para 10% resultará em 72px de padding, pois 10%
+de 720px(seu elemento pai) é 72px.
+O mesmo ocorre para o width, se colocarmos 10% seu tamanho será reduzido
+para 72px.
+
+EM:
+
+IMPORTATE ! USA A FONTE DO ELEMENTO PAI COMO REFERÊNCIA.
+
+Calculo EM 1.25em x tamanho da fonte do elemento igual tamanho em pixels.
+
+EX: 1.25em x 16px igual a 20px.
+    1.25em X 20px igual a 25px.
+
+REM:
+
+IMPORTATE ! USA A FONTE DO NAVEGADOR COMO REFERÊNCIA.
+
+Calculo REM 1.25rem x tamanho da fonte do navegador igual tamanho em pixels.
+
+EX: 1.25rem x 16px igual a 20px.
+    1.25rem X 20px igual a 25px.
+
+A vantagem de se utilizar REM é que ele facilita a manutenção do seu código, basta alterar o tamanho da fonte no html,
+e ele já redimenciosa todo o resto, isso não ocorre com pixels.
+
+Tem um porem, rem faz a medida com base na ALTURA da fonte, será que você quer por exemplo, definir a LARGURA de um elemento,
+com base na ALTURA da fonte?
+
+CH:
+
+CH seria a medida da largura do caracter "zero".
+
+
+RESUMO DAS MEDIDAS:
+
+PX é sempre px
+
+EM é medido com base na fonte do seu elemento pai.
+
+REM é medido com base na fonte do navegador.
+
+CH tem como base a largura do caractere zero da fonte usada;
+
+PORCENTAGEM tem como base ou a largura do elemento pai ou o font-size do elemento anterior.
+
+
+PIXEL É UMA MEDIDA ABSOLUTA, EM REM CH % São medidas RELATIVAS.
+
+-------------------------------- FLOAT --------------------------------
+
+OBS: Flutua um elemento porem o mantem na mesma linha de posição original,
+qualquer elemento que esteja abaixo de um elemento com float, ficará lado a lado,
+a menos que se use a propriedade CLEAR, para limpar a flutuação.
+
+left -> flutua um elemento a esquerda.
+
+right -> flutua um elemento a direita.
+
+-------------------------------- CLEAR --------------------------------
+
+right -> limpa a flutuação a direita.
+
+left -> limpa a flutuação a esquerda.
+
+both -> limpa a flutuação de ambos.
+
+-------------------------------- POSITION --------------------------------
+
+Absolute -> Posição Absoluta com relação a janela, ou a algum elemento em tordo dele com o valor definido como relativo.
+
+Relative -> Posicionamento será relativo ao local atual do elemento na tela.
+
+Fixed -> Será fixo com relação a tela.
+
+-------------------------------- TEXT-INDENT --------------------------------
