@@ -1,0 +1,21 @@
+********************** BootStrap V3 **********************
+
+*** IMPORTANTE ***
+
+A diferença entre Componentes e CSS no bootstrap, é que o CSS tem as coisas mais padrões do html como img table forms etc, já os componentes não são coisas nativas, eles são blocos de códigos estilizados, são coisas personalizadas digamos assim.
+
+**** Components ****
+
+Panel -> serve para fazer paineis
+
+**** CSS ****
+
+.container -> 
+
+------- Imagens Responsivas -------
+
+.img-responsive -> Aplica-se max-width: 100%;, height: auto; e display: block;
+
+**** JS ****
+
+Collapse -> Exemplo: ao clicar em um botão ou link, ele irá collapsar(mostrar o elemento) e ao clicar novamente ele irá "descolapsar"(ocultar o elemento)

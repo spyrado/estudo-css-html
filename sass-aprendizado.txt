@@ -429,6 +429,8 @@ Podemos também concatenar um media query por exemplo:
 
 ---------------------- Compass ----------------------
 
+IMPORTANTE!! SEMPRE QUE MECHERMOS NO ARQUIVO DE CONFIGURAÇÃO DO COMPASS, DEVEMOS "MATAR O WATCH NO CONSOLE" CTRL+C E LOGO EM SEGUIDA COLOCA-LO PARA ASSISTIR NOVAMENTE compass watch css/estilos.scss
+
 -- Utilização --
 
 http://compass-style.org/install/
@@ -450,3 +452,120 @@ javascripts_dir = "js" -> nome do diretorio de javascript
 -- Comentarios automaticos --
 
 Para retirar os comentarios do compass, entre no arquivo de configuração e descomente a linha  line_comments = false
+
+---------------------- Compass e seus mixins ----------------------
+
+@include border-radius(0.3em);
+
+O compass já tem uma biblioteca de mixins com algumas propriedades, como border-radius, box-shadow e etc..
+
+
+---------------------- Compass e seu Sprite automatico ----------------------
+
+Para utilizar o Sprite automatico no compass fazemos o seguinte:
+
+  Cria uma pasta chamada "sprite" dentro da pasta "imagens".
+    Após isso adicione as imagens que você queira fazer o sprite.
+  
+  Vá até seu arquivo de import .scss e importe lá no topo o seguinte:
+    @import "sprite/*.png" , seleciona todos os arquivos .png.
+    
+  -- Como dar espaçamento nas imagens? --
+  
+  //Sprite
+  $sprite-spacing: 2px; -> dependendo da imagem precisamos dessa variável para dar o espaçamento entre elas.
+  
+  @import "sprite/*.png";
+  
+  o nome da variável deve ser o mesmo nome da pasta, nesse caso é sprite a pasta, então devemos nomear o começo da variavel com sprite também.
+  
+  sintax: $<map>-spacing
+  
+  -- Gerar url automática --
+  
+  Coloque no código esse comando do compass:
+    @include all-sprite-sprites;
+    obs: o nome do meio deve ser o nome da pasta onde contem as imagens que faram sprite, nesse caso o nome da pasta é sprite
+    
+  E ele gera automático pra mim um código contendo minha url dinâmica, e também gera classes com os nomes dos respectivos arquivos a serem modificados.
+  
+  .sprite-icone-ok {
+    background-position: 0 0;
+  }
+
+  .sprite-icone-x {
+    background-position: 0 -23px;
+  }
+  
+  .sprite-sprite, .icone-check .sprite-icone-ok, .icone-x .sprite-icone-ok, .icone-check .sprite-icone-relogio, .icone-x .sprite-icone-relogio, .icone-check .sprite-icone-x, .icone-x .sprite-icone-x {
+    background-image: url('/imagens/sprite-s7ffeadf58c.png');
+    background-repeat: no-repeat;
+  }
+  
+  retire o código anterior caso tenha, no meu caso o código anterior era:
+  
+  .icone-ok {
+    background-position: 0 0;
+  }
+
+  .icone-x {
+    background-position: 0 -23px;
+  }
+
+  .sprite-icone-ok, .sprite-icone-x {
+    width: 19px;
+    height: 19px;
+  }
+  
+  e ficou assim depois:
+  
+  .icone-ok {
+    background-position: 0 0;
+  }
+
+  .sprite-icone-x {
+    background-position: 0 -23px;
+  }
+
+  .sprite-icone-ok, .sprite-icone-x {
+    width: 19px;
+    height: 19px;
+  }
+  
+  Caso a imagem não esteja carregando, verifique no console do desenvolvedor o caminho dela vá até o elemento que contem a imagem clique nele, após isso vá até a url clique com o botão direito e aperte open new tab, lá voce vai conseguir ver a url, dependendo da url gerada, vá até o arquivo de configuração do compass e adicione o caminho que você quer percorrer para chegar na imagem, nesse caso tive que adicionar o seguinte caminho: 
+  
+  OBS:  Para mudar o caminho de uma imagem gerada, usamos http_path, logo depois do que já havia no arquivo:
+  
+  OBS2: SEMPRE QUE MECHERMOS NAS CONFIGS DO COMPASS, DEVEMOS MATAR O WATCH E INICIAR DNV.
+  
+  http_path = "../";
+  
+  pois o caminho dele era esse:
+  
+  http://localhost/alura-estudo/sass-aprendizado/site-apeperia/css/imagens/sprite-s1e035a9ecf.png
+  
+  era css/imagens, ai voltei uma pasta com ../ e deu tudo certo, consegui visualizar a imagem.
+  
+  ---------------------- Operações Matemáticas no SASS ----------------------
+  
+  Podemos fazer calculos no SASS:
+  
+  font-size: 4rem;
+  font-size: 4 * 16px; // resultado 64px;
+  
+  
+  ---------------------- Functions no SASS ----------------------
+  $font-padrao: 16px;
+  
+  sintax: @function multiplica-pela-fonte($multiplicador){
+            @return $multiplicador * $font-padrao;
+          }
+          
+  Chamada:
+    .main{
+      width: multiplica-pela-fonte(80); // resultado width: 1280px; (80*16)
+    }
+    
+  ---------------------- Functions PRONTAS No SASS ----------------------
+  
+  round(valor) -> retona o valor arredondado.

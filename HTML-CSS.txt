@@ -1,5 +1,36 @@
 ******************************* HTML E CSS *******************************
 
+--- HEIGHT 100% ---
+
+Para definirmos a altura em porcentagem do nosso <header> ou de alguma Tag do HTML, o que é necessário?
+
+É NECESSÁRIO DEFINIR O TAMANHO EM PORCENTAGEM DAS TAGS PAIS.
+
+Exemplo:
+
+html
+    body
+        header
+
+para a header ficar com 100% de altura, devemos definir a altura como 100% para os pais da HEADER, que no caso do exemplo são apenas o BODY E HTML, assim conseguimos o efeito desejado.
+
+html,body{
+    height: 100%;
+}
+header{
+    height: 100%;
+}
+
+---- IMAGEM DECORATIVA OU NÃO? ----
+
+Para responder melhor essa pergunta pense: 'Você gostaria que essa imagem fosse indexada pelo Google e aparecesse no Google Images?'
+
+Provavelmente as imagens que gostaríamos que o Google indexasse seriam as imagens de título do nosso site, nossos produtos e coisas do tipo.
+
+Se esse não é o caso, a imagem é decorativa apenas.
+
+Imagens decorativas são inseridas através do CSS pela propriedade background. Imagens de conteúdo são inseridas através do HTML pela tag <img>.
+
 -------------------------------- ATRIBUTOS --------------------------------
 
 tabindex="1" -> propriedade de tag HTML, combinado com a pseudoclasse :focus no css, quando o usuário apertar tab no navegador ele pode ter a experiência de verificar os efeitos sem precisar posicionar o mouse encima(:hover) por ex.
@@ -7,6 +38,8 @@ tabindex="1" -> propriedade de tag HTML, combinado com a pseudoclasse :focus no 
 colspan="2" -> Usado em tabelas para em vez de ocupar apenas uma cédula, ocupe 2 por exemplo.
 
 rowspan="2" -> Quando usamos a propriedade rowspan, não precisamos colocar um <td> para aquela coluna na linha seguinte.
+
+aria-expanded="false" -> indica para leitores de tela se o elemento está ou não expandido("collapsado"), se tiver = "true" ele estará collapsado(expandido).
 
 
 -------------------------------- ATRIBUTOS CUSTOMIZAVEIS --------------------------------
@@ -337,7 +370,11 @@ div > p -> selecionará apenas os seus filhos.
     <p>aaaa</p> <- filho da div
 </div>
 
---------------------------- BACKGROUND GRADIENT --------------------------
+--------------------------- BACKGROUND --------------------------
+
+Sequencia de parâmetros para o background.
+
+background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;
 
 IMPORTANTE! Repetimos a mesma cor duas vezes quando queremos dizer para o navegador que ela tem que ir de x porcentagem até x porcentagem,
 Exemplo: red 20%, red 40%, blue 40%, blue 100%.
@@ -354,6 +391,15 @@ background-position: define a posição de uma imagem dentro de seu elemento pai
 
 background-size: cover; -> faz com que mesmo que a imagem não tenha 800px ocupe 800px na tela.
 
+background-attachment: scroll|fixed|local|initial|inherit;
+  scroll -> O background irá escrolar junto a página(padrão)
+  fixed	-> O background NÃO irá escrolar junto a página
+  local -> O background irá escrolar junto com o element-content.
+  
+background-clip: border-box|padding-box|content-box
+  border-box -> O background se estende até a borda(padrão).
+  padding-box -> O background se estende até o padding.
+  content-box -> O background se estende até o conteudo.
 
 
 -------------------------------- SOMBRAS --------------------------------
@@ -472,3 +518,10 @@ Relative -> Posicionamento será relativo ao local atual do elemento na tela.
 Fixed -> Será fixo com relação a tela.
 
 -------------------------------- TEXT-INDENT --------------------------------
+
+
+--------------------- Tecnicas de CSS ---------------------
+
+Image Replacement ->
+
+Sprite -> utilizamos sprite visando diminuir o numero de requisições no servidor, sprite É varias imagens em uma imagem só, ajustamos a imagem que necessitamos com background-position.

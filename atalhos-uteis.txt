@@ -3,3 +3,10 @@
 CTRL + SPACE -> MOSTRA A LISTA DE OPÇÕES DE UM PARÂMETRO.
 
 CTRL + SHIFT + ↑ ou CTRL + SHIFT + ↓ -> MOVE A(S) LINHA(S) PARA CIMA OU PARA BAIXO.
+
+CTRL + B -> Multiple Selection ISTO É, Seleciona multiplos itens ao mesmo tempo, 
+    exemplificando, selecione o primeiro CTRL e aperte CTRL+B e veja oq acontece.
+    
+CTRL+U -> Faz o contrário do acima, ele desceleciona os itens selecionado um por um, faça
+    o teste, selecione o primeiro CTRL com CTRL+B 2x ou +, e após isso aperte CTRL+U e veja oq acontece.
+    
