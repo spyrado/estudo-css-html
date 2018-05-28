@@ -1,0 +1,193 @@
+************************* FLEXBOX ***********************
+
+-------------------------- IMPORTANTE --------------------------
+
+O Flexbox segue EIXOS, para poder posicionar seus elementos filhos.
+por padrão o flexbox já vem com o flex-direction: row;
+
+suas propriedades justify-content, align-items, height são alteradas de acordo com a sua direção.
+
+flex-direction: row; os elementos ficam com a mesma altura(height)
+flex-direction: column; os elementos ficam com a mesma largura(width)
+
+O seu eicho principal é o justify-content, que alinha os elementos na horizontal.
+
+E o seu eicho secundario seria o align-items, que alinha os elementos na vertical.
+
+POREM, quando mudamos a direção do nosso flexbox, ex: flex-direction: column;, O EIXO também MUDA.
+
+quando colocamos flex-direction: column, o eicho principal passa a ser o align-items que por sua vez começara a alinhar os elementos HORIZONTALMENTE, e o secundário passa a ser o justify-content que por sua vez começara a alinhar os elementos VERTICALMENTE.
+
+
+
+************************* FLEX-CONTAINER (Properties for the Parent) ************************* 
+
+
+
+-------------------------- DISPLAY: FLEX; --------------------------
+
+Para dar inicio a utilização do FLEXBOX, devemos definir o elemento PAI com
+    DISPLAY: FLEX;
+    
+display: flex; -> alinha os elementos a esquerda, E deixa os filhos com a mesma altura o mesmo height.
+
+Exemplo:
+
+div{
+  display:flex;
+  height: 20px;
+}
+
+<div>
+  <input type="text">
+  <button>Enviar</button>
+ </div>
+
+-------------------------- JUSTIFY-CONTENT --------------------------
+
+IMPORTANTE elementos que não possuem ESPAÇO(SPACE) não são afetados pelas propriedades do justify-content.
+
+Exemplo:
+
+Uma div com 500px e duas divs filhas com 250px, se eu tentar utilizar justify-content, nada acontecera, pois não tem espaço sobrando dentro da div pai.
+
+justify-content: center; -> justifica o conteudo no centro.
+justify-content: flex-end; -> justifica o conteudo no final.
+justify-content: flex-start; -> justifica o conteudo no começo.
+justify-content: space-around; -> justifica o conteudo dando espaços ao REDOR dos
+    elementos dele.
+justify-content: space-between; -> justifica o conteudo dando espaços ENTRE os 
+    elementos dele.
+
+
+-------------------------- ALIGN-ITEMS --------------------------
+
+IMPORTANTE align-items alinha os elementos VERTICALMENTE.
+
+align-items: center; -> alinha o elemento ao centro.
+align-items: flex-start; -> alinha o elemento ao topo.
+align-items: flex-end; -> alinha o elemento ao bottom.
+align-items: stretch;(default) -> faz o elemento preencher toda a altura ou largura do PAI, vai depender do flex-direction, caso o flex-direction for ROW, ele preenche a altura, se for COLUMN ele preenche a largura.
+
+-------------------------- FLEX-DIRECTION --------------------------
+
+flex-direction: row; -> é o o comportamento padrão, deixa os elementos inline.
+flex-direction: row-reverse; -> deixa os elementos inline invertido a sequencia.
+flex-direction: column; -> deixa os elementos em forma de coluna.
+flex-direction: column-reverse; -> deixa os elementos em forma de coluna reversa(invertendo a 
+    sequencia).
+    
+-------------------------- FLEX-DIRECTION --------------------------
+
+O wrap funciona da seguinte forma, caso o meu elemento ultrapasse o tamanho do layout, podemos utilizar o wrap, para dizer que aquele elemento ao chegar no fim do tamanho do layout, quebre e vá para linha de baixo caso o tamanho limitante seja a largura, ou para linha ao lado(caso oo tamanho limitante seja a altura).
+
+flex-wrap: wrap; -> permite a quebra de linha.
+flex-wrap: nowrap;  -> não permite a quebra de linha.
+flex-wrap: wrap-reverse; -> quebra as linhas invertendo a sua sequencia.
+
+-------------------------- FLEX-FLOW --------------------------
+
+FLEX-FLOW é um shorthand para flex-direction e flex-wrap.
+
+flex-flow: column wrap; -> faz as mesmas funções de flex-direction: column; flex-wrap: wrap
+
+
+
+************************* FLEX-ITEMS  (Properties for the Children) *************************
+
+
+-------------------------- ORDER --------------------------
+
+order: -1; -> Controla a ordem em que aparecem os filhos.
+
+EX:
+
+ul{
+  display: flex;
+  flex-direction: column;
+}
+li:last-child{
+  order: -1;
+}
+
+<ul>
+  <li>ITEM 1</li>
+  <li>ITEM 2</li>
+  <li>ITEM 3</li>
+  <li>ITEM 4</li>
+</ul>
+
+Por padrão a order dos elementos vem como 0(ZERO).
+No código acima eu estou falando, que eu quero que meu item 4(ultimo elemento) fique no TOPO(-1 nesse caso).
+
+Se eu quisesse que o primeiro LI ficasse em ultimo, bastava selecionar o primeiro LI, e definir o order dele como 1.
+
+-------------------------- FLEX-GROW --------------------------
+
+flex-grow, grow(crescer).
+
+flex-grow: 0;(default); -> mantem o tamanho original.
+
+flex-grow -> Faz com que os flex-items cresçam caso aja espaço sobrando no seu 
+    elemento pai, e também caso tenha espaço e tiver exemplo.. 3 divs inline, eu posso dar um tanho igual para cada div colocando flex-grow: 1; ou posso colocar flex-grow: 1; em duas divs, e em outra eu coloco flex-grow: 2; ai essa que recebeu 2, vai ficar maior que as outras.
+
+-------------------------- FLEX-SHRINK --------------------------
+
+IMPORTANTE O flex-shrink SÓ começa a funcionar QUANDO o elemento fica menor que o tamanho original dele, exemplo: eu tenho uma div de 400px, se a tela for 399px o flex-shrink já começa a fazer efeito. caso for 400px a tela o flex-shrink não fará nada.
+
+--- Qual conta ele faz para diminuir os elementos? ---
+
+Exemplo:
+    Tamanho da tela do Exemplo abaixo 100px:
+    4 divs de 50px de largura. = 200px;
+    
+    Primeiro ele pega a quantidade de shrinks que os elementos tem.
+    
+    DIV [A] shrinks = 2 | width 50px
+    DIV [B] shrinks = 1 | width 50px 
+    DIV [C] shrinks = 1 | width 50px 
+    DIV [D] shrinks = 1 | width 50px 
+    
+    TOTAL = 5 shrinks.
+    TAMANHO DA TELA = 100PX
+    
+    100 / 5 = 20 
+    
+    Ele pega esse resultado de 20 e multiplica pelo shrink de cada elemento.
+    
+    DIV [A] shrinks = 2 * 20 = 40px -> 40px - 50px (do width) = 10px;
+    DIV [B] shrinks = 1 * 20 = 20px -> 20px - 50px (do width) = 30px; 
+    DIV [C] shrinks = 1 * 20 = 20px -> 20px - 50px (do width) = 30px; 
+    DIV [D] shrinks = 1 * 20 = 20px -> 20px - 50px (do width) = 30px;
+    
+    O resultado final será esse:
+    
+    Em uma tela de 100px
+    
+    A primeira div que recebeu shrink 2 e que tinha tamanho de 50px, ficará com 10px.
+    E as demais divs que receberam shrink 1 e que tinham tamanho de 50px, ficaram com 30px.
+    
+
+flex-shrink: 1;(default) -> todos os elementos diminuem igualmente, IMPORTANTE,
+    CASO VOCÊ COLOQUE FLEX-SHRINK: 1; NADA ACONTECERÁ, POIS TODOS OS ELEMENTOS POR PADRÃO JÁ VEM COM FLEX-SHRINK 1, caso queira que um elemento diminua mais que os outros deve colocar flex-shrink: 1.1 ou +; para melhor entendimento, flex-shrink: 1; tem o mesmo significado de color: initial;
+
+flex-shrink: 0; -> faz com que o elemento não diminua de tamanho, mantenha seu
+    tamanho padrão, MESMO SE O LAYOUT DIMINUIR, isso caso for mal utilizado pode quebrar layout.
+
+flex-shrink: 2 ou +; dimiui 2x mais ou 3x depende do numero colocado.
+
+flex-shrink -> Faz o contrário do flex-grow, ele diminui os elementos.
+
+
+-------------------------- FLEX-BASIS --------------------------
+
+flex-basis: auto; (default)
+
+flex-basis: 25%; -> define um valor absoluto para nossos elementos, seja em pixel pocentagem etc.. ele funciona como um WIDTH.
+
+
+------------------ SHORTHAND FLEX-GROW/FLEX-SHRINK/FLEX-BASIS ------------------
+
+flex: grow shrink basis;
+
+flex: 0 1 25%; -> estou falando que o elemento deve ter um grow de 0(padrão não acontece nada) e shrink de 1(padrão não acontece nada) e um basis de 25%, todo elemento vai ter 25% de largura.

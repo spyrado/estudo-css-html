@@ -292,7 +292,7 @@ Sintax:
   
   -- Resultado no CSS --
   
-    .container, .centro .meio {
+    .container, .centro, .meio {
       width: 940px;
       margin 0 auto;
     }

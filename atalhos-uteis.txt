@@ -10,3 +10,16 @@ CTRL + B -> Multiple Selection ISTO É, Seleciona multiplos itens ao mesmo tempo
 CTRL+U -> Faz o contrário do acima, ele desceleciona os itens selecionado um por um, faça
     o teste, selecione o primeiro CTRL com CTRL+B 2x ou +, e após isso aperte CTRL+U e veja oq acontece.
     
+CTRL + SHIFT + A -> Selecione um elemento, pressione ctrl+shift+a 
+    e escreva o que você quer q fique entre esse elemento.
+    Exemplo:
+    
+    <p>Olá meu nome é Nícolas</p>
+    
+    de duplo clique no nome Nícolas(vai selecionar ele) aperte CTRL+SHIFT+A e digite strong, e de ENTER e veja a mágica acontecer. o resultado ficará assim:
+        <p>Olá meu nome é <strong>Nícolas</strong></p>
+
+Ctrl+Shift+D -> Serve para deletar uma linha.
+
+Ctrl+E -> Uma grande novidade do Brackets. Basicamente você pode editar o CSS sem ter que abrir o arquivo .css. Basta ir em um arquivo .html ou .php clicar sobre o elemento que deseja alterar as propriedades e pressionar Ctrl+E para abrir a tela de edição!
+    
