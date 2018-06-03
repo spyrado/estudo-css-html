@@ -400,7 +400,8 @@ background-clip: border-box|padding-box|content-box
   border-box -> O background se estende até a borda(padrão).
   padding-box -> O background se estende até o padding.
   content-box -> O background se estende até o conteudo.
-
+  text -> O background se estende até o texto. (muito bom para se usar com
+    background-grandient para dar um efeito legal no texto).
 
 -------------------------------- SOMBRAS --------------------------------
 

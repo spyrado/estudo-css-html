@@ -69,6 +69,20 @@ align-items: flex-start; -> alinha o elemento ao topo.
 align-items: flex-end; -> alinha o elemento ao bottom.
 align-items: stretch;(default) -> faz o elemento preencher toda a altura ou largura do PAI, vai depender do flex-direction, caso o flex-direction for ROW, ele preenche a altura, se for COLUMN ele preenche a largura.
 
+-------------------------- ALIGN-CONTENT --------------------------
+
+IMPORTANTE! FUNCIONA APENAS EM flex-container com FLEX-WRAP
+
+align-content: ; -> agrupa os elementos e define um alinhamento para eles.
+align-content: center; -> agrupa os flex-items e coloca no centro.
+align-content: flex-end; -> agrupa os flex-items e coloca na direita.
+align-content: flex-start; -> agrupa os flex-items e coloca na esquerda.
+align-content: space-around; -> agrupa os flex-items e coloca espaco ao redor 
+    deles.
+align-content: space-between; -> agrupa os flex-items e coloca espaco entre eles.
+align-content: stretch;
+
+
 -------------------------- FLEX-DIRECTION --------------------------
 
 flex-direction: row; -> é o o comportamento padrão, deixa os elementos inline.
@@ -130,6 +144,33 @@ flex-grow: 0;(default); -> mantem o tamanho original.
 
 flex-grow -> Faz com que os flex-items cresçam caso aja espaço sobrando no seu 
     elemento pai, e também caso tenha espaço e tiver exemplo.. 3 divs inline, eu posso dar um tanho igual para cada div colocando flex-grow: 1; ou posso colocar flex-grow: 1; em duas divs, e em outra eu coloco flex-grow: 2; ai essa que recebeu 2, vai ficar maior que as outras.
+    
+--- Qual conta ele faz para dar espaço aos elementos? ---
+
+Suponhamos que temos duas divs de 200px cada.
+
+Largura da tela: 1000px;
+
+DIV [A] width: 200px;
+DIV [B] width: 200px;
+
+A soma das duas divs daria 400px, e sobraria 600px de tela em branco.
+
+Utilizando grow 1 somente na DIV[A], o navegador iria fazer o seguinte calculo.
+
+O navegador pega esse espaço vazio e divide pelo número de flex-grow que temos, ou seja:
+    espaço vazio / numero de grow = resultado.
+    600 px / 1 = 600 px.
+
+Então ele pega o resultado e distribui aos flex-itens que tem flex-grow, como era só a DIV[A], ele distribui apenas para a DIV[A].
+
+no caso era só a DIV[A], então ela passa de 200px para 200+600 = 800px.
+
+Caso as duas divs tivessem com grow 1, a conta seria a mesma, só mudaria o resultado, exemplo:
+
+600px / 2 = 300px.
+
+cada div receberia 300px e o resultado final delas iria ser 200+300 = 500px para cada uma.
 
 -------------------------- FLEX-SHRINK --------------------------
 
@@ -140,6 +181,9 @@ IMPORTANTE O flex-shrink SÓ começa a funcionar QUANDO o elemento fica menor qu
 Exemplo:
     Tamanho da tela do Exemplo abaixo 100px:
     4 divs de 50px de largura. = 200px;
+    Quanto foi diminuido de tela com relação aos elementos? 100px 
+    
+    Ultrapassados. pois os elementos somados tinham 200px de largura, e a tela reduziu(100px) alem do tamanho deles.
     
     Primeiro ele pega a quantidade de shrinks que os elementos tem.
     
@@ -149,7 +193,7 @@ Exemplo:
     DIV [D] shrinks = 1 | width 50px 
     
     TOTAL = 5 shrinks.
-    TAMANHO DA TELA = 100PX
+    PIXELS PASSADOS DO TAMANHO ORIGINAL = 100PX
     
     100 / 5 = 20 
     
@@ -162,9 +206,8 @@ Exemplo:
     
     O resultado final será esse:
     
-    Em uma tela de 100px
-    
     A primeira div que recebeu shrink 2 e que tinha tamanho de 50px, ficará com 10px.
+    
     E as demais divs que receberam shrink 1 e que tinham tamanho de 50px, ficaram com 30px.
     
 
@@ -181,6 +224,9 @@ flex-shrink -> Faz o contrário do flex-grow, ele diminui os elementos.
 
 -------------------------- FLEX-BASIS --------------------------
 
+IMPORTANTE
+    A propriedade flex-basis serve para definir uma largura ou altura para o flex item. Se o flex container tiver com flex-direction: column, o flex-basis no flex item servirá para definir uma height. Caso o flex-direction: row, ele funciona como um width.
+
 flex-basis: auto; (default)
 
 flex-basis: 25%; -> define um valor absoluto para nossos elementos, seja em pixel pocentagem etc.. ele funciona como um WIDTH.
@@ -191,3 +237,17 @@ flex-basis: 25%; -> define um valor absoluto para nossos elementos, seja em pixe
 flex: grow shrink basis;
 
 flex: 0 1 25%; -> estou falando que o elemento deve ter um grow de 0(padrão não acontece nada) e shrink de 1(padrão não acontece nada) e um basis de 25%, todo elemento vai ter 25% de largura.
+
+-------------------------- ALIGN-SELF --------------------------
+
+align-self: mesmas propriedades de align-items, porem ela alinha os seus flex-itens e não os flexs-containers.
+
+----------------------- PLUS -----------------------
+
+flex-direction and justify-content.
+
+Notice that when you set the direction to a reversed row or column, start and end are also reversed.
+
+Quando você define o flex-direction como reverse, seus valores de flex-end e flex-start também são revertidos, isso é, flex-end passa a ser start e start passa a ser flex-end.
+
+

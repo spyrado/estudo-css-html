@@ -1,5 +1,29 @@
 ******************************* GIT *******************************
 
+**** FORK ****
+
+Dando Fork em um repositório, você passa a ter a cópia desse repositório, no SEU repositório e passa a poder enviar commits para o dono do repositório, e o dono por sua vez, pode aceitar ou não os seus commits.
+
+OBS: Se você não der FORK, você NÃO conseguira enviar commits para o dono do repositório.
+
+**** PULL REQUEST ****
+
+Quando você faz um pull request, você está notificando o dono do repositório que você fez alguma alteração no repositório dele, na tela dele do github na area de pull requests vai aparecer o seu commit, e de lá ele pode verificar suas alterações e decidir se inclui ou não no repositório dele.
+
+Como manter meu repositório atualizado com o projeto de alguem?
+
+após dar o fork, ele automaticamente vai clonar o repositorio original para o seu repositório, porem caso você queira continuar recebendo as atualizações do repositório que você deu fork, você precisa criar um repositório remoto só para esse repositório original, para isso você precisa ir até o repositório original, pegar a url dele, ir até o seu repositorio no terminal, ai você fará o seguinte:
+
+    git clone add original https://github.com/spyrado/projeto-opensource.git
+    
+feito isso, ele criará um novo repo remoto com base no original.
+
+e para atualizar manter o seu repo atualizado com o repo original, você fara o seguinte:
+
+    git pull original master
+
+e pronto, ele trara as alterações do repo original para o seu repositório.
+
 --------- Crie conta GitHub ---------
 
 Primeiro crie uma conta no GitHub.
@@ -86,7 +110,37 @@ git commit -a -m <msg> -> Adiciona arquivos que foram deletados ou modificados,
 git log -> Lista um histórico dos commits já efetuados, quem efetuou/quando e 
   exibe a mensagem do que foi mudado.
   
-git log -p -> Verifica linha a linha o que foi alterado.
+git log -p -> Da um diff entre o arquivo antigo e o atual, para verificar o que foi mechido.
+
+git log --stat -> Mostra um log de uma forma mais resumida, dizendo apenas que arquivo foi alterado, quantas coisas foram alteradas, deletadas etc.
+
+----------------------- git log --pretty -----------------------
+
+git log --pretty=oneline -> mostra o hash e a mensagem do commit 
+    em uma linha.
+
+git log --pretty=short -> faz a mesma coisa que o log, porem não 
+    exibe a data do commit.
+    
+git log --pretty=full -> mostra o autor do commit, e quem fez o 
+    commit encima do commit do autor, e sua mensagem.
+
+---- pretty personalizado ----
+
+%an -> mostra o autor do commit
+
+%h -> mostra o hash do commit
+
+%s -> mostra a mensagem do commit
+
+Existem itens personalizados na documentação do git.
+
+Exemplo de uso dos itens personalizados:
+
+    git log --pretty='%an realizou o commit %h: %s.'
+    
+Saida: Nicolas realizou o commit asd541btr54s7: adição de 
+    paragrafo.
 
 -- GIT TAG --
 
@@ -200,6 +254,12 @@ git branch -D -> Força a exclusão de uma branch.
 
 git branch -t <nomeBranch> <nomeRemoto/nomeBranch> -> Esse caso é aplicado quando 
   algum colega de trabalho cria uma branch e publica no repositório remoto, você só conseguirá ver esse branch, fazendo git pull, no log do git pull, aparecerá que existe um novo branch, porem se você digitar git branch, esse novo branch não aparecerá, é ai que esse comando entra, caso você queira ter acesso a essa branch, você terá que criar um novo branch, de preferência com o mesmo nome utilizar -t para trackear ambos, e indicar qual repositorio remoto / nome de branch será trackeado.
+    EXEMPLO:
+        git branch -r -> PARA VERIFICAR A BRANCH REMOTA
+            origin/HEAD -> origin/master 
+            origin/design
+        git branch -t design origin/design
+    Cria uma branch chamada design trakeia ela, com a branch remota origin/design.
   
 git checkout -t origin/design -> Todo esse trabalho é feito automaticamente para a 
   branch chamada design, esse comando cria a branch design no meu repositório local, acessa essa branch design E ainda faz a ligação entre meu branch design local e meu branch design remoto.(Esse comando é uma abreviação de git branch -t <nomeBranch> <nomeRemoto/nomeBranch>)
@@ -209,19 +269,144 @@ git checkout -b <nomeBranch> -> Cria a branch e já acessa essa nova branch.
 git checkout <nomeBranch> -> Acessa o branch escolhido
 
 git fetch origin -> Este comando verifica todas as atualizações que foram 
-  realizadas no repositório de atalho origin.
+  realizadas no repositório de atalho origin, porem não atualiza a master para você, apenas indica quantos commits estão a frente de você.
   
 git merge <nomeDaBranchASerIncluida> -> Inclui alterações feitas em uma branch,
   para a branch master por exemplo:
     estou na branch master, e quero trazer as alterações que fiz na branch de desenvolvimento para a branch master, então basta ir até a branch master e digitar git merge desenvolvimento, que ele trará todas as alterações feitas.
   
-git rebase <branchAlvo> <branchAtt> -> Atualiza uma branch com BASE em outra
+git rebase <branchBase> <branchReBase> -> Atualiza uma branch com BASE em outra
+
+git rebase --continue -> prossegue com o processo de merge.
+
+git rebase --skip -> Caso a alteração em questão, você prefira manter a alteração que 
+    estava no repositório remoto e não a sua, você utiliza git rebase --skip, que o git irá ignorar o conflito do SEU commit com o do repositorio REMOTO, e vai considerar o commit do repositório remoto como certo, e vai descartar o SEU commit.
+        Exemplo:
+            <footer>Copyright Nicolas 2018</footer> -> commit do repositorio remoto
+            <footer>rodape do site</footer> -> meu commit
+    ao fazer o processo de rebase, ele indicará conflito pois ambos foram modificados na mesma linha, caso você considere que o commit do repositorio remoto está mais adequado que o seu commit, você o mantem dando git rebase --skip, e ai ele vai considerar o commit do repositorio remoto, e não o seu.
+    
+git rebase --abort -> aborta a resolução do conflito, ou seja, voltar ao ponto que se 
+    estava antes de realizar o rebase.
   
 git mergetool --tool-help -> Mostra no console uma lista de programas possíveis de 
   ser utilizados(ferramenta gráfica para facilitar o processo de merge manual).
   
 git mergetool -t nome_do_programa -> Instala o programa escolhido.
 
+
+
+--------------- Controle avançado de alterações ---------------
+
+git checkout <nomeArquivo> -> desfaz alterações em arquivos que 
+    ainda não foram adicionados a área de stage.
+    EXEMPLO:
+        Arquivo foi alterado, porem não adicionado ainda (git add )
+    e você resolve não incluir essa alteração, digite esse comando e ele voltara para o estado anterior.
+
+--- E se eu tiver um branch com o mesmo nome do arquivo? ---
+    Utilizamos esses 2 traços para diferenciar arquivo de branch, no caso se colocarmos 2 traços estamos todo parâmetro passado depois deles serão arquivos.
+
+git checkout -- design -> remove o arquivo design do working directory
+
+git reset --hard -> Com este comando, as alterações são removidas do histórico 
+    local de commits e também tanto do index quanto do working directory, permanentemente.
+    
+git reset --soft -> Com este comando, as alterações são removidas do histórico 
+    local de commits, mas não são removidas do index.
+    
+git reset -> Com este comando, as alterações são removidas do histórico local de 
+    commits, do index, mas não doworking directory`.
+
+git reset HEAD <nomeArquivo> -> volta um arquivo que está na 
+    área de stage(isso é, que já foi adicionado com git add), para unstage.
+    
+git reset <hashDoCommit> -> desfaz um ou mais commits, ELE resetá 
+    até o hashDoCommit passado como parâmetro.
+    EXEMPLO:
+        commit "tudo i vc?" hash 3
+        commit "tudo bem" hash 2
+        commit "oi" hash 1
+    eu não quero que meus commits a partir do 2 fiquem registrados no log, então eu faço o seguinte.
+    git reset 1
+    resultado dos logs ficaria.
+    commit "oi" log 1
+    os outros commits sumiriam, porem apenas os commits, o conteudo deles ficaria unstage.
+    
+git reset HEAD~<integer> -> Ao digitarmos HEAD~ seguido de um número inteiro n, 
+    será feita uma referência ao n-ésimo commit anterior ao HEAD. Por exemplo, HEAD~1, faz referência ao penúltimo commit e HEAD~2, ao antepenúltimo. No caso específico do penúltimo commit, também pode-se referenciá-lo utilizando o atalho HEAD^.
+
+git reset --hard HEAD~1 -> Usando esse comando, descartamos definitivamente as 
+    mudanças feitas no último commit.
+    
+git revert <hashDoCommit> -> desfaz as alterações que um commit 
+    antigo fez.
+    EX:
+        commit "numeros romanos" hash 2
+        commit "adicionado numero normal" hash 1
+    git revert 2
+    
+    o arquivo não terá mais os numeros romanos, voltará ao estado anterior que era numeros normais.
+    
+git stash -> guarda as alterações que ainda não foram commitadas no stash
+
+git stash list -> verifica quantos stashs tem.
+
+git stash pop -> Este comando faz com que o último estado salvo seja recuperado e, 
+    caso não haja conflitos, deletado da pilha de dados armazenados.
+
+git stash apply <nomeStash{0}> -> retoma um stash específico, Usando a opção apply, recuperamos as últimas alterações da pilha sem removê-las.
+
+git stash drop -> Este comando faz com que o último estado salvo seja apagado.
+
+git stash clear -> remove todos os stashs criados.
+
+git bisect start -> inicia o modo bisect, que faz comparações de rashs para 
+    descobrir quando algo ocorreu um bug, uma alteração que agt qr desfazer etc.
+    Exemplo:
+        depois de iniciar o modo bisect vc vai ter q dar git bisect bad <hash> e um git bisect good <hash> para o bisect identificar aonde você quer chegar, feito isso ele vai te dando opções e você vai dizendo se aquela opção se aproxima do que você quer ou não, se NÃO se aproximar você da git bisect bad que ele vai voltar pra commits anteries com as alterações no mesmo item, se vc der git bisect good ele vai ir pra frente , até chegar uma hora que ele n vai ter como ir pra frente nem pra tras, ai significa que foi encontrado oq você estava procurando.
+
+git bisect bad <hash> -> Ao dar 
+
+git bisect good <hash>
+
+git bisect bad -> indica que aquele hash é ruim.
+
+git bisect good -> indica que aquele hash é bom.
+
+****************** ALIASES ******************
+
+-- O que são aliases? --
+
+Permitem simplificar os comandos do git, basta entrar no arquivo do .gitconfig.
+
+-- como entrar no .gitconfig? --
+
+Digite no console vim ~/.gitconfig para entrar.
+
+-- como simplificar os comandos? --
+
+após entrar no .gitconfig acrescente a "tag" [alias], faça da seguinte maneira, você encontrará
+
+    [user]
+        email = seuemail@email.com
+        name = Seu Nome
+    [alias]
+        st = status
+        
+Dessa forma estou dizendo para o git, que eu quero que st seja um atalho para status
+
+-- como fazer um atalho que tenha mais de um comando? --
+
+[alias]
+  envia = !git checkout master && git pull && git checkout desenvolvimento && git rebase master && git checkout master && git merge desenvolvimento && git push
+  
+  Nesse caso, precisamos passar o git na frente de cada um deles, pois é como se estivessemos passando pro BASH(terminal) todos esses comandos de uma vez.
+  
+  Porem o git não sabe que esse comando não é um comando de git, temos que informar a ele que queremos que essa sequencia de comandos execute no BASH, isso é, no terminal, então adicionamos uma exclamação no começo do comando, como no exemplo acima.
+
+
+    
 ****************** Minimizando conflitos ******************
 
 --- Técnicas ---
