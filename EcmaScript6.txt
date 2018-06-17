@@ -1,0 +1,79 @@
+**************** Orientação a Objetos ****************
+
+--------- Modificadores de Acesso ---------
+
+Private -> A única classe que tem acesso ao atributo é a própria classe que o define, ou seja, se uma classe Pessoa declara um atributo privado chamado nome, somente a classe Pessoa terá acesso a ele.
+
+Protected -> A Própria Classe, seus Pacotes, e suas SubClasses tem acesso.
+
+Public -> Todos tem acesso.
+
+--------- Metodos Acessores (Getters E Setters) ---------
+
+Getter -> Somente lê o valor da propriedade.
+
+Setter -> Modifica o valor da propriedade.
+
+--------- ENCAPSULAMENTO ---------
+
+Em ES6 nós encapsulamos objetos utilizando 
+
+Object.freeze(obj);
+
+isso faz com que o usuário ou programador, não consiga alterar o valor da propriedade daquele objeto.
+
+POREM, essa solução funciona apenas para objetos shallow(razo), [DEFINIÇÃO SHALLOW E DEEP ABAIXO], caso o objeto for deep(profundo), essa solução não funcionará.
+
+-- OBJETOS SHALLOW --
+
+São objetos que não possuem metodos modificadores, que não possuem algum metodo que possa comprometer sua estrutura.
+
+-- OBJETOS DEEP --
+
+São objetos que já possuem metodos modificadores e etc.
+
+--------- Quando devo instanciar uma Classe? ---------
+
+-- Instânciada --
+
+    Classe que DEVE ser instânciada são classes que NÃO são estáticas.
+
+-- Não instanciada --
+
+    Classe que não precisa de INSTANCIA são classes ESTÁTICAS.
+    
+**************** Regra de Negocio ****************
+
+Toda empresa tem sua regra de negócio, e devemos implementar essa regra no código.
+
+Exemplo: na minha Classe Negociacao, eu tenho uma regra de negocio.
+
+1° Regra: Toda negocião após concluída, não pode ser alterada.
+
+**************** ES6 EcmaScript6 ****************
+
+--------- Diferença entre VAR E LET ---------
+
+var -> não possui escopo de bloco possui escopo de FUNÇÃO, tudo que for atribuido dentro de um escopo de bloco, pode ser exibido fora do bloco, e tambem podemos sobrescrever variáveis(oq não é bom)
+
+let -> possui escopo de BLOCO, não deixa sobrescrever variáveis já declaradas, apenas atribuir um novo valor a ela.
+
+Exemplo das diferenças:
+
+-- Com var --
+
+    for(var i = 0; i <= 100; i++){
+        var nome = "Nicolas";
+    }
+    console.log(i) // irá exibir 101
+    console.log(nome) // irá exibir Nicolas
+    
+-- Com let --
+
+    for(let i = 0; i <= 100; i++){
+        let nome = "Nicolas";
+    }
+    console.log(i) // irá exibir i is not defined
+    console.log(nome) // irá exibir nome is not defined
+    
+Porque aparece isso com let? justamente pq let funciona por escopo de BLOCO.

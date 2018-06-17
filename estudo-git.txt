@@ -124,6 +124,8 @@ git log --pretty=short -> faz a mesma coisa que o log, porem não
     
 git log --pretty=full -> mostra o autor do commit, e quem fez o 
     commit encima do commit do autor, e sua mensagem.
+    
+git log --graph -> Mostra um grafico, de como está a evolução dos commits
 
 ---- pretty personalizado ----
 
@@ -404,7 +406,19 @@ Dessa forma estou dizendo para o git, que eu quero que st seja um atalho para st
   Nesse caso, precisamos passar o git na frente de cada um deles, pois é como se estivessemos passando pro BASH(terminal) todos esses comandos de uma vez.
   
   Porem o git não sabe que esse comando não é um comando de git, temos que informar a ele que queremos que essa sequencia de comandos execute no BASH, isso é, no terminal, então adicionamos uma exclamação no começo do comando, como no exemplo acima.
+  
+****************** Removendo arquivos trakeados ******************
 
+como deixar arquviso trakeados untraked?
+
+Caso não tenha feito o commit ainda, utilize:
+
+git reset <arquivo-ou-diretório>
+
+Caso já tenha realizado um commit, utilize:
+
+git rm --cached <arquivo>
+git rm -r --cached <diretório>
 
     
 ****************** Minimizando conflitos ******************

@@ -383,7 +383,7 @@ Para poder manipular a data, teremos que transformar essa STRING de DATA, em um 
   
   no primeiro método acontece o seguinte.
   
-  o split transforma minha string em vetor separando por "-", o resultado ficará assim ["2018","03","14], e o proprio metodo interno do objeto Date, tem um metodo que pega esse array junto ele como string, e separa por virgula ele, ele utiliza esse método, ["2018","03","14].join(","); esse metodo vai pegar o array, transformar em string, e separar por virgula.
+  o split transforma minha string em vetor separando por "-", o resultado ficará assim ["2018","03","14"], e o proprio metodo interno do objeto Date, tem um metodo que pega esse array junto ele como string, e separa por virgula ele, ele utiliza esse método, ["2018","03","14].join(","); esse metodo vai pegar o array, transformar em string, e separar por virgula.
   
   o segundo método economiza processo(eu acho), pois utilizamos regex para resolve-lo, ele simplesmente pega a data do tipo string e substitui o - por virgula, ficando assim a string: antes: 2018-03-14 depois com regex 2018,03,14 e é só o que o objeto Date  precisa, uma string de data, separada por virgula.
   
@@ -683,6 +683,36 @@ let -> uso recomendado, pois ela faz juz ao escopo de bloco.
 
 ---------------------- Programação Orientada a Objetos ---------------------------
 
+  --- CLASSE COM CONSTRUTOR ---
+  
+    Toda classe que contem um construtor, só poderá ser chamada com o new, 
+    caso ela NÃO seja chamada com o new, dara um erro.
+    
+    E toda classe que tenha o construtor inicializado com alguma propriedade, ela pode ser acessada pelo objeto da classe, que foi criado, exemplo:
+    
+    let n1(objeto) = new Negociacao(); (NOVA instancia de negociacao)
+    
+    EXEMPLO DE CLASSE: 
+    
+        class Negociacao{
+
+            constructor(){
+
+                this.data = new Date();
+                this.quantidade = 1;
+                this.valor = 100;
+            }
+        }
+    O this do javascript é dinâmico, ou seja quando eu crio um obj n1, e acesso as propriedades desse objeto, por exemplo:
+        let n1 = new Negociacao();
+        n1.quantidade;
+        n1.quantidade = 10;
+        let n2 = new Negociacao();
+        n2.quantidade;
+        n2.quantidade = 10;
+
+    Eu consigo alterar ambos sem afetar o outro, pois o this sempre aponta para a instancia que está executando naquele momento.
+    
 PRIVATE - APENAS A Própia classe pode ter acesso.
 
   ---- ABSTRAÇÃO ----
