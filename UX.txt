@@ -1,0 +1,205 @@
+********************** UX **********************
+
+
+
+************************ DICAS **********************
+
+    - Pensar quem é o seu publico, se for uma loja que vende tenis, você
+        vai falar com quem pessoas usam tenis, se for uma loja que vende tenis esporte, você vai falar com pessoas que usam tenis esporte.
+    
+    - Conversar com o usuário para saber as dificuldades de acesso.
+    
+    - Dar o sistema para o usuário final testar, e pedir por exemplo, caso for ecommerce,
+        pedir para ele achar um produto que ele queira, disso você já vai conseguindo ter
+        um feedback do usuário final, quais as dificuldades dele e etc.
+        
+    - Modo HARDCORE, ir até um espaço onde tenha bastante pessoas pessoas, e começar a 
+        perguntar pra elas a experiência que elas teem por exemplo, com um tenis etc.
+        
+    - Empatia é um bom ponto a se seguir.
+    
+    - Na hora de divulgar algo, falar só venha para alura, não é uma boa, pois apenas 
+        quem usa alura sabe o que é, quem está de fora não faz a minima ideia do que é alura, por isso uma forma mkelhor de divulgar isso é falando por exemplo: venha para alura - Cursos Online de Tecnologia, assim o usuário alvo, ficará mais atendo a este anuncio
+    
+*****************************************************
+
+
+
+------------------ Fundamentos da UX ------------------
+
+--- O que é UX? ---
+
+É a User Experience (Experiência) do usuário.
+
+O que é Experiência?
+
+Experiência é aquilo que tudo aquilo que você passou, que você viveu, o ambiente, se é um ambiente legal, você então vai ter uma boa experiência, se o garçon, for ruim, você não tera uma experiência legal.. enfim..
+
+Vivência
+    Exemplo: eu passei por alguma coisa na minha vida, então eu tenho uma experiência naquilo que passei.
+    
+Acontecimento
+    Exemplo: tive uma viagem muito boa, ou seja foi um acontecimento legal, uma boa experiência.
+    
+Conhecimento
+    Exemplo: Você tem conhecimento em .NET? qual a sua experiência com .NET?
+     
+Sentimento
+    Exemplo: As vezes você vai até um restaurante e não gosta muito dele, isso é, ão teve um sentimento bom OU não teve uma boa experiência com aquele restaurante.
+    
+--- O que é Usuário? ---
+
+Em quem a experiência de usuário foi pensada?
+    Exemplo: eu tenho um aplicativo que faz sons pros animais poderem olhar para a camera, Em quem a experiência de usuário foi pensada? no humano ou no animal? bom.. foi no animal ex: no cachorro.
+    De certa forma podemos dizer que o bixinho de estimação pode ser um usuário também.
+    
+É quem vive a experiência da sua aplicação.
+
+Quem pode ser?
+
+Pessoa
+Quem usa
+Sistema
+Pet
+
+Se você pensar no problema de alguém, quer dizer que você esta pensando na experiência dele.
+    Exemplo: Seu cachorro não tem um osso pra morder, então se você pensar nesse problema que ele tem de n ter um brinquedo pra ficar interagindo, você está pensando na experiência dele em não ter um osso, caso você dê um osso pra ele a experiência dele irá melhorar.
+    
+---- Quer vender sem dar uma boa experiência para  usuário? COMO? ----
+
+Exemplo: você vende uma calculadora apenas da cor roxa, quem vai querer uma calculadora roxa? vc ta vendendo a calculadora só pra quem gosta de roxo?
+
+Se o seu aplicativo ão fornece um problema para a solução do usuário, pra que q ele vai se interessar em comprar ou pagar pela a sua aplicação?
+
+---- IMPORTANCIA DA UX ----
+
+A importância da Experiêcia do usuário é pensar, qual o publico alvo da aplicação que você está desenvolvendo, e com base nisso, trabalhar na experiência desses usuários.
+
+Exemplo:
+    O usuario quer gastar o dinheiro dele com VOCÊ, no SEU site de roupas, porém existem muitas abas para chegar ao destino dele(as roupas), então como a experiência dele foi ruim, ele nem chega a achar as roupas e comprar, ele desiste e vai procurar um site com uma melhor UX.
+    
+------------------ Análise do usuário ------------------
+
+Parar de pensar como você acha que o usuário quer o sistema.
+Começar a pensar como ele gostaria que o sistema fosse.
+
+---- Analisar o usuário ----
+
+- Quais seus objetivos de vida?
+    Exemplo: o objetivo de vida dele é ser uma pessoa que gosta de viajar, viaja bastante.
+    Qual app poderia ajudar essa pessoa com o seu objetivo? poderia ser um app de localização,
+        Localização de Hoteis/Campings etc, algo relacionado a viagens.
+        
+---- O que ele ouve dos amigos? ----
+
+Sera que o usuário é influenciado por sites de reclamações como o reclameaqui?
+
+---- Onde este usuário está? ----
+
+Sera que ele está no ponto de onibus?
+Sera que ele está com 3g ligado? ou quase sem bateria?
+
+---- Quais seus medos? ----
+
+Será que ele tem medo de não conseguir uma vaga diferente, uma outra oportunidade de emprego,
+A ideia seria amenizar esse medo atravez da sua app, transparecedo algo como "relaxa vai ficar tudo bem".
+
+---- Onde ele estava? ----
+
+Onde ele estava? pra onde ele vai?
+
+---- Características do usuário ----
+
+Ele é gordo/magro/forte?
+
+Ele da preferêcia para a beleza?
+
+Ele prefere mais coisas geek, tecnologia etc?
+
+Ele é um bb/novo/velho/mae/pai?
+
+O publico alvo e homem/mulher/lgbt?
+
+O usuário é alto/baixo
+
+Que País o usuário mora?
+
+Será que ele é uma pessoa mas bem humorada? mau humorada? qual o humor desse usuário?
+
+Qual o estilo de músca desse usuário?
+
+Será que essa pessoa é tímida? provavelmente iria preferir usar o tinder?
+
+---- Situações ----
+
+    --- Batida de carro
+        Exemplo: A pessoa acabou de bater o carro, será que não seria interessante o app fornecer uma maneira rápida de solucionar seu problema?
+        
+---- Usabilidade e UX ----
+
+    -- UX -- 
+        Engloba toda a experiência que o usuário tem, em diversas situações
+    
+    -- Usabilidade --
+        É a basicamente a facilidade de uso
+        
+---- Usuário e Cliente ----
+
+Eles não são a mesma coisa.
+
+-- Usuário --
+
+É quem consome a sua aplicação.
+
+---- De onde tirar as ideias? ----
+
+    As idéias sempre surgem para resolver algum problema.
+    
+    --- Brainstorming ---
+    
+    O ideal seria fazer um brainstorming e todo mundo coloca suas ideias na mesa, e veifica uma possível solução.
+    
+    Mais será que incluiram tudo que poderia? As vezes a pessoa sabe falar melhor, e transparece que a ideia é muito boa, mas pode ser que quem não saiba se expressar tão bem tenha uma ideia tão boa como a de quem n sabe. Se você não sabe vender a sua ideia não vai adiantar nada.
+    
+    O Brainstorm tem defeito, ele se parece muito com aquelas reuniões chatas.
+    
+    Brainstorm e reunião são brincadeiras não tem regra.
+    
+---- Brincadeira vs jogo ----
+    
+    Jogo seria mais objetivo, tem regras:
+    
+    -Tempo
+        Jogo tem um tempo pra tentar concluir tal objetivo.
+        Ex: CS GO, tem 2minutos, pra concluir o round.
+    -Ambiente
+        O ambiente, será que tem mesa? será que tem cadeira pra todo mundo?
+    -Objetivo
+        Ex: no CS-GO o objetivo do MM é plantar a bomba e mante-lá até explodr, caso vc seja TR, e o objetivo do CT é defusar essa bomba antes que o tempo acabe.
+        
+    Dito isso, a ideia seria fazer um Brainstorm mais voltado pra ideia do jogo.
+    
+    Então inventaram o conceito de Gamestorming
+    
+    Ex de Gamestorming:
+    
+    -- TEMPO --
+    
+    Tem a questão do tempo, será em horário tal, e cada um tem no máximo X minutos pra falar, se não vai cair na questão de uma pessoa só ficar falando falando falando e começar a se tornar chato e menos produtivo o Gamestorming.
+    
+    -- AMBIENTE --
+    
+    Como está a infra pra receber esse gamestorming? tem papel e caneta caso precise? tem cafe algo pra comer, mesa , lousa e caneca pra lousa como ta a infra?
+    
+    -- OBJETIVO --
+    
+    Focar no objtivo da gamestorming, não desviar a conversa para outra coisa entre outras coisas.
+    
+    
+---- De onde tirar as ideias? ----
+
+    Um cara que desevolveu o easy taxi que seria um tipo de 99 ou uber, surgiu a ideia dele quando ele teve que ir até um ponto de taxi para poder pegar um taxi, e ai ele pensou de que maneira ele pode fazer o passageiro e o motorista ficar mais próximos? foi ai então que ele descidiu desenvolver um app que o passageiro poderia solicitar o serviço de qualquer lugar pelo aplicativo, e o proprio motorista ia ate ele.
+    
+    --- MEUS PROBLEMAS ---
+    
+    Faça uma lista com os seus problemas diários que possam ser solucionados atraves de algum sistema, após fazer uma lista dos seus problemas, verifique se um ou mais de seus problemas são comuns com outras pessoas, se as pessoas se identificam com o mesmo problema, quanto mais pessoas mais certo essa solução trara sucesso.
