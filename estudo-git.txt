@@ -416,3 +416,436 @@ Commits com pouco conteúdo
   
 Sincronização (pull) frequente do repositório remoto
   Ao sincronizar com bastante frequência o repositório, é mais fácil evitar conflitos ou minimizar o trabalho de mescla dos conflitos, pois seu repositório local estará sempre atualizado.
+=======
+******************************* GIT *******************************
+
+**** FORK ****
+
+Dando Fork em um repositório, você passa a ter a cópia desse repositório, no SEU repositório e passa a poder enviar commits para o dono do repositório, e o dono por sua vez, pode aceitar ou não os seus commits.
+
+OBS: Se você não der FORK, você NÃO conseguira enviar commits para o dono do repositório.
+
+**** PULL REQUEST ****
+
+Quando você faz um pull request, você está notificando o dono do repositório que você fez alguma alteração no repositório dele, na tela dele do github na area de pull requests vai aparecer o seu commit, e de lá ele pode verificar suas alterações e decidir se inclui ou não no repositório dele.
+
+Como manter meu repositório atualizado com o projeto de alguem?
+
+após dar o fork, ele automaticamente vai clonar o repositorio original para o seu repositório, porem caso você queira continuar recebendo as atualizações do repositório que você deu fork, você precisa criar um repositório remoto só para esse repositório original, para isso você precisa ir até o repositório original, pegar a url dele, ir até o seu repositorio no terminal, ai você fará o seguinte:
+
+    git clone add original https://github.com/spyrado/projeto-opensource.git
+    
+feito isso, ele criará um novo repo remoto com base no original.
+
+e para atualizar manter o seu repo atualizado com o repo original, você fara o seguinte:
+
+    git pull original master
+
+e pronto, ele trara as alterações do repo original para o seu repositório.
+
+--------- Crie conta GitHub ---------
+
+Primeiro crie uma conta no GitHub.
+
+--------- Gerando SSH-KEYGEN ---------
+
+Após criar uma conta no GitHub, deve-se gerar uma chave de segurança, ela serve para identificar nossa máquina, e dar acesso ao github, sem ela nosso acesso será negado.
+
+Comando de criação de chave ssh-keygen:
+  ssh-keygen -t rsa -C "seu_email@provedor.com"
+  
+    Em algumas versões, pode ser necessário incluir também a opção -b 2048 ou -b 4096 para indicar o tamanho da chave a ser gerada.
+    
+A seguir será solicitada uma senha "passphrase", caso o seu computador for publico/compartilhado é recomendado inserir uma senha, caso não queira uma senha, pressione de enter e siga com as instruções.
+
+Ao término será gerado algo como:
+
+Your identification has been saved in /Users/seu_usuario/.ssh/id_rsa.
+Your public key has been saved in /Users/seu_usuario/.ssh/id_rsa.pub.
+The key fingerprint is:
+01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db seu_email@provedor.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|     .+   +      |
+|       = o O .   |
+|        = * *    |
+|       o = +     |
+|      o S .      |
+|     o o =       |
+|      o . E      |
+|                 |
+|                 |
++-----------------+
+
+Com isso, dois arquivos serão gerados: a sua chave privada e a sua chave pública,
+ na pasta indicada no seu console.
+  Your identification has been saved in /Users/seu_usuario/.ssh/id_rsa.
+  Your public key has been saved in /Users/seu_usuario/.ssh/id_rsa.pub.
+  
+Agora será necessário realizar o login no http://github.com:
+
+e seguir para as configurações do seu perfil. Siga "Settings", "SSH and GPG keys" e "New SSH key".
+
+Insira na caixa de texto o conteúdo do seu arquivo id_rsa.pub.
+O local exato do arquivo foi informado na saída do processo de criação da chave.
+Cole-o exatamente como ele está, sem adição de espaços ou quebras de linha.
+
+Agora você tem o Git instalado em sua máquina, uma conta no Github e as configurações necessárias para utlizar o serviço com segurança.
+
+
+
+
+
+
+-------------------------- COMANDOS GIT --------------------------
+
+git init -> cria o repositório git, para que possa ser gerenciável.
+
+git add <file> -> adiciona um arquivo para ser commitado.
+
+git add <file> <file> -> adiciona 1 ou mais arquivos.
+
+git add <caminhoDeUmDiretorio> -> adiciona o diretorio inteiro
+
+git add . -> funciona do mesmo modo que passar o caminho de um 
+  diretório, pois o atalho . representa o diretório atual. Portanto, serão adicionados todos os arquivos que estiverem dentro do diretório atual.
+  
+git add -i -> modo interativo com a opção -i
+  o modo interativo inicia um prompt de comando específico, aguardando as decisões do usuário sobre quais as alterações detectadas no working directory devem ser adicionadas a stage area.
+
+git status -> mostra o estado do repositório atual do git.
+
+git commit -> diciona os arquivos da stage area ao repositório git, mas antes 
+  entra no VIM e te pede para digitar uma mensagem.
+    colocar SOMENTE git commit, é interessante quando queremos escrever mais do que uma simples frase.
+
+git commit -m <msg> -> Adiciona os arquivos da stage area ao repositório git
+  juntamente com uma mensagem, exemplo:
+    git commit -m 'Arquivo foi commitado'
+    
+git commit -a -m <msg> -> Adiciona arquivos que foram deletados ou modificados,
+  porem ela não adiciona novos arquivos, para adicionar um NOVO ARQUIVO usamos o comando git add <nomeArquivo>
+
+git log -> Lista um histórico dos commits já efetuados, quem efetuou/quando e 
+  exibe a mensagem do que foi mudado.
+  
+git log -p -> Da um diff entre o arquivo antigo e o atual, para verificar o que foi mechido.
+
+git log --stat -> Mostra um log de uma forma mais resumida, dizendo apenas que arquivo foi alterado, quantas coisas foram alteradas, deletadas etc.
+
+----------------------- git log --pretty -----------------------
+
+git log --pretty=oneline -> mostra o hash e a mensagem do commit 
+    em uma linha.
+
+git log --pretty=short -> faz a mesma coisa que o log, porem não 
+    exibe a data do commit.
+    
+git log --pretty=full -> mostra o autor do commit, e quem fez o 
+    commit encima do commit do autor, e sua mensagem.
+    
+git log --graph -> Mostra um grafico, de como está a evolução dos commits
+
+---- pretty personalizado ----
+
+%an -> mostra o autor do commit
+
+%h -> mostra o hash do commit
+
+%s -> mostra a mensagem do commit
+
+Existem itens personalizados na documentação do git.
+
+Exemplo de uso dos itens personalizados:
+
+    git log --pretty='%an realizou o commit %h: %s.'
+    
+Saida: Nicolas realizou o commit asd541btr54s7: adição de 
+    paragrafo.
+
+-- GIT TAG --
+
+  Utilizamos GIT TAG para verificar, quantas versões do projeto já foram lançadas ex: v0.1 v0.2 v0.3,
+  e git checkout <nomeTag> para entrar em uma versão específica, caso desejamos ver como era nosso projeto na v0.1 por exemplo, ai digitamos git checkout v0.1.
+
+git tag -> serve para verificar as tags existentes no projeto.
+
+git checkout <nomeTag> -> Vai para a versão desejada
+
+git diff -> verifica a diferença entre um arquivo e outro, ótimo para verificar
+  bugs que ocorrerão de uma versão para outra, exemplo:
+
+  git diff v0.1 v0.2 -> verifica quais modificações foram feitas entre a v0.1 e v0.2.
+  
+git blame <nomeArquivo.extensao> -> O Git nos fornece uma
+  funcionalidade onde podemos consultar quem foi o autor de cada linha de um arquivo através do comando git blame, exemplo:
+  
+    git blame index.html
+      Resultado:
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  1) <html>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  2)
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  3)     <head>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  4)             <meta charset="UTF-8"/>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  5)     </head>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  6)
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  7)     <body>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  8)             <h1>Git</h1>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200  9)             <h2>Trabalhando em equipe com controle e seguranca</h2>
+        b0b4d89d (Joao Carlos Fonseca 2011-12-28 17:19:22 -0200 10)
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 11)             <ul>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 12)                     <li>Fazer backup do seu projeto nao e o bastante para desfazer
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 13)                     alteracoes com seguranca e eficiencia</li>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 14)                     <li>Experimente solucoes alternativas em seu codigo sem arriscar
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 15)                     a integridade do seu projeto</li>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 16)                     <li>Varias copias do mesmo ambiente, cada um com uma alteracao
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 17)                     do sistema</li>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 18)                     <li>E tudo isso sem precisar de conexao com a internet</li>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 19)             </ul>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 20)     </body>
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 21)
+        ^c5d6533 (Joao Carlos Fonseca 2011-12-28 17:18:26 -0200 22) </html>
+
+  O GIT BLAME te fornece:
+    Nome da pessoa
+    Data da alteração
+    Hora da alteração
+    
+  IMPORTANTE, Para sair do blame, basta apertar a tecla q
+
+git ls-files -> mostra quais arquivos estão sendo controlados
+  pelo git.
+  
+git whatchanged -> verifica qual arquivo foi alterado, por quem e em que data/hora
+
+git whatchanged -p -> Verifica as linhas que foram alteradas e também as informações básicas que o git whatchanged normal já da.
+
+
+---------- Trabalhando com Repositório Remoto ----------
+
+git remote -> verifica quantos repositórios REMOTOS, o meu repositório LOCAL tem.
+
+git remote add <origin> url -> Adiciona um repositório REMOTO, passando como 
+  parâmetro um nome normalmente é origin, que a origem para todos será o repositório remoto e não o local, e logo em seguida passamos a url desse repositório remoto.
+  
+git remote -v -> confere se está tudo ok.
+
+git clone url -> clona um repositório remoto para a sua máquina.
+
+git pull -> re
+
+git push -> serve para mandar as alterações para o repositório remoto.
+
+git push <nomeDoRepositórioRemoto> -> podemos ter mais de um repositório remoto, 
+  então identificamos o repositório remoto passando o seu nome, e assim enviando as alterações para ele.
+
+git push <nomeDoRepositórioRemoto> <branchComAlteraçõesASeremEnviadas> -> Envio os
+  dados para o repositório remoto, passando o nome do repositório remoto(que eu defini quando o adicionei (para verificar quais existem digite git remote)), e passo também o branch ao qual eu quero que ele receba as alterações, exemplo:
+    git push origin master -> aqui eu estou dizendo o seguinte, pega as alterações
+      que eu fiz no branch master e envia para o meu repositório remoto que eu nomeei de origin
+      
+git push --set-upstream <nomeDoRepositórioRemoto> <branchASerVinculado> -> ele   
+  linka os branchs, local/remoto, para evitar a necessidate de toda hora que eu for dar um git push, n precisar ficar colocando git push origin master, ele verifica o nome do meu repositorio remoto, e o nome do branch que eu quero vincular, e faz essa associação, para que no próximo git push, eu apenas coloque git push e mais nada.
+    Exemplo:
+      $ git push --set-upstream origin master
+      Everything up-to-date
+      Branch 'master' set up to track remote branch 'master' from 'origin'.
+      
+git push -u origin design -> faz a ligação entre meu brach local e o remoto, assim 
+  o git pode identificar que meu branch local design é também o branch remoto design. (OBS: tanto -u quando --set-upstream são a mesma coisa, eu só expliquei de forma diferente ambos, porem ambos fazem a MESMA COISA)
+  
+git push -d <repositorioRemoto> <branchRemota> -> Remove a branch remota
+
+git push <repositorioRemoto> :<branchRemota> -> Remove a branch remota
+            
+O que é branch?
+  É um ponto de partida a partir do branch master.
+  Tal solução possibilita desenvolver separadamente cada uma das funcionalidades sem interferir no desenvolvimento de uma outra parte do projeto.
+
+git branch -> Verifica as branchs LOCAIS existentes.
+
+git branch -r -> Verifica as branchs REMOTAS existentes
+
+git branch -a -> Verifica as branchs LOCAIS/REMOTAS.
+
+git branch <nomeBranch> -> Cria um branch
+
+git branch -d <nomeBranch> -> Deleta uma branch, porém somente se ela estiver sincronizada com outra. Senão, é necessário forçar com a opção -D.
+
+git branch -D -> Força a exclusão de uma branch.
+
+git branch -t <nomeBranch> <nomeRemoto/nomeBranch> -> Esse caso é aplicado quando 
+  algum colega de trabalho cria uma branch e publica no repositório remoto, você só conseguirá ver esse branch, fazendo git pull, no log do git pull, aparecerá que existe um novo branch, porem se você digitar git branch, esse novo branch não aparecerá, é ai que esse comando entra, caso você queira ter acesso a essa branch, você terá que criar um novo branch, de preferência com o mesmo nome utilizar -t para trackear ambos, e indicar qual repositorio remoto / nome de branch será trackeado.
+    EXEMPLO:
+        git branch -r -> PARA VERIFICAR A BRANCH REMOTA
+            origin/HEAD -> origin/master 
+            origin/design
+        git branch -t design origin/design
+    Cria uma branch chamada design trakeia ela, com a branch remota origin/design.
+  
+git checkout -t origin/design -> Todo esse trabalho é feito automaticamente para a 
+  branch chamada design, esse comando cria a branch design no meu repositório local, acessa essa branch design E ainda faz a ligação entre meu branch design local e meu branch design remoto.(Esse comando é uma abreviação de git branch -t <nomeBranch> <nomeRemoto/nomeBranch>)
+  
+git checkout -b <nomeBranch> -> Cria a branch e já acessa essa nova branch.
+
+git checkout <nomeBranch> -> Acessa o branch escolhido
+
+git fetch origin -> Este comando verifica todas as atualizações que foram 
+  realizadas no repositório de atalho origin, porem não atualiza a master para você, apenas indica quantos commits estão a frente de você.
+  
+git merge <nomeDaBranchASerIncluida> -> Inclui alterações feitas em uma branch,
+  para a branch master por exemplo:
+    estou na branch master, e quero trazer as alterações que fiz na branch de desenvolvimento para a branch master, então basta ir até a branch master e digitar git merge desenvolvimento, que ele trará todas as alterações feitas.
+  
+git rebase <branchBase> <branchReBase> -> Atualiza uma branch com BASE em outra
+
+git rebase --continue -> prossegue com o processo de merge.
+
+git rebase --skip -> Caso a alteração em questão, você prefira manter a alteração que 
+    estava no repositório remoto e não a sua, você utiliza git rebase --skip, que o git irá ignorar o conflito do SEU commit com o do repositorio REMOTO, e vai considerar o commit do repositório remoto como certo, e vai descartar o SEU commit.
+        Exemplo:
+            <footer>Copyright Nicolas 2018</footer> -> commit do repositorio remoto
+            <footer>rodape do site</footer> -> meu commit
+    ao fazer o processo de rebase, ele indicará conflito pois ambos foram modificados na mesma linha, caso você considere que o commit do repositorio remoto está mais adequado que o seu commit, você o mantem dando git rebase --skip, e ai ele vai considerar o commit do repositorio remoto, e não o seu.
+    
+git rebase --abort -> aborta a resolução do conflito, ou seja, voltar ao ponto que se 
+    estava antes de realizar o rebase.
+  
+git mergetool --tool-help -> Mostra no console uma lista de programas possíveis de 
+  ser utilizados(ferramenta gráfica para facilitar o processo de merge manual).
+  
+git mergetool -t nome_do_programa -> Instala o programa escolhido.
+
+
+
+--------------- Controle avançado de alterações ---------------
+
+git checkout <nomeArquivo> -> desfaz alterações em arquivos que 
+    ainda não foram adicionados a área de stage.
+    EXEMPLO:
+        Arquivo foi alterado, porem não adicionado ainda (git add )
+    e você resolve não incluir essa alteração, digite esse comando e ele voltara para o estado anterior.
+
+--- E se eu tiver um branch com o mesmo nome do arquivo? ---
+    Utilizamos esses 2 traços para diferenciar arquivo de branch, no caso se colocarmos 2 traços estamos todo parâmetro passado depois deles serão arquivos.
+
+git checkout -- design -> remove o arquivo design do working directory
+
+git reset --hard -> Com este comando, as alterações são removidas do histórico 
+    local de commits e também tanto do index quanto do working directory, permanentemente.
+    
+git reset --soft -> Com este comando, as alterações são removidas do histórico 
+    local de commits, mas não são removidas do index.
+    
+git reset -> Com este comando, as alterações são removidas do histórico local de 
+    commits, do index, mas não doworking directory`.
+
+git reset HEAD <nomeArquivo> -> volta um arquivo que está na 
+    área de stage(isso é, que já foi adicionado com git add), para unstage.
+    
+git reset <hashDoCommit> -> desfaz um ou mais commits, ELE resetá 
+    até o hashDoCommit passado como parâmetro.
+    EXEMPLO:
+        commit "tudo i vc?" hash 3
+        commit "tudo bem" hash 2
+        commit "oi" hash 1
+    eu não quero que meus commits a partir do 2 fiquem registrados no log, então eu faço o seguinte.
+    git reset 1
+    resultado dos logs ficaria.
+    commit "oi" log 1
+    os outros commits sumiriam, porem apenas os commits, o conteudo deles ficaria unstage.
+    
+git reset HEAD~<integer> -> Ao digitarmos HEAD~ seguido de um número inteiro n, 
+    será feita uma referência ao n-ésimo commit anterior ao HEAD. Por exemplo, HEAD~1, faz referência ao penúltimo commit e HEAD~2, ao antepenúltimo. No caso específico do penúltimo commit, também pode-se referenciá-lo utilizando o atalho HEAD^.
+
+git reset --hard HEAD~1 -> Usando esse comando, descartamos definitivamente as 
+    mudanças feitas no último commit.
+    
+git revert <hashDoCommit> -> desfaz as alterações que um commit 
+    antigo fez.
+    EX:
+        commit "numeros romanos" hash 2
+        commit "adicionado numero normal" hash 1
+    git revert 2
+    
+    o arquivo não terá mais os numeros romanos, voltará ao estado anterior que era numeros normais.
+    
+git stash -> guarda as alterações que ainda não foram commitadas no stash
+
+git stash list -> verifica quantos stashs tem.
+
+git stash pop -> Este comando faz com que o último estado salvo seja recuperado e, 
+    caso não haja conflitos, deletado da pilha de dados armazenados.
+
+git stash apply <nomeStash{0}> -> retoma um stash específico, Usando a opção apply, recuperamos as últimas alterações da pilha sem removê-las.
+
+git stash drop -> Este comando faz com que o último estado salvo seja apagado.
+
+git stash clear -> remove todos os stashs criados.
+
+git bisect start -> inicia o modo bisect, que faz comparações de rashs para 
+    descobrir quando algo ocorreu um bug, uma alteração que agt qr desfazer etc.
+    Exemplo:
+        depois de iniciar o modo bisect vc vai ter q dar git bisect bad <hash> e um git bisect good <hash> para o bisect identificar aonde você quer chegar, feito isso ele vai te dando opções e você vai dizendo se aquela opção se aproxima do que você quer ou não, se NÃO se aproximar você da git bisect bad que ele vai voltar pra commits anteries com as alterações no mesmo item, se vc der git bisect good ele vai ir pra frente , até chegar uma hora que ele n vai ter como ir pra frente nem pra tras, ai significa que foi encontrado oq você estava procurando.
+
+git bisect bad <hash> -> Ao dar 
+
+git bisect good <hash>
+
+git bisect bad -> indica que aquele hash é ruim.
+
+git bisect good -> indica que aquele hash é bom.
+
+****************** ALIASES ******************
+
+-- O que são aliases? --
+
+Permitem simplificar os comandos do git, basta entrar no arquivo do .gitconfig.
+
+-- como entrar no .gitconfig? --
+
+Digite no console vim ~/.gitconfig para entrar.
+
+-- como simplificar os comandos? --
+
+após entrar no .gitconfig acrescente a "tag" [alias], faça da seguinte maneira, você encontrará
+
+    [user]
+        email = seuemail@email.com
+        name = Seu Nome
+    [alias]
+        st = status
+        
+Dessa forma estou dizendo para o git, que eu quero que st seja um atalho para status
+
+-- como fazer um atalho que tenha mais de um comando? --
+
+[alias]
+  envia = !git checkout master && git pull && git checkout desenvolvimento && git rebase master && git checkout master && git merge desenvolvimento && git push
+  
+  Nesse caso, precisamos passar o git na frente de cada um deles, pois é como se estivessemos passando pro BASH(terminal) todos esses comandos de uma vez.
+  
+  Porem o git não sabe que esse comando não é um comando de git, temos que informar a ele que queremos que essa sequencia de comandos execute no BASH, isso é, no terminal, então adicionamos uma exclamação no começo do comando, como no exemplo acima.
+  
+****************** Removendo arquivos trakeados ******************
+
+como deixar arquviso trakeados untraked?
+
+Caso não tenha feito o commit ainda, utilize:
+
+git reset <arquivo-ou-diretório>
+
+Caso já tenha realizado um commit, utilize:
+
+git rm --cached <arquivo>
+git rm -r --cached <diretório>
+
+    
+****************** Minimizando conflitos ******************
+
+--- Técnicas ---
+
+Commits com pouco conteúdo
+  Pequenos commits, com conteúdo reduzido, gerarão conflitos menores e menos trabalhosos.
+  
+Sincronização (pull) frequente do repositório remoto
+  Ao sincronizar com bastante frequência o repositório, é mais fácil evitar conflitos ou minimizar o trabalho de mescla dos conflitos, pois seu repositório local estará sempre atualizado.

@@ -22,4 +22,10 @@ CTRL + SHIFT + A -> Selecione um elemento, pressione ctrl+shift+a
 Ctrl+Shift+D -> Serve para deletar uma linha.
 
 Ctrl+E -> Uma grande novidade do Brackets. Basicamente você pode editar o CSS sem ter que abrir o arquivo .css. Basta ir em um arquivo .html ou .php clicar sobre o elemento que deseja alterar as propriedades e pressionar Ctrl+E para abrir a tela de edição!
+
+CTRL+ALT + I -> Sem Beautify Indenta TODO O ARQUIVO.
+
+CTRL+ALT+SHIFT+UP -> Incremente de 0.1 em 0.1 o numero selecionado.
+
+CTRL+ALT+SHIFT+DOWN -> Decrementa de 0.1 em 0.1 o numero selecionado.
     
