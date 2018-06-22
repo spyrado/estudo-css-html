@@ -1033,6 +1033,8 @@ arguments -> retorna um vetor com os parâmetros que foram passados em uma funç
 
 ---------------------- ECS5 ---------------------------
 
+----- Immediately-invoked function expression (IIFE) -----
+
 (function(){})();
 
 O IIFE significa “Immediately-invoked function expression”, mas podemos chamá-lo de função imediata. Como o próprio nome diz, ela executa a função imediatamente depois de criada. Mas por que usar? Encapsulamento! 
