@@ -828,7 +828,7 @@ Dessa forma estou dizendo para o git, que eu quero que st seja um atalho para st
   
 ****************** Removendo arquivos trakeados ******************
 
-como deixar arquviso trakeados untraked?
+como deixar arquivos trakeados untraked?
 
 Caso não tenha feito o commit ainda, utilize:
 
