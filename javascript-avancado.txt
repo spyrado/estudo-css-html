@@ -969,9 +969,20 @@ array.concat(array, "nicolas"); -> o Array concat, ele concatena tudo
         let listaDeNomes2 = ['Vieira', 'Fernanda', 'Gerson'];
         exibeNoConsole([].concat(listaDeNomes1, listaDeNomes2, 'Rômulo'));
 
-array.join(separator) -> O método join () junta-se os elementos de uma 
-    matriz para uma cadeia, e devolve a cadeia.
-    Os elementos serão separados por um separador especificado. O separador padrão é vírgula (,).
+array.join(separator) -> Junta todos os elementos de uma array (ou um array-like object) em uma string e retorna esta string.
+    Os elementos serão separados por um separador especificado. O separador padrão é vírgula (,),
+    Exemplos:
+        var elements = ['Fire', 'Wind', 'Rain'];
+
+        console.log(elements.join());
+        // expected output: Fire,Wind,Rain
+
+        console.log(elements.join(''));
+        // expected output: FireWindRain
+
+        console.log(elements.join('-'));
+        // expected output: Fire-Wind-Rain
+        
     
 array.reverse() -> Basicamente ele inverte os valores do vetor.
     Exemplo:
@@ -1067,6 +1078,8 @@ array.includes(valor) -> procura um "valor" dentro do array, e retorna true se e
 arguments -> retorna um vetor com os parâmetros que foram passados em uma função.
 
 ---------------------- ECS5 ---------------------------
+
+----- Immediately-invoked function expression (IIFE) -----
 
 (function(){})();
 
