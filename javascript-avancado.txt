@@ -53,6 +53,16 @@ target[prop] -> Acessando o valor da propriedade/metodo:
 
 --- HANDLER SET ---
 
+IMPORTANTE!
+    O SET: Só será chamado, caso a propriedade OU metodo for modificada, no exemplo abaixo o set não funcionará, pois o METODO não está alterando nenhuma propriedade:
+    
+        adiciona(negociacao){
+            this._negociacoes.push(negociacao);
+        }
+    o metodo não está alterando nenhuma propriedade, por isso que quando a armadilha set é chamada no handler, ela não é executada.
+    
+    
+
 {
     set: function(obj, propriedade, value,receiver(proxy)){
     
