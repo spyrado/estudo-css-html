@@ -29,6 +29,8 @@ let negociacao = new Proxy(Negociacao, {}); -> assim que se declara um proxy, um
 
 TODO GET deve retornar um valor, caso não retorne, a propriedade/metodo chamada retornará o valor "undefined".
 
+TODO METODO, Primeiro ele faz a chamada de LEITURA, e depois da um APPLY.
+
 -- Valores de target, prop, receiver --:
 
 target -> Objeto em questão.
