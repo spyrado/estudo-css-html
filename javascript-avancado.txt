@@ -9,7 +9,89 @@ PROXY -> FAZ A INTERMEDIAÇÃO ENTRE O OBJETO E UMA ARMADILHA, ELE PRIMEIRO EXEC
 FACTORY -> Seria uma classe que é especializada em criar determinado tipo de objeto.
     Não é uma regra, porem geralmente classes criadas com factory utilizam metodos estáticos, para evitar ficar instanciando.
 
+---------------------------- PARAMETROS REST / rest parameter ----------------------------
+
+IMPORTANTE, Utilizar REST, apenas no final da passagem de parametros, pois se colocar no comeco ele vai comecar a pegar todos os parametros e armazenar em um vetor, exemplo:
+
+    funcao(...model, view, props){
+        
+    }
+    
+    funcao(new Negociacao, NegociacaoView, ["texto"]);
+    
+    a partir dai já não será possível pegar os parametros de view e props, pois a model esta com REST, e tudo que eu colocar como parametro, vai formar um vetor e armazenar em model.
+
+A sintaxe de rest parameter (parâmetros rest)  nos permite representar um número indefinido de argumentos em um array.
+
+Exemplo:
+    function fun1(...theArgs) {
+      console.log(theArgs.length);
+    }
+
+fun1();  // 0
+fun1(5); // 1
+fun1(5, 6, 7); // 3
+
+Ele armazena qualquer parametro passado para uma funcao, em um vetor.
+
+
+---------------------------- Data binding unidirecional ----------------------------
+
+O que seria isso?, traduzindo para o portugues, seria uma "ligação de dados", um exemplo de Data Binding, é a ligacao que estamos fazendo da nossa model, com a view, exemplo:
+    
+    this._listaNegociacoes = ProxyFactory.create(
+        new ListaNegociacoes(),
+        ["adiciona","esvazia"],
+        model => this._negociacoesView.update(model)
+    );
+Nesse caso estamos falando, toda vez que chamar a model listaNegociacoes, dispara um evento de atualizacao na view(negociacoesView).
+
+Data = Dado
+Bind = Associacao
+
+---------------------------- FACTORY ----------------------------
+
+Não é uma regra, porem geralmente classes criadas com factory utilizam metodos estáticos, para evitar ficar instanciando.
+
+Factorys, podem ser criados também a partir de uma classe, pode ser um metodo de uma classe.
+
+Toda factory retorna a instancia de uma classe.
+
+O padrão de projeto Factory ocorre quando temos uma classe que nos ajuda a criar um objeto complexo, ou seja, ela esconde de nós os detalhes de criação desse objeto. É por isso que uma classe Factory possui apenas um método, faz sentido, porque se tivéssemos que chamar mais de um para criar um objeto a responsabilidade de sua criação cairia em nosso colo.
+
+
 ---------------------------- PROXY ----------------------------
+
+set é quando eu estou alterando uma PROPRIEDADE.
+get é quando eu estou lendo uma PROPRIEDADE.
+
+NÃO HÁ uma maneira de interceptar METODOS com PROXY por default.
+
+--- COMO INTERCEPTAR FUNÇÕES ENTÃO? ---
+
+todo metodo, primeiro ele faz um get, e depois da um apply nesse metodo, sabendo disso, vamos utilizar o get: para interceptar metodos.
+
+primeiro fazemos uma condicao dentro do GET
+
+get(target,prop,receiver){
+
+    if(["adiciona, esvazia"].includes(prop) && typeof target[prop] == "function"){
+    
+        return function(){
+            //executa algo...
+            //quando eu chamar uma funcao, ela vai cair aqui, e eu //vou retornar uma nova funcao.
+            
+            
+            //Tem que dar um Reflect.apply, para executar a funcão original, e passar arguments, o arguments, pega todos os parâmetro do metodo original, para executar a funcao corretamente do target[prop]
+            
+            Reflect.apply(target[prop], target, arguments)
+        }
+    }
+    
+    return Reflect.get(target,prop,receiver);
+}
+
+
 
 --- IMPORTANTE ---
 
@@ -922,6 +1004,8 @@ PRIVATE - APENAS A Própia classe pode ter acesso.
 
 ---------------------- Metodos Javascript ---------------------------
 
+Array.from("abc"); // ["a", "b", "c"] -> transforma tudo que estiver no parametro, em array, e cada caracter vai ocupar uma posiçao
+
 Object.freeze(nomeObjeto); -> congela um objeto: isto é, impede que novas propriedades sejam adicionadas a ele; impede que as propriedades existentes sejam
     removidas; e impede que propriedades existentes, ou sua inumerabilidade, configurabilidade, ou capacidade de escrita sejam alteradas.
 
@@ -1095,4 +1179,22 @@ arguments -> retorna um vetor com os parâmetros que foram passados em uma funç
 
 (function(){})();
 
-O IIFE significa “Immediately-invoked function expression”, mas podemos chamá-lo de função imediata. Como o próprio nome diz, ela executa a função imediatamente depois de criada. Mas por que usar? Encapsulamento! 
+O IIFE significa “Immediately-invoked function expression”, mas podemos chamá-lo de função imediata. Como o próprio nome diz, ela executa a função imediatamente depois de criada. Mas por que usar? Encapsulamento!
+
+---------------------- AJAX ---------------------------
+
+xhr.readyState == 4
+
+Então, quais são os estados possíveis de um requisição AJAX? Listaremos abaixo os estados:
+
+0: requisição ainda não iniciada
+
+1: conexão com o servidor estabelecida
+
+2: requisição recebida
+
+3: processando requisição
+
+4: requisição está concluída e a resposta está pronta
+
+Se o estado for igual a 4, buscaremos os dados do servidor. Este é o estado que a requisição está concluída e a resposta está pronta, mas não podemos confiar no mesmo, porque pode ocorrer algum erro no servidor e ainda assim, a resposta será válida. É comum o servidor lidar com estados da requisição. Então, só teremos certeza de que os dados chegaram se o xhr.status for igual a 200 (status code genérico).
