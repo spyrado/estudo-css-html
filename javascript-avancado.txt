@@ -800,10 +800,56 @@ PRIVATE - APENAS A Própia classe pode ter acesso.
     
     
     
-    Uma subclasse herda métodos e atributos de sua superclasse
-      
-      
+    Uma subclasse herda métodos e atributos de sua superclasse.
+    
+    Uma subclasse também SOBRESCREVE Um método já implementado na sua superclasse,
+    Exemplo:
+    
+    CLASSE PAI(SUPERCLASSE):
+    
+        class View{
+
+            constructor(element){
+
+                this._element = element;
+            }
+
+            template(){
+
+                throw new Error("O metodo template deve ser implementado.");
+            }
+
+            update(model){
+
+                this._element.innerHTML = this.template(model);
+            }
+        }
+    
+    CLASSE FILHA(SUBCLASSE):
+    
+        class MensagemView extends View{
+
+            constructor(element){
+                super(element);
+            }
+
+            template(model){
+                return model.texto ? `<p class='alert alert-info'>${model.texto}</p>` : `<p></p>`;
+            }
+        }
+        
+    Como o metodo update DEPENDE do metodo template para ser executado com sucesso, Eu crio o metodo template na minha classe PAI, e disparo um erro, caso ele não for implementado nas classes FILHAS, pois o metodo template o CONTEUDO dele é VARIÁVEL, por isso ele não é estático igual o update que é igual em todos os casos.
+    
+    E isso não vai me gerar um erro quando for implementado o template na classe FILHA, pois quando se cria o mesmo metodo do PAI em uma classe FILHA, a classe FILHA SOBRESCREVE o metodo da classe pai, isso é, sobrescrevendo o metodo da classe pai, ela automaticamente retira a mensagem de erro que o pai contem, e coloca o conteudo que você descidir, como no exemplo acima:
+    
+        template(model){
+            return model.texto ? `<p class='alert alert-info'>${model.texto}</p>` : `<p></p>`;
+        }
+    
 ------ METODO ESTÁTICO / STATIC METHOD ------
+
+    Metodos estáticos não precisam que a classe seja instanciada, para poder acessa-los, podem ser chamados diretamente com a Propria classe, exemplo:
+        DateHelper.dataParaTexto(texto);
       
     Metodos estáticos não podem ser instanciados.
     Metodos estáticos são acessados diretamente pela classe.
