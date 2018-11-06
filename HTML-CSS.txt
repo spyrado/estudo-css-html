@@ -521,6 +521,22 @@ Fixed -> Será fixo com relação a tela.
 -------------------------------- TEXT-INDENT --------------------------------
 
 
+-------------------------------- Z-INDEX --------------------------------
+
+Entenda a regra de empilhamento da estrutura HTML, para saber qual regra melhor se aplica o z-index.
+
+1. The stacking context’s root element (the <html> element in this case).
+2. Positioned elements (and their children) with negative z-index values (higher values are stacked in front of lower values; elements with the same value are stacked according to appearance in the HTML).
+3. Non-positioned elements (ordered by appearance in the HTML).
+4. Positioned elements (and their children) with a z-index value of auto (ordered by appearance in the HTML).
+5. Positioned elements (and their children) with positive z-index values (higher values are stacked in front of lower values; elements with the same value are stacked according to appearance in the HTML)
+
+
+Elementos posicionados com position: relative, absolute,fixed; : Tem a regra de z-index aplicada de acordo com o valor dela, valores maiores ficam acima de valores menores, 
+caso nenhum tenha valor de z-index aplicado, ele aplica a regra de acordo com a estrutura html, exemplo... tenho uma sequencia de 3 divs, a primeira ficara entre aspas, com o z-index 0, a segunda com o z-index 2 a terceira com 3,
+e assim por diante(obs ele n define visualmente o z-indez, quando a regra é aplicada via contexto, já fica implícito padrão).
+
+
 --------------------- Tecnicas de CSS ---------------------
 
 Image Replacement ->

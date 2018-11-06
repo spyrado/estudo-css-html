@@ -116,6 +116,8 @@ git log --stat -> Mostra um log de uma forma mais resumida, dizendo apenas que a
 
 ----------------------- git log --pretty -----------------------
 
+git log --pretty=oneline --author="nicolas" -> Verifica todos os nomes dos commits e o autor indicado e uma unica linha
+
 git log --pretty=oneline -> mostra o hash e a mensagem do commit 
     em uma linha.
 

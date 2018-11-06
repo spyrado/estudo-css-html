@@ -23,11 +23,10 @@ let negociacao = new Proxy(Negociacao, {}); -> assim que se declara um proxy, um
 
 --- HANDLER ---
 
+{} -> São os lidadores, primeiro se executa a função do handler, para depois executar a função do objeto em si.
+
 {} -> passamos alguns parâmetros aqui um deles é:
 
---- HANDLER GET ---
-
-TODO GET deve retornar um valor, caso não retorne, a propriedade/metodo chamada retornará o valor "undefined".
 
 -- Valores de target, prop, receiver --:
 
@@ -41,9 +40,13 @@ target[prop] -> Acessando o valor da propriedade/metodo:
               Retorno ƒ adiciona(negociacao){
                             this._negociacoes.push(negociacao);
                         }
-           
-    
+--- HANDLER GET ---
 
+IMPORTANTE!
+    O get é chamado, toda vez que você tentar ler a propriedade de um objeto.
+
+TODO GET deve retornar um valor, caso não retorne, a propriedade/metodo chamada retornará o valor "undefined".         
+    
 {
     get: function(target, prop, receiver)){
     
