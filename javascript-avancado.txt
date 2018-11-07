@@ -8,6 +8,8 @@ PROXY -> FAZ A INTERMEDIAÇÃO ENTRE O OBJETO E UMA ARMADILHA, ELE PRIMEIRO EXEC
 
 FACTORY -> Seria uma classe que é especializada em criar determinado tipo de objeto.
     Não é uma regra, porem geralmente classes criadas com factory utilizam metodos estáticos, para evitar ficar instanciando.
+    
+PROMISSES
 
 ---------------------------- PARAMETROS REST / rest parameter ----------------------------
 
