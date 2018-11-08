@@ -77,3 +77,88 @@ Exemplo das diferenças:
     console.log(nome) // irá exibir nome is not defined
     
 Porque aparece isso com let? justamente pq let funciona por escopo de BLOCO.
+
+--- indexedDB ---
+
+IMPORTANTE!
+o onupgradeneeded, só sera executado novamente ( depois da primeira vez ) quando a versao do banco for maior que a atual, isso é.. tem que mudar em .open('nomeBanco', 'numeroVersaoConexao');
+
+Primeiro abrir a requisicao
+    var request = window.indexedDB.open('nomeBanco', 1);
+
+// Cria ou altera um banco existente
+request.onupgradeneeded = (e){
+
+    console.log("Cria ou altera um banco existente");
+}
+
+// Verifica se a conexao foi obtida
+request.onsuccess= (e) => {
+
+    console.log("Conexão obtida com sucesso");
+}
+
+// Verifica se a conexao deu erro
+request.onerror = (e) => {
+
+    // para descobrir o tipo de erro que aconteceu
+    console.log(e.target.error);
+}
+
+Agora precisamos de uma instancia de IDBDatabase ou seja, uma conexao.
+
+criamos uma variavel connection com escopo global.. e lá no retorno da funcao onsucess, adicionamos ela recebendo o parametro e.target.result, que retornara nossa IDBDatabase
+
+Exemplo: 
+    var connection;
+        
+    //Abre a requisicao
+    var request = window.indexedDB.open('aluraframe', numeroDaVersao); // O numero da versao deve ser alterado toda vez que voce necessite que onupgradeneeded seja chamado, em casos como.. criar o banco... criar uma objectStore...
+
+    request.onupgradeneeded = (e) => {
+
+        console.log("Cria ou altera um banco existente");
+    }
+
+    request.onsuccess= (e) => {
+
+        console.log("Conexão obtida com sucesso");
+        console.log(e.target.result);
+
+        connection = e.target.result;
+    }
+
+    request.onerror = (e) => {
+
+        // para descobrir o tipo de erro que aconteceu
+        console.log(e.target.error);
+    }
+
+Bom.. agora que já temos nossa conexao feita, precisamos criar nosso objectStore, porem.. para criar um objectStore, devemos criar uma conexao em onupgradeneeded, pois é lá que é verificado se existe alguma atualizacao..
+
+entao fazemos o seguinte:
+    request.onupgradeneeded = (e) => {
+
+        console.log("Cria ou altera um banco existente");
+
+        var minhaConexao = e.target.result;
+        minhaConexao.createObjectStore('nomeDoArmazenamento');
+    }
+    
+Agora precisamos de uma transaction, para poder gravar dentro da objectStore, primeiro pegamos a transaction, e apos isso acessamos passando qual objectStore nós queremos utilizar, e atravez do store, eu posso incluir alterar listar e etc.., entao... criamos uma negociacao, e adicionamos no store indicado com o metodo .add passando a negociacao a ser adicionada nesse caso, porem todo .add retona um onsuccess ou onerror, pois nem sempre vai ter sucesso em adicionar algo, pode ser q de erro.
+
+function adiciona(){
+            
+            // Precisamos de uma transacao para poder gravar dentro da objectStore
+            //Crio uma transacao
+            let transaction = connection.transaction(['negociacoes'], 'readwrite');
+            //Aponto para qual objectStore eu quero acessar.
+            let store = transaction.objectStore('negociacoes');
+            // crio uma negociacao de teste
+            let negociacao = new Negociacao(new Date(), 1, 200);
+            // peco para adicionar minha negociacao ao store
+            let request = store.add(negociacao);
+            
+            // objetoQueRecebeTransacao, exemplo: negociacoes
+            // tipoTransacao = readyonly(apenas leitura) readwrite(leitura e escrita);
+        }
