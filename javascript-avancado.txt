@@ -1205,3 +1205,19 @@ Então, quais são os estados possíveis de um requisição AJAX? Listaremos aba
 4: requisição está concluída e a resposta está pronta
 
 Se o estado for igual a 4, buscaremos os dados do servidor. Este é o estado que a requisição está concluída e a resposta está pronta, mas não podemos confiar no mesmo, porque pode ocorrer algum erro no servidor e ainda assim, a resposta será válida. É comum o servidor lidar com estados da requisição. Então, só teremos certeza de que os dados chegaram se o xhr.status for igual a 200 (status code genérico).
+
+---------------------- Monkey Pathing ---------------------------
+
+Monkey Pathing -> é uma técnica para adicionar, modificar ou suprimir o comportamento padrão de um trecho de código em tempo de execução sem alterar seu código-fonte original, exemplo:
+
+openRequest.onsuccess = e => {
+                
+    if(!connection) connection = e.target.result;
+
+    connection.close = function(){
+        throw new Error('Voce não pode encerrar a conexao diretamente.');
+    }
+    resolve(connection);
+};
+
+Estou sobrescrevendo a funcao nativa de fechar conexao, para que o programador nao possa encessar a conexao diretamente, apenas chamando uma funcao especifica da classe, para n ocorrer de quebrar outras conexoes...
