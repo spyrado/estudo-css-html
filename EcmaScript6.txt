@@ -54,9 +54,14 @@ Exemplo: na minha Classe Negociacao, eu tenho uma regra de negocio.
 
 --------- Diferença entre VAR E LET ---------
 
-var -> não possui escopo de bloco possui escopo de FUNÇÃO, tudo que for atribuido dentro de um escopo de bloco, pode ser exibido fora do bloco, e tambem podemos sobrescrever variáveis(oq não é bom)
+var -> não possui escopo de bloco possui escopo de FUNÇÃO, 
+    tudo que for atribuido dentro de um escopo de bloco, pode ser exibido fora do bloco, e tambem podemos sobrescrever variáveis(oq não é bom)
 
-let -> possui escopo de BLOCO, não deixa sobrescrever variáveis já declaradas, apenas atribuir um novo valor a ela.
+let -> possui escopo de BLOCO, não deixa sobrescrever variáveis já declaradas, 
+    apenas atribuir um novo valor a ela ( RECOMENDADA USAR APENAS EM BLOCOS, FORA DE BLOCOS USAR VAR)
+
+const -> variaveis declaradas como const tem seu valor fixo, não podendo ser alterado, 
+    a menos que a variavel seja um new Date por exemplo, que eu posso modificalá atraves de seus metodos.
 
 Exemplo das diferenças:
 
