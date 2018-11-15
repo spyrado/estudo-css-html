@@ -21,6 +21,9 @@ MODULE PATTERN -> Um módulo é uma unidade código confinada e que ninguém tem
 
 DAO -> O padrao de projeto que visa abstrair a complexidade de acessar um banco,
     separando a logica de negocios da persistencia de dados.
+    isola todo o código que acessa seu repositório de dados em um único lugar
+    Assim, toda vez que o desenvolvedor precisar realizar operações de persistência
+    ele verá que existe um único local para isso, seus DAO's.
 
 ---------------------------- PARAMETROS REST / rest parameter ----------------------------
 

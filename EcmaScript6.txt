@@ -85,6 +85,8 @@ Porque aparece isso com let? justamente pq let funciona por escopo de BLOCO.
 
 --- indexedDB ---
 
+** Dexie e o Db.js libs de indexedDB **
+
 IMPORTANTE!
 o onupgradeneeded, só sera executado novamente ( depois da primeira vez ) quando a versao do banco for maior que a atual, isso é.. tem que mudar em .open('nomeBanco', 'numeroVersaoConexao');
 
@@ -167,3 +169,62 @@ function adiciona(){
             // objetoQueRecebeTransacao, exemplo: negociacoes
             // tipoTransacao = readyonly(apenas leitura) readwrite(leitura e escrita);
         }
+
+-- Listar no indexedDB --
+
+    function listaTodos(){
+                
+        // Precisamos de uma transacao para poder gravar dentro da objectStore
+        //Crio uma transacao
+        let transaction = connection.transaction(['negociacoes'], 'readwrite');
+        //Aponto para qual objectStore eu quero acessar.
+        let store = transaction.objectStore('negociacoes');
+        
+        // ele aponta para cada linha da nossa objectSore, esse é o cara que vai 'passear'por la
+        let cursor = store.openCursor();
+        
+        let negociacoes = [];
+        
+        cursor.onsuccess = e => {
+            //Recebe o ponteiro
+            let atual = e.target.result;
+            // Se tiver um ponteiro valido
+            if(atual){
+                // recebo o valor do ponteiro, apenas as propriedades q recebo
+                let dado = atual.value;
+                
+                negociacoes.push(new Negociacao(dado._data, dado._quantidade, dado._valor));
+                // Pedindo para o indexedDB ir para a proxima negociacao,
+                //Quando chamamos o continue, ele chama o metodo onsuccess novamente, e assim ele vai dar esse loop ate n ter mais dado para apontar
+                atual.continue();
+            }else{
+                console.log(negociacoes);
+            }
+        }
+        
+        cursor.onerror = e => {
+            console.log(e.target.error.name);
+        }
+    }
+
+-- APAGAR no indexedDB --
+
+apagaTodos(){
+        
+    return new Promise((resolve, reject) => {
+
+        let request = this._connection
+            .transaction([this._store], 'readwrite')
+            .objectStore(this._store)
+            .clear();
+        
+        request.onsuccess = e => resolve(`Negociações apagadas com sucesso.`);
+
+        request.onerror = e => {
+
+            console.log(e.target.error);
+            reject(`Erro ao apagar negociações`)
+        }
+
+    });
+}
