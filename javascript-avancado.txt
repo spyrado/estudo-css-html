@@ -11,7 +11,16 @@ FACTORY -> Seria uma classe que é especializada em criar determinado tipo de ob
     
 PROMISSES -> Promisses são utilizadas para melhor controle de metodos async, muito bom utiliza-las.
 
-Module Pattern -> Um módulo é uma unidade código confinada e que ninguém tem acesso ao conteúdo dentro dele. Uma maneira de criarmos um escopo privado no JavaScript é colocando o código em uma função, exemplo, podemos criar uma classe e declarar variaveis acima dessa classe por algum motivo, isso seria um problema pois variaveis acima de classes estao no escopo global, e no escopo global qualquer um tem acesso, para resolver isso utilizamos o module pattern, criamos uma IIFE encapsulando todo o nosso código para que ninguem tenha acesso as variaveis, e retornamos apenas a classe, que é a unica coisa que queremos que tenham acesso.
+MODULE PATTERN -> Um módulo é uma unidade código confinada e que ninguém tem acesso ao conteúdo 
+    dentro dele. Uma maneira de criarmos um escopo privado no JavaScript é colocando o código
+    em uma função, exemplo, podemos criar uma classe e declarar variaveis acima dessa classe 
+    por algum motivo, isso seria um problema pois variaveis acima de classes estao no escopo global, 
+    e no escopo global qualquer um tem acesso, para resolver isso utilizamos o module pattern, 
+    criamos uma IIFE encapsulando todo o nosso código para que ninguem tenha acesso as variaveis, 
+    e retornamos apenas a classe, que é a unica coisa que queremos que tenham acesso.
+
+DAO -> O padrao de projeto que visa abstrair a complexidade de acessar um banco,
+    separando a logica de negocios da persistencia de dados.
 
 ---------------------------- PARAMETROS REST / rest parameter ----------------------------
 
