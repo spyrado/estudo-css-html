@@ -748,6 +748,32 @@ let -> uso recomendado, pois ela faz juz ao escopo de bloco.
       console.log(n1.data);
       console.log(n1.quantidade);
 
+  ------ Comparando objetos ------
+
+    Não conseguimos comparar objetos, pois cada objeto tem um lugar reservado na memória, e quando 
+    comparamos objetos, oq o javascript faz, é ir até o local onde se encontra o objeto na memoria, e verificar
+    se esse objeto comparado, está apontando para o mesmo local de memoria que o outro objeto.
+
+    obj1 armazenado na memoria x
+    obj2 armazenado na memoria y
+
+    EX: obj1 == obj2 // false
+
+    quando fizermos isso: obj1 = obj2, e der obj1 == obj2 // true
+    irá retornar true, pois o obj1 agora para de apontar para a memoria x, e passa a apontar para a memoria y,
+    e como obj2 já está na memoria y, y==y = true.
+
+    --- MELHORANDO A LOGICA ---
+
+    Podemos melhorar essa lógica ainda mais, utilizando JSON.stringify.
+    JSON.stringify(ob1) == JSON.stringify(obj2);
+
+    Ele vai transformar o nosso objeto em uma stringona virando um tipo literal E tipos literais são comparáveis..,
+    e então nós comparamos essas 2 stringonas.
+    ele vai comparar se TODO O OBJETO é igual, a TODO O OUTRO OBJETO propriedades metodos etc..
+
+
+
 
   ------ Métodos de um objeto instanciado --------
 
@@ -1233,3 +1259,23 @@ openRequest.onsuccess = e => {
 };
 
 Estou sobrescrevendo a funcao nativa de fechar conexao, para que o programador nao possa encessar a conexao diretamente, apenas chamando uma funcao especifica da classe, para n ocorrer de quebrar outras conexoes...
+
+---------------------- Tipos literais ---------------------------
+
+    Em javascript STRING, NUMBER E BOOLEAN sao considerados tipos literais, e os tipos literais podem ser comparados pelo
+    VALOR EM SI, eles não apontar para o local de memoria deles ( apesar de todos serem objetos ).
+
+---------------------- Impedindo que duplique a lista que vem do back-end ---------------------------
+    service
+        .obterNegociacoes() // 1
+        .then(negociacoes => negociacoes.filter(negociacao => // 2
+            !this._listaNegociacoes.negociacoes.some(negociacaoExistente => // 3
+                JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente))) // 4
+            )
+    1 -> Obtem as negociacoes do back-end
+    2 -> pega as negociacoes e faz um filtro.
+    3 -> Dentro desse filtro, eu pergunto para some() se o objeto de lista negociacao é igual ao meu
+        objeto que veio do back-end, se é igual, não inclui ele DENOVO na lista, se for diferente, INCLUI ele na lista.
+        como a funcao some() retorna true ou false, eu primeiro vejo se é igual, SE FOR eu nego toda a instrucao !this._listaNegociacoes e etc
+        para não incluir no filter, pois o filter aceita true or false, e se achar a mesma e retornar true,
+        vai incluir negociacao já existente na lista anterios.

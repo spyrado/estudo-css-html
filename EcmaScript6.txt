@@ -204,7 +204,7 @@ function adiciona(){
         
         cursor.onerror = e => {
             console.log(e.target.error.name);
-        }
+        } 
     }
 
 -- APAGAR no indexedDB --
