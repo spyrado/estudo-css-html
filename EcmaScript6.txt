@@ -262,6 +262,7 @@ Exemplo de GET e POST:
     Babel e TypeScript já fazem o uso de transpilers.
 
 ---- Como Instalar o babel? ----
+
     De esse comando na pasta raiz do projeto
         npm install babel-cli@6.10.1 --save-dev 
             Esse --save-dev é para salvar a dependencia(babel-cli@6.10.1) do babel, no seu package.json
@@ -292,5 +293,225 @@ Exemplo de GET e POST:
         e digitamos npm run build <- configuramos o build em package.json("build": "babel js/app-es6 -d js/app")
     
     E PRONTO, geramos um codigo mais verboso, porem compatível com outros navegadores.
-    
+
+
+    POREM, temos um detalhe, se gerar um erro como está configurado atualmente, ele vai exibir o erro,
+        no arquivo que está com o downgrade(es5), e não queremos isso, queremos que ele aponte o erro
+        em nosso arquivo es6, isso é, queremos fazer um source map, entao vamos ate o arquivo de configuracao(package.json)
+        e em build acrescentamos o seguinte --source-maps ("build": "babel js/app-es6 -d js/app --source-maps")
+        ENTAO, devemos buildar o babel novamente, para ele implementar essa alteracao com o comando npm run build.
+
+        entao ele ira criar arquivos.map, para o navegador identificar que tem um .map, e apontar para o arquivo original,
+        ES6.
+
+        IMPORTANTE, TODA Alteracao feita no arquivo original, deve ser buildada novamente, para que
+            ele atualize os arquivos transcompilados.
+
+        Temos que adicionar um watcher no arquivo de configuracao, para ele observar as mudanças no arquivo original,
+            e atualizar os arquivos que dao suporte ao es6 assim, nao precisamos ficar buildando o babel toda hora.
+
+        -- Como adicionar um watcher? --
+            Vá em package.json "scripts"
+                e adicione a mesma linha do build, porem com um --watch no final.
+
+            "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1",
+                "build": "babel js/app-es6 -d js/app --source-maps",
+                "watch": "babel js/app-es6 -d js/app --source-maps --watch"
+            }
+        E para ficar observando as alteracoes, vc executa o compando 
+            npm run watch
+        E pronto, agora ele vai ficar monitorando as alteracoes dos meus arquivos originais.
+
     OBS: Os numeros depois de @ representam uma versao específica.
+
+    IMPORTANTE!!
+
+    Muitos tutoriais da internet instalam Babel e outros módulos do Node.js globalmente por uma questão de brevidade,
+    mas que não é uma boa prática.
+
+    Se você precisa da nova versão do Babel porque seu projeto A depende de um novo recurso, 
+    a atualização da instalação global será aplicada em todos os projetos. 
+    Ela pode funcionar perfeitamente em A, mas pode quebrar o projeto B que até então funcionava se algum BUG foi introduzido,
+    um BUG que só afeta um recurso utilizado por B.
+
+    Sendo assim, instalamos Babel local ao projeto, contudo não é nada elegante a forma com que chamaremos manualmente
+    o binário do babel em nosso terminal. Para contornar esse problema e ainda termos o babel instalado localmente
+    para cada um dos nosso projetos, podemos criar um script em package.json que chamará o Babel para nós.
+
+    Qual das opções abaixo possui a chave script configurada corretamente para chamar Babel e compilar todos
+    os nossos arquivos dentro da pasta aluraframe/client/js/app-es6 resultando na pasta aluraframe/client/js/app:
+
+
+    BONUS, Arquivos .map, não afetam o carregamento das páginas, pois eles só são carregados, caso
+        voce abra o console de desenvolvedor.
+
+    E por fim, nem tudo o transpiler é capaz de transcompilar, um exemplo é:
+        se usarmos promises, o código transcompilado continuará a não funcionar caso o navegador não suporte esse recurso,
+        a mesma coisa da Fetch API que vimos. Nesses casos, é comum misturar o processo de transcompilação
+        com o uso de um ou outro polyfill para tapar aquelas lacunas que o transpiler não consegue.
+
+---------------------- Escopo GLOBAL ---------------------------
+
+Esse é um grande problema da linguem, visto que variaveis, metodos e classes estao em um escopo global,
+entao qualquer lib que eu baixar, que tenha o MESMO NOME que um desses 3 (variaveis, metodos ou classes) a lib,
+ira SOBRESCREVER tudo oq vc fez, e logicamente vai gerar um ou mais erros em todo o seu sistema.
+
+Para solucionar esse problema vamos utilizar MODULOS DO ES6(EcmaScript2015)
+
+---------------------- MODULOS DO EcmaScript2015 ---------------------------
+
+Para utilizarmos os modulos, devemos colocar export (exportar) as classes de dependencia, é como se fosse
+    o return do padrao de projeto Module Pattern
+
+1 - Cada script meu, é considerado um MODULO JAVASCRIPT, Por padrao.
+
+exemplo:
+    export class View{}
+
+E como utilizar eles nas classes que dependem de View?
+Exemplo:
+
+import {View} from './View'; <- Nessa linha eu digo IMPORTA(import) {}(ALGUMA COISA) DE(FROM) 'caminhoQueContemMinhaViewSEMaEXTESAO';
+
+class MensagemView extends View{}
+
+E não existe dependencia apenas de classes, tabem podemos ter outro tipo de cituação, como no exemplo:
+    import {HttpService} from './HttpService';
+
+    export class NegociacaoService{
+        
+        constructor(){
+        
+            this._http = new HttpService(); <-- preciso do import de HttpService, por causa dessa linha, que essa linha,
+                faz uso da classe HttpService.
+        }
+Eu tenho uma NegociacaoService, que depende do import de HttpService, para eu consiguir utilizar a Classe HttpService.
+
+------------ OUTRO CASO,  Substituindo o padrao de projeto Module Pattern pelo Module do ES6 ------------
+
+-- COM MODULE Pattern --
+
+    var ConnectionFactory = (function(){
+        
+        const stores = ['negociacoes'],
+        version = 4,
+        dbName = 'aluraframe';
+        
+        var connection = null,
+        close = null;
+
+    return class ConnectionFactory{
+        
+        constructor(){
+            throw new Error('Não é possivel criar instãncias de ConnectionFactory');
+        }
+        
+        static getConnection(){
+            
+            return new Promise((resolve, reject) => {
+                
+                let openRequest = window.indexedDB.open(dbName,version);
+                
+                openRequest.onupgradeneeded = e => {
+                    ConnectionFactory._createStores(e.target.result);
+                };
+                
+                openRequest.onsuccess = e => {
+                    
+                    if(!connection) connection = e.target.result;
+                    close = connection.close.bind(connection);
+                    connection.close = function(){
+                        throw new Error('Voce não pode encerrar a conexao diretamente.');
+                    }
+                    resolve(connection);
+                };
+                
+                openRequest.onerror = e => {
+                    console.log(e.target.error);
+                    reject(e.target.error.name);
+                };
+                
+            });
+        }
+
+        static _createStores(connection){
+            stores.forEach(store => {
+                if(connection.objectStoreNames.contains(store))
+                    connection.deleteObjectStore(store);
+
+                connection.createObjectStore(store,{autoIncrement: true});
+            });
+        }
+        
+        static closeConnection(){
+            if(connection){
+                close();
+                connection = null;
+            }
+        }
+    }
+    })();
+
+-- SEM MODULE Pattern, MAS COM O NOVO MODULO DO ES6 --
+
+Trocamos o var por let, pois agora ele esta em escopo de modulo, E ninguem tera acesso a essas variaveis, justamente porque
+    agora esse arquivo é um modulo, e modulos só sao acessiveis quando importamos eles.
+
+const stores = ['negociacoes'],
+version = 4,
+dbName = 'aluraframe';
+
+let connection = null,
+close = null;
+
+export class ConnectionFactory{
+    
+    constructor(){
+        throw new Error('Não é possivel criar instãncias de ConnectionFactory');
+    }
+    
+    static getConnection(){
+        
+        return new Promise((resolve, reject) => {
+            
+            let openRequest = window.indexedDB.open(dbName,version);
+            
+            openRequest.onupgradeneeded = e => {
+                ConnectionFactory._createStores(e.target.result);
+            };
+            
+            openRequest.onsuccess = e => {
+                
+                if(!connection) connection = e.target.result;
+                close = connection.close.bind(connection);
+                connection.close = function(){
+                    throw new Error('Voce não pode encerrar a conexao diretamente.');
+                }
+                resolve(connection);
+            };
+            
+            openRequest.onerror = e => {
+                console.log(e.target.error);
+                reject(e.target.error.name);
+            };
+            
+        });
+    }
+
+    static _createStores(connection){
+        stores.forEach(store => {
+            if(connection.objectStoreNames.contains(store))
+                connection.deleteObjectStore(store);
+
+            connection.createObjectStore(store,{autoIncrement: true});
+        });
+    }
+    
+    static closeConnection(){
+        if(connection){
+            close();
+            connection = null;
+        }
+    }
+}
