@@ -265,3 +265,32 @@ Exemplo de GET e POST:
     De esse comando na pasta raiz do projeto
         npm install babel-cli@6.10.1 --save-dev 
             Esse --save-dev é para salvar a dependencia(babel-cli@6.10.1) do babel, no seu package.json
+    POREM, somente o babel-cli não está preparado para entender a SINTAX do ES2015(ES6)
+    Então temos que instalar o babel-preset-es2015, para que ele entenda a sintax e faça o downgrade de linguagem.
+        npm install babel-preset-es2015@6.9.0 --save-dev
+    
+    Bom, não basta ter os 2 instalados, temos que fazer a ligação de um com outro.
+    Então, criamos um arquivo de configuração do babel, o .babelrc, que DEVE ficar na pasta raiz do projeto,
+        esse arquivo é lido toda vez que o babel for executado.
+    E lá dentro do arquivo configuramos da seguinte forma:
+        {
+            "preset" : ["es2015"]
+        }
+    OBS: DEVE estar com aspas duplas dentro do ARRAY de preset, É OBRIGATORIO.
+
+    Feito isso estamos quase prontos para utilizar babel, agora vamos apontar,
+        para qual pasta o babel deve fazer o transpiler.
+    Vá até o package.json e na linha propriedade "scripts" 
+    inclua a seguinte sintax: "build": "babel diretorioDesejado -d destinoDesejado", como no exemplo:
+
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "build": "babel js/app-es6 -d js/app" <- nesse caso ele ira converter toda a pasta js/app-es6 para js/app
+        }
+    
+    Finalizada todas as configurações necessárias, vamos ate o terminal no diretorio raiz do nosso projeto,
+        e digitamos npm run build <- configuramos o build em package.json("build": "babel js/app-es6 -d js/app")
+    
+    E PRONTO, geramos um codigo mais verboso, porem compatível com outros navegadores.
+    
+    OBS: Os numeros depois de @ representam uma versao específica.
