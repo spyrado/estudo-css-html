@@ -1279,3 +1279,18 @@ Estou sobrescrevendo a funcao nativa de fechar conexao, para que o programador n
         como a funcao some() retorna true ou false, eu primeiro vejo se é igual, SE FOR eu nego toda a instrucao !this._listaNegociacoes e etc
         para não incluir no filter, pois o filter aceita true or false, e se achar a mesma e retornar true,
         vai incluir negociacao já existente na lista anterios.
+
+---------------------- Polyfill ---------------------------
+
+São implementacões de compatibilidade com novas tecnologias, exemplo de polyfill.
+
+POLYFILL DE includes do ES6.
+
+if(!Array.prototype.includes) {
+    console.log('Polyfill para Array.includes aplicado.');
+    Array.prototype.includes = function(elemento) {
+        return this.indexOf(elemento) != -1;
+    }
+}
+
+Eu utilizo recursos antigos, para fazer com que a nova funcao, tenha a MESMA funcionalidade em sua versao atual.

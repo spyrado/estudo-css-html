@@ -228,3 +228,40 @@ apagaTodos(){
 
     });
 }
+
+--------- Fetch API ---------
+
+Simplificando a maneira de fazer requisições AJAX.
+A Fetch API só me devolve a requisição, SOMENTE se o readyState dela for 4, isso é, se todo o processo foi feito.
+
+.fetch(url) -> url de GET
+.then(res) -> retorna uma resposta da requisicao q foi feita, posso transformar a resposta em
+    json com .json(), em texto com .text().
+
+Exemplo de GET e POST:
+
+-- GET --
+
+    return fetch(url)
+            .then(res => this._handlerError(res))
+            .then(res => res.json()); // converto o dado de string para JSON
+-- POST --
+
+    return fetch(url, {
+        headers: {'Content-type': 'application/json'},
+        method: 'post',
+        body: JSON.stringify(dado) // envio  o dado como string para post
+    })
+    .then(res => this._handlerError(res));
+
+--------- Transpiler (transcompilador) ---------
+
+    Nós programaremos com o ES6 e depois, vamos compilar o código para o ES5.
+    Este processo de downgrade recebe o nome de transcompilação e é feito com o uso de um transpiler (transcompilador).
+
+    Babel e TypeScript já fazem o uso de transpilers.
+
+---- Como Instalar o babel? ----
+    De esse comando na pasta raiz do projeto
+        npm install babel-cli@6.10.1 --save-dev 
+            Esse --save-dev é para salvar a dependencia(babel-cli@6.10.1) do babel, no seu package.json
