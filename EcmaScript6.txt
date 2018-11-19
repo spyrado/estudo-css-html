@@ -351,6 +351,17 @@ Exemplo de GET e POST:
         a mesma coisa da Fetch API que vimos. Nesses casos, é comum misturar o processo de transcompilação
         com o uso de um ou outro polyfill para tapar aquelas lacunas que o transpiler não consegue.
 
+    -- Dependencia de systemjs --
+    Vamos instalar um novo plugin do babel, para ser compativel com o systemjs
+        npm install babel-plugin-transform-es2015-modules-systemjs@6.9.0 --save-dev
+    Ele é um plugin do babel de transformacao de do ES2015 DE MODULO, para usar o systemjs
+        Temos que ir ate o arquivo de configuracao do babel, e adicionar esse modulo, para que o babel
+            execute junto a ele.
+        {
+            "presets" : ["es2015"],
+            "plugins" : ["transform-es2015-modules-systemjs"]
+        }
+
 ---------------------- Escopo GLOBAL ---------------------------
 
 Esse é um grande problema da linguem, visto que variaveis, metodos e classes estao em um escopo global,
@@ -363,32 +374,70 @@ Para solucionar esse problema vamos utilizar MODULOS DO ES6(EcmaScript2015)
 
 Para utilizarmos os modulos, devemos colocar export (exportar) as classes de dependencia, é como se fosse
     o return do padrao de projeto Module Pattern
+Feito isso sabemos que cada arquivo.js vira um MODULO.
 
 1 - Cada script meu, é considerado um MODULO JAVASCRIPT, Por padrao.
+2 - Colocar export / import nas classes e chamadas dependentes.
+3 - Definir com uma lib ou mostrar para o navegador QUAL MODULO carregar primeiro.
 
-exemplo:
-    export class View{}
+Quando indicamos qual MODULO carregar primeiro, ele exporta o principal, e AUTOMATICAMENTE, Exporta todas as suas
+dependencias, que magico nao?
 
-E como utilizar eles nas classes que dependem de View?
-Exemplo:
+vamos utilizar a lib SystemJs, para fazer esse trabalho para nós.
 
-import {View} from './View'; <- Nessa linha eu digo IMPORTA(import) {}(ALGUMA COISA) DE(FROM) 'caminhoQueContemMinhaViewSEMaEXTESAO';
+---- LIB Systemjs ----
 
-class MensagemView extends View{}
+npm install systemjs@0.19.31 --save
 
-E não existe dependencia apenas de classes, tabem podemos ter outro tipo de cituação, como no exemplo:
-    import {HttpService} from './HttpService';
+Diferença entre --save e --save-dev, o --save é pra ser utilizado em ambiente de produção, o --save-dev, é pra utilizar
+    nos dois ambientes, producao e desenvolvimento.
 
-    export class NegociacaoService{
-        
-        constructor(){
-        
-            this._http = new HttpService(); <-- preciso do import de HttpService, por causa dessa linha, que essa linha,
-                faz uso da classe HttpService.
-        }
-Eu tenho uma NegociacaoService, que depende do import de HttpService, para eu consiguir utilizar a Classe HttpService.
+Após baixarmos vamos ate o arquivo index.html e colocamos o caminho da pasta, e abaixo, configuramos ele:
 
------------- OUTRO CASO,  Substituindo o padrao de projeto Module Pattern pelo Module do ES6 ------------
+<script src="./node_modules/systemjs/dist/system.js"></script>
+<script>
+    System.defaultJSExtensions = true; // permite omitir a extensão .js dos imports
+    System.import('js/app/boot').catch(function(err){ //Definimos o primeiro arquivo a ser importado
+        console.error(err);
+    });
+</script>
+
+Em nosso Projeto raiz, vamos criar o arquivo boot.js
+
+Entao dentro desse arquivo configuramos os arquivos que devem ser carregados:
+
+import {NegociacaoController} from './controllers/NegociacaoController';
+import {} from './polyfill/fetch';
+
+importo o fetch sem passar nenhum parametro, pois o fetch NAO ESTA COMO Modulo ES6, porem ele DEVE ser importado, pois
+    é um polyfill importante.
+
+Como tudo agora esta em um escopo privado, eu devo fazer as chamadas privadas tambem, entao
+    eu tenho que remover de form e de button o onsubmit e onclick direto no html, tenho
+    que colocar essas chamadas no arquivo boot.js ficando assim:
+        import {NegociacaoController} from './controllers/NegociacaoController';
+        import {} from './polyfill/fetch';
+
+        let negociacaoController = new NegociacaoController();
+
+        document.querySelector('.form').onsubmit = negociacaoController.adiciona.bind(negociacaoController);
+        document.querySelector('[type=button]').onclick = negociacaoController.apaga.bind(negociacaoController);
+
+    Feito isso, ainda nao vai estar disponivel, pois temos que associar o babel, para pegar as alteracoes de system.js
+
+    O arquivo boot.js instanciará a controller, sendo responsável por associar os métodos do NegociacaoController
+    com os eventos da View. Porém, o nosso código ainda não vai funcionar.
+    Isto porque estamos usando como loader o system.js, por isso,
+    os módulos que o Babel transcompila realizarão a ação usando a sintaxe do mesmo arquivo para auxiliar a importação.
+
+    O transpiler é importante neste processo porque ele mudará o código dos módulos para adequá-los ao loader.
+    De volta ao Terminal, na pasta client, instalaremos o novo módulo - um plugin do Babel.
+
+    vá ate "Como Instalar o babel?" ou "Dependencia de systemjs" para saber mais..
+
+
+
+------------  Substituindo o padrao de projeto Module Pattern pelo Module do ES6 ------------
 
 -- COM MODULE Pattern --
 
