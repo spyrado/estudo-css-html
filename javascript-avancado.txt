@@ -85,7 +85,8 @@ NÃO HÁ uma maneira de interceptar METODOS com PROXY por default.
 
 --- COMO INTERCEPTAR FUNÇÕES ENTÃO? ---
 
-todo metodo, primeiro ele faz um get, e depois da um apply nesse metodo, sabendo disso, vamos utilizar o get: para interceptar metodos.
+Todo metodo, primeiro ele faz um get, e depois da um apply nesse metodo, sabendo disso,
+vamos utilizar o get: para interceptar metodos.
 
 primeiro fazemos uma condicao dentro do GET
 
@@ -98,7 +99,9 @@ get(target,prop,receiver){
             //quando eu chamar uma funcao, ela vai cair aqui, e eu //vou retornar uma nova funcao.
             
             
-            //Tem que dar um Reflect.apply, para executar a funcão original, e passar arguments, o arguments, pega todos os parâmetro do metodo original, para executar a funcao corretamente do target[prop]
+            //Tem que dar um Reflect.apply, para executar a funcão original, e passar arguments,
+            o arguments, pega todos os parâmetro do metodo original, 
+            para executar a funcao corretamente do target[prop]
             
             Reflect.apply(target[prop], target, arguments)
         }
