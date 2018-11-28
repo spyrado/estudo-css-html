@@ -54,9 +54,14 @@ Exemplo: na minha Classe Negociacao, eu tenho uma regra de negocio.
 
 --------- Diferença entre VAR E LET ---------
 
-var -> não possui escopo de bloco possui escopo de FUNÇÃO, tudo que for atribuido dentro de um escopo de bloco, pode ser exibido fora do bloco, e tambem podemos sobrescrever variáveis(oq não é bom)
+var -> não possui escopo de bloco possui escopo de FUNÇÃO, 
+    tudo que for atribuido dentro de um escopo de bloco, pode ser exibido fora do bloco, e tambem podemos sobrescrever variáveis(oq não é bom)
 
-let -> possui escopo de BLOCO, não deixa sobrescrever variáveis já declaradas, apenas atribuir um novo valor a ela.
+let -> possui escopo de BLOCO, não deixa sobrescrever variáveis já declaradas, 
+    apenas atribuir um novo valor a ela ( RECOMENDADA USAR APENAS EM BLOCOS, FORA DE BLOCOS USAR VAR)
+
+const -> variaveis declaradas como const tem seu valor fixo, não podendo ser alterado, 
+    a menos que a variavel seja um new Date por exemplo, que eu posso modificalá atraves de seus metodos.
 
 Exemplo das diferenças:
 
@@ -79,6 +84,8 @@ Exemplo das diferenças:
 Porque aparece isso com let? justamente pq let funciona por escopo de BLOCO.
 
 --- indexedDB ---
+
+** Dexie e o Db.js libs de indexedDB **
 
 IMPORTANTE!
 o onupgradeneeded, só sera executado novamente ( depois da primeira vez ) quando a versao do banco for maior que a atual, isso é.. tem que mudar em .open('nomeBanco', 'numeroVersaoConexao');
@@ -162,3 +169,398 @@ function adiciona(){
             // objetoQueRecebeTransacao, exemplo: negociacoes
             // tipoTransacao = readyonly(apenas leitura) readwrite(leitura e escrita);
         }
+
+-- Listar no indexedDB --
+
+    function listaTodos(){
+                
+        // Precisamos de uma transacao para poder gravar dentro da objectStore
+        //Crio uma transacao
+        let transaction = connection.transaction(['negociacoes'], 'readwrite');
+        //Aponto para qual objectStore eu quero acessar.
+        let store = transaction.objectStore('negociacoes');
+        
+        // ele aponta para cada linha da nossa objectSore, esse é o cara que vai 'passear'por la
+        let cursor = store.openCursor();
+        
+        let negociacoes = [];
+        
+        cursor.onsuccess = e => {
+            //Recebe o ponteiro
+            let atual = e.target.result;
+            // Se tiver um ponteiro valido
+            if(atual){
+                // recebo o valor do ponteiro, apenas as propriedades q recebo
+                let dado = atual.value;
+                
+                negociacoes.push(new Negociacao(dado._data, dado._quantidade, dado._valor));
+                // Pedindo para o indexedDB ir para a proxima negociacao,
+                //Quando chamamos o continue, ele chama o metodo onsuccess novamente, e assim ele vai dar esse loop ate n ter mais dado para apontar
+                atual.continue();
+            }else{
+                console.log(negociacoes);
+            }
+        }
+        
+        cursor.onerror = e => {
+            console.log(e.target.error.name);
+        } 
+    }
+
+-- APAGAR no indexedDB --
+
+apagaTodos(){
+        
+    return new Promise((resolve, reject) => {
+
+        let request = this._connection
+            .transaction([this._store], 'readwrite')
+            .objectStore(this._store)
+            .clear();
+        
+        request.onsuccess = e => resolve(`Negociações apagadas com sucesso.`);
+
+        request.onerror = e => {
+
+            console.log(e.target.error);
+            reject(`Erro ao apagar negociações`)
+        }
+
+    });
+}
+
+--------- Fetch API ---------
+
+Simplificando a maneira de fazer requisições AJAX.
+A Fetch API só me devolve a requisição, SOMENTE se o readyState dela for 4, isso é, se todo o processo foi feito.
+
+.fetch(url) -> url de GET
+.then(res) -> retorna uma resposta da requisicao q foi feita, posso transformar a resposta em
+    json com .json(), em texto com .text().
+
+Exemplo de GET e POST:
+
+-- GET --
+
+    return fetch(url)
+            .then(res => this._handlerError(res))
+            .then(res => res.json()); // converto o dado de string para JSON
+-- POST --
+
+    return fetch(url, {
+        headers: {'Content-type': 'application/json'},
+        method: 'post',
+        body: JSON.stringify(dado) // envio  o dado como string para post
+    })
+    .then(res => this._handlerError(res));
+
+--------- Transpiler (transcompilador) ---------
+
+    Nós programaremos com o ES6 e depois, vamos compilar o código para o ES5.
+    Este processo de downgrade recebe o nome de transcompilação e é feito com o uso de um transpiler (transcompilador).
+
+    Babel e TypeScript já fazem o uso de transpilers.
+
+---- Como Instalar o babel? ----
+
+    De esse comando na pasta raiz do projeto
+        npm install babel-cli@6.10.1 --save-dev 
+            Esse --save-dev é para salvar a dependencia(babel-cli@6.10.1) do babel, no seu package.json
+    POREM, somente o babel-cli não está preparado para entender a SINTAX do ES2015(ES6)
+    Então temos que instalar o babel-preset-es2015, para que ele entenda a sintax e faça o downgrade de linguagem.
+        npm install babel-preset-es2015@6.9.0 --save-dev
+    
+    Bom, não basta ter os 2 instalados, temos que fazer a ligação de um com outro.
+    Então, criamos um arquivo de configuração do babel, o .babelrc, que DEVE ficar na pasta raiz do projeto,
+        esse arquivo é lido toda vez que o babel for executado.
+    E lá dentro do arquivo configuramos da seguinte forma:
+        {
+            "preset" : ["es2015"]
+        }
+    OBS: DEVE estar com aspas duplas dentro do ARRAY de preset, É OBRIGATORIO.
+
+    Feito isso estamos quase prontos para utilizar babel, agora vamos apontar,
+        para qual pasta o babel deve fazer o transpiler.
+    Vá até o package.json e na linha propriedade "scripts" 
+    inclua a seguinte sintax: "build": "babel diretorioDesejado -d destinoDesejado", como no exemplo:
+
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "build": "babel js/app-es6 -d js/app" <- nesse caso ele ira converter toda a pasta js/app-es6 para js/app
+        }
+    
+    Finalizada todas as configurações necessárias, vamos ate o terminal no diretorio raiz do nosso projeto,
+        e digitamos npm run build <- configuramos o build em package.json("build": "babel js/app-es6 -d js/app")
+    
+    E PRONTO, geramos um codigo mais verboso, porem compatível com outros navegadores.
+
+
+    POREM, temos um detalhe, se gerar um erro como está configurado atualmente, ele vai exibir o erro,
+        no arquivo que está com o downgrade(es5), e não queremos isso, queremos que ele aponte o erro
+        em nosso arquivo es6, isso é, queremos fazer um source map, entao vamos ate o arquivo de configuracao(package.json)
+        e em build acrescentamos o seguinte --source-maps ("build": "babel js/app-es6 -d js/app --source-maps")
+        ENTAO, devemos buildar o babel novamente, para ele implementar essa alteracao com o comando npm run build.
+
+        entao ele ira criar arquivos.map, para o navegador identificar que tem um .map, e apontar para o arquivo original,
+        ES6.
+
+        IMPORTANTE, TODA Alteracao feita no arquivo original, deve ser buildada novamente, para que
+            ele atualize os arquivos transcompilados.
+
+        Temos que adicionar um watcher no arquivo de configuracao, para ele observar as mudanças no arquivo original,
+            e atualizar os arquivos que dao suporte ao es6 assim, nao precisamos ficar buildando o babel toda hora.
+
+        -- Como adicionar um watcher? --
+            Vá em package.json "scripts"
+                e adicione a mesma linha do build, porem com um --watch no final.
+
+            "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1",
+                "build": "babel js/app-es6 -d js/app --source-maps",
+                "watch": "babel js/app-es6 -d js/app --source-maps --watch"
+            }
+        E para ficar observando as alteracoes, vc executa o compando 
+            npm run watch
+        E pronto, agora ele vai ficar monitorando as alteracoes dos meus arquivos originais.
+
+    OBS: Os numeros depois de @ representam uma versao específica.
+
+    IMPORTANTE!!
+
+    Muitos tutoriais da internet instalam Babel e outros módulos do Node.js globalmente por uma questão de brevidade,
+    mas que não é uma boa prática.
+
+    Se você precisa da nova versão do Babel porque seu projeto A depende de um novo recurso, 
+    a atualização da instalação global será aplicada em todos os projetos. 
+    Ela pode funcionar perfeitamente em A, mas pode quebrar o projeto B que até então funcionava se algum BUG foi introduzido,
+    um BUG que só afeta um recurso utilizado por B.
+
+    Sendo assim, instalamos Babel local ao projeto, contudo não é nada elegante a forma com que chamaremos manualmente
+    o binário do babel em nosso terminal. Para contornar esse problema e ainda termos o babel instalado localmente
+    para cada um dos nosso projetos, podemos criar um script em package.json que chamará o Babel para nós.
+
+    Qual das opções abaixo possui a chave script configurada corretamente para chamar Babel e compilar todos
+    os nossos arquivos dentro da pasta aluraframe/client/js/app-es6 resultando na pasta aluraframe/client/js/app:
+
+
+    BONUS, Arquivos .map, não afetam o carregamento das páginas, pois eles só são carregados, caso
+        voce abra o console de desenvolvedor.
+
+    E por fim, nem tudo o transpiler é capaz de transcompilar, um exemplo é:
+        se usarmos promises, o código transcompilado continuará a não funcionar caso o navegador não suporte esse recurso,
+        a mesma coisa da Fetch API que vimos. Nesses casos, é comum misturar o processo de transcompilação
+        com o uso de um ou outro polyfill para tapar aquelas lacunas que o transpiler não consegue.
+
+    -- Dependencia de systemjs --
+    Vamos instalar um novo plugin do babel, para ser compativel com o systemjs
+        npm install babel-plugin-transform-es2015-modules-systemjs@6.9.0 --save-dev
+    Ele é um plugin do babel de transformacao de do ES2015 DE MODULO, para usar o systemjs
+        Temos que ir ate o arquivo de configuracao do babel, e adicionar esse modulo, para que o babel
+            execute junto a ele.
+        {
+            "presets" : ["es2015"],
+            "plugins" : ["transform-es2015-modules-systemjs"]
+        }
+
+---------------------- Escopo GLOBAL ---------------------------
+
+Esse é um grande problema da linguem, visto que variaveis, metodos e classes estao em um escopo global,
+entao qualquer lib que eu baixar, que tenha o MESMO NOME que um desses 3 (variaveis, metodos ou classes) a lib,
+ira SOBRESCREVER tudo oq vc fez, e logicamente vai gerar um ou mais erros em todo o seu sistema.
+
+Para solucionar esse problema vamos utilizar MODULOS DO ES6(EcmaScript2015)
+
+---------------------- MODULOS DO EcmaScript2015 ---------------------------
+
+Para utilizarmos os modulos, devemos colocar export (exportar) as classes de dependencia, é como se fosse
+    o return do padrao de projeto Module Pattern
+Feito isso sabemos que cada arquivo.js vira um MODULO.
+
+1 - Cada script meu, é considerado um MODULO JAVASCRIPT, Por padrao.
+2 - Colocar export / import nas classes e chamadas dependentes.
+3 - Definir com uma lib ou mostrar para o navegador QUAL MODULO carregar primeiro.
+
+Quando indicamos qual MODULO carregar primeiro, ele exporta o principal, e AUTOMATICAMENTE, Exporta todas as suas
+dependencias, que magico nao?
+
+vamos utilizar a lib SystemJs, para fazer esse trabalho para nós.
+
+---- LIB Systemjs ----
+
+npm install systemjs@0.19.31 --save
+
+Diferença entre --save e --save-dev, o --save é pra ser utilizado em ambiente de produção, o --save-dev, é pra utilizar
+    nos dois ambientes, producao e desenvolvimento.
+
+Após baixarmos vamos ate o arquivo index.html e colocamos o caminho da pasta, e abaixo, configuramos ele:
+
+<script src="./node_modules/systemjs/dist/system.js"></script>
+<script>
+    System.defaultJSExtensions = true; // permite omitir a extensão .js dos imports
+    System.import('js/app/boot').catch(function(err){ //Definimos o primeiro arquivo a ser importado
+        console.error(err);
+    });
+</script>
+
+Em nosso Projeto raiz, vamos criar o arquivo boot.js
+
+Entao dentro desse arquivo configuramos os arquivos que devem ser carregados:
+
+import {NegociacaoController} from './controllers/NegociacaoController';
+import {} from './polyfill/fetch';
+
+importo o fetch sem passar nenhum parametro, pois o fetch NAO ESTA COMO Modulo ES6, porem ele DEVE ser importado, pois
+    é um polyfill importante.
+
+Como tudo agora esta em um escopo privado, eu devo fazer as chamadas privadas tambem, entao
+    eu tenho que remover de form e de button o onsubmit e onclick direto no html, tenho
+    que colocar essas chamadas no arquivo boot.js ficando assim:
+        import {NegociacaoController} from './controllers/NegociacaoController';
+        import {} from './polyfill/fetch';
+
+        let negociacaoController = new NegociacaoController();
+
+        document.querySelector('.form').onsubmit = negociacaoController.adiciona.bind(negociacaoController);
+        document.querySelector('[type=button]').onclick = negociacaoController.apaga.bind(negociacaoController);
+
+    Feito isso, ainda nao vai estar disponivel, pois temos que associar o babel, para pegar as alteracoes de system.js
+
+    O arquivo boot.js instanciará a controller, sendo responsável por associar os métodos do NegociacaoController
+    com os eventos da View. Porém, o nosso código ainda não vai funcionar.
+    Isto porque estamos usando como loader o system.js, por isso,
+    os módulos que o Babel transcompila realizarão a ação usando a sintaxe do mesmo arquivo para auxiliar a importação.
+
+    O transpiler é importante neste processo porque ele mudará o código dos módulos para adequá-los ao loader.
+    De volta ao Terminal, na pasta client, instalaremos o novo módulo - um plugin do Babel.
+
+    vá ate "Como Instalar o babel?" ou "Dependencia de systemjs" para saber mais..
+
+
+
+------------  Substituindo o padrao de projeto Module Pattern pelo Module do ES6 ------------
+
+-- COM MODULE Pattern --
+
+    var ConnectionFactory = (function(){
+        
+        const stores = ['negociacoes'],
+        version = 4,
+        dbName = 'aluraframe';
+        
+        var connection = null,
+        close = null;
+
+    return class ConnectionFactory{
+        
+        constructor(){
+            throw new Error('Não é possivel criar instãncias de ConnectionFactory');
+        }
+        
+        static getConnection(){
+            
+            return new Promise((resolve, reject) => {
+                
+                let openRequest = window.indexedDB.open(dbName,version);
+                
+                openRequest.onupgradeneeded = e => {
+                    ConnectionFactory._createStores(e.target.result);
+                };
+                
+                openRequest.onsuccess = e => {
+                    
+                    if(!connection) connection = e.target.result;
+                    close = connection.close.bind(connection);
+                    connection.close = function(){
+                        throw new Error('Voce não pode encerrar a conexao diretamente.');
+                    }
+                    resolve(connection);
+                };
+                
+                openRequest.onerror = e => {
+                    console.log(e.target.error);
+                    reject(e.target.error.name);
+                };
+                
+            });
+        }
+
+        static _createStores(connection){
+            stores.forEach(store => {
+                if(connection.objectStoreNames.contains(store))
+                    connection.deleteObjectStore(store);
+
+                connection.createObjectStore(store,{autoIncrement: true});
+            });
+        }
+        
+        static closeConnection(){
+            if(connection){
+                close();
+                connection = null;
+            }
+        }
+    }
+    })();
+
+-- SEM MODULE Pattern, MAS COM O NOVO MODULO DO ES6 --
+
+Trocamos o var por let, pois agora ele esta em escopo de modulo, E ninguem tera acesso a essas variaveis, justamente porque
+    agora esse arquivo é um modulo, e modulos só sao acessiveis quando importamos eles.
+
+const stores = ['negociacoes'],
+version = 4,
+dbName = 'aluraframe';
+
+let connection = null,
+close = null;
+
+export class ConnectionFactory{
+    
+    constructor(){
+        throw new Error('Não é possivel criar instãncias de ConnectionFactory');
+    }
+    
+    static getConnection(){
+        
+        return new Promise((resolve, reject) => {
+            
+            let openRequest = window.indexedDB.open(dbName,version);
+            
+            openRequest.onupgradeneeded = e => {
+                ConnectionFactory._createStores(e.target.result);
+            };
+            
+            openRequest.onsuccess = e => {
+                
+                if(!connection) connection = e.target.result;
+                close = connection.close.bind(connection);
+                connection.close = function(){
+                    throw new Error('Voce não pode encerrar a conexao diretamente.');
+                }
+                resolve(connection);
+            };
+            
+            openRequest.onerror = e => {
+                console.log(e.target.error);
+                reject(e.target.error.name);
+            };
+            
+        });
+    }
+
+    static _createStores(connection){
+        stores.forEach(store => {
+            if(connection.objectStoreNames.contains(store))
+                connection.deleteObjectStore(store);
+
+            connection.createObjectStore(store,{autoIncrement: true});
+        });
+    }
+    
+    static closeConnection(){
+        if(connection){
+            close();
+            connection = null;
+        }
+    }
+}

@@ -9,7 +9,21 @@ PROXY -> FAZ A INTERMEDIAÇÃO ENTRE O OBJETO E UMA ARMADILHA, ELE PRIMEIRO EXEC
 FACTORY -> Seria uma classe que é especializada em criar determinado tipo de objeto.
     Não é uma regra, porem geralmente classes criadas com factory utilizam metodos estáticos, para evitar ficar instanciando.
     
-PROMISSES
+PROMISSES -> Promisses são utilizadas para melhor controle de metodos async, muito bom utiliza-las.
+
+MODULE PATTERN -> Um módulo é uma unidade código confinada e que ninguém tem acesso ao conteúdo 
+    dentro dele. Uma maneira de criarmos um escopo privado no JavaScript é colocando o código
+    em uma função, exemplo, podemos criar uma classe e declarar variaveis acima dessa classe 
+    por algum motivo, isso seria um problema pois variaveis acima de classes estao no escopo global, 
+    e no escopo global qualquer um tem acesso, para resolver isso utilizamos o module pattern, 
+    criamos uma IIFE encapsulando todo o nosso código para que ninguem tenha acesso as variaveis, 
+    e retornamos apenas a classe, que é a unica coisa que queremos que tenham acesso.
+
+DAO -> O padrao de projeto que visa abstrair a complexidade de acessar um banco,
+    separando a logica de negocios da persistencia de dados.
+    isola todo o código que acessa seu repositório de dados em um único lugar
+    Assim, toda vez que o desenvolvedor precisar realizar operações de persistência
+    ele verá que existe um único local para isso, seus DAO's.
 
 ---------------------------- PARAMETROS REST / rest parameter ----------------------------
 
@@ -73,7 +87,8 @@ NÃO HÁ uma maneira de interceptar METODOS com PROXY por default.
 
 --- COMO INTERCEPTAR FUNÇÕES ENTÃO? ---
 
-todo metodo, primeiro ele faz um get, e depois da um apply nesse metodo, sabendo disso, vamos utilizar o get: para interceptar metodos.
+Todo metodo, primeiro ele faz um get, e depois da um apply nesse metodo, sabendo disso,
+vamos utilizar o get: para interceptar metodos.
 
 primeiro fazemos uma condicao dentro do GET
 
@@ -86,7 +101,9 @@ get(target,prop,receiver){
             //quando eu chamar uma funcao, ela vai cair aqui, e eu //vou retornar uma nova funcao.
             
             
-            //Tem que dar um Reflect.apply, para executar a funcão original, e passar arguments, o arguments, pega todos os parâmetro do metodo original, para executar a funcao corretamente do target[prop]
+            //Tem que dar um Reflect.apply, para executar a funcão original, e passar arguments,
+            o arguments, pega todos os parâmetro do metodo original, 
+            para executar a funcao corretamente do target[prop]
             
             Reflect.apply(target[prop], target, arguments)
         }
@@ -736,6 +753,32 @@ let -> uso recomendado, pois ela faz juz ao escopo de bloco.
       console.log(n1.data);
       console.log(n1.quantidade);
 
+  ------ Comparando objetos ------
+
+    Não conseguimos comparar objetos, pois cada objeto tem um lugar reservado na memória, e quando 
+    comparamos objetos, oq o javascript faz, é ir até o local onde se encontra o objeto na memoria, e verificar
+    se esse objeto comparado, está apontando para o mesmo local de memoria que o outro objeto.
+
+    obj1 armazenado na memoria x
+    obj2 armazenado na memoria y
+
+    EX: obj1 == obj2 // false
+
+    quando fizermos isso: obj1 = obj2, e der obj1 == obj2 // true
+    irá retornar true, pois o obj1 agora para de apontar para a memoria x, e passa a apontar para a memoria y,
+    e como obj2 já está na memoria y, y==y = true.
+
+    --- MELHORANDO A LOGICA ---
+
+    Podemos melhorar essa lógica ainda mais, utilizando JSON.stringify.
+    JSON.stringify(ob1) == JSON.stringify(obj2);
+
+    Ele vai transformar o nosso objeto em uma stringona virando um tipo literal E tipos literais são comparáveis..,
+    e então nós comparamos essas 2 stringonas.
+    ele vai comparar se TODO O OBJETO é igual, a TODO O OUTRO OBJETO propriedades metodos etc..
+
+
+
 
   ------ Métodos de um objeto instanciado --------
 
@@ -1205,3 +1248,54 @@ Então, quais são os estados possíveis de um requisição AJAX? Listaremos aba
 4: requisição está concluída e a resposta está pronta
 
 Se o estado for igual a 4, buscaremos os dados do servidor. Este é o estado que a requisição está concluída e a resposta está pronta, mas não podemos confiar no mesmo, porque pode ocorrer algum erro no servidor e ainda assim, a resposta será válida. É comum o servidor lidar com estados da requisição. Então, só teremos certeza de que os dados chegaram se o xhr.status for igual a 200 (status code genérico).
+
+---------------------- Monkey Pathing ---------------------------
+
+Monkey Pathing -> é uma técnica para adicionar, modificar ou suprimir o comportamento padrão de um trecho de código em tempo de execução sem alterar seu código-fonte original, exemplo:
+
+openRequest.onsuccess = e => {
+                
+    if(!connection) connection = e.target.result;
+
+    connection.close = function(){
+        throw new Error('Voce não pode encerrar a conexao diretamente.');
+    }
+    resolve(connection);
+};
+
+Estou sobrescrevendo a funcao nativa de fechar conexao, para que o programador nao possa encessar a conexao diretamente, apenas chamando uma funcao especifica da classe, para n ocorrer de quebrar outras conexoes...
+
+---------------------- Tipos literais ---------------------------
+
+    Em javascript STRING, NUMBER E BOOLEAN sao considerados tipos literais, e os tipos literais podem ser comparados pelo
+    VALOR EM SI, eles não apontar para o local de memoria deles ( apesar de todos serem objetos ).
+
+---------------------- Impedindo que duplique a lista que vem do back-end ---------------------------
+    service
+        .obterNegociacoes() // 1
+        .then(negociacoes => negociacoes.filter(negociacao => // 2
+            !this._listaNegociacoes.negociacoes.some(negociacaoExistente => // 3
+                JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente))) // 4
+            )
+    1 -> Obtem as negociacoes do back-end
+    2 -> pega as negociacoes e faz um filtro.
+    3 -> Dentro desse filtro, eu pergunto para some() se o objeto de lista negociacao é igual ao meu
+        objeto que veio do back-end, se é igual, não inclui ele DENOVO na lista, se for diferente, INCLUI ele na lista.
+        como a funcao some() retorna true ou false, eu primeiro vejo se é igual, SE FOR eu nego toda a instrucao !this._listaNegociacoes e etc
+        para não incluir no filter, pois o filter aceita true or false, e se achar a mesma e retornar true,
+        vai incluir negociacao já existente na lista anterios.
+
+---------------------- Polyfill ---------------------------
+
+São implementacões de compatibilidade com novas tecnologias, exemplo de polyfill.
+
+POLYFILL DE includes do ES6.
+
+if(!Array.prototype.includes) {
+    console.log('Polyfill para Array.includes aplicado.');
+    Array.prototype.includes = function(elemento) {
+        return this.indexOf(elemento) != -1;
+    }
+}
+
+Eu utilizo recursos antigos, para fazer com que a nova funcao, tenha a MESMA funcionalidade em sua versao atual.
