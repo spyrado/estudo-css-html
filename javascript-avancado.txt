@@ -13,7 +13,9 @@ PROMISSES
 
 ---------------------------- PARAMETROS REST / rest parameter ----------------------------
 
-IMPORTANTE, Utilizar REST, apenas no final da passagem de parametros, pois se colocar no comeco ele vai comecar a pegar todos os parametros e armazenar em um vetor, exemplo:
+IMPORTANTE, Utilizar REST, apenas no final da passagem de parametros, 
+pois se colocar no comeco ele vai comecar a pegar todos os parametros e armazenar em um vetor, 
+exemplo:
 
     funcao(...model, view, props){
         

@@ -366,7 +366,13 @@ git stash clear -> remove todos os stashs criados.
 git bisect start -> inicia o modo bisect, que faz comparações de rashs para 
     descobrir quando algo ocorreu um bug, uma alteração que agt qr desfazer etc.
     Exemplo:
-        depois de iniciar o modo bisect vc vai ter q dar git bisect bad <hash> e um git bisect good <hash> para o bisect identificar aonde você quer chegar, feito isso ele vai te dando opções e você vai dizendo se aquela opção se aproxima do que você quer ou não, se NÃO se aproximar você da git bisect bad que ele vai voltar pra commits anteries com as alterações no mesmo item, se vc der git bisect good ele vai ir pra frente , até chegar uma hora que ele n vai ter como ir pra frente nem pra tras, ai significa que foi encontrado oq você estava procurando.
+        depois de iniciar o modo bisect vc vai ter q dar git bisect bad <hash> 
+        e um git bisect good <hash> para o bisect identificar aonde você quer chegar,
+        feito isso ele vai te dando opções e você vai dizendo se aquela opção se aproxima
+        do que você quer ou não, se NÃO se aproximar você da git bisect bad que ele vai voltar
+        pra commits anteriores com as alterações no mesmo item, se vc der git bisect good
+        ele vai ir pra frente , até chegar uma hora que ele n vai ter como ir pra frente
+        nem pra tras, ai significa que foi encontrado oq você estava procurando.
 
 git bisect bad <hash> -> Ao dar 
 
