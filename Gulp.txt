@@ -1,0 +1,20 @@
+/***** O que é GULP? *****/
+
+    GULP é um automatizador de tarefas para front end.
+
+
+https://gulpjs.com/
+
+----------- HTTP ARCHIVE -----------
+
+    https://httparchive.org/ ->  O HTTP Archive rastreia como a Web é criada.
+
+
+----------- IMAGEM TEM UM PESO? -----------
+    Sim, em um web site, toda imagem tem seu peso, é importante minificalas com programas
+    ou recursos web, exemplo:
+        Aplicativo Desk para minificar imagens: ImageOptim
+        Pagina web para minificar imagens: https://tinypng.com/
+
+    Dependendo do site eles só minificam um tipo de extensão, procure pela extensao
+        sua extensao desejada...(.png, .jpeg, .svg e etc)
