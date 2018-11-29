@@ -18,3 +18,73 @@ https://gulpjs.com/
 
     Dependendo do site eles só minificam um tipo de extensão, procure pela extensao
         sua extensao desejada...(.png, .jpeg, .svg e etc)
+
+----------- INSTALANDO GULP -----------
+
+npm init -> instala o package.json (caso voce já tenha o package n é necessário instala-lo )
+    de enter para todas as perguntas e YES no final.’
+
+    --- Porque é necessário instalar o package.json? ---
+
+        Porque é lá que ficara listado todas as dependencias do seu projeto,
+        em package.json:
+        "devDependencies": {
+            "gulp": "^3.9.0"
+        }
+
+        e se for necessário futuramente configurar todas as dependencias NOVAMENTE,
+        é só excluir a pasta node_modules e dar
+            npm install
+        que o package.json identifica TODAS AS DEPENDENCIAS e baixa pra voce..
+        isso facilita e MUITO a vida.
+
+Após dar um init, instale de fato o gulp
+    npm install gulp@3.9.0 --save-dev
+
+Após instalar, para iniciar o gulp configure no package.json a chamada dele,
+    vá em scripts e adicione esse script:
+        "scripts": {
+            "gulp": "gulp"
+        },
+    Ficará assim:
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "gulp": "gulp"
+        },
+Agora sim podemos iniciar o gulp:
+    npm run gulp
+Vai gerar um erro: No gulpfile found
+    Vamos ter que criar o arquivo gulpfile.js NA RAIZ DO PROJETO.
+Ele vai gerar outro erro: Task 'default' is not in your gulpfile
+    Isso é porque nosso gulpfile.js não está programado para executar nenhuma tarefa.
+
+----------- CONFIGURANDO GULPFILE.JS -----------
+
+Para começarmos a usar o Gulp, temos que importar o gulp, para começar a utiliza-lo
+    dentro do arquivo gulpfile.js, então.. lá no arquivo gulpfile.js vamos importar
+    o Gulp:
+        var gulp = require('gulp'); -> o nome gulp é o nome da pasta que 
+            está em node_modules, se fosse gulp-antigo, voce colocaria no require
+            require('gulp-antigo').
+Feito isso temos nosso Objeto gulp criado, e podemos trabalhar em cima dele agora.
+
+    -- Configurando gulp-imagemin no gulpfile.js --
+
+Vá até o arquivo gulpfile.js, e inclua a chamada para o imagemin:
+    var gulp = require('gulp'),
+    imagemin = require('gulp-imagemin');
+
+----------- TRABALHANDO COM GULP -----------
+
+Após seguir os passos de instalação/configuração.. 
+    voce DEVE TER O objeto gulp criado já, então vamos começar a trabalhar com ele.
+
+gulp.src('caminhoPasta') -> indica o caminho de origem para trabalhar.
+
+???? -> porem entre o src e o dest, tem que ter um plugin para modificar 
+    os itens do SRC, e jogar no DEST
+    Vamos utilizar o plugin gulp-imagemin
+        npm install gulp-imagemin@2.3.0 --save-dev
+    ver como configuralo em "Configurando gulp-imagemin no gulpfile.js"
+
+gulp.dest('caminhoPasta') -> grava os dados trabalhados no caminho indicado de destino.
