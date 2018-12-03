@@ -85,6 +85,54 @@ gulp.src('caminhoPasta') -> indica o caminho de origem para trabalhar.
     os itens do SRC, e jogar no DEST
     Vamos utilizar o plugin gulp-imagemin
         npm install gulp-imagemin@2.3.0 --save-dev
-    ver como configuralo em "Configurando gulp-imagemin no gulpfile.js"
+    ver como configura-lo em "Configurando gulp-imagemin no gulpfile.js"
+
+Feito isso.. agora seu codigo vai ficar assim:
+    gulp.src('caminhoPasta')
+        .pipe(imagemin());
 
 gulp.dest('caminhoPasta') -> grava os dados trabalhados no caminho indicado de destino.
+
+
+---- PORQUE PIPE? ----
+    Pipe faz a ligação dos plugins com a origem e destino (src e dest),
+    o código ficaria assim:
+         gulp.src('caminhoPasta')
+        .pipe(imagemin())
+        .pipe(gulp.dest('caminhoPasta'));
+    Nesse trecho eu estou falando o seguinte.. pega os arquivos do caminho X,
+    dou um pipe(tubo) para ele saber por onde deve passar.. ai eu falo..
+    dentro do pipe(tubo) vc vai primeiro passar pelo meu plugin de otimizacao de imagens
+    e depois eu dou um pipe novamente e falo pra onde essas imagens já otimizadas vão..
+
+
+Então.. criamos nossa task(tarefa) para que o gulp consiga identificar
+qual tarefa ele deve rodar:
+
+    gulp.task('nomeTask',function(){
+        gulp.src('src/img')  <-- tarefas que essa task irá executar..
+            .pipe(imagemin())
+            .pipe(gulp.dest('src/img'));
+    });
+
+feito isso chamamos nossa task via:
+    npm run gulp nomeTask
+
+Porem vai minificar 0 arquivos.. pois estamos pedindo pra minificar
+    'imagem da pasta img, e n os seus arquivos.
+
+Para conseguir minificar todos os arquivos de todas as pastas que estão em img,
+    fazemos o seguinte, utilizamos um padrão chamado de.. GLOB PATTERN, ficaria assim:
+        gulp.src('src/img/**/*').
+    ** -> TODOS OS DIRETORIOS
+    * -> TODOS OS ARQUIVOS DENTRO DOS DIRETORIOS
+
+
+
+    --- GLOB PATTERN ---
+        In computer programming, glob patterns specify sets of filenames with wildcard
+        characters. For example, the Unix command mv *.txt textfiles/ moves (mv) all files 
+        with names ending in .txt from the current directory to the directory textfiles. 
+        Here, * is a wildcard standing for "any string of characters" and *.txt is a 
+        glob pattern. The other common wildcard is the question mark (?), which stands 
+        for one character.
