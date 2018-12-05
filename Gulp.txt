@@ -136,3 +136,85 @@ Para conseguir minificar todos os arquivos de todas as pastas que estão em img,
         Here, * is a wildcard standing for "any string of characters" and *.txt is a 
         glob pattern. The other common wildcard is the question mark (?), which stands 
         for one character.
+
+----------- OTIMIZAÇÕES DE IMAGENS -----------
+
+    É IMPORTANTE resaltar.. se uma imagem for otimizadas mais de uma vez, 
+    ela irá perder a qualidade, e começar a ficar perceptivel a perca
+    de qualidade, o ideal é, que quem for alterar essa imagem, sempre tenha em maos,
+    o backup da imagem original, e sempre alterar a imagem original, e subistituir,
+    a imagem anterior do projeto pela original, que ai a imagem do projeto, sempre será
+    otimizada apenas uma vez.
+        EXEMPLO:
+            img/imgprojeto.png
+            designer -> backupImgProjeto.png
+    o designer nunca deve alterar uma imagem que já está no projeto, sempre o seu backup
+    e após isso incluir a imagem backup no projeto.
+
+----------- Plugin para EXCLUIR DIRETORIOS/ARQUIVOS -----------
+
+    npm install gulp-clean@0.3.1 --save-dev
+
+gulp.task('clean', function(){
+    gulp.src('dist')
+        .pipe(clean());
+});
+
+no caso acima, ao executar npm run gulp clean,
+    ele irá remover a pasta dist.
+
+
+----------- DEPENDENCIAS DE TAREFAS -----------
+
+/* Copia tudo da pasta src, e joga dentro de dist */
+gulp.task('copy', ['clean'],function(){
+    gulp.src('src/**/*')
+        .pipe(gulp.dest('dist')); // Caso n tenha dist, ele cria a pasta dist
+});
+
+/* Remove a pasta dist */
+gulp.task('clean', function(){
+    gulp.src('dist')
+        .pipe(clean());
+});
+
+Na task copy, como segundo parametro dentro de um vetor, eu chamo as dependencias dessa
+    tarefa, ali eu quero dizer o seguinte remove a pasta dist PRIMEIRO, depois da um copy
+    da src para a dist, POREM o GULP é assincrono, ou seja ele executa as t
+    
+----------- COMO TORNAR TAREGAS SINCRONAS? -----------
+
+Dando um return na funcionalidade que voce quer que execute primeiro voce diz ao gulp
+    ele irá retornar seu stream sinalizando para o gulp que essa tarefa depende da outra,
+    Resumingo.. o gulp entende que deve esperar aquela task finalizar para começar
+    a outra task.
+
+var gulp = require('gulp'),
+    imagemin = require('gulp-imagemin');
+    clean = require('gulp-clean');
+
+/* Copia tudo da pasta src, e joga dentro de dist */
+gulp.task('copy', ['clean'],function(){
+    console.log('Copiando src e jogando e dist...');
+    return gulp.src('src/**/*')
+        .pipe(gulp.dest('dist')); // Caso n tenha dist, ele cria a pasta dist
+        // AQUI EU RETORNO A DEPENDENCIA DE COPY
+});
+
+/* Remove a pasta dist */
+gulp.task('clean', function(){
+    console.log('Removendo diretorio Dist...');
+    return gulp.src('dist')
+        .pipe(clean()); // AQUI EU RETORNO A DEPENDENCIA DE CLEAN
+});
+
+/* Minifica imagens da pasta dist (distribuição) */
+gulp.task('build-img', ['copy'],function(){
+    console.log('Minificando imagens...');
+    gulp.src('dist/img/**/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist/img'));
+});
+
+Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'copy'.
+    como eles tem DEPENDENCIAS, as dependencias devem retornar suas dependencias.
