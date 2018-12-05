@@ -349,7 +349,19 @@ git revert <hashDoCommit> -> desfaz as alterações que um commit
     git revert 2
     
     o arquivo não terá mais os numeros romanos, voltará ao estado anterior que era numeros normais.
-    
+
+git cherry-pick -> Envia um commit específico para o branch desejado, exemplo:
+  Inicialmente vá até a branch que deseja pegar o commit!
+    git checkout "nome da branch"
+  Procure o commit que deseja receber
+    git log
+  Pegue o hash do commit e copie. Você visualizara algo parecido com o código abaixo!
+    "9ce8fa5a3d3a3555222eabb234df93cc5447####"
+  Vá até a branch que deseja receber o commit. Digite o nome sem aspas.
+    git checkout "nome da branch"
+  Se estiver na branch correta, digite o cherry pick com o hash sem aspas, para receber o commit.
+    git cherry-pick "9ce8fa5a3d3a3555222eabb234df93cc5447####" 
+
 git stash -> guarda as alterações que ainda não foram commitadas no stash
 
 git stash list -> verifica quantos stashs tem.
