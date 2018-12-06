@@ -1,0 +1,22 @@
+****************** SEO ******************
+
+- H1 h2 h3, strong, nav, footer
+- Metatags
+- Nome de arquivo de Imagens e alt de imagem
+- Url do site
+- Url das paginas de preferência divida por categorias
+    Www.venda.com/produtos/moletom-abercrombie-vinho.html
+- Usabilidade
+- Site responsivo tem um peso
+- Outros sites linkarem para o seu, tem um peso.
+- Site links, sao os sublinks de um site, exibidos na página do google, n podemos definir como eles vão aparecer... Porem podemos remover os links q não nos enteressam no momento por algum motivo, pela mastertools
+- Links duplicados.. exemplo, o seu site tinha um link alura/estudantes e mudou para alura/estudos, você deve mostrar pro Google que os 2 redirecionam pro mesmo local, como fazer isso? Tem q dar a mensagem de redirect permanente (status 301), pq se n fizer isso.. vc vai ter 2 links da msm url disputando por pesos no Google.
+- Tentar n ter links quebrados no site.. e de preferência sempre tenha uma página de not found amigável.
+- Falar para os buscadores como não indexar as páginas(paginas que não são necessarias serem indexadas), criando o arquivo robots.txt na raiz do seu projeto..
+    Coloque User-agent: *, estou dizendo para qualquer buscador que acessar o site, seguir as instruções abaixo, colocando Disallow: nomeDiretório ele irá ignorar essas páginas e n vai indexar, cada buscador(Google, Bind, Yahoo) tem o seu User Agent específico..
+- Link Building -> fazer com que outros sites linkem para o seu, quando mais famoso ou quanto mais autoridade o site tiver, melhor vai ser o peso do seu site, CLARO.. que msm o site sendo famoso.. para ter MAIS PESO AINDA, ele tem que ter o assunto relacionado com o seu, ai seu site ganha mais propriedade no assunto que ele aborda.
+- Links tem sua importância referente a ordem em que aparece(top down) no site, exemplo:
+    Header>nav com links normalmente são os primeiros links do site.. ai vem o conteúdo do site com links.. e depois o footer com links.. então.. header nav tem os links com majs importância o meio que é o conteúdo, tem um pouco menos de importancia, e o footer tem menos importancia ainda
+- Colocar os links naturalmente no seu site, como no exemplo do naturalmente, eu n precisei colocar clique aqui.
+- Links em comentários IMPORTANTE, links em comentários o ideal é colocar dentro da tag <a src="www.algumlink.com" rel="nofollow">(CASO, Outras pessoas tenham permissão de comentar em seu site/blog), se for só você que comenta, não tem problema.
+- Para ver o quão relevante é seu site, baixe o plugin do MozBar, ele fala qual é a autoridade do site de 0 a 100
