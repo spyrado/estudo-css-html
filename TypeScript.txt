@@ -1,0 +1,71 @@
+**************** TypeScript ****************
+
+--------------- Configurando o compilador do TypeScript --------------- 
+
+    npm init -> caso nao tenha o package.json instalado ainda...
+    npm install typescript@2.3.2 --save-dev
+    Após isso precisaremos configura-lo, para dizer em qual diretorio ele vai ir, 
+    qual versao de js ele vai gerar em tal diretorio, fazemos isso na pasta raiz app/tsconfig.json
+
+    dentro de tsconfig.json colocamos a seguinte configuracao:
+        {
+            "compilerOptions": {
+                "target": "es6",
+                "outDir": "app/js"
+                "noEmitOnError": true
+            },
+            "include": [
+                "app/ts/**/*"
+            ]
+        }
+    compilerOptions -> target -> significa, para qual versao js, eu vou converter o meu ts.
+    compilerOptions -> outDir -> significa, para qual diretorio eu vou jogar meu ts já compilado para js.
+    compilerOptions -> noEmitOnError -> se true, significa que ENQUANTO houver erro de compilacao, ele nao vai compilar
+        para javascript..
+
+    include -> de quais lugares eu devo pegar o ts para compilar para js.
+
+    temos que configurar o package.json, para executar o compiler..
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "compile": "tsc",
+            "start": "tsc -w"
+        },
+    
+    no terminal digite:
+        npm run compile
+    ou para ficar watching modificacoes digite:
+        npm start
+
+    Só lembrando, que o compilador do typescript fica em /node_modules/typescript/bin/tsc
+        por isso chamamos tsc toda hora na aba scripts
+    
+    e seu codigo ts será convertido em es6, e CASO tenha algum erro, ele vai gerar em tempo de compilacao,
+    e NAO de execucao, como no javascript.
+
+    IMPORTANTE, sempre que voce criar/modificar o arquivo tsconfig.json, feche e abra o visual studio, para que ele tambem,
+    leve em consideracao as novas alteracoes do arquivo tsconfig.json.
+
+    ---------- TypeScript ----------
+
+    No mundo TypeScript.. declaramos as variaveis no começo da classe, como é feito em Java, e outras linguagens,
+    exemplo:
+        class Negociacao {
+
+            private _data;
+            private _quantidade;
+            private _valor;
+
+            constructor(data, quantidade, valor){
+                
+                this._data = data;
+                this._quantidade = quantidade;
+                this._valor = valor;
+            }
+        }
+
+    ---------- Modificadores de Acesso ----------
+
+    private -> somente a propria Classe pode acessar.
+
+    
