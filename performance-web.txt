@@ -1,0 +1,9 @@
+**************** PERFORMANCE WEB ****************
+
+CADA browser tem seu limite máximo de carregar arquivos simultaneos,
+    se vc atinge o limite máximo ele vai esperar um download de arquivo terminar,
+    pra começar o outro, isso em desktop até que n é muito relevante,
+    mas em mobile, é muito relevante, pois o 3g/4g tem latencia, isso é, tem um delay,
+    pra baixar as informações, E se tiver com o limite maximo de arquivos, ele vai
+    demorar MAIS AINDA pra baixar o restante das informações, pode ser até que o
+    usuário desista de continuar em seu site.
