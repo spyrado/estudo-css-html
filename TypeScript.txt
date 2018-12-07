@@ -12,7 +12,8 @@
             "compilerOptions": {
                 "target": "es6",
                 "outDir": "app/js"
-                "noEmitOnError": true
+                "noEmitOnError": true,
+                "noImplicitAny": true
             },
             "include": [
                 "app/ts/**/*"
@@ -22,6 +23,7 @@
     compilerOptions -> outDir -> significa, para qual diretorio eu vou jogar meu ts já compilado para js.
     compilerOptions -> noEmitOnError -> se true, significa que ENQUANTO houver erro de compilacao, ele nao vai compilar
         para javascript..
+    compilerOptions -> noImplicitAny -> se true, nao adote o tipo any
 
     include -> de quais lugares eu devo pegar o ts para compilar para js.
 
@@ -67,5 +69,50 @@
     ---------- Modificadores de Acesso ----------
 
     private -> somente a propria Classe pode acessar.
+
+    ---------- Tipagem ----------
+
+    Toda variavel que não for declarada seu TIPO, por padrão ela vem como ANY(aceita receber qualquer tipo).
+    Variaveis com tipo number e tipo String, funcionam metodos nelas, pois o javascript faz o (auto-boxing)
+    para String(Objeto) e Number(Objeto) respectivamente.
+
+    private nomeVariavel: tipoVariavel;
+    private nome: any;
+
+    any -> qualquer coisa.
+    string -> recebe um texto
+    number -> tanto inteiro como float.
+    Element -> representa o tipo elemento html em typescript
+    Event -> representa o tipo evento em typescript
+    Date -> Objetos do tipo data.
+
+    ---------- ATALHOS PARA PASSAGEM DE PARAMETROS NO CONSTRUTOR ----------
+
+    ANTES:
+        class Negociacao {
+
+        private _data: Date;
+        private _quantidade: number;
+        private _valor: number;
+
+            constructor(data, quantidade, valor){
+                
+                this._data = data;
+                this._quantidade = quantidade;
+                this._valor = valor;
+            }
+        }
+    DEPOIS:
+        class Negociacao {
+
+        constructor(
+            private _data: Date, 
+            private _quantidade: number, 
+            private _valor: number
+        ){}
+
+    JÁ declaramos no proprio construtor o modificador de acesso, e o tipo.
+
+
 
     
