@@ -72,9 +72,29 @@
 
     ---------- Tipagem ----------
 
+    DICAS:
+
     Toda variavel que não for declarada seu TIPO, por padrão ela vem como ANY(aceita receber qualquer tipo).
+
     Variaveis com tipo number e tipo String, funcionam metodos nelas, pois o javascript faz o (auto-boxing)
     para String(Objeto) e Number(Objeto) respectivamente.
+
+    Tipo Element, é genérico.. se voce quiser pegar o valor de um campo input por exemplo, vc tem que declarar o tipo correto
+
+    BOAS PRATICAS:
+
+    Sempre devolver o tipo de retorno em um metodo, exemplo
+            adiciona(negociacao: Negociacao): void{
+                this._negociacoes.push(negociacao);
+                return "xx"; <- vai dar erro, pois eu declarei o tipo void que nao deve retornar nada, removendo o return,
+                                    ele compila sem problemas.
+            }
+
+            paraArray(): Negociacao[]{
+                return [].concat(this._negociacoes);
+            }
+    Em ambos os casos eu estou definindo qual é o tipo de dado aceito, e qual o tipo de dado retornado.
+
 
     private nomeVariavel: tipoVariavel;
     private nome: any;
@@ -82,9 +102,21 @@
     any -> qualquer coisa.
     string -> recebe um texto
     number -> tanto inteiro como float.
+    HTMLInputElement -> recebe elementos do tipo input.
     Element -> representa o tipo elemento html em typescript
     Event -> representa o tipo evento em typescript
     Date -> Objetos do tipo data.
+    Array -> temos que indicar o tipo do Array
+        private _negociacoes: Array<Negociacao> = []; OU private _negociacoes: Negociacao[] = [];
+        O segundo metodo é um shorthand para declaracoes de array:
+
+    Nesse caso ele só vai receber Objetos do tipo Negociacao
+
+    Declarando Classes:
+        private _negociacoes: Negociacoes = new Negociacoes();
+            shorthand 
+        private _negociacoes = new Negociacoes();
+            o typescript já identifica que o _negociacoes DEVE ser do tipo Negociacoes, por receber a classe dele.
 
     ---------- ATALHOS PARA PASSAGEM DE PARAMETROS NO CONSTRUTOR ----------
 
@@ -112,6 +144,35 @@
         ){}
 
     JÁ declaramos no proprio construtor o modificador de acesso, e o tipo.
+
+---------- Casting TYPESCRIPT ----------
+
+Esse processo de conversão explícita é chamado de casting. No caso, estamos forçando uma conversão
+    de um tipo mais genérico para um tipo mais específico,
+    estou forçando o elemento generico (document.querySelector('#data');) 
+    para virar um elemento do mesmo tipo da minha variavel (private _inputData: HTMLInputElement;)
+    resultando em (this._inputData = <HTMLInputElement>document.querySelector('#data');).
+
+private _inputData: HTMLInputElement;
+private _inputQuantidade: HTMLInputElement;
+private _inputValor: HTMLInputElement;
+
+constructor() {
+
+    this._inputData = <HTMLInputElement>document.querySelector('#data');
+    this._inputQuantidade = <HTMLInputElement>document.querySelector('#quantidade');
+    this._inputValor = <HTMLInputElement>document.querySelector('#valor');
+} 
+
+Outra situacao tambem:
+    eu posso ter um tipo mais GENERICO, E receber um TIPO mais específico, sem precisar de conversao.
+    exemplo:
+
+    this._inputData = <HTMLInputElement>document.querySelector('#data');
+    const a: Element = this._inputData;
+
+    Declarei uma constante a como Element(generico) e estou pessando o inputData(HTMLInputElement), que é especifico.
+    porem n vou ter acesso ao a.value, pois o meu tipo é o generico.
 
 
 
