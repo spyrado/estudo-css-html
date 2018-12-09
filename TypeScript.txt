@@ -69,6 +69,7 @@
     ---------- Modificadores de Acesso ----------
 
     private -> somente a propria Classe pode acessar.
+    protected -> Apenas a propria classe e seus filhos(herança) podem acessar.
 
     ---------- Tipagem ----------
 
@@ -173,6 +174,53 @@ Outra situacao tambem:
 
     Declarei uma constante a como Element(generico) e estou pessando o inputData(HTMLInputElement), que é especifico.
     porem n vou ter acesso ao a.value, pois o meu tipo é o generico.
+
+---------- Heranca/Herança TYPESCRIPT ----------
+
+Em typescript temos que mudar um pouco a forma como fazemos heranca em es6.
+
+Temos que informar um tipo generico View<T> para a classe pai, e passar esse tipo generico,
+para todos os argumentos que necessitam de um tipo generico nas classes filhas,
+nesse caso eu estou passando esse tipo genérico para os tipos dos metodos,
+pois cada metodo tem um tipo diferente:
+    update(model: T): void{
+    template(model: T): string{
+Em suas classes filhas eu faco o seguinte para identificar o tipo.
+    class MensagemView extends View<Mensagem> {
+    class NegociacoesView extends View<Negociacoes> {
+Dizendo olha View.. onde tem o tipo generico ai no Pai, coloca esse tipo aqui pra mim:
+    View<Mensagem>
+    View<Negociacoes>
+E assim todos os metodos do pai, vao seguir a regra definida nas classes filhas.
+
+class View<T> {
+
+    protected _elemento: Element;
+
+    constructor(seletor: string){
+
+        this._elemento = document.querySelector(seletor);
+    }
+
+    update(model: T): void{
+        this._elemento.innerHTML = this.template(model);
+    }
+
+    template(model: T): string{
+
+        throw new Error('Você deve implementar o metodo template');
+    }
+}
+
+-- EXEMPLO de classe filha. --
+
+    class MensagemView extends View<Mensagem> {
+
+        template(model: Mensagem): string{
+
+            return model.texto ? `<p class="alert alert-info">${model.texto}</p>` : ``;
+        }
+    }
 
 
 
