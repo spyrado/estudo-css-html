@@ -151,19 +151,6 @@ Para conseguir minificar todos os arquivos de todas as pastas que estão em img,
     o designer nunca deve alterar uma imagem que já está no projeto, sempre o seu backup
     e após isso incluir a imagem backup no projeto.
 
------------ Plugin para EXCLUIR DIRETORIOS/ARQUIVOS -----------
-
-    npm install gulp-clean@0.3.1 --save-dev
-
-gulp.task('clean', function(){
-    gulp.src('dist')
-        .pipe(clean());
-});
-
-no caso acima, ao executar npm run gulp clean,
-    ele irá remover a pasta dist.
-
-
 ----------- DEPENDENCIAS DE TAREFAS -----------
 
 /* Copia tudo da pasta src, e joga dentro de dist */
@@ -218,3 +205,42 @@ gulp.task('build-img', ['copy'],function(){
 
 Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'copy'.
     como eles tem DEPENDENCIAS, as dependencias devem retornar suas dependencias.
+
+----------- PLUGINS GULP -----------
+
+-- Automatizar Concatenação de arquivos --
+
+    Link ref: https://www.npmjs.com/package/gulp-concat
+    npm install gulp-concat@2.6.0 --save-dev
+
+-- Automatizar troca de nome de arquivos --
+
+    Link ref: https://www.npmjs.com/package/gulp-html-replace#usage
+    npm install gulp-html-replace@1.5.4 --save-dev
+
+-- Exclui um diretoio/pasta  --
+
+    Link ref: https://www.npmjs.com/package/gulp-clean
+    npm install gulp-clean@0.3.1 --save-dev
+
+    gulp.task('clean', function(){
+        gulp.src('dist')
+            .pipe(clean());
+    });
+
+    no caso acima, ao executar npm run gulp clean,
+        ele irá remover a pasta dist.
+
+----------- TASK DEFAULT GULP -----------
+
+    Ao nomear uma task como default, o gulp entende que ao dar o comando
+        npm run gulp 
+    ele já deve buscar pela task default, e executar oq foi passada pra ela,
+    exemplo:
+        /* Exucuta todas as minhas tarefas, copy com dependencia 
+        E o restante assincronamente, isso é.. vao rodar ao msm tempo, pois 
+        eles não dependem do outro */
+        gulp.task('default',['copy'], function(){
+            
+            gulp.start('build-img','build-js', 'build-html');
+        });
