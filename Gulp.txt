@@ -231,6 +231,89 @@ Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'co
     no caso acima, ao executar npm run gulp clean,
         ele irá remover a pasta dist.
 
+-- Automatizar minificação de arquivos js --
+    
+    link ref: https://www.npmjs.com/package/gulp-uglify
+    npm install gulp-uglify@1.4.1 --save-dev
+
+    gulp.task('build-js', function(){
+        console.log('Gerando arquivo all.js');
+        gulp.src(['./dist/js/jquery.js','./dist/js/home.js','./dist/js/produto.js'])
+        .pipe(concat('all.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
+    });
+
+    o src será os que eu defini e na ordem que eu defini dentro do vetor.
+    vou concatenar eles em all.js, e vou minificar eles com uglify após isso
+    eu coloco ele no diretorio final.
+
+-- Automatizar minificação de arquivos css --
+    
+    link ref: https://www.npmjs.com/package/gulp-cssmin
+    npm install gulp-cssmin@0.1.7 --save-dev
+
+-- Automatizar link de tags / minificação de arquivos --
+    
+    link ref: https://www.npmjs.com/package/gulp-usemin
+    npm install gulp-usemin@0.3.14 --save-dev
+
+    EXEMPLO DE USO, ARQUIVO PRODUTO.HTML:
+
+    <!-- build:css css/produto.min.css -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/produto.css">
+    <!-- endbuild -->
+
+    <!-- build:js js/produto.min.js -->
+    <script src="js/jquery.js"></script>
+    <script src="js/produto.js"></script>
+    <!-- endbuild -->
+
+    gulpfile.js:
+
+    gulp.task('usemin', function(){
+    
+    gulp.src('dist/**/*.html')
+        .pipe(usemin({
+            'js': [uglify],
+            'css: [cssmin]
+        }))
+        .pipe(gulp.dest('dist'));
+    });
+
+    estou dizendo para pegar todos os arquivos .html do projeto,
+    identificar as palavras chaves de cada arquivo build:js ou build:css nesse caso,
+    e para cada um minificar utilizando o plugin passado dentro do vetor e jogar na
+    pasta dist.
+
+    OBS: O usemin já pega por padrao ele já pega os arquivos e concatena, na ordem
+    em que estão no html, ai vc passa o plugin para minifica-los.
+
+
+
+-- Automatizar minificação de arquivos --
+    
+    link ref: https://www.npmjs.com/package/gulp-uglify
+    npm install gulp-usemin@0.3.14 --save-dev
+
+    gulp.task('usemin', function(){
+    
+    gulp.src('dist/**/*.html')
+        .pipe(usemin({
+            'js': [uglify],
+            'css: [cssmin]
+        }))
+        .pipe(gulp.dest('dist'));
+    });
+
+    estou falando pegue todos os arquivos .html,
+    minifica as tags que marquei nesse caso js/css, e dentro do vetor,
+    eu passo os plugins que o usemin vai utilizar para minificar os arquivos,
+    e depois eu falo salva tudo isso em dist.
+
 ----------- TASK DEFAULT GULP -----------
 
     Ao nomear uma task como default, o gulp entende que ao dar o comando
