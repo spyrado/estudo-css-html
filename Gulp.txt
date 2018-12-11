@@ -314,6 +314,38 @@ Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'co
     eu passo os plugins que o usemin vai utilizar para minificar os arquivos,
     e depois eu falo salva tudo isso em dist.
 
+-- Automatizar Atualização do browser ao salvar um arquivo --
+
+    link ref: https://www.npmjs.com/package/browser-sync
+    npm install browser-sync --save-dev
+
+    temos que fazer algumas configurações para funcionar corretamente.
+
+    gulp.task('server',function(){
+
+        browserSync.init({
+            server: {
+                baseDir: 'src'
+            }
+        });
+
+        gulp.watch('src/**/*').on('change', browserSync.reload);
+    });
+
+    inicio o servidor com browserSync.init()
+    configuro ele   {
+                        server: {
+                            baseDir: 'src'
+                        }
+                    }
+    falo que em server, o diretório raiz é o meu src
+
+    após isso uso uma funcionalidade padrão go gulp, que é o watcher
+        gulp.watch('nomeDaPasta a ser observada').on('eventoAserObeservado', funcao);
+        gulp.watch('src/**/*').on('change', browserSync.reload);
+    Estou dizendo, toda vem q os arquivos de src/**/* mudarem('change'), executa a funcao
+    browserSync.reload
+
 ----------- TASK DEFAULT GULP -----------
 
     Ao nomear uma task como default, o gulp entende que ao dar o comando
