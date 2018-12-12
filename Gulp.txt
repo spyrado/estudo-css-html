@@ -346,6 +346,54 @@ Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'co
     Estou dizendo, toda vem q os arquivos de src/**/* mudarem('change'), executa a funcao
     browserSync.reload
 
+    -- Automatizar verificações de sintax no javascript --
+
+    link ref: https://www.npmjs.com/package/gulp-jshint
+    npm install gulp-jshint@1.11.2 --save-dev
+
+    plugin adicional para deixar mais bonito o reports do jshint
+        npm install jshint-stylish@2.0.1 --save-dev;
+
+    /* Inicia um servidor que, a cada alteração nos arquivos, ele vai atualizar o browser
+        tem um plugin adicional, que fica verificando os erros no javascript
+    */
+    gulp.task('server',function(){
+
+        browserSync.init({
+            server: {
+                baseDir: 'src'
+            }
+        });
+
+        /*Vericando se todos meus arquivos js ao dar um change, eu disparo um evento
+        e pego o nome do arquivo(event.path) depois dou um pipe com o nome do plugin,
+        para verificar erros no javascript, e peço para o plugin me reportar o erro,
+        dando um pipe com jshint.reporter, depois passo um plugin pra deixar mais
+        bonitinho a saida dos erros no console jshint.reporter(jshintStylish) */
+
+        gulp.watch('src/js/*.js').on('change', function(event){
+            gulp.src(event.path)
+                .pipe(jshint())
+                .pipe(jshint.reporter(jshintStylish));
+        });
+
+        gulp.watch('src/**/*').on('change', browserSync.reload);
+    });
+
+    -- Automatizar verificações de sintax no CSS --
+    
+    link ref: https://www.npmjs.com/package/gulp-csslint
+    npm install gulp-csslint@0.2.0 --save-dev
+
+    funciona da mesma forma que o jshint:
+
+    gulp.watch('src/css/*.css').on('change', function(event){
+        gulp.src(event.path)
+            .pipe(csslint())
+            .pipe(csslint.reporter());
+    });
+
+
 ----------- TASK DEFAULT GULP -----------
 
     Ao nomear uma task como default, o gulp entende que ao dar o comando
