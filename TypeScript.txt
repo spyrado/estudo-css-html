@@ -66,6 +66,22 @@
             }
         }
 
+    ---------- Classe abstrata ----------
+
+    abstract -> Classes abstratas são classes base das quais outras classes podem ser derivadas. 
+        Eles podem não ser instanciados diretamente. Ao contrário de uma interface, uma classe abstrata pode conter
+        detalhes de implementação para seus membros. A palavra-chave abstract é usada para definir classes abstratas,
+        bem como métodos abstratos dentro de uma classe abstrata.
+
+    Classe abstrata não pode ser instanciada.
+    Classe abstrata pode conter detalhes de implememtacao para seus membros.
+
+    ---------- Método abstrato ----------
+
+    abstract template(model: T): string;
+
+    Indica para as classes filhas que o metodo DEVE ser implementado, caso o metodo n for implementado gerará um erro.
+
     ---------- Modificadores de Acesso ----------
 
     private -> somente a propria Classe pode acessar.
