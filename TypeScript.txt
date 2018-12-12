@@ -13,7 +13,8 @@
                 "target": "es6",
                 "outDir": "app/js"
                 "noEmitOnError": true,
-                "noImplicitAny": true
+                "noImplicitAny": true,
+                "removeComments": true
             },
             "include": [
                 "app/ts/**/*"
@@ -24,6 +25,8 @@
     compilerOptions -> noEmitOnError -> se true, significa que ENQUANTO houver erro de compilacao, ele nao vai compilar
         para javascript..
     compilerOptions -> noImplicitAny -> se true, nao adote o tipo any
+    compilerOptions -> removeComments -> remove os comentários que iriam para producao, deixando mais limpo e mais leve,
+        e mais minificado o código, os comentarios só vao permanecer em hambiente de desenv.
 
     include -> de quais lugares eu devo pegar o ts para compilar para js.
 
@@ -65,6 +68,22 @@
                 this._valor = valor;
             }
         }
+
+    ---------- Classe abstrata ----------
+
+    abstract -> Classes abstratas são classes base das quais outras classes podem ser derivadas. 
+        Eles podem não ser instanciados diretamente. Ao contrário de uma interface, uma classe abstrata pode conter
+        detalhes de implementação para seus membros. A palavra-chave abstract é usada para definir classes abstratas,
+        bem como métodos abstratos dentro de uma classe abstrata.
+
+    Classe abstrata não pode ser instanciada.
+    Classe abstrata pode conter detalhes de implememtacao para seus membros.
+
+    ---------- Método abstrato ----------
+
+    abstract template(model: T): string;
+
+    Indica para as classes filhas que o metodo DEVE ser implementado, caso o metodo n for implementado gerará um erro.
 
     ---------- Modificadores de Acesso ----------
 
@@ -222,6 +241,39 @@ class View<T> {
         }
     }
 
+---------- Declare TYPESCRIPT ----------
 
+declare var $: any;
 
-    
+usamos o declare para "CALAR" a boca do compilador, declaramos uma 
+    variavel, que o compilador nao está identificando..
+    como no exemplo.. o compilador nao sabe aonde está o dolar do jquery,
+    se ele n sabe... ele vai gerar um erro a cada dolar feito..
+
+---------- TypeScript Declaration File ----------
+
+TSD FILE -> caso precisemos de uma biblioteca que fique fora do escopo do typescript, procuramos por,
+    TSD FILES, eles sao arquivos que dao compatibilidade de determinada biblioteca para o typescript.
+
+Este arquivo possui informações dos nomes de métodos e funções, inclusive tipos que podem ser utilizados pelo TypeScript.
+Quando carregado, o TypeScript conseguirá, baseado nesse arquivo, realizar checagem estática inclusive lançar
+mão de todos seu poder através de seu editor ou IDE favorita.
+
+---------- TypeScript Declaration File ----------
+
+    Achando tsd Files:
+        https://www.npmjs.com/package/@types/nomeLib||frameWork||etc
+
+    Ou podemos simplesmente tentar a sorte no terminal e digitar:
+
+    npm install @types/nomeDaLibOuFramework --save-dev
+
+    npm install @types/jquery --save-dev
+    npm install @types/loadash --save-dev
+    npm install @types/underscore --save-dev
+
+    TSD FILE 
+        npm install @types/jquery@2.0.42 --save-dev
+
+    Esse é um tsd file para conseguirmos utilizar o JQuery em nosso projeto typescript, instalando ele
+        o typescript já passa a reconhecer o jquery.
