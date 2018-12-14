@@ -393,6 +393,33 @@ Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'co
             .pipe(csslint.reporter());
     });
 
+    -- Automatizar webkits no CSS --
+    
+    link ref: https://www.npmjs.com/package/gulp-autoprefixer
+    npm install gulp-autoprefixer@3.0.2 --save-dev
+
+    IMPORTANTE, Ele só vai usar os prefixos mais antigos, se vc especificar quais as
+        ultimas versoes que voce deseja.
+    IMPORTANTE: Nessa versao 3.0.2, vc tem que criar o arquivo browserslist e 
+        dentro dele vc deve falar quais ultimas versoes devem ser prefixadas pelo
+        autoprefixer. exemplo: " last 40 versions ", verifique no google analitcs, 
+        quais versoes de browsers sao utilizadas pelos seus usuários, para n gerar autoprefixer
+        atoa..
+        DE UMA OLHADA NA DOCUMENTAÇÃO, POIS A MAIS RECENTE VC PASSA COMO parametro
+        SE EU N ME ENGANO..
+
+    const gulp = require('gulp');
+    const autoprefixer = require('gulp-autoprefixer');
+    
+    gulp.task('default', () =>
+        gulp.src('src/app.css')
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions'],
+                cascade: false
+            }))
+            .pipe(gulp.dest('dist'))
+    );
+
 
 ----------- TASK DEFAULT GULP -----------
 
