@@ -14,7 +14,9 @@
                 "outDir": "app/js"
                 "noEmitOnError": true,
                 "noImplicitAny": true,
-                "removeComments": true
+                "removeComments": true,
+                "module": "system",
+                "strictNullChecks": true
             },
             "include": [
                 "app/ts/**/*"
@@ -27,6 +29,13 @@
     compilerOptions -> noImplicitAny -> se true, nao adote o tipo any
     compilerOptions -> removeComments -> remove os comentários que iriam para producao, deixando mais limpo e mais leve,
         e mais minificado o código, os comentarios só vao permanecer em hambiente de desenv.
+    compilerOptions -> module -> Ele exibe uma série de módulos que ele suporta, um deles é o LOADER system.js,
+        que facilita a vida do desenv.. gerando um único arquivo com todas as suas dependencias.
+    compilerOptions -> strictNullChecks -> Nao deixa uma variavel com um tipo definido receber null ou undefined, exemplo:
+        let temCarteira: boolean = true;
+        temCarteira = null; <- caso strictNullChecks, nao esteja ativado, eu posso sim fazer um tipo definido receber null.
+        se vc quiser receber tipos null use a tipagem correta.
+        let temCarteira: null = null;
 
     include -> de quais lugares eu devo pegar o ts para compilar para js.
 
@@ -277,3 +286,203 @@ mão de todos seu poder através de seu editor ou IDE favorita.
 
     Esse é um tsd file para conseguirmos utilizar o JQuery em nosso projeto typescript, instalando ele
         o typescript já passa a reconhecer o jquery.
+
+---------- namespace/module TypeScript sistema de modulos do typescript ----------
+
+ANTIGAMENTE para fazer um namespace utilizava-se MODULE, hoje em dia utilizamos namespace.
+
+toda namespace deve ter um nome, e encapsular o código alvo dentro dela
+e tambem toda namespace deve exportar, como no exemplo
+
+namespace X {
+    export  //codigo a ser encapsulado
+}
+
+namespace Views{
+
+    export abstract class View<T> {
+    
+        //código View
+    }
+}
+
+Podemos encapsular nesse caso, todas as nossas views em namespace Views, e assim, quando quisermos uma View, é
+    só chamar View.nameView.
+
+Como fazer isso?, simples, só fazer mais do mesmo, e incrementar nesse caso a chamada de view que é o PAI..
+Views.View para chamar a classe PAI, pois ela está encapsulada agora, e não é mais visivel no escopo global.
+
+namespace Views{
+    
+    export class NegociacoesView extends Views.View<Negociacoes> {
+        //codigo NegociacaoView
+    }
+}
+
+e para ficar menos verboso, podemos fazer da seguinte maneira, importar a View, e receber Views.View, DEPOIS
+    passar em vez de extends Views.View, apenas passamos View.
+
+namespace Views{
+
+    import View = Views.View;
+
+    export class NegociacoesView extends View<Negociacoes> {
+        //codigo NegociacaoView
+    }
+}
+
+POREM... O EcmaScript6 já tem um sistema de módulos, que é bem melhor que o sistema de modulos do TypeScript,
+    alem dele fazer tudo isso, ele também gera a dependencia de arquivos.., podemos com alguns recursos System JS por exemplo,
+    exibir apenas um arquivo javascript no html, que o nosso System JS, já identifica as dependencias, e concateca tudo, em
+    um unico arquivo para nós, o system js nesse caso, n precisa de babel, pois.. o proprio typescript, já faz a conversao
+    para ES6.
+
+---------- SystemJs lib TypeScript ----------
+
+É o responsável pelo carregamento do módulo principal da aplicação. A partir desse módulos todas as suas dependências 
+    são resolvidas dinamicamente, sem a necessidade de termos que importar cada script individualmente seguindo
+    uma ordem de importação definida.
+
+Utilizando o loader SystemJs, após fazer todos os imports necessários, vá até o html em questao,
+e coloque esse script. chamando o arquivo.js principal da pagina em questao, que ira chamar todas as outras
+dependencias.
+
+<script src="./lib/system.js"></script>
+<script>
+    //Permite Omitir as extensoes dos imports
+    System.defaultJSExtensions = true;
+    //A partir da chamada de js/app.js, ele vai comecar a verificar as dependencias e assim por diante.
+    System.import('js/app.js').catch(err => console.error(err));
+</script>
+
+Porem isso nao é o suficiente o SystemJs depende de um servidor para funcionar, pois ele faz requisicoes AJAX,
+    entao, vamos instalar um servidor com npm install lite-server@2.3.0 --save-dev
+
+---------- Estratégia Barrel(barril) ----------
+
+    Um barril, ou barrel no inglês é uma maneira de centralizarmos em um único módulo a importação de outros módulos. 
+    Ele evita a explosão da instrução import diversas vezes em um mesmo arquivo quando esse depende de uma série de outros 
+    artefatos.
+
+    Essa estratégia consiste em criar um index, e importar todos os modulos necessários, daquela pasta em específico.
+    assim podemos solicitar o import utilizando o index, e no import dizemos os modulos que queremos, exemplo:
+
+    Em vez de fazermos isso: 
+        import { Negociacoes } from '../models/Negociacoes';
+        import { Negociacao } from '../models/Negociacao';
+        import { Mensagem } from '../models/Mensagem';
+        import { NegociacoesView } from '../views/NegociacoesView';
+        import { MensagemView } from '../views/MensagemView';
+    
+    Fazemos isso:
+        import { Negociacoes, Negociacao, Mensagem } from '../models/index';
+        import { NegociacoesView, MensagemView } from '../views/index';
+
+    e na estrutura de pasta models, criamos o index que vai server de Barrel(barril):
+        models/
+            Negociacoes.ts
+            Negociacao.ts
+            Mensagem.ts
+            index.ts <- criamos ele e exportamos todos os modulos necessários da pasta que ele está.
+
+        index.ts:
+            export * from './Mensagem';
+            export * from './Negociacao';
+            export * from './Negociacoes';
+        
+        Estou dizendo para exportar tudo do modulo Mensagem, tudo do Negociacao e etc.
+
+    E assim fica mais enxuto o nosso código..
+
+----------  Parametros Opcionais ----------
+
+    IMPORTANTE, Parametros Opcionais DEVEM ser os ultimos parametros do seu construtor, pode ter mais de um,
+        porem todos tem que ser a ultima opcao, caso tenha um parametro opcional e em seguida um parametro normal,
+        ele vai gerar um erro, dizendo que n pode conter parametro normal a frente de um opcional.
+    IMPORTANTE Parametros Opcionais sao definidos como undefined, caso vc n passe nenhum valor para o parametro.
+
+    export abstract class View<T> {
+        constructor(seletor: string, escapar?: boolean)
+
+    private _negociacoesView = new NegociacoesView('#negociacoesView', true);
+
+    posso ou n passar o parametro true, pois defini na classe como opcional.
+
+    Entao.. quando chamo o construtor de View... ou quem dependa dela nesse caso.., ele n me gerara um erro de compilacao,
+        pois eu estou dizendo que escapar é um parametro opcional, pode ou n colocar.
+----------  BONUS ----------
+
+    Em nossa classe negociacao temos apenas getters, n utilizamos setters, nesse caso, em vez de utilizarmos
+        private em nosso código e chamar seus getters, podemos simplificar utilizando readonly e remover os getters,
+        segue um exemplo:
+
+        constructor(
+            readonly data: Date, 
+            readonly quantidade: number, 
+            readonly valor: number
+        ){}
+
+        get volume(){
+            return this.quantidade * this.valor;
+        }
+
+    Nao precisamos fazer dessa maneira:
+
+        constructor(
+            private _data: Date, 
+            private _quantidade: number, 
+            private _valor: number
+        ){}
+
+        get data(){
+            return this._data;
+        }
+        get quantidade(){
+            return this._quantidade;
+        }
+        get valor(){
+            return this._valor;
+        }
+
+        get volume(){
+            return this._quantidade * this._valor;
+        }
+
+----------  Plugins utilizados ----------
+
+    npm install lite-server@2.3.0 --save-dev
+
+    configurando plugin:
+
+        "scripts": {
+            "server": "lite-server --baseDir=app"
+        }
+    estou dizendo que o meu diretorio base para subir um servidor E ficar observando modificacoes é o app, com isso
+        qualquer alteracoes feitas dentro desse diretorio, o servidor automaticamente, vai dar um reload, no meu browser.
+
+    npm install concurrently@3.4.0 --save-dev
+
+    é um plugin que executa mais de um modulo de script do package.json por vez, exemplo:
+        "watch": "tsc -w",
+        "server": "lite-server --baseDir=app",
+        "start": "concurrently \"npm run watch\" \"npm run server\""
+
+    Estou dizendo, executa esses dois comandos (\"npm run watch\" \"npm run server\") pra mim por favor?
+        temos que escapar da aspas duplas usando \" pois no comeco e no final ja tem aspas duplas.
+
+----------  Erro  strictNullChecks ----------
+
+Erro ao acionar um strictNullChecks
+
+    paraArray(): Negociacao[]{
+        
+        return [].concat(this._negociacoes);
+    }
+
+Vai me gerar um erro, pois o [] n foi tipado, e para resolver isso colocamos um alias nele.
+
+        paraArray(): Negociacao[]{
+            
+            return ([] as Negociacao[]).concat(this._negociacoes);
+        }
+estou dizendo q [] é uma Negociacao[].
