@@ -380,7 +380,7 @@ Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'co
         gulp.watch('src/**/*').on('change', browserSync.reload);
     });
 
-    -- Automatizar verificações de sintax no CSS --
+-- Automatizar verificações de sintax no CSS --
     
     link ref: https://www.npmjs.com/package/gulp-csslint
     npm install gulp-csslint@0.2.0 --save-dev
@@ -419,6 +419,28 @@ Nesse caso a task 'copy', depende de clean, e a task 'build-img', depente de 'co
             }))
             .pipe(gulp.dest('dist'))
     );
+
+-- Automatizar Concatenação de arquivos --
+
+    Link ref: https://www.npmjs.com/package/gulp-less
+    npm install gulp-less@3.0.3 --save-dev
+
+    gulp.watch('src/less/*.less').on('change', function(event){
+        gulp.src(event.path)
+            .pipe(less().on('error', function(error){
+                console.log('Problema na compilação.');
+                console.log(error.message);
+            }))
+            .pipe(gulp.dest('src/css'));
+    });
+
+    Chamando a função less(), ele já faz o trabalho de compilação..
+    porem, se vc escrever errado algo do less, ele n detecta o erro,
+    e quebra todo o script, pois sempre quando um stream gera um erro, 
+    ele quebra.. então temos que tratar esse erro, para que o servidor n caia,
+    utilizamos o .on('error', function(error){ console.log(error.message) }),
+    error.message vai imprimir no console aonde exatamente deu o erro, e o on error,
+    previne de quebrar o servidor.
 
 
 ----------- TASK DEFAULT GULP -----------
