@@ -91,9 +91,11 @@ flex-direction: column; -> deixa os elementos em forma de coluna.
 flex-direction: column-reverse; -> deixa os elementos em forma de coluna reversa(invertendo a 
     sequencia).
     
--------------------------- FLEX-DIRECTION --------------------------
+-------------------------- FLEX-WRAP --------------------------
 
-O wrap funciona da seguinte forma, caso o meu elemento ultrapasse o tamanho do layout, podemos utilizar o wrap, para dizer que aquele elemento ao chegar no fim do tamanho do layout, quebre e vá para linha de baixo caso o tamanho limitante seja a largura, ou para linha ao lado(caso oo tamanho limitante seja a altura).
+O wrap funciona da seguinte forma, caso o meu elemento ultrapasse o tamanho do layout, podemos utilizar o wrap,
+    para dizer que aquele elemento ao chegar no fim do tamanho do layout, quebre e vá para linha de baixo caso o tamanho 
+    limitante seja a largura, ou para linha ao lado(caso oo tamanho limitante seja a altura).
 
 flex-wrap: wrap; -> permite a quebra de linha.
 flex-wrap: nowrap;  -> não permite a quebra de linha.
@@ -142,8 +144,27 @@ flex-grow, grow(crescer).
 
 flex-grow: 0;(default); -> mantem o tamanho original.
 
-flex-grow -> Faz com que os flex-items cresçam caso aja espaço sobrando no seu 
-    elemento pai, e também caso tenha espaço e tiver exemplo.. 3 divs inline, eu posso dar um tanho igual para cada div colocando flex-grow: 1; ou posso colocar flex-grow: 1; em duas divs, e em outra eu coloco flex-grow: 2; ai essa que recebeu 2, vai ficar maior que as outras.
+flex-grow -> Faz com que os flex-items cresçam caso aja espaço sobrando no seu elemento pai, e também caso tenha espaço
+    e tiver exemplo.. 3 divs inline, eu posso dar um tanho igual para cada div colocando flex-grow: 1; ou posso colocar 
+    flex-grow: 1; em duas divs, e em outra eu coloco flex-grow: 2; ai essa que recebeu 2, vai ficar maior que as outras.
+
+    ex:
+        .pai{
+            display:flex;
+            width: 300px;
+            border: 1px solid red;
+        }
+        .filhas{
+            width: 50px;
+            background: white;
+            border: 1px solid black;
+            flex-grow: 1;
+        }
+        <div class="pai">
+            <div class="filhas">item 1</div>
+            <div class="filhas">item 2</div>
+            <div class="filhas">item 3</div>
+        </div>
     
 --- Qual conta ele faz para dar espaço aos elementos? ---
 

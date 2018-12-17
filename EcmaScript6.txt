@@ -564,3 +564,8 @@ export class ConnectionFactory{
         }
     }
 }
+
+------------ O Objeto Date ------------
+
+getDate() -> retorna o dia
+getDay() -> retorna o dia da semana, sendo ele Domingo comecado em 0 e sabado terminando em 6;
