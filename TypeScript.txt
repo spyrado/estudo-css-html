@@ -16,7 +16,8 @@
                 "noImplicitAny": true,
                 "removeComments": true,
                 "module": "system",
-                "strictNullChecks": true
+                "strictNullChecks": true,
+                "experimentalDecorators": true
             },
             "include": [
                 "app/ts/**/*"
@@ -37,6 +38,7 @@
         se vc quiser receber tipos null use a tipagem correta.
         let temCarteira: null = null;
         Com a exceção de undefined que pode ser atribuído a void.
+    compilerOptions -> experimentalDecorators -> habilita o uso de decorators
 
     include -> de quais lugares eu devo pegar o ts para compilar para js.
 
@@ -418,6 +420,62 @@
 
         Entao.. quando chamo o construtor de View... ou quem dependa dela nesse caso.., ele n me gerara um erro de compilacao,
             pois eu estou dizendo que escapar é um parametro opcional, pode ou n colocar.
+
+    ----------  DECORATOR TypeScript ----------
+
+    target -> o método sendo decorado.
+    key -> o nome do método que está sendo decorado
+    value -> o descritor da propriedade dada, se ela existir no objeto, ou será undefined caso não exista. 
+        O descritor de propriedade é obtido chamando a função Object.getOwnPropertyDescriptor().
+    descriptor -> Tem varias funcionalidades, uma delas é, descriptor.value,
+        Nos dá acesso a implementação do método decorado através de descritor.value.
+
+    Para criar um decorator, criamos um arquivo .ts dentro desse arquivo criamos uma funcao, com o MESMO nome do decorator,
+    exemplo:
+        export function LogarTempoDeExecucao(){ //codigo }
+
+        e a chamda vai ser assim:
+            LogarTempoDeExecucao();
+        Em cima da funcao que deseja.
+
+    podemos tambem passar parametros para decorators, e trabalhar de forma normal..
+
+    Exemplo de decorator:
+
+        export function LogarTempoDeExecucao(emSegundos: boolean = false){
+    
+            return function(target: any, propertyKey: string, descriptor: PropertyDescriptor){
+                // eu pego o metodo original e guardo em uma constante.
+                const metodoOriginal = descriptor.value;
+
+                // pego o metodo original, e sobrescrevo ele, aceitando any argumentos.. como vetor
+                descriptor.value = function(...args: any[]){
+
+                    let unidade = 'ms'
+                        ,divisor = 1;
+
+                    if(emSegundos){
+                        unidade = 's';
+                        divisor = 1000;
+                    }
+
+                    console.log('----------------');
+                    console.log(`Parametros passados para o metodo ${propertyKey}: ${JSON.stringify(args)}`);
+                    const t0 = performance.now();
+                    // recebo o retorno do metodo, CASO ele retorne algo
+                    const retorno = metodoOriginal.apply(this, args);
+                    const t1 = performance.now();
+                    console.log(`O retorno do metodo ${propertyKey}: é ${JSON.stringify(retorno)}`);
+                    console.log(`O  metodo ${propertyKey}, demorou:  ${(t1-t0)/divisor} ${unidade}`);
+                    // e dou um retorno do que o retorno do metoroOriginal me retornou.
+                    return retorno;
+                }
+
+                return descriptor;
+            }
+        }
+
+
     ----------  BONUS ----------
 
         Em nossa classe negociacao temos apenas getters, n utilizamos setters, nesse caso, em vez de utilizarmos

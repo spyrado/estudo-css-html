@@ -569,3 +569,12 @@ export class ConnectionFactory{
 
 getDate() -> retorna o dia
 getDay() -> retorna o dia da semana, sendo ele Domingo comecado em 0 e sabado terminando em 6;
+
+------------ Performance ------------
+
+var t0 = performance.now();
+doSomething();
+var t1 = performance.now();
+console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.");
+
+Exibe o tempo que leva pra executar determinada tarefa.

@@ -473,7 +473,7 @@ O famoso tres pontinhos
       var letra = ['cabeca', ...partes, 'e', 'dedos']; // ["cabeca", "ombros", "joelhos", "e", "dedos"]
       
     Desestruturação:
-      [a, b, ...objIteravel] = [1, 2, 3, 4, 5];
+      [1, 2, ...objIteravel] = [1, 2, 3, 4, 5];
       
       var objIteravel = [3,4,5];
       
