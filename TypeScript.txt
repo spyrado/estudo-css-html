@@ -648,3 +648,28 @@
         Sexta,
         Sabado
     }
+
+     ---------- INTERFACE TYPESCRIPT ----------
+
+        Uma interface pode servir para definir os dados que vem de uma API, exemplo..
+
+        Uma API, me retorna:
+            [{"montante":200.5,"vezes":2},{"montante":100.2,"vezes":5},{"montante":50.5,"vezes":1},{"montante":70.5,"vezes":2}]
+
+        O TypeScript ao consumir essa api, n consegue identificar as propriedades desse objeto..
+        se vc der obj.montante ele n autocompleta, e pra ele tanto faz.. se n for .montante.. ele vai dar erro
+        somente quando for no browser.
+
+        Para solucionar isso, podemos criar uma INTERFACE, exemplo...
+
+        interface NegociacaoParcial{
+
+            montante: number;
+            vezes: number;
+        }
+
+        Quando chamamos agora obj.montante, ele autocompleta.. e se for diferente das propriedades da interface,
+        ele me gera um erro, impedindo que o programador continue a implementação.
+
+        obs... tem q exportar a interface e dar um import aonde vc qr utilizada, uma INTERFACE é considerada uma
+        MODEL.
