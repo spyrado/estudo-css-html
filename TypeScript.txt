@@ -11,7 +11,7 @@
         {
             "compilerOptions": {
                 "target": "es6",
-                "outDir": "app/js"
+                "outDir": "app/js",
                 "noEmitOnError": true,
                 "noImplicitAny": true,
                 "removeComments": true,
@@ -364,6 +364,10 @@
         //A partir da chamada de js/app.js, ele vai comecar a verificar as dependencias e assim por diante.
         System.import('js/app.js').catch(err => console.error(err));
     </script>
+
+    IMPORTANTE! Ao adicionar esse modulo, n esqueca de acrescentar em compilerOptions do
+        tsconfig.json o modulo utilizado..
+    "module": "system"
 
     Porem isso nao é o suficiente o SystemJs depende de um servidor para funcionar, pois ele faz requisicoes AJAX,
         entao, vamos instalar um servidor com npm install lite-server@2.3.0 --save-dev
