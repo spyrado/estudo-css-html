@@ -7,6 +7,11 @@
     Após isso precisaremos configura-lo, para dizer em qual diretorio ele vai ir, 
     qual versao de js ele vai gerar em tal diretorio, fazemos isso na pasta raiz app/tsconfig.json
 
+    IMPORTANTEEEEE:
+        Outro ponto importante, aliás, uma dica, é evitarmos o uso do strictNullChecks e do noImplicityAny. 
+        Caso estejam presentes no arquivo tsconfig.js seus valores devem ser false. A ativação dessas 
+        configurações poderá gerar inúmeros problemas com possíveis definições que você venha a baixar.
+
     dentro de tsconfig.json colocamos a seguinte configuracao:
         {
             "compilerOptions": {
@@ -699,6 +704,18 @@
 
         Com isso minha funcao só deve receber uma funcao que retorne numeros, e que receba numeros.
 
+    -------------- EXTENDENDO INTERFACES, PARA FICAR MAIS ENXUTO O CODIGO -------------
+
+    import { Imprimivel } from '../models/Imprimivel';
+    import { Igualavel } from '../models/Igualavel';
+
+    export interface MeuObjeto<T> extends Imprimivel, Igualavel<T>{}
+
+    como Igualavel é um generics, definimos nossa classe MeuObjeto sendo generics e entao Igualavel fica com generics
+        tambem.
+
+    Quando temos um conjunto de interfaces que sao usadas em nossos modelos.. agrupados em uma interface
+        principal, e chamamos essa interface principal para utilizar as interfaces que ela HERDA com EXTENDS.
     ---------- THROTTLE PADRAO DE PROJETO ----------
 
     Imaginem o throttle como uma válvula (na verdade essa é a tradução) que regula a quantidade (o fluxo)
@@ -760,3 +777,106 @@
                 }, timeWindow);
             };
         }());
+
+    
+    ---------- Union Types ----------
+
+    Como nosso codigo aceita tanto numero quanto string, faco o tipo receber tanto um quanto outro,
+        porem vou ter um erro.. pois replace só existe no tipo string, entao tenho que fazer uma verificacao
+        pra me dizer quando que esse codigo é string e quando é number.. ai entra em acao o Type Guards
+        (explicacao sobre Type Guards logo abaixo a essa).
+
+    PODEMOS CRIAR UM: Alias para o tipo do token
+        // criando o alias!
+        type MeuToken = string |  number;
+
+        function processaToken(token: MeuToken){ //codigo aqui }
+
+    // ATENÇÃO, NOSSO CÓDIGO AINDA NÃO COMPILARÁ
+
+    // agora aceita os tipos string e number!
+    function processaToken(token: string | number) { // aqui eu defino dois tipos possiveis
+
+        // muda o dígito 2 por X!
+        // erro de compilação aqui
+        return token.replace(/2/g,'X');
+    }
+
+    // compila
+    const tokenProcessado1 = processaToken('1234');
+    // compila
+    const tokenProcessado2 = processaToken(1234);
+
+    ---------- Type Guards ----------
+
+    Com esse metodo verificando a tipagem dos parametros, conseguimos fazer cada um funcionar no seu "ambiente"
+    
+    function processaToken(token: string | number) {
+
+        if(typeof(token) === 'string') {
+
+            // typescript entende que é o tipo string e faz autocomplete para este tipo. A função replace só existe em string
+            return token.replace(/2/g,'X');
+        } else {
+            // toFixed só existe em mumber!
+            return token.toFixed().replace(/2/g,'X');
+        }
+
+    }
+
+    const tokenProcessado1 = processaToken('1234');
+    const tokenProcessado2 = processaToken(1234);
+
+    ---------- async/await TypeScript ----------
+
+    TypeScript se baseia no ES2015, todavia, na versão ES2017 foi introduzida a sintaxe async/await. Ela funciona da 
+    seguinte maneira. Dentro de uma uma função ou método async, isto é, uma função ou método declarado como async 
+    NomeDoMetodoOuFuncao, podemos tratar o retorno de promises de uma maneira muito especial.
+    
+    Por padrão, capturamos o retorno de uma promise dentro da função then. Mas se dentro de uma função async, 
+    usamos a instrução await antes da chamada de um método que retorne uma promise, podemos capturar seu retorno 
+    sem a necessidade da chamada de then, como se ela fosse uma função síncrona tradicional.
+
+    Vejamos um exemplo:
+
+// o método importDados é um método async!
+
+    @throttle()
+    async importaDados() {
+
+        try {
+
+           // usou await antes da chamada de this.service.obterNegociacoes()
+
+            const negociacoesParaImportar = await this._service
+                .obterNegociacoes(res => {
+
+                    if(res.ok) {
+                        return res;
+                    } else {
+                        throw new Error(res.statusText);
+                    }
+                });
+
+            const negociacoesJaImportadas = this._negociacoes.paraArray();
+
+            negociacoesParaImportar
+                .filter(negociacao => 
+                    !negociacoesJaImportadas.some(jaImportada => 
+                        negociacao.ehIgual(jaImportada)))
+                .forEach(negociacao => 
+                this._negociacoes.adiciona(negociacao));
+
+            this._negociacoesView.update(this._negociacoes);
+
+        } catch(err) {
+            this._mensagemView.update(err.message);
+        }
+    }
+Mas se não chamamos mais then, não chamaremos também catch, certo? Então, como conseguiremos tratar possíveis erros? 
+Quando usamos async/wait, por mais que o código seja assíncrono, podemos usar try e catch para lidar com possíveis 
+exceções em nosso código. Por mais que nosso código pareça um código síncrono, ele continua sendo um código assíncrono.
+
+A boa notícia é que mesmo o TypeScript suportando apenas o ES2015 ele introduziu em sua sintaxe o async/await do ES2017 
+a partir da sua versão 2.3. Isso não quer dizer que somos obrigados a utilizá-la, mas seu uso melhor bastante a 
+legibilidade do nosso código.
