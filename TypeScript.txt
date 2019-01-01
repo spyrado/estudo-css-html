@@ -653,7 +653,7 @@
         Sabado
     }
 
-     ---------- INTERFACE TYPESCRIPT ----------
+    ---------- INTERFACE TYPESCRIPT ----------
 
         Uma interface pode servir para definir os dados que vem de uma API, exemplo..
 
@@ -677,3 +677,86 @@
 
         obs... tem q exportar a interface e dar um import aonde vc qr utilizada, uma INTERFACE é considerada uma
         MODEL.
+
+
+
+        ---------- INTERFACE DE FUNCOES ----------
+
+        Podemos definir interfaces para funcoes passadas em parametros por exemplo...
+
+
+        minhaFuncao(res: apenasNumeros){
+            res(2);
+        }
+
+        interface apenasNumeros{
+            (dado: number): number;
+        }
+
+        minhaFuncao(function(num: number){
+            return num: number;
+        })
+
+        Com isso minha funcao só deve receber uma funcao que retorne numeros, e que receba numeros.
+
+    ---------- THROTTLE PADRAO DE PROJETO ----------
+
+    Imaginem o throttle como uma válvula (na verdade essa é a tradução) que regula a quantidade (o fluxo)
+    de vezes que um dado trecho de código será executado durante um determinado espaço de tempo. 
+    Com esta técnica podemos garantir que um trecho de código não será executado mais que 1 vez a cada X milisegundos.
+
+    Exemplo:
+        export function throttle(milisegundos = 500){
+        
+            return function(target: any, propertyKey: string, descriptor: PropertyDescriptor){
+                // eu pego o metodo original e guardo em uma constante.
+                const metodoOriginal = descriptor.value;
+
+                let timer = 0;
+                // pego o metodo original, e sobrescrevo ele, aceitando any argumentos.. como vetor
+                descriptor.value = function(...args: any[]){
+
+                    // se o metodo tiver evento, executa o prevent default.
+                    if(event) event.preventDefault();
+
+                    //limpa o intervalo se o botao for clicado mais de uma vez, para n ficar gerando requisicao atoa no back..
+                    clearInterval(timer);
+                    // executa o metodo apois 500 ms ou a quantidade q for definida no decorator aonde esta sendo chamado..
+                    timer = setTimeout(() => metodoOriginal.apply(this, args), milisegundos);
+                    
+                }
+
+                return descriptor;
+            }
+        }
+
+    ---------- DEBOUNCE PADRAO DE PROJETO ----------
+
+    Outro cenário onde é bastante usado o debounce é em botões de submit de formulários. 
+    Imaginem que temos um formulário onde o submit acontece via AJAX. Caso o usuário dê um clique duplo no botão, 
+    iremos enviar duas requisições ao back-end. Com um debounce do evento de clique, 
+    podemos postergar a execução do submit via AJAX para, por exemplo, depois de 200 milisegundos 
+    depois do último clique, garantindo assim, por exemplo, que um mesmo item não seja comprado 
+    duas vezes sem a intenção do usuário.
+
+    EXEMPLO:
+
+        var autocomplete = (function () {
+            'use strict';
+
+            var timeWindow = 500; // tempo em ms
+            var timeout;
+
+            var autocomplete = function (arg1, arg2) {
+                // nossa lógica aqui
+            };
+
+            return function() {
+                var context = this;
+                var args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(function(){
+                autocomplete.apply(context, args);
+                }, timeWindow);
+            };
+        }());
