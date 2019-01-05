@@ -36,7 +36,7 @@ E dentro dele colocamos essas configurações:
 
     module.exports = {
         entry: './app-src/app.js', // indica o primeiro modulo q vai rodar na aplicação
-        outPut: { // onde vai ser gravado o bundle inicial, para que ele comece a procurar todas as dependencias.
+        output: { // onde vai ser gravado o bundle inicial, para que ele comece a procurar todas as dependencias.
             filename: 'bundle.js', // nome do bundle, q nesse caso está como bundle.js
             path: path.resolve(__dirname, 'dist') // esse path.resolve(__dirname) vai criar o caminho absoluto, até a pasta dist
         } 
@@ -80,6 +80,40 @@ Para resolver isso, temos que pedir para o webpack solicitar o babel-core, que t
 
 Entao vamos instalar o babel-loader:
     npm install babel-loader@7.1.0 --save-dev
+
+para suportar tudo isso, configuramos o arquivo webpack.config.js:
+
+const path = require('path'); // modulo node.js
+
+module.exports = {
+    //entry
+    //output etc..
+    },
+    module: {
+
+        rules: [
+            {
+                test: /\.js$/, // vou passar um regex dizendo as extensoes que o webpack deve trabalhar
+                exclude: /node_modules/, // arquivos que eu n quero processar
+                use: {  // indica oq vamos utilizar
+                    loader: 'babel-loader' // utilizamos um loader chamado babel-loader
+                }
+            }
+        ]
+    }
+}
+
+Removemos de packagejson o modulo que n é necessário:
+    npm uninstall babel-plugin-transform-es2015-modules-systemjs --save-dev
+
+Agora, precisamos alterar client/.babelrc. Em plugins, deixaremos apenas o transform-decorators-legacy:
+
+// client/.babelrc
+{
+    "presets":["es2017"],
+    "plugins" : ["transform-decorators-legacy"]
+}
+
 
 
 ----------------- Bonus -----------------
