@@ -1,0 +1,52 @@
+**************************** JAVA ****************************
+
+------------ O que é JVM? O que é JDK? / O que é JRE? ------------
+
+JVM - Java Virtual Machine -> É ela que faz o processo de identificar o bytecode (codigo java), e traduzir eles
+    para diversos tipos de Sistemas Operacionais.
+
+JDK -> Java Development Kit ( Kit de Desenvolvimento Java ), precisamos dele pois ele que contem a JVM, as libs, 
+    o compilador.
+
+JRE -> O JRE é o ambiente para executar uma aplicação Java, que vem com a virtual machine e as bibliotecas.
+
+o JRE e JDK. O primeiro é o ambiente de execução, o segundo são as ferramentas de desenvolvimento 
+    junto com o ambiente de execução
+
+JDK = JRE + ferramentas desenvolvimento
+
+JRE = JVM + bibliotecas
+
+
+------------ Tipos de Variaveis ------------
+
+int -> aceita numeros inteiros (10,5,0,20)
+long -> para long devemos terminar com l no final, seja ele minusculo ou maiusculo:
+    long num = 2131627316262137L OU long num = 2131627316262137l
+
+--- Tipo Flutuante ---
+double -> aceita numeros com restos (10.5, 5.5, 0.0, 20.0)
+float -> float num = 3.14; // vai dar um erro, temos q fazer casting para float OU colocar um f no final:
+    float num = 3.14f; OU float num = (float) 3.14;
+
+------------ Tipos e seus bits ------------
+
+byte = 1 byte - 8 bits = -128-127 - números inteiros
+short = 2 bytes - 16 bits = -32768 a +32767 - números inteiros
+int = 4 bytes - 32 bits = -2147483648 a + 2147483647 - números inteiros
+long = 8 bytes - 64 bits = -922337203685477808 a 922337203685477807 - números inteiros
+float = 4 bytes - 32 bits = aproximadamente 3.40282347E+38 = Ponto flutuante
+double = 8bytes - 64 bits = 1.79769313486231570W+308 = Ponto Flutuante
+chart = Caracteres Unicode 16 bits = 0 a 65536 = caracteres
+booleann = Possuem valores True e false = booleano
+
+------------ Peculiaridades de tipos flutuantes ------------
+
+Se eu faço uma conta de um tipo double como essa:
+
+double divisao = 5/2; // 2
+double divisao = 5.0/2; // 2.5
+
+porque da resultado diferente? pq o compilador primeiro executa a conta, e depois verifica o tipo..
+então se colocarmos um numero do tipo flutuante, ele já vai identificar que tem que fazer a conta com base
+no tipo double(como nesse exemplo), e ai o resultado muda.
