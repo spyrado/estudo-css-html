@@ -1,1 +1,4 @@
-Iniciando estudos sobre Angular :)
+**************************** Angular ****************************
+
+Angular foca em ever green browsers, isto é, suportará sempre as duas últimas versões vigentes dos navegadores
+do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará esta versão e a anterior, apenas.
