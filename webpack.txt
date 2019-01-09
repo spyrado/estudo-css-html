@@ -114,8 +114,27 @@ Agora, precisamos alterar client/.babelrc. Em plugins, deixaremos apenas o trans
     "plugins" : ["transform-decorators-legacy"]
 }
 
+Agora vamos fazer o build-pro para a producao, que vai gerar o arquivo minificado.
+vamos em scripts no package.json e colocamos o seguinte comando.
+    "build-prod": "webpack -p --config webpack.config.js"
+esse -p é o uglify que minifica arquivos JavaScript.
 
+porem n vai funcionar, pois o uglify só suporta até ECMAScript 2015, vamos ter que remover o -p, e instalar o babili,
+    ele funciona no ECMAScript 2015 em diante
 
+----------------- Configurando o babili -----------------
+
+    npm install babili-webpack-plugin@0.1.1 --save-dev
+
+    Em package.json utilizamos uma variavel, para ser executada apenas em build de producao:
+        "build-prod": "NODE_ENV=production webpack --config webpack.config.js"
+    Esse NODE_ENV=production recebe um valor chamado production
+
+    Vamos no webpack.config.js
+
+    E configuramos:
+        const babiliPlugin = require('babili-webpack-plugin');
+        let plugins = [];
 ----------------- Bonus -----------------
 
 para desinstalar algo do package.json, digite:
