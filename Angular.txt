@@ -2,3 +2,68 @@
 
 Angular foca em ever green browsers, isto é, suportará sempre as duas últimas versões vigentes dos navegadores
 do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará esta versão e a anterior, apenas.
+
+------------------- ANGULAR CLI -------------------
+
+    Ele é uma interface de linha de comando para o angular, por ele conseguimos através de alguns comandos
+    simples, criar toda a infraestrutura do projeto, sem muito esforço.
+
+    Baixamos ele na url: https://cli.angular.io/
+        IMPORTANTE PRECISAMOS DE PERMISSAO DE ADMINISTRADOR PARA FAZER O DOWNLOAD, Se n gerara um erro:
+        OU digitando:
+    sudo npm install -g @angular/cli@6.0.7
+    
+    Precisaremos de um node.js na versão 8.9 ou superior para executar o angular-cli na versao 6.0.7
+        https://nodejs.org/en/blog/release/v8.9.0/
+
+    Após isso, vamos até uma pasta de Projetos (por exemplo)
+
+    E damos o primeiro comando para criar o projeto em angular:
+        ng new my-dream-app
+    Ele ira criar TODAS as pastas/dependencias do projeto.
+        para acessa-lo digite:
+            cd my-dream-app
+    Para iniciar a aplicação, digitamos:
+        ng serve --open 
+    O --open abre o navegador após o servidor iniciar
+
+    DICAS: SEMPRE ABRA A PASTA RAIZ DO SEU PROJETO PELO VS CODE, POIS O VS CODE TEM QUE ENCONTRAR ALGUNS ARQUIVOS DE
+        CONFIGURAÇÃO QUE ESTAO NELA.
+
+------------------- ANGULAR Components -------------------
+
+    Em angular, tudo é um componente.
+
+    ---- O que é um componente? ----
+
+    O componente guarda um artefato/objeto que guarda um comportamento(o que fazer), a apresentação(o css) e a marcação
+    html(a estrutura).
+
+    ---- Como criar um componente? ----
+
+    primeiro criamos a classe e exportamos ela, e a classe só vira um componente, quando utilizamos o decoratos
+        @Component.
+
+    import { Component } from '@angular/core';
+
+    @Component({
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+        title = 'app';
+    }
+
+    ---- Como configuramos e chamamos um componente? ----
+
+        Em:
+            @Component({
+                selector: 'app-root',
+                templateUrl: './app.component.html',
+                styleUrls: ['./app.component.css']
+            })
+        Definições do componente:
+            selector -> definimos o nome do componente.
+            templateUrl -> definimos o html
+            styleUrls -> definimos os css
