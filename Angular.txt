@@ -67,3 +67,200 @@ do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará e
             selector -> definimos o nome do componente.
             templateUrl -> definimos o html
             styleUrls -> definimos os css
+
+
+------------------- ANGULAR SINTAX -------------------
+
+-> Componentes declarados no array declarations de um módulo são visíveis para os componentes também
+declarados no array.
+
+-> Um componente obrigatoriamente precisa pertencer a um módulo.
+
+
+--- Diretivas ---
+
+app.component.ts:
+
+Temos uma classe, q tem como valor array de objetos photos.
+    export class AppComponent {
+
+        photos = [
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sultan_the_Barbary_Lion.jpg/440px-Sultan_the_Barbary_Lion.jpg',
+            description: 'Leão'
+            },
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Lioness_Etosha_NP.jpg/500px-Lioness_Etosha_NP.jpg',
+            description: 'Leoa'
+            },
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sultan_the_Barbary_Lion.jpg/440px-Sultan_the_Barbary_Lion.jpg',
+            description: 'Leão'
+            },
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Lioness_Etosha_NP.jpg/500px-Lioness_Etosha_NP.jpg',
+            description: 'Leoa'
+            }
+        ];
+    }
+
+app.component.html:
+
+    Estou fazendo um for, para exibir a lista de fotos q a classe AppComponent contem.
+
+    <ap-photo 
+        *ngFor="let photo of photos" // estou falando q a variavel photo recebe photos ( de AppComponent)
+        [url]='photo.url' // cada iteracao no for eu tenho um objeto e passo ele pra url, indico q essa propriedade vem
+                             da classe AppComponent com [] na url [url], isso vai indicar q está vindo da classe
+        [description]='photo.description'> // mesma coisa aqui.
+    </ap-photo>
+
+    e assim eu tenho varias imagens ;)
+
+--- Criando Features / modulos / e exportando elas ---
+
+Primeiro é uma boa pratica criar um modulo para features, exemplo:
+    tenho o component thead, um component tbody e um outro tfoot,
+    crio uma feature chamada table, dentro dessa feature vai ter um modulo,
+    e vamos importar E exportar as dependencias dessa tabela, de acordo com a necessidade.
+
+--- Como fazer isso? ---
+
+photos
+    photo
+        //componentes de photo
+photos.module.ts // aqui eu pego todas as dependencias de photo
+
+photos.module.ts:
+
+    import { NgModule } from "@angular/core";
+    import { PhotoComponent } from "./photo/photo.component";
+
+    @NgModule({
+        declarations: [ PhotoComponent ], // importo o component
+        exports: [ PhotoComponent ] // exporto esse componente, quando faco isso, ele fica visivel para outros modulos, 
+                                        conseguirem enchergar ele
+    })
+    export class PhotosModule{
+
+    }
+app.module.ts:
+
+    Aqui eu importo o modulo de photos:
+
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    import { AppComponent } from './app.component';
+    import { PhotosModule } from './photos/photos.module';
+
+
+    @NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        PhotosModule // aqui eu importo ele, se no Photos Module eu n tivesse exportado nada, 
+                        nenhum componente ficaria visivel, para esse modulo, iria gerar um erro.
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+
+
+--- Inbound properties ---
+
+    Permite que o componente receba valores externos quando usado na forma declarativa no template de outros componentes.
+
+    Quando passo atributos para um component, estou falando que esses atributos podem receber por meio dessa forma declarativa, valores variados.
+
+    <ap-photo url='.img/outra-img.png' description='imagem 2' ></ap-photo>
+
+    E para isso funcionar, devemos declarar na classe criadora, em suas respectivas propriedades os decorators, para fazer esse link, com @Input
+
+    export class PhotoComponent {
+    
+        @Input() description = '';
+        @Input() url = '';
+    }
+
+--- PADRAO DE CHAMADA DE ARQUIVOS ---
+
+    Uma convensao adotada no site do angular, o correto é separar os imports do angular dos seus, exemplo:
+        // Angular imports
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgModule } from '@angular/core';
+        import { AppComponent } from './app.component';
+
+        //Seus imports
+        import { PhotoComponent } from './photo/photo.component';
+
+--- Nomenclatura de arquivos/classes ---
+
+Exemplo:
+    MenubarComponent {} // Classe
+    menubar.component.ts // arquivo
+    menubar.component.html // arquivo
+    menubar.component.css // arquivo
+
+    CalopsitaComponent {} // Classe
+    calopsita.component.ts // arquivo
+    calopsita.component.html // arquivo
+    calopsita.component.css // arquivo
+
+
+Classe de exemplo:
+
+    export class AppComponent {
+        title = 'alurapic';
+        description = 'Leão';
+        url = 'https://img.elo7.com.br/product/zoom/1C33C7D/quadro-tela-animais-leao-decoracao-telas-animal-0005-quadro-de-leao.jpg';
+    }
+
+{{}} -> Angular Expression, Utilizamos para dar valores ao conteudo das tags, exemplo:
+    <h1> {{ title }} </h1>
+[] -> One way data binding ("data binding unidirecional"), utilizamos apenas em atributos, exemplo:
+    IMPORTANTE: Ele é unidirecional, então ele faz o caminho do seu componente até o seu template, e NUNCA o contrário.
+    <img [src]="url" [alt]="description">
+
+RESUMO: Utilizamos {{ }} dentro de tags e [ ] para atributos
+
+----- Component -----
+
+É uma boa prática em Angular, usar um prefixo antes do nome do seletor, o prefixo pode ser o nome da empresa, 
+    oq vc quiser, no caso do exemplo abaixo o prefixo ap, significa alurapic.
+
+    import { Component } from "@angular/core";
+
+    @Component({
+        selector: 'ap-photo'
+    })
+    export class PhotoComponent {
+
+    }
+
+------------------- ANGULAR CARREGANDO ARQUIVOS GLOBAIS CSS/JS -------------------
+
+    Utilizamos a tag link no html para um CSS Global?
+    Não! No Angular, quando precisamos importar um CSS global como o Bootstrap, Normalize, CSS Reset ou outro similar, isso não funciona desta forma. 
+    Isto porque esses arquivos CSS precisam estar no processo de build, de construção da nossa aplicação, tanto no ambiente de desenvolvimento 
+    quanto no ambiente de produção.
+
+---- Como fazemos isso no Angular? ----
+    Em angular.json:
+        temos a parte de build, lá dentro temos as chaves:
+            "styles": [
+                "src/styles.css"
+            ],
+                "scripts": []
+            },
+        é aqui que colocamos nossos CSS / JS GLOBAIS, APENAS OS ARQUIVOS GLOBAIS.
+
+    Exemplo:
+        Baixamos bootstrap via npm,
+        e chamamos ele na chave style, ficando assim:
+        "styles": [
+            "src/styles.css",
+            "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        ],
