@@ -264,3 +264,130 @@ RESUMO: Utilizamos {{ }} dentro de tags e [ ] para atributos
             "src/styles.css",
             "./node_modules/bootstrap/dist/css/bootstrap.min.css"
         ],
+
+------------------- WEB API -------------------
+
+    É o servidor que tem a responsabilidade de fornecer os dados para a aplicação Angular em uma Single Page Application.
+
+------------------- HttpClient -------------------
+
+http.get() -> solicita a url porem n faz nada com ela, para fazer algo temos que dar um subscribe
+
+http.get(url).subscribe(); -> o subscribe retorna a resposta que veio do servidor, ele contem 2 callbacks, exemplo:
+    http
+        .get(url)
+        .subscribe(callbackRespostaDoServidor,callbackError);
+
+
+
+Para exibir os imports corretos do HttpClient no vs code, primeiro temos que importar o módulo dele la em app.module.ts,
+    para que nossa aplicação identifique suas dependencias, seus outros imports.
+
+1 - Importamos o modulo em app.module.ts import { HttpClientModule } from '@angular/common/http';
+2 - importamos em nosso component import {HttpClient} from '@angular/common/http';
+
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+//codigo
+})
+export class AppComponent {
+
+  constructor(http: HttpClient){
+    console.log(http);
+  }
+
+}
+
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule
+  ],
+
+
+----- Fazendo uma requisicao com HttpClient -----
+
+    export class AppComponent {
+
+        photos: Object[] = [];
+
+        constructor(http: HttpClient){
+            http
+                .get<Object[]>('http://localhost:3000/flavio/photos')
+                .subscribe(photos => this.photos = photos);
+            
+        }
+
+    }
+
+    Exibindo o erro:
+        http
+            .get<Object[]>('http://localhost:3000/flavio/photosx')
+            .subscribe(
+                photos => this.photos = photos,
+                err => console.log(err.message)
+            );
+
+------------------- Service -------------------
+
+Quando criamos um servico, utilizamos o decorator @Injectable({ providedIn: 'root' }), para falar pra ele
+    disponibilizar esse servico em todo nosso projeto(nesse caso).
+
+Criamos services, dentro dos components, exemplo:
+    photo/
+        photo.component.html
+        photo.component.ts
+        photo.service.ts <- aqui nomeamos dessa forma.
+
+Se eu crio uma classe service, chamo ela em outra classe, o angular n vai conseguir executar o servico,
+    precisamos ir até a classe e injetar com decorator, para que ele identifique e execute o servico, exemplo:
+
+MEU SERVICO:
+
+    import { HttpClient } from "@angular/common/http";
+    import { Injectable } from "@angular/core";
+
+    const  API = 'http://localhost:3000';
+
+    @Injectable({ providedIn: 'root' })
+    export class PhotoService{
+
+        constructor(private http: HttpClient){}
+
+        listFromUser(user: string){
+
+            return this.http
+                .get<Object[]>(API + '/flavio/photos');
+        }
+    }
+
+CLASSE QUE CONSOME ESSE SERVICO:
+
+    import { Component } from '@angular/core';
+    import { PhotoService } from './photos/photo/photo.service';
+
+
+    @Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+
+    photos: Object[] = [];
+
+    constructor(photoService: PhotoService){ 
+        
+        photoService
+        .listFromUser('flavio')
+        .subscribe(photos => this.photos = photos);
+    }
+
+    }
