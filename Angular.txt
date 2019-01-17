@@ -391,3 +391,74 @@ CLASSE QUE CONSOME ESSE SERVICO:
     }
 
     }
+
+------------------- BLINDANDO A API -------------------
+
+Uma API sem essa blindagem, n contem AUTOCOMPLETE quando retornado os dados da API, dificultando sua implementacao,
+    e caindo em produtividade, para resolver isso, vamos criar uma INTERFACE para a API, e lá passamos tudo oq
+    a API DEVE receber.
+
+INTERFACE:
+    export interface Photo{
+        id:number;
+        postDate:Date;
+        url:string;
+        description:string;
+        allowComments:boolean;
+        likes:number;
+        comments:number;
+        userId:number;
+    }
+SERVICO DA API:
+    export class PhotoService{
+
+        constructor(private http: HttpClient){}
+
+        listFromUser(user: string){
+
+            return this.http
+                .get<Photo[]>(API + '/'+user+'/photos'); // Tipo o retorno da API, como INTERFACE Photo
+        }
+    }
+CLASSE que consome a API:
+    export class AppComponent {
+
+    photos: Photo[] = [];
+
+        constructor(photoService: PhotoService){
+            
+            photoService
+            .listFromUser('flavio')
+            .subscribe(photos => {
+                console.log(photos[0].userId); // Aqui agora eu consigo dar ponto e ver todas as propriedades de photos
+                this.photos = photos
+            });
+        }
+
+    }
+
+IMPORTANTE!!!!!
+Consequencia, agora eu tenho um AUTOCOMPLETE na minha API, e MAIS, exemplo:
+    se um dia a propriedade mudar da minha API, por exemplo userId não é mais userId, agora ele é somente user,
+    vou ir até a minha INTERFACE ir até a propriedade userId clico com o direito nela e seleciono Rename Symbol,
+    coloco user aperto ENTER e pronto, todo o restante do meu código que ANTES implementava como userId, agora
+    passa a implementar como user somente.
+
+------------------- Ciclo de vida de um component -------------------
+
+1 - No constructor deve conter apenas para injeção de dependência.
+2 - E qualquer lógica que queiramos executar será colocada em uma fase do ciclo de vida
+    que todo componente Angular possui.
+
+    lifecycle hook / ciclo de vida
+1 - ngOnInit -> é chamado depois que Angular inicializou todas as propriedades ligadas a dados de uma diretiva. 
+                    Defina um método ngOnInit () para manipular quaisquer tarefas de inicialização adicionais.
+        ngOnInit(): void {
+            this.photoService
+                .listFromUser('flavio')
+                .subscribe(photos => {
+                    console.log(photos[0].userId);
+                    this.photos = photos
+                });
+        }
+
