@@ -71,6 +71,8 @@ do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará e
 
 ------------------- ANGULAR SINTAX -------------------
 
+O BrowserModule só deve ser importado no modulo principal da aplicação.
+
 -> Componentes declarados no array declarations de um módulo são visíveis para os componentes também
 declarados no array.
 
@@ -462,3 +464,103 @@ Consequencia, agora eu tenho um AUTOCOMPLETE na minha API, e MAIS, exemplo:
                 });
         }
 
+------------------- Gerando components/modulos via console -------------------
+
+    IMPORTANTE O comando ng generate SEMPRE comeca a pegar a partir da pasta APP
+    entao vc vai colocar tudo que está DENTRO DELA.
+
+    SINTAX: ng generate component nomeDaPasta
+
+    app
+      photos
+
+    ng generate component photos/photo-list -> estou criando dentro de app/photos um diretorio photo-list
+                                                    com todos os seus components e chamadas.
+
+    ng generate module errors -> ira gerar um modulo dentro da pasta errors
+
+------------------- DIRETIVAS ANGULAR -------------------
+
+Para importar as diretivas do angular, importe em seu modulo o CommonModule, o BrowserModule já importa esse modulo, 
+    dentro dele, por isso n precisamos importar CommonModule em app.component.ts
+
+O CommonModule possui todas as diretivas básicas como NgIf, NgFor, NgForOf etc
+
+*ngFor -> 
+    <ap-photo
+        *ngFor="let photo of photos" 
+        [url]='photo.url' 
+        [description]='photo.description'>
+    </ap-photo>
+
+------------------- SPA ROTAS -------------------
+
+1- Criamos o arquivo app.routing.module.ts em app/
+2- Dentro de app.routing.module.ts fazemos nossas configurações:
+    Devemos importar o Routes de @angular/router, para tipar nossa constante routes,
+    caso n fizer isso, n dara erro se trocar o path por pat por exemplo, gerando um erro no link, na hr da 
+    execucao.
+    Devemos importar o RouterModule para linkar nossas rotar com o modulo de rotas, fazemos isso
+        dessa maneira: imports: [ RouterModule.forRoot(routes) ].
+    Exporto RouterModule, pois em app.component.html tem um component q DEPENDE dele para funcionar, chamado de
+        <router-outlet></router-outlet>, ele depende das diretivas de RouterModule.
+3- Vamos ate app.module.ts e importamos nosso modulo de rotas AppRoutingModule
+
+
+    import { NgModule } from '@angular/core';
+    import { Routes, RouterModule } from '@angular/router'
+
+    import { PhotoListComponent } from './photos/photo-list/photo-list.component';
+    import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
+
+    const routes: Routes = [
+        { path: 'user/flavio', component: PhotoListComponent },
+        { path: 'p/add', component: PhotoFormComponent }
+    ];
+
+    @NgModule({
+        imports: [ RouterModule.forRoot(routes) ],
+        exports: [ RouterModule ]
+    })
+    export class AppRoutingModule {}
+
+----- pagina 404 -----
+
+Se quisermos redirecionar pra uma pagina especifica quando n existir determinada página, fazemos o seguinte:
+
+    const routes: Routes = [
+        { path: 'user/flavio', component: PhotoListComponent },
+        { path: 'p/add', component: PhotoFormComponent },
+        { path: '**', component: PhotoListComponent }
+    ];
+
+Estou dizendo que qualquer diretorio q n foi definido em path, carrega o component PhotoListComponent
+
+
+----- Deixando a rota dinamica -----
+
+    { path: 'user/:userName', component: PhotoListComponent }
+        Estou dizendo que dps de user/ pode vir qualquer coisa, que ele n vai dar como nao encontrado.
+
+    Lá em nossa API, fazemos o seguinte:
+        ngOnInit(): void {
+
+        const userName = this.activatedRoute.snapshot.params.userName; // Recebo o valor definido na url user/:userName
+        
+        // Passo esse valor para o listFromUser
+        this.photoService
+            .listFromUser(userName)
+            .subscribe(photos => this.photos = photos);
+    }
+
+    E lá no meu servico, eu executo a acao, com base no nome passado:
+    
+        listFromUser(userName: string){
+            
+            return this.http
+                    .get<Photo[]>(API + '/'+userName+'/photos');
+        }
+
+----- Lidando com dados assincronos -----
+
+Utilize OnChange para detectar as mudancas feitas em suas propriedades.
