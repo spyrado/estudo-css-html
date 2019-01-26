@@ -3,6 +3,36 @@
 Angular foca em ever green browsers, isto é, suportará sempre as duas últimas versões vigentes dos navegadores
 do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará esta versão e a anterior, apenas.
 
+------------------- ANGULAR DUVIDAS BASICAS -------------------
+
+---- declaration MODULO ----
+    Um Modulo, ao colocar seus components em declarations, TODOS OS OUTROS COMPONENTS ficam visivel entre eles, isso é,
+    eles fazem parte do modulo, e se conversam entre eles.
+        @NgModule({
+            declarations: [ 
+                PhotoComponent
+            ]
+        })
+
+---- exports MODULO ----
+
+    Um  moduloX só conseguira enxergar os components do moduloY, caso o moduloY tenha exportado esses components.
+        photos.module.ts: (moduloY)
+            @NgModule({
+                declarations: [ 
+                    PhotoComponent
+                ],
+                exports: [
+                    PhotoComponent
+                ]
+            })
+        app.module.ts: (moduloX)
+            @NgModule({
+                imports: [
+                    PhotosModule
+                ]
+            })
+
 ------------------- ANGULAR CLI -------------------
 
     Ele é uma interface de linha de comando para o angular, por ele conseguimos através de alguns comandos
@@ -67,7 +97,6 @@ do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará e
             selector -> definimos o nome do componente.
             templateUrl -> definimos o html
             styleUrls -> definimos os css
-
 
 ------------------- ANGULAR SINTAX -------------------
 
@@ -563,4 +592,22 @@ Estou dizendo que qualquer diretorio q n foi definido em path, carrega o compone
 
 ----- Lidando com dados assincronos -----
 
-Utilize OnChange para detectar as mudancas feitas em suas propriedades.
+    Usamos implements OnChanges
+
+    ngOnChanges(changes: SimpleChanges) -> 
+        Este método recebe como parâmetro todas as possíveis mudanças das inbound properties do nosso componente. 
+        Tais mudanças são do tipo SimpleChanges, que importaremos de angular/core. Caso haja alguma mudança, 
+        uma propriedade com mesmo nome da inbound property que sofreu a mudança será adicionada dinamicamente. 
+        Se não houver mudança, tampouco haverá propriedade.
+
+    ngOnChanges(changes: SimpleChanges){
+        if(changes.photos)
+            this.rows = this.groupColumns(this.photos);
+    }
+
+    changes.photos -> contem o valor antigo e o novo, caso tenha um novo valor ele retorna true.
+
+------------------- Data binding /  Event binding -------------------
+
+[] -> O dado vem da fonte de dados para o template ( do ts para o html )
+() -> O dado vem do template para a fonte de dados ( do html para o ts )
