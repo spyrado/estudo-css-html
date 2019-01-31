@@ -1,0 +1,3 @@
+**************** COMANDOS LINUX ****************
+
+ls | grep .css -> verifica os arquivos com a extensão .css do diretorio atual
