@@ -607,6 +607,52 @@ Estou dizendo que qualquer diretorio q n foi definido em path, carrega o compone
 
     changes.photos -> contem o valor antigo e o novo, caso tenha um novo valor ele retorna true.
 
+
+
+------------------- Pipes ANGULAR -------------------
+
+suponhamos q temos uma variavel nome na classe app.component.ts
+    app.component.ts:
+        nome = 'nicolas';
+
+na view de app.component.html, vamos fazer o pipe:
+    app.component.html
+        {{ nome | uppercase }} // nicolas
+
+O angular, possui diversos pipes, mas podemos criar nossos proprios PIPES também.
+
+----- Criando seu proprio pipe ANGULAR -----
+
+IMPORTANTE, UM Pipe tambem precisa ser declarado.
+
+<div class="text-center mt-3 mb-3">
+    <form>
+        <input
+            class="rounded"
+            type="search"
+            placeholder="search..."
+            autofocus
+            (keyup) = "filter = $event.target.value">
+    </form>
+</div>
+{{ filter }}
+<ap-photos  [photos]="photos | filterByDescription: filter"></ap-photos>
+
+- Estou passando uma lista de fotos em photo-list-component.ts
+- Fazendo uma logica para filtrar essa lista de fotos, DEACORDO COM o filter.
+- pego o filter do `back-end`.
+
+--- Criando a classe PIPE ---
+
+@Pipe({ name: 'filterByDescription' })
+export class nomeDaClasse implements PipeTransform{
+
+    transform(value: number, ...args: string) // value será o valor requerido, args, sao os parametros passados.
+}
+
+[photos]="photinhas | filterByDescription: filter" -> photinhas = requerido, filter = params passados.
+
+
 ------------------- Data binding /  Event binding -------------------
 
 [] -> O dado vem da fonte de dados para o template ( do ts para o html )
