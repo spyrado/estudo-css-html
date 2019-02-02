@@ -1,0 +1,47 @@
+********************* CLEAN CODE *********************
+
+
+---- VARIAVEIS COM NOMES INTUITIVOS ----
+
+    EXEMPLO:
+        ArrayDeEnderecos -> aqui eu sei que essa variavel me fornece um [] que contem enderecos dentro dela
+            ['Rua exemplo1', 'Rua exemplo2']
+
+
+---- NUNCA ABREVIAR UM NOME DE VARIAVEL OU PROPRIEDADE OU FUNÇÃO ----
+
+    EXEMPLO:
+        rua.cp // até o desenvolvedor entender, que é o CEP de uma RUA... ele vai ter q pensar pra descobrir?
+            porque voce n coloca cep? pra facilitar pra todos os desenvolvedores.
+        NAO coloque nada abreviado, se VOCE colocar, outra pessoa vai colocar, e as vezes oq vc acha q fica bom abreviado
+        NAO é o mesmo pra outro desenvolvedor.
+
+
+---- A IMPORTANCIA DE OUTROS DESENVOLVEDORES ENTENDEREM SEU CÓDIGO SEM TER QUE DEBUGA-LO ----
+    
+    EXEMPLO:
+        Surgiu um BUG, "Por algum motivo a biblioteca não está limpando os caracteres especiais", sua missão é identificar
+        aonde está o bug, SEM ter que DEBGUGAR o código, ache aonde está o BUG:
+
+    Promise.resolve(cepRawValue)
+        .then(validateInputType)
+        .then(removeSpecialCharacters) <- EXATAMENTE, aqui é onde provavelmente está o bug, e vc n precisou DEBUGAR.
+        .then(validateInputLength)
+        .then(leftPadWithZeros)
+        .then(fetchCepFromServices)
+        .then(resolvePromise)
+
+
+---- A IMPORTANCIA DE ISOLAR AS RESPONSABILIDADES DAS FUNÇÕES ----
+
+    PRESTE BEM ATENÇÃO:
+        Quando uma função é pequena, ela se torna ESPECIALISTA NAQUELE ASSUNTO, e quando ela se torna especialista, ela
+        vai fazer o melhor TRABALHO do MUNDO, que foi designada a fazer.
+        EXEMPLO:
+            Se voce tem um sistema que cadastra um usuário e LISTA ele na tela, quando voce isola a responsabilidade,
+            das tarefas, as funcoes se tornam ESPECIALISTAS no assunto.
+
+            cadastraEExibeNaTela();
+
+            cadastraUsuario(); -> essa funcao APENAS CADASTRARÁ usuários
+            exibeUsuarioNaTela(); -> enquanto essa, apenas listará.

@@ -652,6 +652,48 @@ export class nomeDaClasse implements PipeTransform{
 
 [photos]="photinhas | filterByDescription: filter" -> photinhas = requerido, filter = params passados.
 
+------------------- Resolver Angular -------------------
+
+Ele é ativado ANTES de um componente ser carregado na página.
+
+-- Criando um resolver --
+
+    IMPORTANTE, Todo resolver deve ter seu decorator Injectable, assim como os services.
+    @Injectable({ providedIn: 'root' })
+    export class PhotoListResolver implements Resolve<Observable<Photo[]>>{
+
+        constructor(private service: PhotoService) {}
+
+        resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Photo[]>{
+
+            const userName = route.params.userName;
+            return this.service.listFromUser(userName);
+        }
+    }
+
+    esse resolver, vai devolver a lista de fotos para a phot-list.component.ts
+
+    Crio a ligacao da rota com o dado em app.routing.module.ts:
+
+    {
+      path: 'user/:userName',
+      component: PhotoListComponent,
+      resolve: {
+          photos: PhotoListResolver
+      }
+    }
+
+    em PhotoListComponent eu recebo ele com base na proriedade devinida em app.routing.module.ts:
+
+     constructor(
+        private activatedRoute: ActivatedRoute
+    ){}
+
+    ngOnInit(): void {
+
+        this.photos = this.activatedRoute.snapshot.data.photos; // snapshot.data eu acesso as propriedades de resolve de app.routing.module.ts
+    }
+    
 
 ------------------- Data binding /  Event binding -------------------
 
