@@ -45,3 +45,41 @@
 
             cadastraUsuario(); -> essa funcao APENAS CADASTRARÁ usuários
             exibeUsuarioNaTela(); -> enquanto essa, apenas listará.
+
+---- COMENTARIOS? É CERTO? ERRADO? ----
+
+    Primeiro, se voce comenta seu código a ponto de explicar o que ele faz, tem algo de errado, voce não conseguiu,
+    passar a mensagem do seu codigo para o programador, teve que comentar o que foi feito no código, isso é ruim,
+    treine o modo como voce programa, faca códigos que sao por si só uma leitura.
+    EXEMPLO:
+
+    // Da uma mensagem de boas vindas.
+    function inicia(){
+        var vetor = ['Nicolas','João'];
+        for(let i = 0; i< vetor.length; i++){
+            console.log(`Olá, seja bem vindo: ${vetor[0]}`);
+        }
+    }
+
+    QUE DIABO FOI ISSO ACIMA?, VAMOS MELHORAR ISSO..
+
+    let listaDeNomes = ['Nicolas','João'];
+    mensagemDeBoasVindas(listaDeNomes);
+
+    function exibeMensagemDeBoasVindas(listaDeNomes){
+
+        listaDeNomes.forEach(nomeDaPessoa =>  
+            console.log(`Olá, seja bem vindo: ${nomeDaPessoa}`);
+        );
+    }
+
+    COMENTARIOS SAO MENTIROSOS, Veja o exemplo:
+        // Gera um string com data atual no seguinte formato:
+        // "Dia 22/01/2017 ás 19:30"
+        var today = moment().format("[Dia] DD/MM/YYYY [às] hh:mm");
+
+        Qual é o erro no comentario?, o codigo acima irá retornar "7:30" e NAO "19:30", pois para retornar
+        19:30 teria que estar em HH(formato 24hrs), e está em hh(formato 12 horas).
+
+        E outra coisa, quando refatoramos ou mudamos um código, muita das vezes podemos esquecer de atualizar
+            o comentario, dificultando ainda mais o intendimento do programador.
