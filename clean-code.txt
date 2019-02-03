@@ -58,7 +58,7 @@
         var vetor = ['Nicolas','João'];
         for(let i = 0; i< vetor.length; i++){
             console.log(`Olá, seja bem vindo: ${vetor[0]}`);
-        }
+        } 
     }
 
     QUE DIABO FOI ISSO ACIMA?, VAMOS MELHORAR ISSO..
