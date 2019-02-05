@@ -300,7 +300,7 @@ RESUMO: Utilizamos {{ }} dentro de tags e [ ] para atributos
 
     É o servidor que tem a responsabilidade de fornecer os dados para a aplicação Angular em uma Single Page Application.
 
-------------------- HttpClient -------------------
+------------------- HttpClient / HttpParams -------------------
 
 http.get() -> solicita a url porem n faz nada com ela, para fazer algo temos que dar um subscribe
 
@@ -308,6 +308,15 @@ http.get(url).subscribe(); -> o subscribe retorna a resposta que veio do servido
     http
         .get(url)
         .subscribe(callbackRespostaDoServidor,callbackError);
+
+const params = new HttpParams()
+            .append('page', page.toString());
+Estou adicionando o parametro page com seu respectivo valor em uma api chamada flavio/photos  ?page=2
+    vou passar minha const params, para o meu HttpClient no get
+        this.http
+            .get<Photo[]>(API + '/'+userName+'/photos',{params}); // o segundo parametro passamos os parametros da url,
+                no caso eu so chamo de params pq o nome da propriedade é params e o nome da minha variavel
+                tambem é params, sendo assim em vez de colocar params: params, eu reduzo para params.
 
 
 
@@ -685,15 +694,49 @@ Ele é ativado ANTES de um componente ser carregado na página.
 
     em PhotoListComponent eu recebo ele com base na proriedade devinida em app.routing.module.ts:
 
-     constructor(
-        private activatedRoute: ActivatedRoute
-    ){}
+     constructor(private activatedRoute: ActivatedRoute){}
 
     ngOnInit(): void {
 
         this.photos = this.activatedRoute.snapshot.data.photos; // snapshot.data eu acesso as propriedades de resolve de app.routing.module.ts
     }
     
+------------------- Debounce com  RXJS no Angular -------------------
+
+    Vamos utilizar uma lib muito boa, chamada RxJS, que serve para trabalhar com codigos asyncronos e mais..
+
+    import { debounceTime } from 'rxjs/operators';
+    import { Subject } from 'rxjs';
+
+    export class PhotoListComponent implements OnInit {
+
+        filter: string = '';
+        debounce: Subject<string> = new Subject<string>();
+
+
+        ngOnInit(): void {
+            this.debounce
+            .pipe(debounceTime(300)) // somente apos 300ms o valor passado em next na view, será enviado para subscribe
+            .subscribe(filter => this.filter = filter);
+        }
+
+        ngOnDestroy(): void {
+            this.debounce.unsubscribe(); // precisamos fazer isso, pois caso o usuário saia da pagina, o Subject pode ficar alocando memoria, e pode dar erro de memoria futuramente.
+        } // problema conhecido por memory leak!
+    }
+
+    VIEW:
+
+        <form>
+            <input
+                class="rounded"
+                type="search"
+                placeholder="search..."
+                autofocus
+                (keyup) = "debounce.next($event.target.value)">
+        </form>
+
+
 
 ------------------- Data binding /  Event binding -------------------
 
