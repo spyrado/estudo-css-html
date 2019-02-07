@@ -202,6 +202,12 @@ app.module.ts:
 
 --- Inbound properties ---
 
+    IMPORTANTE!! O Angular só DETECTA numa inbound propertie uma alteracao quando essa variavel,
+    recebe uma nova ATRIBUICAO nela.
+    Exemplo:
+        Se vc fizer this.photos.push(photos); // ele n detecta q foi alterado, e n vai atualizar a lista de photos.
+        Para a listagem funcionar deve ser feito uma nova ATRIBUICAO this.photos = this.photos.concat(photos);
+
     Permite que o componente receba valores externos quando usado na forma declarativa no template de outros componentes.
 
     Quando passo atributos para um component, estou falando que esses atributos podem receber por meio dessa forma declarativa, valores variados.
@@ -737,6 +743,16 @@ Ele é ativado ANTES de um componente ser carregado na página.
         </form>
 
 
+------------------- Como fazer if / else Angular -------------------
+
+*ngIf="condicao; else exibeOutraCoisa" -> no caso essa outraCoisa seria o ng-template q eu defini atravez de #nomeDaOutraCoisa
+
+<div class="text-center" *ngIf="hasMore; else messageTemplate">
+    <button class="btn btn-primary">Load more</button>
+</div>
+<ng-template #messageTemplate>
+    <p class="text-center text-muted">No more data to load</p>
+</ng-template>
 
 ------------------- Data binding /  Event binding -------------------
 

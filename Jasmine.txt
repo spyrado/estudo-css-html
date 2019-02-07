@@ -1,0 +1,9 @@
+********************** TESTES AUTOMATIZADOS **********************
+
+describe('nomeDaClasse', function(){}); -> uma descricao(geralmente o nome da classe, e uma funcao envolvendo ela.)
+
+it('O QUE FAZ?', function() { //automatiza o codigo aqui }) -> uma descricao do que a funcao vai fazer, e dps automatiza ela.
+
+expect(saida()) -> qual a saida que eu espero receber de determinado metodo (no caso saida())
+
+toEqual('saidaEsperada') -> coloca o resultado da saida().
