@@ -206,3 +206,21 @@ Isso funciona, a classe Funcionario é do tipo mais generica, todo Gerente é um
 
 Podemos criar uma classe generica, para reutilizar códigos que se repetem muito, normalmente chamamos essa classe DE
 algumaUtil.java e instaciamos essa classe em uma classe que necessita dos metodos dessa classe
+
+---- Como criar uma excecao? ----
+
+Para criar uma exceção, sua classe de excecao deve HERDAR da classe RuntimeException, 
+    pois nela contem toda a bagagem necessária..
+
+UNCHEKED -> Excecoes UNCHEKED basta herdar de RuntimeException que ja está funcionando.. (colocar super(msg) e etc)..
+
+CHECKED -> Excecoes CHECKED ao herdar de Exception, voce DEVE colocar em todo metodo na assinatura dele um throw OU
+    tratar o erro com try catch, exemplo:
+        private static void metodo2() throws MinhaExcecao{
+            
+            System.out.println("Ini do metodo2");
+            
+            throw new MinhaExcecao("FUDEUUU AGORA EU SEI");
+            
+            System.out.println("Fim do metodo2");
+        }
