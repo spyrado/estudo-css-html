@@ -207,7 +207,10 @@ Isso funciona, a classe Funcionario é do tipo mais generica, todo Gerente é um
 Podemos criar uma classe generica, para reutilizar códigos que se repetem muito, normalmente chamamos essa classe DE
 algumaUtil.java e instaciamos essa classe em uma classe que necessita dos metodos dessa classe
 
----- Como criar uma excecao? ----
+---- COMO CRIAR UMA EXCESAO? ----
+
+A IllegalArgumentException e IllegalStateException são duas exceções importantes, que o desenvolvedor Java deve usar. 
+    Em geral, quando faz sentido, use uma exceção padrão em vez de criar uma própria.
 
 Para criar uma exceção, sua classe de excecao deve HERDAR da classe RuntimeException, 
     pois nela contem toda a bagagem necessária..
@@ -224,3 +227,38 @@ CHECKED -> Excecoes CHECKED ao herdar de Exception, voce DEVE colocar em todo me
             
             System.out.println("Fim do metodo2");
         }
+
+---- TRY CATCH FINALLY ----
+
+try{ -> tenta fazer algo
+
+}catch(Exception e){ -> se oq tendou deu algum erro ele cai aqui...
+
+}finally{ -> independente do resultado dos dois acima.. ele vai executar esse bloco..
+
+}
+
+O finally é util quando abrimos uma conexao e queremos fechar ela independente se deu certo ou n ela deve ser fechada,
+    e para isso usamos o finally
+
+Podemos tambem simplificar apenas fazendo assim:
+
+try{ -> tenta fazer algo
+
+}finally{ -> independente do resultado acima.. ele vai executar esse bloco..
+
+}
+
+---- NOVO METODO TRY try-with-resources ----
+
+Ele é mais enxuto, substitui todo o codigo citado acima(boa parte dele).
+
+try (Conexao conexao = new Conexao()) { -> inicializa uma conexao
+    conexao.leDados();
+}
+
+INTERNAMENTE vc DEVE implementar a interface AutoCloseable dentro da classe Conexao, e implementar o metodo close que essa interface
+    te obriga a implementar.
+
+Ai.. toda hora que vc abrir uma conexao.. se der ou n certo o try, ele vai executar o metodo close() implementado pela interface na classe Conexao, e é lá
+que deve estar a logica necessaria para se der ou n der erro executar X coisas.
