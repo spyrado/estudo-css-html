@@ -1,0 +1,7 @@
+**************** COMANDOS LINUX ****************
+
+ls | grep .css -> verifica os arquivos com a extensão .css do diretorio atual
+
+find /var/www/html/cache -name *report.jpg -> procura o nome do arquivo em toda a pasta cache/
+
+o * funciona igual banco, se vc colocar na frente ele vai procurar dali pra frente.
