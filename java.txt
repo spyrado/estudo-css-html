@@ -1,0 +1,208 @@
+**************************** JAVA ****************************
+
+------------ O que é JVM? O que é JDK? / O que é JRE? ------------
+
+JVM - Java Virtual Machine -> É ela que faz o processo de identificar o bytecode (codigo java), e traduzir eles
+    para diversos tipos de Sistemas Operacionais.
+
+JDK -> Java Development Kit ( Kit de Desenvolvimento Java ), precisamos dele pois ele que contem a JVM, as libs, 
+    o compilador.
+
+JRE -> O JRE é o ambiente para executar uma aplicação Java, que vem com a virtual machine e as bibliotecas.
+
+o JRE e JDK. O primeiro é o ambiente de execução, o segundo são as ferramentas de desenvolvimento 
+    junto com o ambiente de execução
+
+JDK = JRE + ferramentas desenvolvimento
+
+JRE = JVM + bibliotecas
+
+
+------------ Tipos de Variaveis ------------
+
+int -> aceita numeros inteiros (10,5,0,20)
+long -> para long devemos terminar com l no final, seja ele minusculo ou maiusculo:
+    long num = 2131627316262137L OU long num = 2131627316262137l
+
+--- Tipo Flutuante ---
+double -> aceita numeros com restos (10.5, 5.5, 0.0, 20.0)
+float -> float num = 3.14; // vai dar um erro, temos q fazer casting para float OU colocar um f no final:
+    float num = 3.14f; OU float num = (float) 3.14;
+
+------------ Tipos e seus bits ------------
+
+byte = 1 byte - 8 bits = -128-127 - números inteiros
+short = 2 bytes - 16 bits = -32768 a +32767 - números inteiros
+int = 4 bytes - 32 bits = -2147483648 a + 2147483647 - números inteiros
+long = 8 bytes - 64 bits = -922337203685477808 a 922337203685477807 - números inteiros
+float = 4 bytes - 32 bits = aproximadamente 3.40282347E+38 = Ponto flutuante
+double = 8bytes - 64 bits = 1.79769313486231570W+308 = Ponto Flutuante
+chart = Caracteres Unicode 16 bits = 0 a 65536 = caracteres
+booleann = Possuem valores True e false = booleano
+
+------------ Peculiaridades de tipos flutuantes ------------
+
+Se eu faço uma conta de um tipo double como essa:
+
+double divisao = 5/2; // 2
+double divisao = 5.0/2; // 2.5
+
+porque da resultado diferente? pq o compilador primeiro executa a conta, e depois verifica o tipo..
+então se colocarmos um numero do tipo flutuante, ele já vai identificar que tem que fazer a conta com base
+no tipo double(como nesse exemplo), e ai o resultado muda.
+
+
+------------ Orientacao a Objetos ------------
+
+---- Referencia ----
+
+    Conta nicolas = new Conta(); // bytebank.Conta@33909752
+    Uma instancia não é um Objeto do tipo Conta, ele é apenas uma Referencia(bytebank.Conta@33909752) para o Objeto do tipo Conta.
+
+    tanto isso é verdade que se fizermos isso:
+        joyce = nicolas; // bytebank.Conta@33909752
+
+    joyce n tera um NOVO Objeto do tipo Conta.., joyce agora... passa a ter uma Referencia(bytebank.Conta@33909752) para
+    a MESMA Conta que nicolas acessava, pois ambos vao possuir a mesma Referencia para a conta.
+
+    tanto isso é verdade2, que se eu definir um saldo para joyce, o nicolas vai ter o MESMO saldo, pois ambos tem a mesma
+        Referencia(bytebank.Conta@33909752) de conta.
+
+    joyce.saldo = 5000; // 5000
+    nicolas.saldo // 5000
+
+---- Objeto ----
+
+    O Java por padrao inicializa seus objetos com 0,
+        EXEMPLO:
+            double saldo;
+            int agencia;
+            int numero;
+            String titular;
+
+    Quando for acessar da main:
+        Conta nicolas = new Conta();
+        nicolas.saldo // 0 -> ele exibe 0, pois por default ele inicializa com 0
+        nicolas.titular // null -> pois n tem nada.
+
+---- Atributo static ----
+
+O static faz com que o atributo seja da classe, e não mais do objeto. Com isso, todo o objeto conta 
+    possui acesso a um único total.
+
+private static int total; -> estou falando que o total n vai variar de classe pra classe, o total será um valor fixo..
+    entao se vc der new em uma classe q contem o total, o valor dele vai continuar o mesmo..
+
+---- Metodos static ----
+
+    Metodos estaticos somente iram acessar atributos estaticos da classe, ele n aceita refenrecia para o objeto(this)
+
+
+---- Modificadores de acesso ----
+
+public -> visivel a todos
+private -> Somente a propria classe pode ver
+protected -> A propria classe E seus filhos também podem ver.
+
+---- SOBRECARGA DE METODOS ----
+
+    public boolean autentica(int senha) {
+        if(this.senha == senha) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //novo método, recebendo dois params
+    public boolean autentica(String login, int senha) {
+        //implementacao omitida
+    }
+
+---- GENERICS / POLIMORFISMO ----
+
+Funcionario nico = new Gerente();
+
+Isso funciona, a classe Funcionario é do tipo mais generica, todo Gerente é um funcionario, 
+    mas NEM todo funcionario é um gerente
+
+---- POLIMORFISMO ----
+
+    IMPORTANTE: Caso a classe Funcionario N TIVESSE O METODO getBonificacao nada abaixo seria possivel..
+
+    //MAIN
+    Gerente gerente = new Gerente();
+    gerente.setSalario(5000);
+    
+    Funcionario funcionario = new Funcionario();
+    funcionario.setSalario(2000);
+    
+    EditorVideo editorDeVideo = new EditorVideo();
+    editorDeVideo.setSalario(2500);
+    
+    ControleBonificacao controle = new ControleBonificacao();
+    
+    controle.registra(gerente);
+    controle.registra(funcionario);
+    controle.registra(editorDeVideo);
+
+    //ControleBonificacao.java
+    public void registra(Funcionario funcionario) {
+		double bonificacao = funcionario.getBonificacao();
+		this.soma += bonificacao;
+	}
+
+    para cada tipo de funcionario registrado, ele vai até a classe do funcionario registrado, e verifica o metodo particular
+    de cada um( getBonificacao() ).
+
+    ---- A anotação @Override ----
+
+    Se tirassemos o @Override do código abaixo, ele ainda compilaria, porem.. se errarmos o nome do metodo
+    e escrever sacar.. a classe ia considerar como um NOVO metodo, e NAO uma sobrescrita da classe PAI.
+    a anotacao @Override corrige isso, caso escreva sacar o @Override indica que esse metodo n existe na classe
+    PAI.
+
+    @Override
+	public boolean saca(double valor) {
+		double valorASacar = valor + 0.2;
+		if(super.saca(valorASacar)) {
+			
+		}
+		return super.saca(valor);
+	}
+
+---- CLASSES ABSTRATAS ----
+
+    CLASSES ABSTRATAS NÃO SÃO OBRIGADAS A IMPLEMENTAREM METODOS ABSTRATOS DE OUTRA CLASSE ABSTRATA
+
+---- INTERFACE ----
+
+    Interfaces apenas utilizam metodos e nao propriedades, todos os metodos sao abstratos, exemplo:
+
+    public abstract interface Autenticavel {
+	
+        public abstract boolean autentica(int senha);
+        public abstract void setSenha(int senha);
+    }
+
+    RESUMO:
+        Nao precisamos declarar como abstrata uma interface nem como abstrato seus metodos, pois o compilador ja entende
+        que toda interface é abstrata.
+        
+    public interface Autenticavel {
+	
+        boolean autentica(int senha);
+        void setSenha(int senha);
+    }
+
+
+---- DICAS HERANCA / POLIMORFISMO ----
+
+    Se voce deseja reutilizar o código E fazer Polimorfismo, utilize HERANCA.
+    Se voce quer apenas Polimorfismo, utilize interfaces.
+    Se voce quer apenas reutilizar código utilize COMPOSIÇÃO
+
+---- COMPOSIÇÃO ----
+
+Podemos criar uma classe generica, para reutilizar códigos que se repetem muito, normalmente chamamos essa classe DE
+algumaUtil.java e instaciamos essa classe em uma classe que necessita dos metodos dessa classe

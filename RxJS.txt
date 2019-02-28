@@ -1,0 +1,12 @@
+**************************** RxJS ****************************
+
+--- Subject ---
+
+A classe Subject serve para que a gente se INSCREVA, para saber qual há uma atualização e reagir a elas,
+    funciona mais o menos como se inscrever no canal do YouTube.
+    EXEMPLO:
+
+    debounce: Subject<string> = new Subject<string>();
+
+    debounce.next('Nicolas'); // valor de entrada
+    debounce.subscribe(nome => console.log(nome)); // Nicolas

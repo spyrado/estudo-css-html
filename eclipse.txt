@@ -1,0 +1,4 @@
+ATALHOS
+
+control + space -> faz o autocomplete
+CMD+SHIFT+F -> Renomeia as variaveis

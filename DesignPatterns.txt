@@ -1,0 +1,3 @@
+
+---- DEBOUNCE ----
+    limita a quantidade de vezes que um determinado trecho de código é executado em relação ao tempo.

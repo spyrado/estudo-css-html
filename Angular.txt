@@ -1,0 +1,798 @@
+**************************** Angular ****************************
+
+Angular foca em ever green browsers, isto é, suportará sempre as duas últimas versões vigentes dos navegadores
+do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará esta versão e a anterior, apenas.
+
+------------------- ANGULAR DUVIDAS BASICAS -------------------
+
+---- declaration MODULO ----
+    Um Modulo, ao colocar seus components em declarations, TODOS OS OUTROS COMPONENTS ficam visivel entre eles, isso é,
+    eles fazem parte do modulo, e se conversam entre eles.
+        @NgModule({
+            declarations: [ 
+                PhotoComponent
+            ]
+        })
+
+---- exports MODULO ----
+
+    Um  moduloX só conseguira enxergar os components do moduloY, caso o moduloY tenha exportado esses components.
+        photos.module.ts: (moduloY)
+            @NgModule({
+                declarations: [ 
+                    PhotoComponent
+                ],
+                exports: [
+                    PhotoComponent
+                ]
+            })
+        app.module.ts: (moduloX)
+            @NgModule({
+                imports: [
+                    PhotosModule
+                ]
+            })
+
+------------------- ANGULAR CLI -------------------
+
+    Ele é uma interface de linha de comando para o angular, por ele conseguimos através de alguns comandos
+    simples, criar toda a infraestrutura do projeto, sem muito esforço.
+
+    Baixamos ele na url: https://cli.angular.io/
+        IMPORTANTE PRECISAMOS DE PERMISSAO DE ADMINISTRADOR PARA FAZER O DOWNLOAD, Se n gerara um erro:
+        OU digitando:
+    sudo npm install -g @angular/cli@6.0.7
+    
+    Precisaremos de um node.js na versão 8.9 ou superior para executar o angular-cli na versao 6.0.7
+        https://nodejs.org/en/blog/release/v8.9.0/
+
+    Após isso, vamos até uma pasta de Projetos (por exemplo)
+
+    E damos o primeiro comando para criar o projeto em angular:
+        ng new my-dream-app
+    Ele ira criar TODAS as pastas/dependencias do projeto.
+        para acessa-lo digite:
+            cd my-dream-app
+    Para iniciar a aplicação, digitamos:
+        ng serve --open 
+    O --open abre o navegador após o servidor iniciar
+
+    DICAS: SEMPRE ABRA A PASTA RAIZ DO SEU PROJETO PELO VS CODE, POIS O VS CODE TEM QUE ENCONTRAR ALGUNS ARQUIVOS DE
+        CONFIGURAÇÃO QUE ESTAO NELA.
+
+------------------- ANGULAR Components -------------------
+
+    Em angular, tudo é um componente.
+
+    ---- O que é um componente? ----
+
+    O componente guarda um artefato/objeto que guarda um comportamento(o que fazer), a apresentação(o css) e a marcação
+    html(a estrutura).
+
+    ---- Como criar um componente? ----
+
+    primeiro criamos a classe e exportamos ela, e a classe só vira um componente, quando utilizamos o decoratos
+        @Component.
+
+    import { Component } from '@angular/core';
+
+    @Component({
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+        title = 'app';
+    }
+
+    ---- Como configuramos e chamamos um componente? ----
+
+        Em:
+            @Component({
+                selector: 'app-root',
+                templateUrl: './app.component.html',
+                styleUrls: ['./app.component.css']
+            })
+        Definições do componente:
+            selector -> definimos o nome do componente.
+            templateUrl -> definimos o html
+            styleUrls -> definimos os css
+
+------------------- ANGULAR SINTAX -------------------
+
+O BrowserModule só deve ser importado no modulo principal da aplicação.
+
+-> Componentes declarados no array declarations de um módulo são visíveis para os componentes também
+declarados no array.
+
+-> Um componente obrigatoriamente precisa pertencer a um módulo.
+
+
+--- Diretivas ---
+
+app.component.ts:
+
+Temos uma classe, q tem como valor array de objetos photos.
+    export class AppComponent {
+
+        photos = [
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sultan_the_Barbary_Lion.jpg/440px-Sultan_the_Barbary_Lion.jpg',
+            description: 'Leão'
+            },
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Lioness_Etosha_NP.jpg/500px-Lioness_Etosha_NP.jpg',
+            description: 'Leoa'
+            },
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sultan_the_Barbary_Lion.jpg/440px-Sultan_the_Barbary_Lion.jpg',
+            description: 'Leão'
+            },
+            {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Lioness_Etosha_NP.jpg/500px-Lioness_Etosha_NP.jpg',
+            description: 'Leoa'
+            }
+        ];
+    }
+
+app.component.html:
+
+    Estou fazendo um for, para exibir a lista de fotos q a classe AppComponent contem.
+
+    <ap-photo 
+        *ngFor="let photo of photos" // estou falando q a variavel photo recebe photos ( de AppComponent)
+        [url]='photo.url' // cada iteracao no for eu tenho um objeto e passo ele pra url, indico q essa propriedade vem
+                             da classe AppComponent com [] na url [url], isso vai indicar q está vindo da classe
+        [description]='photo.description'> // mesma coisa aqui.
+    </ap-photo>
+
+    e assim eu tenho varias imagens ;)
+
+--- Criando Features / modulos / e exportando elas ---
+
+Primeiro é uma boa pratica criar um modulo para features, exemplo:
+    tenho o component thead, um component tbody e um outro tfoot,
+    crio uma feature chamada table, dentro dessa feature vai ter um modulo,
+    e vamos importar E exportar as dependencias dessa tabela, de acordo com a necessidade.
+
+--- Como fazer isso? ---
+
+photos
+    photo
+        //componentes de photo
+photos.module.ts // aqui eu pego todas as dependencias de photo
+
+photos.module.ts:
+
+    import { NgModule } from "@angular/core";
+    import { PhotoComponent } from "./photo/photo.component";
+
+    @NgModule({
+        declarations: [ PhotoComponent ], // importo o component
+        exports: [ PhotoComponent ] // exporto esse componente, quando faco isso, ele fica visivel para outros modulos, 
+                                        conseguirem enchergar ele
+    })
+    export class PhotosModule{
+
+    }
+app.module.ts:
+
+    Aqui eu importo o modulo de photos:
+
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    import { AppComponent } from './app.component';
+    import { PhotosModule } from './photos/photos.module';
+
+
+    @NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        PhotosModule // aqui eu importo ele, se no Photos Module eu n tivesse exportado nada, 
+                        nenhum componente ficaria visivel, para esse modulo, iria gerar um erro.
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+
+
+--- Inbound properties ---
+
+    IMPORTANTE!! O Angular só DETECTA numa inbound propertie uma alteracao quando essa variavel,
+    recebe uma nova ATRIBUICAO nela.
+    Exemplo:
+        Se vc fizer this.photos.push(photos); // ele n detecta q foi alterado, e n vai atualizar a lista de photos.
+        Para a listagem funcionar deve ser feito uma nova ATRIBUICAO this.photos = this.photos.concat(photos);
+
+    Permite que o componente receba valores externos quando usado na forma declarativa no template de outros componentes.
+
+    Quando passo atributos para um component, estou falando que esses atributos podem receber por meio dessa forma declarativa, valores variados.
+
+    <ap-photo url='.img/outra-img.png' description='imagem 2' ></ap-photo>
+
+    E para isso funcionar, devemos declarar na classe criadora, em suas respectivas propriedades os decorators, para fazer esse link, com @Input
+
+    export class PhotoComponent {
+    
+        @Input() description = '';
+        @Input() url = '';
+    }
+
+--- PADRAO DE CHAMADA DE ARQUIVOS ---
+
+    Uma convensao adotada no site do angular, o correto é separar os imports do angular dos seus, exemplo:
+        // Angular imports
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgModule } from '@angular/core';
+        import { AppComponent } from './app.component';
+
+        //Seus imports
+        import { PhotoComponent } from './photo/photo.component';
+
+--- Nomenclatura de arquivos/classes ---
+
+Exemplo:
+    MenubarComponent {} // Classe
+    menubar.component.ts // arquivo
+    menubar.component.html // arquivo
+    menubar.component.css // arquivo
+
+    CalopsitaComponent {} // Classe
+    calopsita.component.ts // arquivo
+    calopsita.component.html // arquivo
+    calopsita.component.css // arquivo
+
+
+Classe de exemplo:
+
+    export class AppComponent {
+        title = 'alurapic';
+        description = 'Leão';
+        url = 'https://img.elo7.com.br/product/zoom/1C33C7D/quadro-tela-animais-leao-decoracao-telas-animal-0005-quadro-de-leao.jpg';
+    }
+
+{{}} -> Angular Expression, Utilizamos para dar valores ao conteudo das tags, exemplo:
+    <h1> {{ title }} </h1>
+[] -> One way data binding ("data binding unidirecional"), utilizamos apenas em atributos, exemplo:
+    IMPORTANTE: Ele é unidirecional, então ele faz o caminho do seu componente até o seu template, e NUNCA o contrário.
+    <img [src]="url" [alt]="description">
+
+RESUMO: Utilizamos {{ }} dentro de tags e [ ] para atributos
+
+----- Component -----
+
+É uma boa prática em Angular, usar um prefixo antes do nome do seletor, o prefixo pode ser o nome da empresa, 
+    oq vc quiser, no caso do exemplo abaixo o prefixo ap, significa alurapic.
+
+    import { Component } from "@angular/core";
+
+    @Component({
+        selector: 'ap-photo'
+    })
+    export class PhotoComponent {
+
+    }
+
+------------------- ANGULAR CARREGANDO ARQUIVOS GLOBAIS CSS/JS -------------------
+
+    Utilizamos a tag link no html para um CSS Global?
+    Não! No Angular, quando precisamos importar um CSS global como o Bootstrap, Normalize, CSS Reset ou outro similar, isso não funciona desta forma. 
+    Isto porque esses arquivos CSS precisam estar no processo de build, de construção da nossa aplicação, tanto no ambiente de desenvolvimento 
+    quanto no ambiente de produção.
+
+---- Como fazemos isso no Angular? ----
+    Em angular.json:
+        temos a parte de build, lá dentro temos as chaves:
+            "styles": [
+                "src/styles.css"
+            ],
+                "scripts": []
+            },
+        é aqui que colocamos nossos CSS / JS GLOBAIS, APENAS OS ARQUIVOS GLOBAIS.
+
+    Exemplo:
+        Baixamos bootstrap via npm,
+        e chamamos ele na chave style, ficando assim:
+        "styles": [
+            "src/styles.css",
+            "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        ],
+
+------------------- WEB API -------------------
+
+    É o servidor que tem a responsabilidade de fornecer os dados para a aplicação Angular em uma Single Page Application.
+
+------------------- HttpClient / HttpParams -------------------
+
+http.get() -> solicita a url porem n faz nada com ela, para fazer algo temos que dar um subscribe
+
+http.get(url).subscribe(); -> o subscribe retorna a resposta que veio do servidor, ele contem 2 callbacks, exemplo:
+    http
+        .get(url)
+        .subscribe(callbackRespostaDoServidor,callbackError);
+
+const params = new HttpParams()
+            .append('page', page.toString());
+Estou adicionando o parametro page com seu respectivo valor em uma api chamada flavio/photos  ?page=2
+    vou passar minha const params, para o meu HttpClient no get
+        this.http
+            .get<Photo[]>(API + '/'+userName+'/photos',{params}); // o segundo parametro passamos os parametros da url,
+                no caso eu so chamo de params pq o nome da propriedade é params e o nome da minha variavel
+                tambem é params, sendo assim em vez de colocar params: params, eu reduzo para params.
+
+
+
+Para exibir os imports corretos do HttpClient no vs code, primeiro temos que importar o módulo dele la em app.module.ts,
+    para que nossa aplicação identifique suas dependencias, seus outros imports.
+
+1 - Importamos o modulo em app.module.ts import { HttpClientModule } from '@angular/common/http';
+2 - importamos em nosso component import {HttpClient} from '@angular/common/http';
+
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+//codigo
+})
+export class AppComponent {
+
+  constructor(http: HttpClient){
+    console.log(http);
+  }
+
+}
+
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule
+  ],
+
+
+----- Fazendo uma requisicao com HttpClient -----
+
+    export class AppComponent {
+
+        photos: Object[] = [];
+
+        constructor(http: HttpClient){
+            http
+                .get<Object[]>('http://localhost:3000/flavio/photos')
+                .subscribe(photos => this.photos = photos);
+            
+        }
+
+    }
+
+    Exibindo o erro:
+        http
+            .get<Object[]>('http://localhost:3000/flavio/photosx')
+            .subscribe(
+                photos => this.photos = photos,
+                err => console.log(err.message)
+            );
+
+------------------- Service -------------------
+
+Quando criamos um servico, utilizamos o decorator @Injectable({ providedIn: 'root' }), para falar pra ele
+    disponibilizar esse servico em todo nosso projeto(nesse caso).
+
+Criamos services, dentro dos components, exemplo:
+    photo/
+        photo.component.html
+        photo.component.ts
+        photo.service.ts <- aqui nomeamos dessa forma.
+
+Se eu crio uma classe service, chamo ela em outra classe, o angular n vai conseguir executar o servico,
+    precisamos ir até a classe e injetar com decorator, para que ele identifique e execute o servico, exemplo:
+
+MEU SERVICO:
+
+    import { HttpClient } from "@angular/common/http";
+    import { Injectable } from "@angular/core";
+
+    const  API = 'http://localhost:3000';
+
+    @Injectable({ providedIn: 'root' })
+    export class PhotoService{
+
+        constructor(private http: HttpClient){}
+
+        listFromUser(user: string){
+
+            return this.http
+                .get<Object[]>(API + '/flavio/photos');
+        }
+    }
+
+CLASSE QUE CONSOME ESSE SERVICO:
+
+    import { Component } from '@angular/core';
+    import { PhotoService } from './photos/photo/photo.service';
+
+
+    @Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+
+    photos: Object[] = [];
+
+    constructor(photoService: PhotoService){ 
+        
+        photoService
+        .listFromUser('flavio')
+        .subscribe(photos => this.photos = photos);
+    }
+
+    }
+
+------------------- BLINDANDO A API -------------------
+
+Uma API sem essa blindagem, n contem AUTOCOMPLETE quando retornado os dados da API, dificultando sua implementacao,
+    e caindo em produtividade, para resolver isso, vamos criar uma INTERFACE para a API, e lá passamos tudo oq
+    a API DEVE receber.
+
+INTERFACE:
+    export interface Photo{
+        id:number;
+        postDate:Date;
+        url:string;
+        description:string;
+        allowComments:boolean;
+        likes:number;
+        comments:number;
+        userId:number;
+    }
+SERVICO DA API:
+    export class PhotoService{
+
+        constructor(private http: HttpClient){}
+
+        listFromUser(user: string){
+
+            return this.http
+                .get<Photo[]>(API + '/'+user+'/photos'); // Tipo o retorno da API, como INTERFACE Photo
+        }
+    }
+CLASSE que consome a API:
+    export class AppComponent {
+
+    photos: Photo[] = [];
+
+        constructor(photoService: PhotoService){
+            
+            photoService
+            .listFromUser('flavio')
+            .subscribe(photos => {
+                console.log(photos[0].userId); // Aqui agora eu consigo dar ponto e ver todas as propriedades de photos
+                this.photos = photos
+            });
+        }
+
+    }
+
+IMPORTANTE!!!!!
+Consequencia, agora eu tenho um AUTOCOMPLETE na minha API, e MAIS, exemplo:
+    se um dia a propriedade mudar da minha API, por exemplo userId não é mais userId, agora ele é somente user,
+    vou ir até a minha INTERFACE ir até a propriedade userId clico com o direito nela e seleciono Rename Symbol,
+    coloco user aperto ENTER e pronto, todo o restante do meu código que ANTES implementava como userId, agora
+    passa a implementar como user somente.
+
+------------------- Ciclo de vida de um component -------------------
+
+1 - No constructor deve conter apenas para injeção de dependência.
+2 - E qualquer lógica que queiramos executar será colocada em uma fase do ciclo de vida
+    que todo componente Angular possui.
+
+    lifecycle hook / ciclo de vida
+1 - ngOnInit -> é chamado depois que Angular inicializou todas as propriedades ligadas a dados de uma diretiva. 
+                    Defina um método ngOnInit () para manipular quaisquer tarefas de inicialização adicionais.
+        ngOnInit(): void {
+            this.photoService
+                .listFromUser('flavio')
+                .subscribe(photos => {
+                    console.log(photos[0].userId);
+                    this.photos = photos
+                });
+        }
+
+------------------- Gerando components/modulos via console -------------------
+
+    IMPORTANTE O comando ng generate SEMPRE comeca a pegar a partir da pasta APP
+    entao vc vai colocar tudo que está DENTRO DELA.
+
+    SINTAX: ng generate component nomeDaPasta
+
+    app
+      photos
+
+    ng generate component photos/photo-list -> estou criando dentro de app/photos um diretorio photo-list
+                                                    com todos os seus components e chamadas.
+
+    ng generate module errors -> ira gerar um modulo dentro da pasta errors
+
+------------------- DIRETIVAS ANGULAR -------------------
+
+Para importar as diretivas do angular, importe em seu modulo o CommonModule, o BrowserModule já importa esse modulo, 
+    dentro dele, por isso n precisamos importar CommonModule em app.component.ts
+
+O CommonModule possui todas as diretivas básicas como NgIf, NgFor, NgForOf etc
+
+*ngFor -> 
+    <ap-photo
+        *ngFor="let photo of photos" 
+        [url]='photo.url' 
+        [description]='photo.description'>
+    </ap-photo>
+
+------------------- SPA ROTAS -------------------
+
+1- Criamos o arquivo app.routing.module.ts em app/
+2- Dentro de app.routing.module.ts fazemos nossas configurações:
+    Devemos importar o Routes de @angular/router, para tipar nossa constante routes,
+    caso n fizer isso, n dara erro se trocar o path por pat por exemplo, gerando um erro no link, na hr da 
+    execucao.
+    Devemos importar o RouterModule para linkar nossas rotar com o modulo de rotas, fazemos isso
+        dessa maneira: imports: [ RouterModule.forRoot(routes) ].
+    Exporto RouterModule, pois em app.component.html tem um component q DEPENDE dele para funcionar, chamado de
+        <router-outlet></router-outlet>, ele depende das diretivas de RouterModule.
+3- Vamos ate app.module.ts e importamos nosso modulo de rotas AppRoutingModule
+
+
+    import { NgModule } from '@angular/core';
+    import { Routes, RouterModule } from '@angular/router'
+
+    import { PhotoListComponent } from './photos/photo-list/photo-list.component';
+    import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
+
+    const routes: Routes = [
+        { path: 'user/flavio', component: PhotoListComponent },
+        { path: 'p/add', component: PhotoFormComponent }
+    ];
+
+    @NgModule({
+        imports: [ RouterModule.forRoot(routes) ],
+        exports: [ RouterModule ]
+    })
+    export class AppRoutingModule {}
+
+----- pagina 404 -----
+
+Se quisermos redirecionar pra uma pagina especifica quando n existir determinada página, fazemos o seguinte:
+
+    const routes: Routes = [
+        { path: 'user/flavio', component: PhotoListComponent },
+        { path: 'p/add', component: PhotoFormComponent },
+        { path: '**', component: PhotoListComponent }
+    ];
+
+Estou dizendo que qualquer diretorio q n foi definido em path, carrega o component PhotoListComponent
+
+
+----- Deixando a rota dinamica -----
+
+    { path: 'user/:userName', component: PhotoListComponent }
+        Estou dizendo que dps de user/ pode vir qualquer coisa, que ele n vai dar como nao encontrado.
+
+    Lá em nossa API, fazemos o seguinte:
+        ngOnInit(): void {
+
+        const userName = this.activatedRoute.snapshot.params.userName; // Recebo o valor definido na url user/:userName
+        
+        // Passo esse valor para o listFromUser
+        this.photoService
+            .listFromUser(userName)
+            .subscribe(photos => this.photos = photos);
+    }
+
+    E lá no meu servico, eu executo a acao, com base no nome passado:
+    
+        listFromUser(userName: string){
+            
+            return this.http
+                    .get<Photo[]>(API + '/'+userName+'/photos');
+        }
+
+----- Lidando com dados assincronos -----
+
+    Usamos implements OnChanges
+
+    ngOnChanges(changes: SimpleChanges) -> 
+        Este método recebe como parâmetro todas as possíveis mudanças das inbound properties do nosso componente. 
+        Tais mudanças são do tipo SimpleChanges, que importaremos de angular/core. Caso haja alguma mudança, 
+        uma propriedade com mesmo nome da inbound property que sofreu a mudança será adicionada dinamicamente. 
+        Se não houver mudança, tampouco haverá propriedade.
+
+    ngOnChanges(changes: SimpleChanges){
+        if(changes.photos)
+            this.rows = this.groupColumns(this.photos);
+    }
+
+    changes.photos -> contem o valor antigo e o novo, caso tenha um novo valor ele retorna true.
+
+
+
+------------------- Pipes ANGULAR -------------------
+
+suponhamos q temos uma variavel nome na classe app.component.ts
+    app.component.ts:
+        nome = 'nicolas';
+
+na view de app.component.html, vamos fazer o pipe:
+    app.component.html
+        {{ nome | uppercase }} // nicolas
+
+O angular, possui diversos pipes, mas podemos criar nossos proprios PIPES também.
+
+----- Criando seu proprio pipe ANGULAR -----
+
+IMPORTANTE, UM Pipe tambem precisa ser declarado.
+
+<div class="text-center mt-3 mb-3">
+    <form>
+        <input
+            class="rounded"
+            type="search"
+            placeholder="search..."
+            autofocus
+            (keyup) = "filter = $event.target.value">
+    </form>
+</div>
+{{ filter }}
+<ap-photos  [photos]="photos | filterByDescription: filter"></ap-photos>
+
+- Estou passando uma lista de fotos em photo-list-component.ts
+- Fazendo uma logica para filtrar essa lista de fotos, DEACORDO COM o filter.
+- pego o filter do `back-end`.
+
+--- Criando a classe PIPE ---
+
+@Pipe({ name: 'filterByDescription' })
+export class nomeDaClasse implements PipeTransform{
+
+    transform(value: number, ...args: string) // value será o valor requerido, args, sao os parametros passados.
+}
+
+[photos]="photinhas | filterByDescription: filter" -> photinhas = requerido, filter = params passados.
+
+------------------- Resolver Angular -------------------
+
+Ele é ativado ANTES de um componente ser carregado na página.
+
+-- Criando um resolver --
+
+    IMPORTANTE, Todo resolver deve ter seu decorator Injectable, assim como os services.
+    @Injectable({ providedIn: 'root' })
+    export class PhotoListResolver implements Resolve<Observable<Photo[]>>{
+
+        constructor(private service: PhotoService) {}
+
+        resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Photo[]>{
+
+            const userName = route.params.userName;
+            return this.service.listFromUser(userName);
+        }
+    }
+
+    esse resolver, vai devolver a lista de fotos para a phot-list.component.ts
+
+    Crio a ligacao da rota com o dado em app.routing.module.ts:
+
+    {
+      path: 'user/:userName',
+      component: PhotoListComponent,
+      resolve: {
+          photos: PhotoListResolver
+      }
+    }
+
+    em PhotoListComponent eu recebo ele com base na proriedade devinida em app.routing.module.ts:
+
+     constructor(private activatedRoute: ActivatedRoute){}
+
+    ngOnInit(): void {
+
+        this.photos = this.activatedRoute.snapshot.data.photos; // snapshot.data eu acesso as propriedades de resolve de app.routing.module.ts
+    }
+    
+------------------- Debounce com  RXJS no Angular -------------------
+
+    Vamos utilizar uma lib muito boa, chamada RxJS, que serve para trabalhar com codigos asyncronos e mais..
+
+    import { debounceTime } from 'rxjs/operators';
+    import { Subject } from 'rxjs';
+
+    export class PhotoListComponent implements OnInit {
+
+        filter: string = '';
+        debounce: Subject<string> = new Subject<string>();
+
+
+        ngOnInit(): void {
+            this.debounce
+            .pipe(debounceTime(300)) // somente apos 300ms o valor passado em next na view, será enviado para subscribe
+            .subscribe(filter => this.filter = filter);
+        }
+
+        ngOnDestroy(): void {
+            this.debounce.unsubscribe(); // precisamos fazer isso, pois caso o usuário saia da pagina, o Subject pode ficar alocando memoria, e pode dar erro de memoria futuramente.
+        } // problema conhecido por memory leak!
+    }
+
+    VIEW:
+
+        <form>
+            <input
+                class="rounded"
+                type="search"
+                placeholder="search..."
+                autofocus
+                (keyup) = "debounce.next($event.target.value)">
+        </form>
+
+
+------------------- Como fazer if / else Angular -------------------
+
+*ngIf="condicao; else exibeOutraCoisa" -> no caso essa outraCoisa seria o ng-template q eu defini atravez de #nomeDaOutraCoisa
+
+<div class="text-center" *ngIf="hasMore; else messageTemplate">
+    <button class="btn btn-primary">Load more</button>
+</div>
+<ng-template #messageTemplate>
+    <p class="text-center text-muted">No more data to load</p>
+</ng-template>
+
+------------------- Como colocar o conteudo de outro template no seu? e Angular -------------------
+
+    Com a diretiva <ng-content></ng-content> conseguimos fazer isso, exemplo abaixo:
+
+        card.component.ts:
+            <div class="card border-light text-center">
+                <h4 class="card-header">{{ title }}</h4>
+                <div class="card-block text-justify">
+                    <ng-content></ng-content> <-- tudo q tiver dentro de card
+                </div>
+            </div>
+
+        photos.component.ts
+        <ap-card> <- card.component.ts
+            <ap-photo
+                [url]='photo.url' 
+                [description]='photo.description'>
+            </ap-photo>
+            <div class="text-center p-1">
+                <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ photo.likes }}
+                <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i>{{ photo.comments }}
+            </div>
+        </ap-card> 
+
+    Estou dizendo que tudo que ficar dentro de <ap-card>, irá entrar na minha diretiva <ng-content>
+
+------------------- SubModulos Angular -------------------
+
+Criar submodulos, é uma boa pratica, pois alem de mostrar oq cada submodulo faz, vc divide bem as tarefas.
+
+exemplo de criação de submodulos:
+    photos/
+        photo/
+            photo.module.ts // submodulo de photos.module.ts
+        photo-list/
+            photo-list.module.ts // submodulo de photos.module.ts
+    photos.module.ts
+
+------------------- Data binding /  Event binding -------------------
+
+[] -> O dado vem da fonte de dados para o template ( do ts para o html )
+() -> O dado vem do template para a fonte de dados ( do html para o ts )
