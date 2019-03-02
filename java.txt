@@ -212,6 +212,9 @@ algumaUtil.java e instaciamos essa classe em uma classe que necessita dos metodo
 A IllegalArgumentException e IllegalStateException são duas exceções importantes, que o desenvolvedor Java deve usar. 
     Em geral, quando faz sentido, use uma exceção padrão em vez de criar uma própria.
 
+Exceções de array ArrayIndexOutOfBounds.
+    Irá disparar essa exceção caso a casa do array for negativa OU maior OU IGUAL ao tamanho do array
+
 Para criar uma exceção, sua classe de excecao deve HERDAR da classe RuntimeException, 
     pois nela contem toda a bagagem necessária..
 
@@ -262,3 +265,70 @@ INTERNAMENTE vc DEVE implementar a interface AutoCloseable dentro da classe Cone
 
 Ai.. toda hora que vc abrir uma conexao.. se der ou n certo o try, ele vai executar o metodo close() implementado pela interface na classe Conexao, e é lá
 que deve estar a logica necessaria para se der ou n der erro executar X coisas.
+
+—— Pacotes ——
+
+Imports n utilizados não geram impacto no desempenho.
+
+ Comand shif O, faz o import de todas as dependências da classe
+
+A nomenclatura padrão de projetos segue assim:
+br.com.nomeempresa.pasta.subpasta
+
+
+—— modificadores de acesso ——
+
+<<package private>>
+Ao tirar um modificador de acesso de qualquer classe,construtor,metodo,atributo, ele automaticamente vira um <<package private>>, significa que ele passa a ser visível APENAS para classes do MESMO pacote
+
+—- Javadoc E Jar —-
+
+Como criar um javadoc?
+
+Como criar um jar?
+Como adicionar um jar ao projeto?
+Como incluir um jar no projeto?(build path)
+
+No terminal:
+ java -jar nomeDoJar.jar
+
+Vai executar o seu jar
+
+—— imports ——
+
+Único pacote que vc n precisa importar para utilizar, é o java.lang
+
+—— A Classe String ——
+
+A Classe String é imutável, caso vc altere o comportamento dela deve atribuir esse comportamento a uma nova referência.
+
+O java resumiu e facilitou a maneira como instanciar uma String, como o tipo String é uma classe vc teria que fazer isso aqui para instanciar uma string:
+
+ String nome = new String(“Alura”);
+
+O java simplificou para:
+
+String nome = “Alura”;
+
+Essa sintax é chamada de Objeto literal
+
+Quando temos apenas um caracter ele é representado com aspas simples ‘’. E o tipo dele normalmente é char
+
+—— Metodos da classe String ——
+
+ .toUpperCase()
+ .toLowerCase()
+ .replace()
+ .charAt()
+ .indexOf()
+ .substring()
+ .length()
+ .isEmpty()
+ .trim()
+ .contains()
+
+—— Object ——
+
+    Toda classe java implicitamente tem a Classe Object extendida, exemplo:
+
+    public class Cliente extends Object <- se n tiver extendendo outra classe sua, o java extend o Object por padrao.
