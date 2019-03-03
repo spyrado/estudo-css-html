@@ -332,3 +332,36 @@ Quando temos apenas um caracter ele é representado com aspas simples ‘’. E 
     Toda classe java implicitamente tem a Classe Object extendida, exemplo:
 
     public class Cliente extends Object <- se n tiver extendendo outra classe sua, o java extend o Object por padrao.
+
+—— Arrays ——
+
+Arrays são objetos e todo array também é tipado, para declarar um array basta fazer.
+    Int[] numeros = new numeros[tamanhoVetor];
+
+---- ArrayList ----
+
+.add() -> adiciona no array
+.remove() -> remove do array
+.clear() -> remove todos as referencias do array.
+.contains() -> verifica se a referencia é a mesma.
+.equals() -> vem da classe Object e normalmente compara as referencias, e normalmente esse metodo é sobrescrito.
+
+-- Array de Objetos --
+    Um array de objetos sempre inicializa com NULL
+    ContaCorrente[] contas = new ContaCorrente[5];
+
+---- String[] args ----
+    Para que serve esse String[] args no main?
+
+    vc pode ir em Run as -> Run Configuration, e na aba arguments, passar os argumentos que serao executados
+    quando for chamado o main.
+
+---- GENERICS ----
+
+Sintax de exemplo do uso de um dos tipos de generics:
+    ArrayList<generics> lista = new ArrayList<generics>();
+
+    Quero uma lista só de contas:
+        ArrayList<Conta> conta = new ArrayList<Conta>();
+
+

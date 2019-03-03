@@ -1,0 +1,17 @@
+---- PROS E CONTRAS DE ArrayList E LinkedList E Vector ---
+
+ArrayList é mais facil de ficar manipulando os dados, porem é mais custoso o processamento no quesito,
+  incluir e excluir dados.
+
+LinkedList é mais performático incluir e excluir um dado, porem é mais custoso procurar um dado nele, pois como
+  ele "trabalha com ponteiro", o primeiro ponteiro vai perguntar pro segundo e o segundo pro terceiro.. até achar o dado,
+  já no arrayList vc passa apenas o index e ele já te retorna o dado.
+
+
+Vector -> É util utiliza-lo somente SE tiver varias pilhas envolvidas, caso nao, use ArrayList.
+
+ArrayList -> se vc remove um dado do ArrayList, ele vai reordenar os dados. isso tem um custo, evite fazer isso em
+  processos custosos.
+
+LinkedList -> Funciona mais o menos como ponteiros, é mais performático do que ArrayList no quesito,
+  apagar dados e incluir dados em um array.
