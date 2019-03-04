@@ -385,9 +385,14 @@ Sintax de exemplo do uso de um dos tipos de generics:
 
     Nao aceita duplicados, e tb n é uma sequencia.
 
----- Autoboxing ----
+---- Autoboxing  e Unboxing ----
+
+    As classes que existem para cada tipo primitivo se chamam Wrapper(embrulham), pois embrulham o tipo primitivo,
+        um objeto que guarda o tipo primitivo.
 
     Transforma um primitivo(int) em um Objeto(referencia) Integer, o Java faz isso por baixo dos panos.
+
+    Transforma um Integer(Objeto) em um primitivo(int).
 
     um ArrayList guarda uma lista de referencias, e como um primitivo n é um Objeto(refenrecia), o java
     na hora de passar para o ArrayList um numero por exemplo, ele faz a conversao para o Integer(Objeto/referencia)
@@ -400,4 +405,148 @@ Sintax de exemplo do uso de um dos tipos de generics:
 
     Se vc tirar o tipo Integer e der um .add, ele vai vir como .add(Object e).
 
+---- A Classe Integer ----
 
+    Para trabalharmos com inteiros ou parses e etc, utilizamos a classe Integer, transformamos um primitivo, em um objeto.
+        Exemplo:
+            int numero = Integer.valueOf("333");
+
+        ao fazer isso, temos acesso aos metodos de Integer em numero.
+        podemos fazer algo como..
+            numero.intValue(); // vai transformar a string "333" em numero 333
+
+---- ArrayList de numeros mais genericos ----
+
+    ArrayList<Number> listaDeNumeros = new ArrayList<Number>();
+            
+        listaDeNumeros.add(33);
+        listaDeNumeros.add(34.5);
+        listaDeNumeros.add(33.3f);
+
+    Aqui eu adiciono tanto inteiro como float como double, porque eu falei que o tipo da lista é Number,
+        e todos os tipos(Int, Double, Float) extend de number.
+
+---- COMPARATOR ----
+
+    podemos ordenar uma lista de acordo com a condicao que dermos a classe q extend comparator
+
+    utilizamos o metodo .sort() da lista, que recebe como parametro um comparator, e atravez dele, ele faz
+        a logica para ordenar.
+
+    retornando -1 -> significa que o valor é menor
+    retornando 1 -> significa que o valor é maior
+    retornando 0 -> significa que o valor é igual
+
+    public class Teste {
+
+        public static void main(String[] args) {
+            
+            Conta cc1 = new ContaCorrente(22, 33);
+            cc1.deposita(333.0);
+            Conta cc2 = new ContaPoupanca(22, 44);
+            cc2.deposita(444.0);
+            Conta cc3 = new ContaCorrente(22, 11);
+            cc3.deposita(111.0);
+            Conta cc4 = new ContaPoupanca(22, 22);
+            cc4.deposita(222.0);
+
+            List<Conta> lista = new ArrayList<>();
+            lista.add(cc1);
+            lista.add(cc2); 
+            lista.add(cc3);
+            lista.add(cc4);
+            
+            NumeroDaContaComparator comparator = new NumeroDaContaComparator();
+            
+            lista.forEach(conta -> System.out.println(conta));
+            
+            lista.sort(comparator);
+            
+            System.out.println("äsdasdasdas");
+            
+            lista.forEach(conta -> System.out.println(conta));
+            
+        }
+
+    }
+
+    class NumeroDaContaComparator implements Comparator<Conta>{
+
+        @Override
+        public int compare(Conta c1, Conta c2) {
+            
+            if(c1.getNumero() < c2.getNumero())
+                return -1;
+            if(c1.getNumero() > c2.getNumero())
+                return 1;
+            
+            return 0;
+        }
+        
+    }
+
+---- Comparator de String ----
+
+Para comparar Strings, utilize o metodo compareTo ele ordena em ordem alfabetica.
+
+class TituloDaContaComparator implements Comparator<Conta>{
+
+	@Override
+	public int compare(Conta o1, Conta o2) {
+		
+		String nomeTitular1 = o1.getTitular().getNome();
+		String nomeTitular2 = o2.getTitular().getNome();
+		
+		return nomeTitular1.compareTo(nomeTitular2);
+		
+	}
+	
+}
+
+---- Collections ----
+
+    Com a classe Collections temos variedades de possibilidades a se fazer com uma lista.
+
+    podemos ordernar, embaralhar, dentre outras coisas.
+
+    Collections.sort();
+    Collections.shuffle();
+    Collections.reverse();
+    Collections.rotate(lista, 5);
+
+---- Ordem natural ----
+
+    Definimos uma ordem natural de ordenacao de uma classe, indo até ela e definindo essa ordem,
+    Ao tentar ordenar sem um Comparator:
+        Collections.sort(lista); -> ele da erro pois n foi definido a ordem natural de comparação.
+
+    passo a passo para definir a ordem natural de comparação:
+
+    1 -> public abstract class Conta implements Comparable<Conta>{ -> adicionamos a interface Comparable, 
+        para comparar as contas.
+
+    2 -> Implementamos o metodo de comparable:
+        @Override
+        public int compareTo(Conta o) {
+            return 0;
+        }
+    3 -> criamos a lógica:
+        @Override
+        public int compareTo(Conta o) {
+            return Double.compare(this.saldo, o.saldo);
+        }
+        Utilizo a classe Double para comparar os valores e me devolver na ordem correta.
+
+        e por fim chamamos o metodo na classe desejada: Collections.sort(lista);
+
+        Para ordenar por String, fazemos a mesma coisa porem passamos null como parametro: Collections.sort(null);
+            E a logica do compareTo na classe que está usando a lista deve ser diferente:
+                 @Override
+                public int compareTo(Conta o) {
+                    String nomeTitular1 = this.titular.getNome();
+                    String nomeTitular2 = o.titular.getNome();
+                    
+                    return nomeTitular1.compareTo(nomeTitular2);
+                }
+
+    
