@@ -340,11 +340,28 @@ Arrays são objetos e todo array também é tipado, para declarar um array basta
 
 ---- ArrayList ----
 
+    ArrayList -> se vc remove um dado do ArrayList, ele vai reordenar os dados. isso tem um custo, evite fazer isso em
+      processos custosos.
+
 .add() -> adiciona no array
 .remove() -> remove do array
 .clear() -> remove todos as referencias do array.
 .contains() -> verifica se a referencia é a mesma.
 .equals() -> vem da classe Object e normalmente compara as referencias, e normalmente esse metodo é sobrescrito.
+
+---- Vector ----
+
+    Vector -> É util utiliza-lo somente SE tiver varias pilhas envolvidas, caso nao, use ArrayList.
+
+---- LinkedList ----
+
+    LinkedList -> Funciona mais o menos como ponteiros, é mais performático do que ArrayList no quesito,
+        apagar dados e incluir dados em um array.
+
+---- ArrayList LinkedList E Vector ----
+
+    IMPORTANTE!! Todos esses arrays aceitam duplicados, oq isso significa?, significa que eu posso passar a mesma referencia,
+    que ele vai adicionar a lista, e as vezes n queremos isso.
 
 -- Array de Objetos --
     Um array de objetos sempre inicializa com NULL
@@ -363,5 +380,24 @@ Sintax de exemplo do uso de um dos tipos de generics:
 
     Quero uma lista só de contas:
         ArrayList<Conta> conta = new ArrayList<Conta>();
+
+---- HashSet ----
+
+    Nao aceita duplicados, e tb n é uma sequencia.
+
+---- Autoboxing ----
+
+    Transforma um primitivo(int) em um Objeto(referencia) Integer, o Java faz isso por baixo dos panos.
+
+    um ArrayList guarda uma lista de referencias, e como um primitivo n é um Objeto(refenrecia), o java
+    na hora de passar para o ArrayList um numero por exemplo, ele faz a conversao para o Integer(Objeto/referencia)
+
+    ArrayList<Integer> numeros = new ArrayList<Integer>();
+
+    int num = 23;
+    
+    numeros.add(num);
+
+    Se vc tirar o tipo Integer e der um .add, ele vai vir como .add(Object e).
 
 
