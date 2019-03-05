@@ -1,5 +1,38 @@
+********************* COMANDOS MYSQL *********************
+
 
 
 CREATE DATABASE nomeDoBanco; -> Cria o banco de dados
 
-SELECT NOME_DA_COLUNA FROM NOME_DA_TABELA; -> seleciona a coluna com base na tabela
+SELECT nome_da_coluna FROM nome_da_tabela; -> seleciona a coluna com base na tabela
+
+CREATE TABLE nome_da_tabela(
+  nome_coluna tipo_dado_coluna
+);
+
+
+********************* TIPOS PRIMITIVOS SQL *********************
+
+PRIMARY KEY -> é o campo chave da tabela, é o campo cujo valor não repete.
+
+AUTO_INCREMENT -> incrementa automaticamente comecando do numero 1
+
+INT -> valor INT
+DOUBLE -> valor DOUBLE
+VARCHAR -> nome VARCHAR(255)
+DATE -> data DATE
+BOOLEAN -> ativo BOOLEAN
+
+********************* MYSQL PELO TERMINAL *********************
+
+---- HABILITAR NO MAC ----
+  1 -> Siga os passos e baixe o brew em https://brew.sh/index_pt-br
+  2 -> Apos o brew instalado, digite no terminal: brew install mysql
+  3 -> Apos o mysql instalado, digite no terminal: mysql -u root -p
+  4 -> insira a senha caso tenha uma, se n tiver apenas aperte enter.
+
+---- Comandos ----
+
+mysql -u root -p -> solicita acesso ao banco de dados
+
+desc nome_da_tabela -> mostra a descricao da tabela
