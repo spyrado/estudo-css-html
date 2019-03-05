@@ -144,6 +144,12 @@ Exemplo de uso dos itens personalizados:
 Saida: Nicolas realizou o commit asd541btr54s7: adição de 
     paragrafo.
 
+Podemos melhorar ainda mais a visualizacao:
+  git log --pretty='%an realizou o commit %s' --author="nicolas"
+Saida:
+  Nicolas realizou o commit arrumando motorista na ultima posicao do mapa posicoes
+
+
 -- GIT TAG --
 
   Utilizamos GIT TAG para verificar, quantas versões do projeto já foram lançadas ex: v0.1 v0.2 v0.3,
