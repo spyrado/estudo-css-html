@@ -33,7 +33,7 @@ valor = 1500
 SELECT valor * 3 FROM compras; -> vai pegar o valor de valor e multiplicar por 3 // 4500, podemos utilizar qualquer operador matematico + - / * etc..
 
 SELECT data, valor FROM compras 
-  WHERE valor > 1000; -> SELECIONA data e valor DA tabela compras ONDE o valor for maior que 1000; // podemos utilizar qualquer operador lógico == < > != e etc..
+  WHERE valor > 1000; -> SELECIONA data e valor DA tabela compras ONDE o valor for maior que 1000; // podemos utilizar qualquer operador lógico =(igual) >(maior) <(menor) <>(diferente) e etc..
 
 SELECT data, valor, observacoes FROM compras
   WHERE valor >= 400 AND data > '2014-05-01'; a mesma coisa da query a cima, só que pergunto se for >= E a data for > que 2014-05-01
@@ -46,6 +46,21 @@ SELECT data,valor,observacoes FROM compras
 
 SELECT data,valor,observacoes FROM compras 
   WHERE recebido = true; -> Me traz todos os dados que recebido for igual a true. // obs a coluna recebido é do tipo boolean E posso trabalhar com true e false.
+
+SELECT data,valor,observacoes FROM compras 
+  WHERE observacoes = 'celular velho da marca xpto'; -> estou procurando por um texto na coluna observacoes com EXATAMENTE esse nome, se for diferente disso ele n acha.
+
+SELECT data,valor,observacoes FROM compras 
+  WHERE observacoes like 'celular velho%'; -> qualquer lugar que comece com a frase celular velho
+
+SELECT data,valor,observacoes FROM compras 
+  WHERE observacoes like '%celular velho%'; ->  qualquer lugar que tenha celular velho
+
+SELECT data,valor,observacoes FROM compras 
+  WHERE observacoes like '%celular velho'; -> qualquer lugar que termina com a frase celular velho
+
+
+
 
 
 ********************* MYSQL PELO TERMINAL *********************
