@@ -4,11 +4,14 @@
 
 CREATE DATABASE nomeDoBanco; -> Cria o banco de dados
 
-SELECT nome_da_coluna FROM nome_da_tabela; -> seleciona a coluna com base na tabela
+SELECT nome_da_coluna FROM nome_da_tabela; -> Seleciona a coluna com base na tabela, Se colocar * no lugar de nome_da_coluna, ele vai retornar todas as colunas da tabela nome_da_tabela
+SELECT nome_da_coluna1, nome_da_coluna2 from nome_da_tabela;
 
-CREATE TABLE nome_da_tabela(
+CREATE TABLE nome_da_tabela( -> cria uma tabela
   nome_coluna tipo_dado_coluna
 );
+
+INSERT INTO nome_da_tabela (coluna1,coluna2,coluna3) VALUES (valor1, valor2, valor3); -> insere dados na tabela
 
 
 ********************* TIPOS PRIMITIVOS SQL *********************
@@ -22,6 +25,28 @@ DOUBLE -> valor DOUBLE
 VARCHAR -> nome VARCHAR(255)
 DATE -> data DATE
 BOOLEAN -> ativo BOOLEAN
+
+********************* EXPRESSOES MYSQL *********************
+
+valor = 1500
+
+SELECT valor * 3 FROM compras; -> vai pegar o valor de valor e multiplicar por 3 // 4500, podemos utilizar qualquer operador matematico + - / * etc..
+
+SELECT data, valor FROM compras 
+  WHERE valor > 1000; -> SELECIONA data e valor DA tabela compras ONDE o valor for maior que 1000; // podemos utilizar qualquer operador lógico == < > != e etc..
+
+SELECT data, valor, observacoes FROM compras
+  WHERE valor >= 400 AND data > '2014-05-01'; a mesma coisa da query a cima, só que pergunto se for >= E a data for > que 2014-05-01
+
+SELECT data, valor, observacoes FROM compras
+  WHERE valor >= 400 OR data > '2014-05-01'; -> ME TRAZ OU um valor >= 400 OU uma data > que 2014-05-01
+
+SELECT data,valor,observacoes FROM compras 
+  WHERE recebido = 1; -> Me traz todos os dados que recebido for igual a 1.
+
+SELECT data,valor,observacoes FROM compras 
+  WHERE recebido = true; -> Me traz todos os dados que recebido for igual a true. // obs a coluna recebido é do tipo boolean E posso trabalhar com true e false.
+
 
 ********************* MYSQL PELO TERMINAL *********************
 
