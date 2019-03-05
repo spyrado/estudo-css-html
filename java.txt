@@ -549,4 +549,66 @@ class TituloDaContaComparator implements Comparator<Conta>{
                     return nomeTitular1.compareTo(nomeTitular2);
                 }
 
+---- Function Objects ----
+
+    Sao objetos que encapsulam uma função.
+
+---- Classes anonimas ----
+
+    o Java por dbaixo dos panos gera uma classe para a sua classe anonima, se vc for no bin do projeto, a classe
+        vai estar com o nome mais o menos assim: Teste$1.java (caso a classe q tenha a classe anonima se chama Teste.java)
+
+    Podemos escapar de Function Objects criando classes anonimas no código, exemplo:
     
+        Function Objects:
+
+        lista.sort(new NumeroDaContaComparator2()); // está na classe main
+
+        class NumeroDaContaComparator2 implements Comparator<Conta> { // está após o termino da classe main.
+
+            @Override
+            public int compare(Conta c1, Conta c2) {
+
+                return Integer.compare(c1.getNumero(), c2.getNumero());
+                }
+        }
+    
+    Podemos fazer dessa maneira:
+        lista.sort(new Comparator<Conta>() {
+
+            @Override
+            public int compare(Conta c1, Conta c2) {
+
+                   return Integer.compare(c1.getNumero(), c2.getNumero());
+                }
+        });
+
+    Assim tudo fica dentro de uma classe só.
+
+
+---- Lambdas ----
+
+    Podemos deixar nosso código mais enxuto com lambdas, segue um exemplo:
+        // SEM LAMBDA
+        lista.sort(new Comparator<Conta>() {
+
+            @Override
+            public int compare(Conta c1, Conta c2) {
+
+                   return Integer.compare(c1.getNumero(), c2.getNumero());
+                }
+        });
+
+        // COM LAMBDA
+        lista.sort((Conta c1, Conta c2) {
+
+            return Integer.compare(c1.getNumero(), c2.getNumero());
+        });
+
+        Podemos enxugar isso mais ainda pois só tem um retorno(Igual no arrow function do javascript):
+            lista.sort((Conta c1, Conta c2) -> Integer.compare(c1.getNumero(), c2.getNumero()) );
+
+        Podemos remover tabem os tipos de Conta, pois a lista já é do tipo Conta e o Java entende isso, ficando assim:
+            lista.sort((c1,c2) -> Integer.compare(c1.getNumero(), c2.getNumero()) );
+
+        O Java já faz toda essa implementacao pra vc, por dbaixo dos panos.
