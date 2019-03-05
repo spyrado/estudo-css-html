@@ -1,0 +1,5 @@
+
+
+CREATE DATABASE nomeDoBanco; -> Cria o banco de dados
+
+SELECT NOME_DA_COLUNA FROM NOME_DA_TABELA; -> seleciona a coluna com base na tabela
