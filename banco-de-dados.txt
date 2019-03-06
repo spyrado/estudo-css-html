@@ -28,6 +28,15 @@ BOOLEAN -> ativo BOOLEAN
 
 ********************* EXPRESSOES MYSQL *********************
 
+< -> menor
+> -> maior
+<> -> diferente
+= -> igual
+BETWEEN -> entre
+AND -> e
+OR -> ou 
+NOT -> negando algo
+
 ---- SELECTS ----
 
 valor = 1500
@@ -64,6 +73,9 @@ SELECT data,valor,observacoes FROM compras
 SELECT * FROM compras 
   WHERE valor BETWEEN 200 and 700; -> pesquisa valores entre 200 e 700 inclusive.
 
+SELECT * FROM compras
+  WHERE NOT VALOR = 108; -> seleciono todas as compras que o valor seja diferente de 108;
+
 ---- UPDATES ----
 
 UPDATE nome_da_tabela 
@@ -78,6 +90,14 @@ UPDATE compras
   SET valor = 900, observacoes = 'hoje eu mudei o texto'
   WHERE valor < 50; -> atualiza o dado valor e observacoes de todos os campos cujo valores sao menores que 50.
 
+UPDATE compras 
+  SET valor = valor + 10 
+  WHERE data < '2009-06-01'; -> Estou somando +10 as compras que foram feitas antes da data 01/06/2009
+
+UPDATE compras 
+  SET observacoes = 'entregue antes de 2011', recebido = true 
+  WHERE data BETWEEN '2009-07-01' and '2010-07-01'; -> Estou definindo dois valores para datas entre 01/07/2009 e 01/07/2010
+
 ---- DELETE ----
 
 DELETE FROM nome_da_tabela
@@ -86,8 +106,11 @@ DELETE FROM nome_da_tabela
 DELETE FROM compras
   WHERE id = 10; -> deleta a linha que tem o id = 10;
 
-DELETE from compras
+DELETE FROM compras
   WHERE valor < 30; -> deleta todos os dados da tabela compras q tenha o valor < que 30.
+
+DELETE FROM compras 
+  WHERE data BETWEEN '2009-03-05' and '2009-03-20'; -> deleta as compras entre essas datas <-
 
 ********************* MYSQL PELO TERMINAL *********************
 
