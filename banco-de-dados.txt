@@ -124,6 +124,8 @@ DELETE FROM compras
 
 mysql -u root -p -> solicita acesso ao banco de dados
 
-desc nome_da_tabela -> mostra a descricao da tabela
+show databases -> mostra quantos bancos voce tem.
 
 show tables -> mostra quantas tabelas nosso banco tem
+
+desc nome_da_tabela -> mostra a descricao da tabela
