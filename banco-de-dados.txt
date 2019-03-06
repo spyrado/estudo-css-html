@@ -36,6 +36,10 @@ BETWEEN -> entre
 AND -> e
 OR -> ou 
 NOT -> negando algo
+IS -> é
+
+ENUM('texto1','texto2') -> defino 1 ou mais textos para uma tabela e somente as opcoes que passei pode ser inserida.
+DEFAULT -> PADRAO, quando eu defino um valor como padrao, eu posso ou n passar valores a ele, caso n passe sera o valor padrao definido.
 
 ---- SELECTS ----
 
@@ -76,6 +80,14 @@ SELECT * FROM compras
 SELECT * FROM compras
   WHERE NOT VALOR = 108; -> seleciono todas as compras que o valor seja diferente de 108;
 
+---- SELECIONANDO DADOS NULLOS ----
+
+SELECT * FROM compras
+  WHERE observacoes IS null; -> verifico todas as colunas observacoes que são nulas.
+
+SELECT * FROM compras
+  WHERE observacoes IS NOT null; -> verifico todas as colunas observacoes que NAO são nulas.
+
 ---- UPDATES ----
 
 UPDATE nome_da_tabela 
@@ -111,6 +123,34 @@ DELETE FROM compras
 
 DELETE FROM compras 
   WHERE data BETWEEN '2009-03-05' and '2009-03-20'; -> deleta as compras entre essas datas <-
+
+
+---- ALTER TABLE ----
+
+-- ALTERANDO ESTRUTURA DA TABELA --
+
+  Muda a estrutura a qual foi definida a tabela.
+
+ALTER TABLE nome_da_tabela
+  MODIFY nome_da_coluna VARCHAR(255) NOT NULL; <- depois do nome_da_coluna voce passa quais vao ser as regras daquela coluna,
+                                                    lembrando que vc tem que colocar os valores anteriores MAIS os atuais..
+                                                    OU colocar apenas oq vc qr q a coluna faca.
+
+ANTES FOI DEFINIDO ISSO NA COLUNA observacoes: VARCHAR(255), agora quero incrementar o NOT NULL, como faço?
+
+ALTER TABLE compras
+  MODIFY observacoes VARCHAR(255) NOT NULL; -> incrementei a restricao NOT NULL na coluna observacoes.
+
+ALTER TABLE compras
+  MODIFY recebidos tinyint(1) default 0; -> modifiquei o recebidos para caso eu n passe nada para ele, ele receba 0 como padrao.
+
+-- INCLUINDO COLUNA NA TABELA --
+
+ALTER TABLE nome_da_tabela
+  ADD COLUMN nome_da_coluna VARCHAR(50); -> voce define qual tipo o campo vai ter as regras etc..
+
+ALTER TABLE compras
+  ADD COLUMN forma_de_pagamento enum('cartao','boleto', 'dinheiro'); -> defini que apenas cartao boleto e dinheiro poderam ser passados como dados.
 
 ********************* MYSQL PELO TERMINAL *********************
 
