@@ -28,6 +28,8 @@ BOOLEAN -> ativo BOOLEAN
 
 ********************* EXPRESSOES MYSQL *********************
 
+---- SELECTS ----
+
 valor = 1500
 
 SELECT valor * 3 FROM compras; -> vai pegar o valor de valor e multiplicar por 3 // 4500, podemos utilizar qualquer operador matematico + - / * etc..
@@ -59,9 +61,33 @@ SELECT data,valor,observacoes FROM compras
 SELECT data,valor,observacoes FROM compras 
   WHERE observacoes like '%celular velho'; -> qualquer lugar que termina com a frase celular velho
 
+SELECT * FROM compras 
+  WHERE valor BETWEEN 200 and 700; -> pesquisa valores entre 200 e 700 inclusive.
 
+---- UPDATES ----
 
+UPDATE nome_da_tabela 
+  SET nome_coluna = valor, nome_coluna2 = valor2,
+  WHERE condicao;
 
+UPDATE compras
+  SET valor = 900, observacoes = 'hoje eu mudei o texto'
+  WHERE id = 20; -> atualiza o dado valor e observacoes do campo com id 20.
+
+UPDATE compras
+  SET valor = 900, observacoes = 'hoje eu mudei o texto'
+  WHERE valor < 50; -> atualiza o dado valor e observacoes de todos os campos cujo valores sao menores que 50.
+
+---- DELETE ----
+
+DELETE FROM nome_da_tabela
+  WHERE condicao
+
+DELETE FROM compras
+  WHERE id = 10; -> deleta a linha que tem o id = 10;
+
+DELETE from compras
+  WHERE valor < 30; -> deleta todos os dados da tabela compras q tenha o valor < que 30.
 
 ********************* MYSQL PELO TERMINAL *********************
 
@@ -76,3 +102,5 @@ SELECT data,valor,observacoes FROM compras
 mysql -u root -p -> solicita acesso ao banco de dados
 
 desc nome_da_tabela -> mostra a descricao da tabela
+
+show tables -> mostra quantas tabelas nosso banco tem
