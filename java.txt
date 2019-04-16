@@ -612,3 +612,98 @@ class TituloDaContaComparator implements Comparator<Conta>{
             lista.sort((c1,c2) -> Integer.compare(c1.getNumero(), c2.getNumero()) );
 
         O Java já faz toda essa implementacao pra vc, por dbaixo dos panos.
+
+------------ PADRAO DE PROJETO DECORATOR JAVA ------------
+
+------------ JAVA i.o ------------
+
+
+--- LENDO ARQUIVOS RECEBIDOS ---
+
+FileInputStream -> fluxo de entrada de arquivo
+InputStreamReader -> retona um array de caracteres do arquivo q entrou em FileInputStream
+BufferedReader -> retorna a linha escrita dentro do arquivo colocado em FileInputStream
+
+// Fluxo de Entrada com Arquivo
+		
+FileInputStream fileInputStream = new FileInputStream("lorem.txt"); -> recebe o arquivo e le os bytes dele
+InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream); -> recebe o arquivo e le os chars dele
+BufferedReader bufferedReader = new BufferedReader(inputStreamReader); -> recebe o arquivo e le os texto dele
+
+System.out.println(bufferedReader.readLine()); -> exibe a primeira linha do arquivo.
+
+-- como exibir todo o conteudo? --
+
+// Fluxo de Entrada com Arquivo
+		
+    FileInputStream fileInputStream = new FileInputStream("lorem.txt");
+    InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+    String linha = bufferedReader.readLine();
+
+    while(linha != null) {
+
+    System.out.println(linha);
+    linha = bufferedReader.readLine();
+    }
+
+    bufferedReader.close(); -> fechamos o beffered para n concluir a operacao
+
+    Esse codigo vai LER um arquivo lorem.txt.
+
+--- Criando ARQUIVOS ---
+
+OutputStream ->
+FileOutputStream -> FAZER RELATORIOS PDF, TRABALHAR COM IMAGENS
+
+Exemplo:
+        FileOutputStream fileOutputStream = new FileOutputStream("lorem2.txt");
+		OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+		BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+		
+		bufferedWriter.write("Ola meu nome é nicolas");
+		bufferedWriter.newLine();
+		bufferedWriter.newLine();
+		bufferedWriter.write("Ola meu nome é gisele binti");
+		
+		bufferedWriter.close();
+
+Esse codigo vai criar um arquivo lorem2.txt e colocar o conteudo nele.
+
+--- Criando arquivos de uma forma mais enxuta ---
+
+    FileWriter fileWriter = new FileWriter("lorem2.txt");
+		
+    fileWriter.write("Ola meu nome é nicolas");
+    //System.lineSeparator() -> ele pula linha retorna \n ou \r\n, depende do sistema operacional
+    fileWriter.write(System.lineSeparator());
+    fileWriter.write(System.lineSeparator());
+    fileWriter.write("Ola meu nome é gisele binti");
+    
+    fileWriter.close();
+
+OU em vez de user System.lineSeparator podemos aproveitar do BufferedWriter que ja vem com o metodo de pular linha,
+    ficando assim nosso codigo:
+
+    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("lorem2.txt"));
+
+    bufferedWriter.write("Ola meu nome é nicolas");
+    bufferedWriter.newLine();
+    bufferedWriter.newLine();
+    bufferedWriter.write("Ola meu nome é gisele binti");
+ 
+    bufferedWriter.close();
+
+
+------------ SCANNER ------------
+
+.hasNextLine() -> verifica se tem a proxima linha.
+.nextLine() -> exibe as linhas por enteiro inclusive se tiver espaco
+.next -> exibe as linhas, porem se houver espaco no meio do caminho ele qbra e começa outra.
+
+
+------------ ARQUIVOS CSV ------------
+
+CSV -> Comma Separated Values, OU Valores separados por vírgula, exemplo do conteudo do arquivo:
+    11,nicolas,234,oi
