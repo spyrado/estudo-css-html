@@ -1,0 +1,33 @@
+*********************** Thymeleaf ***********************
+
+---- Como colocar textos no Thymeleaf? ----
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"> -> faço a chamada do thyme com a key th para conseguir acessar os beneficios do thymeleaf
+
+<p th:text="#{home.welcome}">Welcome to our grocery store!</p> -> o #{dadoDoBack} vem do backend
+
+
+
+---- TAGS THYMELEAF ----
+
+th:text -> insere um texto normal // "Ola sou um texto normal"
+th:utext -> insere um texto com tags htmls // "Ola sou um <b>texto</b> normal"
+
+---- MESSAGES VARIABLE EXPRESSIONS ----
+
+  Variable Expressions: ${...}
+  Selection Variable Expressions: *{...}
+  Message Expressions: #{...}
+  Link URL Expressions: @{...}
+
+---- Thymeleaf Standard Expression ----
+
+
+
+
+----
+
+  th:replace - > remove a tag atual e inclui tudo que vc chamou nele, exemplo:
+    <aside th:replace="xtreme/layout/fragments/mapa/grid-veiculo :: grid-veiculo"></aside>
+

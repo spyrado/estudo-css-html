@@ -5,3 +5,9 @@ ls | grep .css -> verifica os arquivos com a extensão .css do diretorio atual
 find /var/www/html/cache -name *report.jpg -> procura o nome do arquivo em toda a pasta cache/
 
 o * funciona igual banco, se vc colocar na frente ele vai procurar dali pra frente.
+
+lsof -i -Pn -> lista todas as portas
+
+netstat -na | grep tcp | grep -i listen -> lista todas as portas ativas no momento
+
+kill -9 PID -> Mata o processo identificado como PID
