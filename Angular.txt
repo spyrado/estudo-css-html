@@ -590,6 +590,8 @@ Estou dizendo que qualquer diretorio q n foi definido em path, carrega o compone
         ngOnInit(): void {
 
         const userName = this.activatedRoute.snapshot.params.userName; // Recebo o valor definido na url user/:userName
+
+        OBS: activatedRoute -> indica a ROTA ativada naquele momento
         
         // Passo esse valor para o listFromUser
         this.photoService
