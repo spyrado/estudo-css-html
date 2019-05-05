@@ -671,7 +671,17 @@ export class nomeDaClasse implements PipeTransform{
 
 ------------------- Resolver Angular -------------------
 
-Ele é ativado ANTES de um componente ser carregado na página.
+Ele é ativado ANTES de um componente ser carregado na página, isso é, ANTES dele carregar o componente,
+ele procura no app.routing se existe algum resolver(pra resolvelo, e só depois carregar o componente)
+
+Exemplo de resolver:
+{
+    path: 'user/:userName',
+    component: PhotoListComponent,
+    resolve: {
+        photos: PhotoListResolver
+    }
+},
 
 -- Criando um resolver --
 
