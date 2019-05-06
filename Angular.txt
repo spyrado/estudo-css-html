@@ -808,3 +808,83 @@ exemplo de criação de submodulos:
 
 [] -> O dado vem da fonte de dados para o template ( do ts para o html )
 () -> O dado vem do template para a fonte de dados ( do html para o ts )
+
+------------------- Change Detection -------------------
+
+    Com .push o mecanismo de change detection do angular n funciona, precisa passar uma nova referencia
+        this.photos.push(...photos);
+    O codigo correto seria:
+        this.photos = this.photos.concat(photos);
+
+------------------- Output property -------------------
+
+Como criar uma Output property?
+
+@Output() onTyping = new EventEmitter<string>();
+
+<input
+    class="rounded"
+    type="search"
+    placeholder="search..."
+    autofocus
+    (keyup)="debounce.next($event.target.value)"
+    [value]="value">
+
+<ap-search 
+  (onTyping)="filter = $event">
+</ap-search>
+
+this.debounce
+      .pipe(debounceTime(300))
+      .subscribe(filter => this.onTyping.emit(filter));
+
+conforme o usuário digita, o debounce.next envia o valor do que foi digitado, para o this.debounce,
+dps de 300ms, eu dou um subscribe e pego o valor digitado, passo para a minha Output e emito esse valor,
+apos emitir o valor, ele é passado para o meu $event, que por Consequencia o meu filter recebe o $event,
+
+------------------- Criando a primeira Diretiva -------------------
+
+Nesse caso, iremos criar uma diretiva, para que todo component q tiver essa diretiva,
+tenha o efeito de hover ao passar o mouse em cima.
+
+Para criarmos uma diretiva, devemos fazer dessa maneira.
+
+darken-on-hover.directive.ts:
+
+    import { Directive } from '@angular/core';
+
+    @Directive({
+        selector: '[apDarkenOnHover]',
+    })
+    export class DarkenOnHoverDirective { }
+
+// O seletor criado serve para indicar o nome da diretiva
+
+ <div *ngFor="let photo of cols" class="col-4" apDarkenOnHover>
+
+ Aqui colocamos aonde queremos nossa diretiva, direto no html que queremos.
+
+ -- Eventos Javascript --
+
+ Utilizamos o decorator @HostListener('nomeDoEvento')
+
+ Exemplo:
+    @HostListener('mouseover')
+    darkenOn() {
+        console.log('darkenOn');
+    }
+// Ao passar o mouse em cima do elemento que possui a diretiva, ele irá disparar a funciona
+// correspondente
+
+-- Acessando e estilizando via component -- 
+
+    constructor(
+        private el: ElementRef, // Referencia ao elemento da diretiva
+        private render: Renderer // atributo q mexe com estilizacao e muito mais.
+        ){}
+
+    @HostListener('mouseover')
+    darkenOn() {
+        this.render.setElementStyle(this.el.nativeElement, 'filter', `brightness(${this.brightness})`);
+        // passo para ele o elemento que quero estilizar, e qual estilizacao eu quero dar, e o valor.
+    }
