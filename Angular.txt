@@ -568,6 +568,11 @@ O CommonModule possui todas as diretivas básicas como NgIf, NgFor, NgForOf etc
     })
     export class AppRoutingModule {}
 
+----- pagina inicial -----
+
+Se quisermos fazer um component ser carregado na pasta raiz, a rota deve ficar assim:
+{path: '', component: SigninComponent} -> o path vazio seria a mesma coisa que localhost:4200(raiz)
+
 ----- pagina 404 -----
 
 Se quisermos redirecionar pra uma pagina especifica quando n existir determinada página, fazemos o seguinte:
