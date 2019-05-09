@@ -893,3 +893,30 @@ darken-on-hover.directive.ts:
         this.render.setElementStyle(this.el.nativeElement, 'filter', `brightness(${this.brightness})`);
         // passo para ele o elemento que quero estilizar, e qual estilizacao eu quero dar, e o valor.
     }
+
+------------------- Validando formulario -------------------
+
+Utilizamos as validacoes via angular, pois a validacao padrao do html5, não é integrada com o framework
+então, para aproveitar todo o poder q o framework nos fornece, devemos validar via Angular.
+
+Utilizando o ReactiveFormsModule.
+
+Model Driven Forms ->, cuja regra de validação ficará no componente, e não no template.
+
+-- Iniciando --
+
+Após importar o ReactiveFormsModule, voce tera acesso a varias classes e diretivas desse pacote.
+
+para linkar com o formulario temos q ter uma propriedade do tipo FormGroup.
+
+Para termos acesso aos campos dos formularios, precisaremos de um construtor de formulario,
+ele é chamado de FormBuilder, voce o declara em seu construtor.
+
+    export class SigninComponent {
+
+
+    loginForm: FormGroup; // consigo injetar mais de um campo no FormGroup
+
+    constructor(private formBuilder: FormBuilder){} // ele é oq faz o formulario existir.
+
+    }
