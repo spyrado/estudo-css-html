@@ -3,6 +3,19 @@
 Angular foca em ever green browsers, isto é, suportará sempre as duas últimas versões vigentes dos navegadores
 do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará esta versão e a anterior, apenas.
 
+
+
+------------------- ANGULAR ATALHOS TERMINAL -------------------
+
+ng generate service pasta/arquivo -> cria um servico
+    ng g s pasta/arquivo <- atalho
+
+ng generate component pasta/arquivo -> cria um componente
+    ng g c pasta/arquivo <- atalho
+
+ng generate module pasta/arquivo -> cria um modulo
+    ng g m pasta/arquivo <- atalho
+
 ------------------- ANGULAR DUVIDAS BASICAS -------------------
 
 ---- declaration MODULO ----
@@ -920,3 +933,35 @@ ele é chamado de FormBuilder, voce o declara em seu construtor.
     constructor(private formBuilder: FormBuilder){} // ele é oq faz o formulario existir.
 
     }
+
+this.loginForm = this.formBuilder.group({
+    userName: ['', Validators.required],
+    password: ['', Validators.required]
+});
+
+o codigo acima eu estou definindo os campos q tenho, seus valores, e suas validacoes,
+
+porem para que seja valido esses campos, eu tenho q identificalos no html
+    <form [formGroup]="loginForm">
+        <input formControlName="userName">
+Agora sim, fiz o binding de formGroup com loginForm, e de linkei userName no html com
+    userName no arquivo .ts
+
+Agora para acessar um valor do formulario basta fazer:
+    this.loginForm.get('userName').value
+    da pra fazer diversas outras coisas
+
+-- Como limpar um formulario? --
+
+this.loginForm.reset(); -> limpa todos os campos definidos em this.formBuilder.group.
+
+------------------- Navegando entre paginas -------------------
+
+Para redirecionar o usuário para determinada tela faca o seguinte.
+
+contructor(private router: Router){} -> declare a classe Router, para termos acesso as rotas.
+
+em seguida, simplesmente mostre qual caminho voce quer acessar:
+    this.router.navigateByUrl('user/nicolas')
+
+.navigateByUrl -> aceita uma url para redirecionar.
