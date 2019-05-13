@@ -961,7 +961,32 @@ Para redirecionar o usuário para determinada tela faca o seguinte.
 
 contructor(private router: Router){} -> declare a classe Router, para termos acesso as rotas.
 
-em seguida, simplesmente mostre qual caminho voce quer acessar:
-    this.router.navigateByUrl('user/nicolas')
+OBS: O Router é disponibilizado pelo RouterModule, entao se quiser ter acesso a ele no seu component,
+tera q importar o RouterModule.
+
+Em seguida, simplesmente mostre qual caminho voce quer acessar:
+    -- navigateByUrl --
+        this.router.navigateByUrl('user/' + userName).
+    -- navigate --
+        this.router.navigate(['user',userName]).
+
+Qual a diferenca entre as duas?, uma voce tem que ficar concatenando a url,
+    a outra voce só passa a url num vetor separando por virgula.
+
+OBS: é mais interessante usar o .navigate(), pois quando for uma rota gigante, vc n 
+    precisara ficar concatenando a rota inteira.
+
 
 .navigateByUrl -> aceita uma url para redirecionar.
+
+------------------- Selecionando elementos sem ser por diretivas. -------------------
+
+colocamos uma variavel de template:
+    <input #userNameInput>
+E no codigo ts:
+    @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
+        referenciamos o #userNameInput em ViewChild, agora o ElementRef, tem sua
+        referencia de elemento, que no caso é a tag input.
+
+------------------- Deteccao de plataformas, resolvendo server side rendering -------------------
+
