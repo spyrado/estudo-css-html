@@ -990,3 +990,73 @@ E no codigo ts:
 
 ------------------- Deteccao de plataformas, resolvendo server side rendering -------------------
 
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+@Injectable({ providedIn: 'root' })
+export class PlatformDetectorService {
+
+  constructor(@Inject(PLATFORM_ID) private platFormId: string){}
+
+  // Verifica se o component está sendo renderizado em um browser.
+  isPlatformBrowser(){
+    return isPlatformBrowser(this.platFormId);
+  }
+}
+
+------------------- Pegando o token do back-end via ajax -------------------
+
+authenticate(userName: string, password: string){
+    return this.http
+      .post(
+        API_URL + '/user/login', 
+        { userName, password },
+        {observe: 'response'}
+      )
+      .pipe(tap(res => {
+        const authToken = res.headers.get('x-access-token');
+        console.log(authToken);
+      }));
+  }
+
+  OBS: Se der erro na resposta ao acessar res.headers, é pq vc n definiu o observe como response.
+
+para conseguir ter acesso aos headers da nossa requisicao, devemos setar a configuracao de observe: "response",
+assim ele entende que eu quero todos os dados da requisicao, e nao apenas o body.
+
+Bom vamos lá, devemos usar o tap() um operators do rxjs, ele nos auxiliara em pegar o dado de retorno do back,
+juntamente com o .pipe, que vai fazer essa conexao entre a requisicao e resposta dela, e a manipulacao dessa resposta
+atravez do tap.
+
+
+------------------- Operadores novos a se estudar -------------------
+
+!! -> mudanca de estado.
+    EXEMPLO:
+        nome = 'Nicolas';
+        sobrenome = '';
+
+        !nome -> vai retornar false, pois antes a variavel tinha algo escrivo(isso é, era TRUE), ai eu neguei e virou falso
+        !!nome -> retorna true, pois ele deixou falso (pois tinha caracter entao era true, ai colocou uma ! ficou falso), e depois colocou outra !, ai o falso virou true.
+        !sobrenome -> vai ser true (pq antes n tinha nada, entao era falso com ! virou true)
+        !!sobrenome -> vai ser false
+
+pode-se utilizar isso num caso como esse:
+    hasToken(): boolean{
+        return !!this.getToken();
+    }
+
+// ali eu pego uma string q é o token, porem tenho q ter um retorno booleano, ai eu nego duas vezes, pq quando
+// vc nega, oq era string / null / undefined, vira booleano.
+
+algo?.fazIsso -> oq é essa interrogação.
+
+------------------- Segurança do token -------------------
+
+O token é gerado no padrão JWT (J*son *Web Token)
+
+podemos descriptografar o token em qualquer site de descriptografia de JWT, porem de nada adianta,
+pois la no back-end, vc tem uma palavra chave para verificar a veracidade do token,
+e caso essa palavra chave n bata com o token, n adianta adultera-lo, q la no back-end sera recusado.
+
+porem... vc n deve colocar dados sensiveis junto body, pois a pessoa vai conseguir ter acesso a isso.
