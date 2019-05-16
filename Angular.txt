@@ -1060,3 +1060,68 @@ pois la no back-end, vc tem uma palavra chave para verificar a veracidade do tok
 e caso essa palavra chave n bata com o token, n adianta adultera-lo, q la no back-end sera recusado.
 
 porem... vc n deve colocar dados sensiveis junto body, pois a pessoa vai conseguir ter acesso a isso.
+
+  -- payload JWT(Json Web Token) --
+    Para trabalhar com o dado criptografado, teremos que pegar a criptografia, descriptografar,
+    e trabalhar com o payload que essa criptografia nos disponibiliza.( que seria o body
+    os dados que realmente importam)
+
+  private decodeAndNotify(){
+    // pego o token, passo para o jtw_decode, ele descriptografa
+    const token = this.tokenService.getToken();
+    const user = jtw_decode(token) as User; // fazendo o cast do valor recebido para o tipo User
+    this.userSubject.next(user);
+  }
+
+  //esse metodo faz a descriptografia e adiciona o valor em userSubject, farei outro metodo
+      para retornar esse userSubject como um Observable.
+
+  getUser(){
+    return this.userSubject.asObservable();
+  }
+
+  // Nesse getUser eu peço para retornar o userSubject como um Observable, para que quem
+    consuma ele, possa dar um subscribe. (e tb ter todos os beneficios de um Observable)
+
+
+------------------- Casting TypeScript -------------------
+
+  Nova maneira de fazer Casting, pode se fazer assim:
+  const user = <User>jtw_decode(token);
+  const user = jtw_decode(token) as User;
+  // ambas as formas fazem o cast, mas lembre-se esse cast é feito apenas no compiler, e n runtime cast
+  //Just remember that this is a compile-time cast, and not a runtime cast.
+  const user = jtw_decode(token) as User; // fazendo o cast do valor recebido para o tipo User
+
+
+
+
+
+
+
+
+------------------- SRM ESTUDO ANGULAR -------------------
+
+---- MatDialog Service ----
+
+    https://material.angular.io/components/dialog/overview
+
+    é um servico de modal padrao do Angular, simples de usar.
+    
+    let dialogRef = dialog.open(UserProfileComponent, {
+        height: '400px',
+        width: '600px',
+    });
+
+---- ngClass ----
+
+    https://angular.io/api/common/NgClass
+
+    voce pode exibir uma classe de acordo com a condicao que vier do ts.
+    exemplo:
+
+    <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
+
+---- Diretivas do Angular ----
+    [hidden]="condition" -> Esconde um elemento se a condição for verdadeira.
+        exemplo: <span [hidden]="true">Meu Texto aqui</span>
