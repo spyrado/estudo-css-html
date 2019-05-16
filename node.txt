@@ -7,4 +7,5 @@ NVM -> Node Version Manager
 
 nvm list -> lista as versoes de node que voce possui
 nvm install 8.16.0 64 -> instala o node na versao que voce definiu, nesse caso foi 8.16.0 x64(windows)
-nvm use 10.0.0 -> troca para a versao que vc especificou, no caso foi a versao 10.0.0. 
+nvm uninstall 8.10.0 -> desintala a versao do node que voce especificou.
+nvm use 10.0.0 -> troca para a versao que vc especificou, no caso foi a versao 10.0.0.
