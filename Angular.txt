@@ -1097,6 +1097,39 @@ porem... vc n deve colocar dados sensiveis junto body, pois a pessoa vai consegu
 
 
 
+------------------- BehaviorSubject -------------------
+
+o Behavior Subject, é utilizado quando uma pagina executa depois que um servico já foi ativo.
+
+diferenca entre Subject e BehaviorSubject
+
+o Subject vc pode deixar valores em cache e user em outros componentes esses valores.
+
+o BehaviorSubject faz a mesma coisa, com um adicional.
+
+SE o seu servico carregar primeiro que o componente da pagina, com o Subject apenas n sera possivel,
+obter o valor do Subject feito em .next, porque o servico ja vai ter dado o next, e a pagina q vai
+ser carregada DEPOIS, vai ficar esperando... iai cade meu next? cade? pra sempre e n vai identificar o valor.
+
+Ja o BehaviorSubject ele quarda o valor do next, e fica vendo quem da subscribe, quem der subscribe ele fornece
+    o valor que ele guardou, ja o Subject, n fica vendo quem da subscribe.
+
+
+------------------- PIPE ASYNC -------------------
+
+private userSubject = new BehaviorSubject<User>(null);
+
+user$: Observable<User>;
+
+<div *ngIf="(user$ | async) as user; else login">
+    <i class="fa fa-user-circle"></i>
+    <a>{{ (user.name)}}</a>
+</div>
+
+O PIPE ASYNC SE ENCARREGA DE DUAS COISAS: // (user$ | async) as user
+
+    a primeira é que ele mesmo da o subscribe pega o valor pra vc e passa pra variavel q vc definir em as user (nesse caso)
+    a segunda coisa é que ele ja se encarrega de destruir o elemento pra voce, seja com BehaviorSubject ou Subject
 
 
 
