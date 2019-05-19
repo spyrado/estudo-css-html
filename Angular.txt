@@ -1170,6 +1170,24 @@ app.routing.module.ts:
 
 E essa classe AuthGuard, que ira conter toda a logica necessária para fazer a protecao dessa rota.
 
+------------------- A diretiva RouterLink -------------------
+
+Ela precisa de RouterModule para funcionar.
+
+nunca faça esse tipo de redirecionamento em uma SPA, pois essa forma que vou mostrar faz com que,
+todos os arquivos sejam loadados novamente, e n é isso que uma SPA faz.
+
+<a href="/"> <- esse tipo de redirecionamento tras todo um problema de performance, fazendo com q sua SPA
+    recarregue todas suas dependencias novamente.
+
+O CORRETO É UTILIZAR A DIRETIVA RouterLink.
+    <a [routerLink]="['']"> -> aqui sua SPA está a salva, ele n recarrega todas as dependencias da pagina
+        novamente, apenas a redireciona para a tela de login.
+
+O routerLink funciona igual o .navigate
+    exemplo:
+        [routerLink]="['user', 'flavio']" -> vai redirecionar para http://localhost:4200/user/flavio
+
 
 ------------------- SRM ESTUDO ANGULAR -------------------
 
