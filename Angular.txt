@@ -1189,6 +1189,99 @@ O routerLink funciona igual o .navigate
         [routerLink]="['user', 'flavio']" -> vai redirecionar para http://localhost:4200/user/flavio
 
 
+------------------- Validacao de Formularios ANGULAR -------------------
+
+    O Angular fornece, varios validadores para formularios, sendo eles:
+    Validators.required, -> aqui vc diz que o campo é obrigatorio
+    Validators.pattern(/^[a-z]+[0-9]*$/), -> aqui vc define um comportamento padrao que o campo deve seguir
+    Validators.minLength(2), -> -> aqui vc defini a quantidade de caracteres minimos para o campo
+    Validators.maxLength(30) -> aqui vc defini a quantidade de caracteres maximos para o campo
+
+    Exemplo de uso:
+      ARQUIVO.TS:
+        // estou dizendo que o campo userName, vai começar em branco, e vai ter algumas,
+        // validacoes
+        this.signupForm = this.formBuilder.group({
+            
+            userName: ['',
+                [
+                    Validators.required,
+                    Validators.pattern(/^[a-z]+[0-9]*$/),
+                    Validators.minLength(2),
+                    Validators.maxLength(30)
+                ]
+            ]
+        });
+
+      ARQUIVO.HTML:
+        <div class="form-group">
+            <input formControlName="userName" placeholder="user name" class="form-control">
+            <ap-vmessage
+                *ngIf="signupForm.get('userName').errors?.required"
+                text="user name is required!">
+            </ap-vmessage>
+            <ap-vmessage
+                *ngIf="signupForm.get('userName').errors?.pattern"
+                text="Must be lowercase">
+            </ap-vmessage>
+            <ap-vmessage
+                *ngIf="signupForm.get('userName').errors?.minlength"
+                text="Minimun length is 2">
+            </ap-vmessage>
+            <ap-vmessage
+                *ngIf="signupForm.get('userName').errors?.maxlength"
+                text="Maximum length is 30">
+            </ap-vmessage>
+        </div>
+
+------------------- Criando nosso próprio validador no Angular -------------------
+
+Podemos criar uma classe que contem os validadores, OU criar uma funcao em um arquivo
+    a parte e exportar ela.
+
+CRIANDO:
+    lower-case.component.ts:
+    import { AbstractControl } from "@angular/forms";
+
+    // Todo validator precisa receber uma classe AbstractControl como parametro
+    export function lowerCaseValidator(control: AbstractControl){
+
+        // Verifico se o valor está em branco E se o valor NAO SEGUE minha expressao regular 
+        if(control.value.trim() && !/^[a-z0-9_\-]+$/.test(control.value)){
+            return { lowerCase: true }; // retorno a chave necessária para conseguir acessar no formulario
+        }
+
+        return null; // retorno null, isso é, está tudo ok.
+    }
+    
+    -- Incluindo o validador no meu codigo --
+    TS:
+        userName: ['',
+            [
+                Validators.required,
+                lowerCaseValidator
+            ]
+        ],
+    HTML:
+        <ap-vmessage
+            *ngIf="signupForm.get('userName').errors?.lowerCase" // AQUI devemos chamar o nome igual definimos no retorno da funcao lowerCaseValidator
+            text="Must be lowercase">
+        </ap-vmessage>
+
+
+
+
+------------------- ERROS ANGULAR -------------------
+
+    Quando voce trabalha com formularios no Angular, obrigatoriamente voce
+    tem que ter o FormsModule importado.
+
+    Isso acontece pq o Angular por padrao tenta colocar um Controlador De formulario
+    pra vc, mas ele só consegue fazer isso se o FormsModule estiver  importado.
+
+    para resolver isso, importe o FormsModule e o erro irá desaparecer.
+
+
 ------------------- SRM ESTUDO ANGULAR -------------------
 
 ---- MatDialog Service ----
