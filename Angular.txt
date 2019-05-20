@@ -1271,8 +1271,116 @@ CRIANDO:
             text="Must be lowercase">
         </ap-vmessage>
 
+------------------- Validação assincrona Angular -------------------
+
+Validacao ASSINCRONA acontece no terceiro parametro do formBuilder:
+
+this.signupForm = this.formBuilder.group({
+    email: [
+        '', // 1º Parametro, comeca o formulário em branco.
+        [
+            Validators.required, // 2º Parametro, faz a validacao syncrona
+            Validators.email // 2º Parametro, faz a validacao syncrona
+        ],
+        this.userNotTakenValidatorService.checkUserNameTaken() // 3º Parametro, faz a validacao sincrona
+    ]
+});
+
+Criando um servico para verificar se o usuário ja existe no banco:
+
+    import { Injectable } from "@angular/core";
+    import { HttpClient } from "@angular/common/http";
+
+    const API_URL = 'http://localhost:3000/';
+
+    @Injectable({ providedIn: 'root' })
+    export class SignUpService{
+
+        constructor(private http: HttpClient){}
+
+        // Verifica se o usuário já existe na base de dados
+        checkUserNameTaken(userName: string){
+            return this.http
+            .get(API_URL + 'user/exists/' + userName);
+        }
+    }
+
+O GRANDE PROBLEMA DISSO TUDO, é que nosso validador de formulario, 
+    nao suporta injecao de dependencia.
+
+Para isso, podemos arrumar outra maneira, q seria criar um Servico, e esse servico
+    vai ser nosso validador.
+
+IMPORTANTE, uma validacao assincrona não retorna nem null, nem um Objeto javascript,
+    ele retorna um Observable.
+
+    entao n pode ser mais control.value, agora deve ser control.valueChanges -> ele retorna um
+        Observable
+        checkUserNameTaken(){
+            return (control: AbstractControl) => {
+
+            return control.valueChanges;
+            }
+        }
+
+    checkUserNameTaken(){
+        return (control: AbstractControl) => {
+
+        return control
+            .valueChanges
+            .pipe(debounceTime(300))
+            .pipe(switchMap(userName => {
+                return this.signUpService.checkUserNameTaken(userName);
+            }));
+        }
+    }
+
+    Usamos o switchMap para ele parar de ouvir o fluxo anterior,
+    ai ele troca(switch) para o fluxo do checkUserNameTaken
+
+    checkUserNameTaken(){
+        return (control: AbstractControl) => {
+
+        // Primeiro eu pego o valor do formulario, dps de 300 milisegundos,
+        // eu processo ele no switchMap(ele para de ouvir o debounce e comeca a ouvir o checkUserNameTaken)
+        // dps esse metodo vai retornar um booleano, porem para a validacao de formulario,
+        // eu preciso de um null, ou de um objeto javascript, ai eu faço a transformacao desse dado,
+        // utilizando o map do rxjs
+        // porem, o sistema de validacao de formulario ainda n vai funcionar, pois ele n sabe quando
+        // essa operacao terminou, ate aqui ele vai retornar um observable, e ele sabe dar um subscribe,
+        // porem n sabe ver quando terminou, pra isso vamos utilizar mais um operador do rxjs,
+        // chamado first
+        return control
+            .valueChanges
+            .pipe(debounceTime(300))
+            .pipe(switchMap(userName => this.signUpService.checkUserNameTaken(userName))) // retorna um boolean
+            .pipe(map(isTaken => isTaken ? { userNameTaken: true } : null)) // retorna o valor que realmente interessa
+            .pipe(first()); // esse first() pega um unico valor, isso é, como agt fez com debounce
+
+        // o usuario vai estar digitando: lalalala, e quando finalizar o debounce, o first pega
+        // o primeiro valor, que nesse caso é o lalalala, e envia.
+    }
 
 
+
+    MUITO CUIDADO, Ao trabalhar com validacoes assincronas, sempre coloque:
+    esse .pending, fica verificando se tem alguma validacao assincrona processando, pois
+        enquanto tiver uma validacao assincrona pendente, o formulário estará inválido.
+
+        [disabled]="signupForm.invalid || signupForm.pending"
+        <button [disabled]="signupForm.invalid || signupForm.pending">
+            Register
+        </button>
+
+------------------- Submissão dos dados ANGULAR -------------------
+
+    Para agilizar o processo de 'captação dos dados', voce pode utilizar o .getRawValue(),
+    da classe FormGroup, assim ele junta todas as proprietades do formulario,
+    e te devolve um objeto.
+        exemplo:
+            const newUser = this.signupForm.getRawValue(); -> retorna todos os campos do form em formato
+                de objeto.
+    feito isso, podemos fazer o que quisermos com os dados.
 
 ------------------- ERROS ANGULAR -------------------
 
@@ -1310,3 +1418,7 @@ CRIANDO:
 ---- Diretivas do Angular ----
     [hidden]="condition" -> Esconde um elemento se a condição for verdadeira.
         exemplo: <span [hidden]="true">Meu Texto aqui</span>
+
+--------- Propriedades ---------
+
+elvis operator typescript ?
