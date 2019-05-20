@@ -1191,6 +1191,9 @@ O routerLink funciona igual o .navigate
 
 ------------------- Validacao de Formularios ANGULAR -------------------
 
+    IMPORTANTE!: Os Validators, quando se usa mais de 1, é necessário incluir eles
+        dentro de um array, caso contrario co codigo irá gerar um erro.
+
     O Angular fornece, varios validadores para formularios, sendo eles:
     Validators.required, -> aqui vc diz que o campo é obrigatorio
     Validators.pattern(/^[a-z]+[0-9]*$/), -> aqui vc define um comportamento padrao que o campo deve seguir
