@@ -3,7 +3,15 @@
 Angular foca em ever green browsers, isto é, suportará sempre as duas últimas versões vigentes dos navegadores
 do mercado.  Por exemplo, se a última versão do Chrome é 65, ele suportará esta versão e a anterior, apenas.
 
+------------------- MEU PADRAO DE SINTAX -------------------
 
+<img 
+    (click)="fazAlgo()" 
+    [binding]="algo" 
+    id="algo" 
+    class="algo"
+    src="caminho"
+    alt="algo">
 
 ------------------- ANGULAR ATALHOS TERMINAL -------------------
 
@@ -907,6 +915,21 @@ darken-on-hover.directive.ts:
         // passo para ele o elemento que quero estilizar, e qual estilizacao eu quero dar, e o valor.
     }
 
+------------------- Selecionando Elementos -------------------
+
+    Como selecionar elementos?
+        Utilizamos o @ViewChild('nomeDoMarcadorFeitoNoElemento')
+    Exemplo de uso:
+    TS:
+        @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
+    HTML: 
+        <input
+			#userNameInput // Aqui definimos o marcador, e la no TS, chamamos ele no @ViewChild
+			class="form-control" 
+			placeholder="user name" 
+			formControlName="userName" 
+			autofocus>
+
 ------------------- Validando formulario -------------------
 
 Utilizamos as validacoes via angular, pois a validacao padrao do html5, não é integrada com o framework
@@ -1381,6 +1404,155 @@ IMPORTANTE, uma validacao assincrona não retorna nem null, nem um Objeto javasc
             const newUser = this.signupForm.getRawValue(); -> retorna todos os campos do form em formato
                 de objeto.
     feito isso, podemos fazer o que quisermos com os dados.
+
+------------------- Rotas Filhas Angular -------------------
+
+    Como fazer?
+        Aqui vai um exemplo:
+    HTML:
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <img class="img-fluid d-none d-sm-block"
+                        src="/assets/img/home.jpg" alt="Welcome">
+                </div>
+                <div class="col-md-6">
+                    <router-outlet></router-outlet> // aqui eu falo que o component q tiver
+                        // configurado em app.routing.module.ts vai ser carregado.
+                        // Nesse caso seria os components que começam com ''(rota raiz)
+                </div>
+            </div>
+        </div>
+    CONFIGURANDO ROTAS PARA SUPORTAR ROTAS FILHAS em app.routing.module.ts:
+        {
+            path: '', // ele vai iniciar com Home component pois está com ''(raiz)
+            component: HomeComponent,
+            canActivate: [AuthGuard],
+            children: [ // em children eu digo todas as rotas filhas de HomeComponent
+                {
+                    path: '', // e tambem iniciar com SigninComponent, pois tb está com ''(raiz)
+                    component: SigninComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'signup', // aqui se ele for pra essa rota, vai acontecer na msm pagina
+                    component: SignupComponent
+                }
+            ]
+        }
+
+------------------- Build do projeto ANGULAR -------------------
+
+ng build --prod -> esse comando se encarrega de otmizar todo o seu projeto,
+    e no final ele gera uma pasta dist com todo o conteudo otimizado.
+
+chunk {0} runtime.a66f828dca56eeb90e02.js (runtime) 1.05 kB [entry] [rendered]
+chunk {1} styles.294c92fb1e1373a98255.css (styles) 173 kB [initial] [rendered]
+chunk {2} polyfills.8a61012ef5f13d508214.js (polyfills) 63.2 kB [initial] [rendered]
+chunk {3} main.77c270a1f876790ec0b8.js (main) 368 kB [initial] [rendered]
+
+Ao Final ele vai falar os principais arquivos otimizados.
+
+Os arquivos com estilos globais ficam no styles, ou seja, o Bootstrap fica contido neste arquivo
+E há um runtime, para que o Angular funcione
+A pasta "alurapic" é a que deve ser colocada no servidor Apache, PHP, Java, e por aí vai
+
+Caso você utilize Gmail, perceberá que as URLs possuem esta cerquilha entre barras, uma técnica datada. Antes do History API, se alterássemos a barra de endereços do navegador, a location inevitavelmente seria modificada, e o back end seria acessado, executando-se a requisição. Sabemos que isso não pode ser feito, e que esta mudança é apenas para efeito de rotas, para que o Angular detecte qual componente deve ser carregado.
+
+Uma vez que o hash não dispara o carregamento na mudança do location, no back end, o Angular o intercepta e extrai a informação, um processo bem comum. Entretanto, para não usarmos este símbolo, além do navegador necessitar de suporte à History API, o back end cujo Angular é hospedado precisa estar programado para que qualquer requisição feita para ele devolva index.html.
+
+Mas de que forma configuramos isso?
+Depende do servidor em uso. Vamos supor que não queiramos ou saibamos fazer esta configuração, ou que estejamos utilizando algum servidor que não permite tais alterações. Basta ativarmos as rotas com hashtags que a aplicação funcionará sem este tratamento especial.
+
+Para isso, no nosso arquivo de rotas (app.routing.module.ts), na parte de NgModule com RouterModule.forRoot(routes), passaremos um objeto JavaScript com a seguinte configuração:
+
+@NgModule({
+    imports: [
+        RouterModule.forRoot(routes, { useHash: true } )
+    ],
+    exports: [ RouterModule ]
+})
+
+Assim, quando a página principal da aplicação é carregada, o # é colocado automaticamente. Esta é a solução com maior compatibilidade em relação aos navegadores, inclusive com aqueles que não suportam History API. Porém, é importante frisar que o Angular realiza testes somente com as duas últimas versões de qualquer navegador do mercado. Sendo assim, se a restrição de navegador é impactante no projeto, talvez o Angular não seja o framework adequado para uso.
+
+------------------- Code splitting e Lazy Loading ANGULAR -------------------
+
+O angular carrega todos os seus components no arquivo
+    chunk {3} main.77c270a1f876790ec0b8.js (main) 368 kB [initial] [rendered]
+Como o projeto é pequeno está com poucos kb, mas tem projetos que chegam a 8MB, isso é ruim,
+pois o angular é uma SPA, entao todos os seus components sao carregados no inicio.
+
+para melhorar isso, vamos utilizar um padrao de projeto chamado Lazy Loading e Code splitting,
+a ideia é q os components menos usados só carreguem quando o usuário clicar para ir na rota,
+desse component.
+
+Geralmente o pessoal verifica se o main passa de 300k(GZIPADO) caso passe ai, comeca o separacao
+    do código.
+
+Code splitting -> A separação do código nós chamamos de code splitting
+
+Lazy Loading -> O carregamento dele nós chamamos de Lazy Loading
+
+--- Organizando as rotas ---
+
+primeiro criaremos um path raiz '', que vai redirecionar para a home, caso o usuário acesse ela.
+
+pathMatch -> se eu digo que ele é full, então ele DEVE carregar APENAS a rota indicada no
+    redirectTo.
+    SE EU N FIZER pathMatch, ele pode querer fazer o match de outra rota e de outra, e por ai vai.
+
+redirectTo -> ao pingar no path, definido, ele redireciona para a rota definida no redirectTo.
+
+{
+    path: '',
+    pathMatch: 'full', // esse cara indica para o redirect, carregar EXATAMENTE a rota indicada.
+    redirectTo: 'home'
+  },
+  {
+    path: 'home', 
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '', 
+        component: SigninComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'signup',
+        component: SignupComponent
+      }
+    ]
+  }
+
+  Definido no app.routing.module.ts, vamos começar a fazer o lazy loading nos components que queremos.
+    no caso o HomeComponent.
+    vamos criar um arquivo chamado home.routing.module.ts
+
+    const routes: Routes = [
+
+        // definimos assim, pois a regra da rota vai ser dada em outro local
+        // e deixando o path como principal como path: '', torna flexível as chamadas.
+        {
+            path: '',
+            component: HomeComponent,
+            canActivate: [AuthGuard],
+            children: [
+            {
+                path: '', 
+                component: SigninComponent,
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'signup',
+                component: SignupComponent
+            }
+            ]
+        },
+    ];
+
+    e lá em app.routing.module.ts, vamos remover os dados antigos que chamava home, vamos deixar
+        apenas o path: 'home'
 
 ------------------- ERROS ANGULAR -------------------
 
