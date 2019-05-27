@@ -1477,6 +1477,9 @@ Assim, quando a página principal da aplicação é carregada, o # é colocado a
 
 ------------------- Code splitting e Lazy Loading ANGULAR -------------------
 
+IMPORTANTE: NUNCA CARREGUE O MODULO DO COMPONENT Q VC QUEIRA DEIXAR LAZY EM app.module, se n n faria sentido
+pois ele carregaria junto as suas dependencias, pois o app.module carrega todas suas dependencias inicialmente
+
 O angular carrega todos os seus components no arquivo
     chunk {3} main.77c270a1f876790ec0b8.js (main) 368 kB [initial] [rendered]
 Como o projeto é pequeno está com poucos kb, mas tem projetos que chegam a 8MB, isso é ruim,
@@ -1502,6 +1505,8 @@ pathMatch -> se eu digo que ele é full, então ele DEVE carregar APENAS a rota 
     SE EU N FIZER pathMatch, ele pode querer fazer o match de outra rota e de outra, e por ai vai.
 
 redirectTo -> ao pingar no path, definido, ele redireciona para a rota definida no redirectTo.
+
+Para fazermos o lazy loading e code splitting, faremos o seguinte:
 
 {
     path: '',
@@ -1553,6 +1558,22 @@ redirectTo -> ao pingar no path, definido, ele redireciona para a rota definida 
 
     e lá em app.routing.module.ts, vamos remover os dados antigos que chamava home, vamos deixar
         apenas o path: 'home'
+},
+{
+    path: 'home',
+    loadChildren: './home/home.module#HomeModule' // aqui eu digo pra carregar as suas dependencias
+},
+
+
+aqui estou falando, ao cair no path raiz, redirecione apenas para home, e carregue suas dependencias
+
+------------------- Organizando Servicos no ANGULAR -------------------
+
+Bom, quando criamos servicos, temos q verificar aonde ele vai ser utilizado, se ele vai ser utilizado,
+apenas no submodulo, n coloque o providedIn nele como root, pelo contrario, vc vai no submodulo
+e em providers, vc adiciona ele, OU se apenas UM COMPONENT vai utilizado, vá até o componente,
+em providers adicione sua service lá.
+
 
 ------------------- ERROS ANGULAR -------------------
 
