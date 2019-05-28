@@ -870,6 +870,16 @@ apos emitir o valor, ele é passado para o meu $event, que por Consequencia o me
 
 ------------------- Criando a primeira Diretiva -------------------
 
+IMPORTANTE!! ->
+    Sempre que criar uma diretiva, faça a declaração dela em declarations, como se fosse um
+        componente.
+    Sempre nomeie uma diretiva com o padrao de prefixo, exemplo: [appHighlight]
+    Certifiquece de não nomear o diretiva como [ngHighlight], pois o prefixo ng é reservado
+    pelo angular, e isso pode causar bugs dificeis de diagnosticar.
+    Voce usa o ElementRef no constructor para injetar uma referencia ao elemento que voce aplicou
+        o appHighlight
+    ElementRef concede acesso direto ao elemento do DOM por meio da sua propriedade nativeElement.
+    
 Nesse caso, iremos criar uma diretiva, para que todo component q tiver essa diretiva,
 tenha o efeito de hover ao passar o mouse em cima.
 
@@ -1574,6 +1584,60 @@ apenas no submodulo, n coloque o providedIn nele como root, pelo contrario, vc v
 e em providers, vc adiciona ele, OU se apenas UM COMPONENT vai utilizado, vá até o componente,
 em providers adicione sua service lá.
 
+------------------- Interceptadores e envio de token ANGULAR -------------------
+
+Automatizando envio de tokens atraves de Interceptadores do Angular,
+Normalmente, em uma aplicação para fazer algumas validações no back-end,
+precisamos enviar um token, e como isso se torna frequente, 
+em vez de a cada componente solicitar o token dentro dele, podemos fazer um interceptador,
+ele toda vez q houver uma requisição, vai verificar se o usuário está logado, e se estiver ele envia o token.
+
+Implementando Interceptor:
+    import { Injectable } from "@angular/core";
+    import { HttpInterceptor } from "@angular/common/http";
+    import { HttpRequest } from "@angular/common/http";
+    import { HttpHandler } from "@angular/common/http";
+    import { Observable } from "rxjs";
+    import { HttpSentEvent } from "@angular/common/http";
+    import { HttpHeaderResponse } from "@angular/common/http";
+    import { HttpProgressEvent } from "@angular/common/http";
+    import { HttpResponse } from "@angular/common/http";
+    import { HttpUserEvent } from "@angular/common/http";
+
+    @Injectable()
+    export class RequestInterceptor implements HttpInterceptor {
+
+        constructor(private tokenService: TokenService) {}
+
+        intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent
+            | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
+
+                if(this.tokenService.hasToken()) { // verifico se ele tem token ( se tiver e pq ele ta logado )
+                    const token = this.tokenService.getToken(); // pego o token
+                    req = req.clone({ // Aqui eu clono o header, e incluo o meu header para enviar para o back-end o token
+                        setHeaders : {
+                            'x-access-token': token
+                        }
+                    });
+                }
+            return next.handle(req); // envio o header modificado.
+
+        }
+    }
+
+    POREM, Para que tudo isso funcione, temos que fazer algumas configurações no modulo 
+        em que o interceptor se encontra.
+
+    core.module.ts:
+        providers: [
+            {
+                provide: HTTP_INTERCEPTORS, // aqui eu provido o HTTP_INTERCEPTORS
+                useClass: RequestInterceptor, // Classe q será usada toda vez q meu http for interceptado
+                multi: true // pode ser que tenha mais de um interceptador, e ele vai delegando pro proximo
+            }
+        ]
+
+E pronto, seu interceptor estará funcionando.
 
 ------------------- ERROS ANGULAR -------------------
 
