@@ -870,6 +870,15 @@ apos emitir o valor, ele é passado para o meu $event, que por Consequencia o me
 
 ------------------- Criando a primeira Diretiva -------------------
 
+OBS: O Directive do angular segue o padrao de seleção  CSS attribute selector, então podemos fazer assim:
+    @Directive({
+        selector: '[appHighlight]'
+    })
+        OU
+    @Directive({
+        selector: 'button[type]'
+    })
+
 IMPORTANTE!! ->
     Sempre que criar uma diretiva, faça a declaração dela em declarations, como se fosse um
         componente.
@@ -879,7 +888,7 @@ IMPORTANTE!! ->
     Voce usa o ElementRef no constructor para injetar uma referencia ao elemento que voce aplicou
         o appHighlight
     ElementRef concede acesso direto ao elemento do DOM por meio da sua propriedade nativeElement.
-    
+
 Nesse caso, iremos criar uma diretiva, para que todo component q tiver essa diretiva,
 tenha o efeito de hover ao passar o mouse em cima.
 
@@ -1679,3 +1688,11 @@ E pronto, seu interceptor estará funcionando.
 --------- Propriedades ---------
 
 elvis operator typescript ?
+
+------------------- ESTUDO DOCUMENTACAO ANGULAR -------------------
+
+-- HostListener --
+ @HostListener -> Decorator que declara um evento DOM para escutar, e fornece um metodo
+    manipulador para ser executado quando esse evento ocorrer.
+
+Sintax: @HostListener('eventName', 'args')
