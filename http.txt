@@ -1,0 +1,37 @@
+******************** HTTP ********************
+
+--- Cliente Servidor ---
+
+Cliente: Google Chrome, Firefox (qualquer browser é um cliente)
+Servidor: Java, PHP (Plataforma usada no servidor) o SERVIDOR MESMO pode ser APACHE / TOMCAT E ETC. 
+
+Visualizando a estrutura:
+  https://s3.amazonaws.com/caelum-online-public/http/arquitetura_alura.png
+
+  Navegador<< cliente>>  -> HTTP<< internet >> Tomcat<<servidor Java>> -> SQL -> MySql<< banco de dados >>
+
+----- Request / Response -----
+
+  O navegador envia o Request(Requisição)
+  O Servidor devolve o Response(Resposta)
+
+----- HTTP / HTTPS -----
+
+  IMPORTANTE! SEGURANÇA!
+
+  HTTP -> Envia os dados para o servidor como texto
+  HTTPS -> Envia os dados com uma camada de segurança
+
+----- HTTPS Emissão -----
+
+  Todo site que possue HTTPS ele possui uma key publica do https, e uma key privada,
+  essa key privada só o nosso servidor tem acesso, e só nós podemos descriptografar o dados
+  q vem da requisição atraves dessa key.
+
+  então com https enviamos dados criptografados evitando q no meio do caminho da requisição usuários
+  mal intencionados peguem esses dados, eles vao precisar dessa key privada q só o dono tem.
+
+----- DNS -----
+
+  Quando enviamos www.google.com.br bate no DNS, ele verifica se esse cara tem um ip existente
+    e retorna o ip para o navegador, para que ele possa prossweguir.
