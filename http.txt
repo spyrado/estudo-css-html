@@ -12,6 +12,8 @@ Visualizando a estrutura:
 
 ----- Request / Response -----
 
+  Uma Requisição não guarda estado, ela não sabe oq a requisição anterior mandou, ela é stateless
+
   O navegador envia o Request(Requisição)
   O Servidor devolve o Response(Resposta)
 
@@ -21,6 +23,11 @@ Visualizando a estrutura:
 
   HTTP -> Envia os dados para o servidor como texto
   HTTPS -> Envia os dados com uma camada de segurança
+
+  Porta padrão
+
+  HTTP -> :80
+  HTTPS -> :443
 
 ----- HTTPS Emissão -----
 
