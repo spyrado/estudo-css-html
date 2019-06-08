@@ -70,12 +70,17 @@ void criarBotao(String texto, { String cor, double largura }){
   print(cor ?? 'Preto') -> se a cor n for null, retorna Preto.
 }
 
--------------------------- PASSANDO FUNCOES COMO PARAMETRO FLUTTER --------------------------
+-------------------------- PASSANDO FUNCOES COMO PARAMETRO / FUNCAO ANONIMA FLUTTER --------------------------
 
 Coloque o tipo Function e um nome, depois é só passar como parametro na chamada da funcao a sua
   funcao externa.
 
-criarBotao('Enviar', minhaFuncao);
+criarBotao('Enviar', minhaFuncao); -> chamo uma funcao criada anteriormente
+criarBotao('Enviar', (){ -> passo uma funcao anonima como parametro de funcao
+    print("funcao anonima");
+});
+criarBotao('Enviar', () => print("funcao anonima")); -> passo uma funcao anonima como parametro de funcao
+
 
 void minhaFuncao(){
   print("executou minha funcao");
@@ -88,3 +93,78 @@ void criarBotao(String texto, Function minhaFuncao, { String cor, double largura
   
   minhaFuncao();
 }
+
+-------------------------- INSTANCIANDO UMA CLASSE FLUTTER --------------------------
+
+Pessoa pessoa = Pessoa(); -> no Flutter nao precisamos colocar = new Pessoa();, podemos omitir isso.
+
+-------------------------- CONSTRUTOR FLUTTER --------------------------
+
+class Pessoa {
+
+  String nome;
+  int idade;
+  double altura;
+
+  Pessoa(); -> Assim que se declara um construtor no Flutter
+}
+
+class Pessoa {
+
+  String nome;
+  int idade;
+  double altura;
+
+  Pessoa(nome, idade, altura){ -> assim q se recebe dados de um construtor, podemos melhorar, logo abaixo eu mostro como.
+    this.nome = nome;
+    this.idade = idade;
+    this.altura = altura;
+  }
+}
+
+Pessoa(this.nome, this.idade, this.altura) -> assim é a forma resumida de se receber dados no construtor.
+
+
+---- NAMED CONSTRUCTOR ----
+
+  Vamos supor que voce tem um bebe recem nascido, voce n precisa colocar idade nele pq a idade é 0.
+
+  class Pessoa {
+
+  String nome;
+  int idade;
+  double altura;
+
+  Pessoa(this.nome, this.idade, this.altura);
+  Pessoa.nascer(this.nome,this.altura){
+    idade = 0;
+  }
+}
+
+-------------------------- GETTERS AND SETTERS FLUTTER --------------------------
+
+Por convencao todas as propriedades privadas sao declaradas com um underline na frente
+  exemplo: String _nome;
+
+para fazer get e set de nome, fazemos dessa maneira:
+
+  String get nome {
+    return _nome;
+  }
+
+  --- Simplificando o get ---
+
+  String get nome => _nome;
+
+  set nome(String nome){
+    _nome = nome;
+  }
+
+  --- protegendo o set ---
+
+  set altura(double altura){
+    if(altura > 0.0 && altura < 3.0){
+      _altura = altura;
+    }
+  }
+
