@@ -1,0 +1,63 @@
+*************************** FLUTTER ***************************
+
+Instalando o flutter
+  https://flutter.dev/docs/get-started/install/macos
+  apos baixar e extrair os arquivos entre na pasta flutter/bin
+  vá em Mac Book Pro de Nicolas -> Macintosh HD -> Usuários -> selecione o seu usuário -> vai precisar
+    listar os arquivos ocultos, para exibir os arquivos ocultos aperte cmd shift (ponto), ai vamos
+    editar um arquivo chamado .bash_profile, se vc n tiver ele ai, é só criar.
+
+  feito isso tudo dentro do arquivo vc vai colocar o caminho da basta bin, que fica dentro da pasta do flutter
+    no meu caso vai ser esse o codigo:
+    export PATH=/Users/nick/Documents/Nicolas/Working\ Directory/flutter/bin:$PATH
+
+  colo ele dentro de .bash_profile, salvo.
+  abro o console, e digito: source $HOME/.bash_profile
+  e dou um: echo $PATH pra ver se foi cadastrado com sucesso
+  se aparecer o nome flutter em algum lugar, é pq tudo deu certo.
+
+  digite flutter doctor no console, e siga os passos que pede.
+
+-------------------------- COMANDOS FLUTTER --------------------------
+
+flutter doctor -> Esse comando verifica todas as dependencias que voce precisa
+  baixar para funcionar corretamente o flutter, E tambem indica as solucoes dos problemas dessas dependencias.
+
+-------------------------- CONDICIONAIS FLUTTER --------------------------
+
+--- if ternario ---
+
+String info = true ? "Alguma coisa" : "Outra coisa";
+
+--- Null-Aware ---
+
+  print(null ?? 'New in Dart 1.12'); -> se for nullo a variavel, exibe o texto.
+  String nome;
+  String info2 = nome ?? "Não informado!"; -> Se a variavel for nulla, exibe o texto.
+
+
+  String x = null;
+  x ??= 'are the null-aware operators, friendly to'; -> Se essa variavel for nulla recebe esse texto
+  print(x);
+
+  EM Resumo tudo que voce acha que pode vir nullo, vc coloca o Null Aware na frente
+
+  x?.m() -> só invoka a função se x não for nullo.
+  x?.p -> só acessa a propriedade se o objeto nao for nullo.
+
+-------------------------- PARAMETROS OPCIONAIS FLUTTER --------------------------
+
+Para criar parametros opcionais, colocamos os parametros opcionais dentro de um objeto nos parametros da funcao.
+E na chamada da funcao, caso seja necessário chamar os parametros opcionais colocamos o mesmo nome
+da variavel que declaramos dentro do objeto na chamada da funcao.
+
+E para nao utilizar o parametro, é só nao colocar eles.
+
+criarBotao('Enviar'); -> NÃO Utilizando parametros opcionais
+criarBotao('Enviar', cor: 'Azul', largura: 332.14); -> Utilizando parametros opcionais
+
+void criarBotao(String texto, { String cor, double largura }){
+  print(texto);
+  print(cor);
+  print(largura);
+}
