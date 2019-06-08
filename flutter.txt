@@ -56,8 +56,35 @@ E para nao utilizar o parametro, é só nao colocar eles.
 criarBotao('Enviar'); -> NÃO Utilizando parametros opcionais
 criarBotao('Enviar', cor: 'Azul', largura: 332.14); -> Utilizando parametros opcionais
 
+criarBotao('Enviar'); -> // 'Envia', null, null
+criarBotao('Enviar', cor: 'Azul'); -> 'Envia', 'Azul', null
+
+OBS: Quando voce nao especifica um parametro opcional ele fica como null, lá na funcao
+  voce pode especificar qual vai ser o retorno desse parametro null CASO seja null.
+
 void criarBotao(String texto, { String cor, double largura }){
   print(texto);
   print(cor);
   print(largura);
+
+  print(cor ?? 'Preto') -> se a cor n for null, retorna Preto.
+}
+
+-------------------------- PASSANDO FUNCOES COMO PARAMETRO FLUTTER --------------------------
+
+Coloque o tipo Function e um nome, depois é só passar como parametro na chamada da funcao a sua
+  funcao externa.
+
+criarBotao('Enviar', minhaFuncao);
+
+void minhaFuncao(){
+  print("executou minha funcao");
+}
+
+void criarBotao(String texto, Function minhaFuncao, { String cor, double largura }){
+  print(texto);
+  print(cor);
+  print(largura);
+  
+  minhaFuncao();
 }
