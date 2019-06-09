@@ -168,3 +168,96 @@ para fazer get e set de nome, fazemos dessa maneira:
     }
   }
 
+-------------------------- HERANÇA FLUTTER --------------------------
+
+IMPORTANTE: Toda classe por padrao ja extende a classe Object por dbaixo dos panos,
+  e nela contem o metodo toString que voce pode sobrescrever na sua classe.
+
+Para chamar o construtor do pai no filho fazemos dessa maneira
+  Cachorro(nome,peso) : super(nome,peso);
+
+void main(){
+  
+  Cachorro dino = Cachorro("Dino", 30);
+  
+  print(dino.nome);
+  print(dino.peso);
+  dino.late();
+}
+
+class Animal{
+  
+  String nome;
+  double peso;
+  
+  Animal(this.nome,this.peso);
+}
+
+class Cachorro extends Animal{
+  
+  Cachorro(nome,peso) : super(nome,peso);
+  
+  void late(){
+    print("au au");
+  }
+}
+
+class Gato extends Animal{
+  
+  Gato(nome,peso) : super(nome,peso);
+  
+  void mia(){
+    print("Miau");
+  }
+}
+
+
+EXEMPLO toString
+
+class Cachorro{
+
+  String nome;
+  int idade;
+
+  Cachorro(this.nome, this.idade);
+
+  @override
+  String toString(){
+    print(" Nome: $nome, Idade: $idade");
+  }
+}
+
+
+-------------------------- SOBRESCRITA DE METODOS FLUTTER --------------------------
+
+O famoso @override, para sobrescrever o metodo do pai, nós criamos os mesmo metodo porem com @override em cima dele
+  e alteramos o conteudo.
+
+class Animal{
+  
+  void emiteSom(){
+    print("som de animal");
+  }
+}
+
+class Cachorro extends Animal{
+  
+  @override
+  void emiteSom(){
+    print("som de cachorro");
+  }
+}
+
+
+-------------------------- PRINT FLUTTER --------------------------
+
+print("$minhaVariavel, algum texto"); -> podemos exibir variaveis 
+
+print("${obj.funcao()} texto aqui"); -> podemos executar funcoes dentro do texto com ${}
+
+-------------------------- MODIFICADORES STATIC, FINAL E CONST FLUTTER --------------------------
+
+STATIC -> Uma classe com metodos estaticos 
+CONST -> uma vez que uma variavel for declarada como const, ela passa a ser uma constante isso é, não
+  é mais possivel atribuir um novo valor a ela.
+FINAL -> uma vez declarada uma classe como final essa classe não podera receber uma nova instancia.
