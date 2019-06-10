@@ -42,3 +42,26 @@ Visualizando a estrutura:
 
   Quando enviamos www.google.com.br bate no DNS, ele verifica se esse cara tem um ip existente
     e retorna o ip para o navegador, para que ele possa prossweguir.
+
+----- GET POST -----
+
+https://www.google.com.br/search?query=Alura&outraPropriedade=TextoCom54 -> search é o recurso, query é a propriedade que espera
+  um dado, ? diz que o proximo dado sera uma propriedade, =Alura, é o dado  que a propriedade
+  query vai receber, o & indica que existe mais uma propriedade que pode receber um valor
+
+  ? -> indica q vai ter uma propriedade a seguir
+  & -> indica mais uma propriedade
+  = -> recebe algo
+
+----- REQUEST AJAX -----
+
+Accept: Application/json -> aqui estou dizendo que oq eu estou esperando da minha requisição é o formato
+  JSON.
+
+----- URI + METHOD -----
+
+em um mesmo end-point podemos ter ações diferentes, tanto pegar dados, como inserir dados
+
+http://alurafood.com/api/restaurante - GET -> pego os restaurantes
+
+http://alurafood.com/api/restaurante - POST -> insiro restaurantes
