@@ -65,3 +65,90 @@ em um mesmo end-point podemos ter ações diferentes, tanto pegar dados, como in
 http://alurafood.com/api/restaurante - GET -> pego os restaurantes
 
 http://alurafood.com/api/restaurante - POST -> insiro restaurantes
+
+----- Analizando URLS COM CURL -----
+
+curl www.google.com -> traz a requisição como um todo.
+curl -v www.google.com -> traz a requisição detalhada
+
+-- REQUEST --
+
+  > GET / HTTP/1.1
+  > Host: www.google.com
+  > User-Agent: curl/7.64.0
+  > Accept: */*
+
+-- RESPONSE --
+
+  < HTTP/1.1 200 OK
+  < Date: Tue, 11 Jun 2019 11:15:41 GMT
+  < Expires: -1
+  < Cache-Control: private, max-age=0
+  < Content-Type: text/html; charset=ISO-8859-1
+  < P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+  < Server: gws
+  < X-XSS-Protection: 0
+  < X-Frame-Options: SAMEORIGIN
+  < Set-Cookie: 1P_JAR=2019-06-11-11; expires=Thu, 11-Jul-2019 11:15:41 GMT; path=/; domain=.google.com
+  < Set-Cookie: NID=185=3BQedSyeCTiHN5A79KkWS2ApabjodbmqxuzLCySofehGUu9_KK9s0H5lRqKN_Yr4ZltK6LFyJfhAB0PN2AYR14fwf3ISkFrXpbgN4S8In-mKwTW1xyo_hzguxUeJQmmwAU0Oa32tegmKA4xRZ6gdIsL3E9Rb0e5vB_3pAAa5E_c; expires=Wed, 11-Dec-2019 11:15:41 GMT; path=/; domain=.google.com; HttpOnly
+  < Accept-Ranges: none
+  < Vary: Accept-Encoding
+  < Transfer-Encoding: chunked
+  // MAIS TODO O HTML DA PAGINA AQUI
+
+----- HTTP2 ------
+
+ELE VEIO PRA OTIMIZAR A WEB, DEIXA ELA MAIS SIMPLES.
+GZIP -> Enviar dados gzipados reduz a quantidade de banda usada.
+BINARIO -> Os dados sao enviados e recebidos em BINARIO.
+HPACK -> ELE REDUZ AINDA MAIS A BANDA Q OS BINARIOS TRANSFEREM.
+TLS -> ALEM DE TUDO ACIMA ELE AINDA TEM O TLS QUE CRIPTOGRAFA os dados trafegados.
+
+NO HTTP1 PARA CADA REQUISIÇÃO O CORPO DA REQUISIÇÃO É ENVIADA NOVAMENTE 
+(MESMO QUE SEJA O MESMO CORPO)
+
+NO HTTP2 ELE REAPROVEITA A REQUISIÇÃO IGUAL FEITA ANTERIORMENTE.
+
+EXEMPLO:
+
+Referer: https://angular.io/guide/form-validation
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+
+a proxima requisição nao vai precisar fazer o passo a cima porque ela já tem o passo acima.
+
+----- CLIENTE SERVIDOR ------
+
+HTML DE EXEMPLO:
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="jquery.js"></script>
+  </head>
+  <body>
+      <img src="logo.png" alt="">
+  </body>
+  </html>
+
+HTTP1:
+  No HTTP1 as requisições são sequenciais, então:
+    O cliente faz a requisição pro servidor e o servidor devolve a requisição (SEQUENCIALMENTE)
+    EXEMPLO:
+      cliente requisita estilos.css -> servidor devolve
+      cliente solicita jquery.js -> servidor devolve
+      cliente solicita logo.png -> servidor devolve
+  
+  Já No HTTP2 as requisições são meio que paralelas.
+    o cliente solicita o html, e o servidor ja te manda tudo, css js imagem
+    e depois o cliente só fica fazendo uma varredura, perguntando opa esse estilo eu ja tenho?
+    o servidor responde q sim e assim vai..
+
+  ESSE é um conceito chamado de SERVER PUSH.
+
+----- Multiplexing -----
+
+Requisições no HTTP2 São paralelas.
+    
