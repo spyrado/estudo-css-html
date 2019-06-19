@@ -1696,3 +1696,15 @@ elvis operator typescript ?
     manipulador para ser executado quando esse evento ocorrer.
 
 Sintax: @HostListener('eventName', 'args')
+
+**************************** DUVIDAS ANGULAR ****************************
+
+ng build --base-href /myUrl/ -> oq faz? testando aqui ele apenas troca o diretorio raiz,
+    em vez de ser www.google.com vai ser www.google.com/myUrl.
+
+ng build --deploy-url -> URL onde os arquivos serão implantados(URL where files will be deployed)
+
+ng build --prod -> Flag to set configuration to "prod".
+
+mask no input? -> é do angular? do html?
+    <input mask="00.000.000/0000-00">
