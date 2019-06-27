@@ -1,5 +1,16 @@
 ******************************* GIT *******************************
 
+********************* GIT ALIAS (ATALHOS PARA O GIT FACILITAR A SUA VIDA) *********************
+
+--global -> significa que vai fazer essa configuração globalmente, voce poderá utiliza-la em todos os seus projetos
+  e não apenas no projeto corrente.
+
+  git config --global alias.st status -> cria um atalho para "git status"
+  git config --global alias.st 'checkout -b' -> cria um atalho para "git checkout -b"
+  git config --global alias.st 'checkout -b' -> cria um atalho para "git checkout -b"
+  git config --global alias.st '!git add -A && git commit -m' -> deve colocar ! quando quiser utilizar comandos que não são do git
+
+
 **** FORK ****
 
 Dando Fork em um repositório, você passa a ter a cópia desse repositório, no SEU repositório e passa a poder enviar commits para o dono do repositório, e o dono por sua vez, pode aceitar ou não os seus commits.
