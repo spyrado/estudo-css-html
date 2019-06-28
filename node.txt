@@ -25,6 +25,34 @@ nvm use 10.0.0 -> troca para a versao que vc especificou, no caso foi a versao 1
     const http = require('http'); -> http irá receber uma referencia de todo o conteudo 
       do modulo http importado
 
+-- CRIANDO UM SERVIDOR --
 
-  
+Para ENTENDER o código abaixo, e o porque ele funciona, devemos saber que:
+  O Cliente(Browser), faz a requisição para o servidor e o servidor, devolve uma resposta.
+  no caso eu acessei pelo meu cliente(Google Chrome)localhost:3000 -> e estava esperando
+  uma resposta do servidor, e no código eu devolvi a resposta de um corpo html com um titulo
+
+const http = require('http'); // importo o modulo http
+
+const servidor = http.createServer((req,res) => {
+  res.end( // envio uma resposta para que o servidor possa renderizar a pagina.
+    `
+      <html>
+          <head>
+              <meta charset="utf-8">
+          </head>
+          <body>
+              <h1> Casa do Código </h1>
+          </body> 
+      </html>
+  `
+  );
+}); // crio um servidor
+servidor.listen(3000) // digo ao servidor para rodar na porta 3000
+
+
+-- CALLBACK --
+
+  O Node trabalha muito com callbacks, createServer é uma das funções que recebe um callback
+  como parametro, ele só será chamado se atender a determinada condição.
 
