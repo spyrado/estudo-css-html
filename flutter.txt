@@ -1,1 +1,19 @@
--------------------------- INICIANDO COM FLUTTER --------------------------
+-------------------------- IMPORTANDO IMAGENS COM FLUTTER --------------------------
+
+va no seu projeto clique com o direito crie uma pasta chamada images.
+va ate o arquivo pubspec.yaml e declare sua imagem lá, exemplo:
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #  - images/a_dot_burr.jpeg
+  #  - images/a_dot_ham.jpeg
+  assets:
+    - images/3030_ocean_interior.jpg
+
+  Assim agora o flutter sabe que existe uma imagem lá
+
+  clique e packages get, caso n de nenhum erro, é só proceguir.
+
+  -------------------------- WIDGETS Stateless e Stateful FLUTTER --------------------------
+
+  WIDGETS Stateless -> Eles não mudam o seu estado, é estatico.
+  WIDGETS Stateful -> Esses nos conseguimos alterar ao longo do tempo.
