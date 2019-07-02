@@ -1,170 +1,19 @@
-*************************** FLUTTER ***************************
+-------------------------- IMPORTANDO IMAGENS COM FLUTTER --------------------------
 
-Instalando o flutter
-  https://flutter.dev/docs/get-started/install/macos
-  apos baixar e extrair os arquivos entre na pasta flutter/bin
-  vá em Mac Book Pro de Nicolas -> Macintosh HD -> Usuários -> selecione o seu usuário -> vai precisar
-    listar os arquivos ocultos, para exibir os arquivos ocultos aperte cmd shift (ponto), ai vamos
-    editar um arquivo chamado .bash_profile, se vc n tiver ele ai, é só criar.
+va no seu projeto clique com o direito crie uma pasta chamada images.
+va ate o arquivo pubspec.yaml e declare sua imagem lá, exemplo:
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #  - images/a_dot_burr.jpeg
+  #  - images/a_dot_ham.jpeg
+  assets:
+    - images/3030_ocean_interior.jpg
 
-  feito isso tudo dentro do arquivo vc vai colocar o caminho da basta bin, que fica dentro da pasta do flutter
-    no meu caso vai ser esse o codigo:
-    export PATH=/Users/nick/Documents/Nicolas/Working\ Directory/flutter/bin:$PATH
+  Assim agora o flutter sabe que existe uma imagem lá
 
-  colo ele dentro de .bash_profile, salvo.
-  abro o console, e digito: source $HOME/.bash_profile
-  e dou um: echo $PATH pra ver se foi cadastrado com sucesso
-  se aparecer o nome flutter em algum lugar, é pq tudo deu certo.
+  clique e packages get, caso n de nenhum erro, é só proceguir.
 
-  digite flutter doctor no console, e siga os passos que pede.
+  -------------------------- WIDGETS Stateless e Stateful FLUTTER --------------------------
 
--------------------------- COMANDOS FLUTTER --------------------------
-
-flutter doctor -> Esse comando verifica todas as dependencias que voce precisa
-  baixar para funcionar corretamente o flutter, E tambem indica as solucoes dos problemas dessas dependencias.
-
--------------------------- CONDICIONAIS FLUTTER --------------------------
-
---- if ternario ---
-
-String info = true ? "Alguma coisa" : "Outra coisa";
-
---- Null-Aware ---
-
-  print(null ?? 'New in Dart 1.12'); -> se for nullo a variavel, exibe o texto.
-  String nome;
-  String info2 = nome ?? "Não informado!"; -> Se a variavel for nulla, exibe o texto.
-
-
-  String x = null;
-  x ??= 'are the null-aware operators, friendly to'; -> Se essa variavel for nulla recebe esse texto
-  print(x);
-
-  EM Resumo tudo que voce acha que pode vir nullo, vc coloca o Null Aware na frente
-
-  x?.m() -> só invoka a função se x não for nullo.
-  x?.p -> só acessa a propriedade se o objeto nao for nullo.
-
--------------------------- PARAMETROS OPCIONAIS FLUTTER --------------------------
-
-Para criar parametros opcionais, colocamos os parametros opcionais dentro de um objeto nos parametros da funcao.
-E na chamada da funcao, caso seja necessário chamar os parametros opcionais colocamos o mesmo nome
-da variavel que declaramos dentro do objeto na chamada da funcao.
-
-E para nao utilizar o parametro, é só nao colocar eles.
-
-criarBotao('Enviar'); -> NÃO Utilizando parametros opcionais
-criarBotao('Enviar', cor: 'Azul', largura: 332.14); -> Utilizando parametros opcionais
-
-criarBotao('Enviar'); -> // 'Envia', null, null
-criarBotao('Enviar', cor: 'Azul'); -> 'Envia', 'Azul', null
-
-OBS: Quando voce nao especifica um parametro opcional ele fica como null, lá na funcao
-  voce pode especificar qual vai ser o retorno desse parametro null CASO seja null.
-
-void criarBotao(String texto, { String cor, double largura }){
-  print(texto);
-  print(cor);
-  print(largura);
-
-  print(cor ?? 'Preto') -> se a cor n for null, retorna Preto.
-}
-
--------------------------- PASSANDO FUNCOES COMO PARAMETRO / FUNCAO ANONIMA FLUTTER --------------------------
-
-Coloque o tipo Function e um nome, depois é só passar como parametro na chamada da funcao a sua
-  funcao externa.
-
-criarBotao('Enviar', minhaFuncao); -> chamo uma funcao criada anteriormente
-criarBotao('Enviar', (){ -> passo uma funcao anonima como parametro de funcao
-    print("funcao anonima");
-});
-criarBotao('Enviar', () => print("funcao anonima")); -> passo uma funcao anonima como parametro de funcao
-
-
-void minhaFuncao(){
-  print("executou minha funcao");
-}
-
-void criarBotao(String texto, Function minhaFuncao, { String cor, double largura }){
-  print(texto);
-  print(cor);
-  print(largura);
-  
-  minhaFuncao();
-}
-
--------------------------- INSTANCIANDO UMA CLASSE FLUTTER --------------------------
-
-Pessoa pessoa = Pessoa(); -> no Flutter nao precisamos colocar = new Pessoa();, podemos omitir isso.
-
--------------------------- CONSTRUTOR FLUTTER --------------------------
-
-class Pessoa {
-
-  String nome;
-  int idade;
-  double altura;
-
-  Pessoa(); -> Assim que se declara um construtor no Flutter
-}
-
-class Pessoa {
-
-  String nome;
-  int idade;
-  double altura;
-
-  Pessoa(nome, idade, altura){ -> assim q se recebe dados de um construtor, podemos melhorar, logo abaixo eu mostro como.
-    this.nome = nome;
-    this.idade = idade;
-    this.altura = altura;
-  }
-}
-
-Pessoa(this.nome, this.idade, this.altura) -> assim é a forma resumida de se receber dados no construtor.
-
-
----- NAMED CONSTRUCTOR ----
-
-  Vamos supor que voce tem um bebe recem nascido, voce n precisa colocar idade nele pq a idade é 0.
-
-  class Pessoa {
-
-  String nome;
-  int idade;
-  double altura;
-
-  Pessoa(this.nome, this.idade, this.altura);
-  Pessoa.nascer(this.nome,this.altura){
-    idade = 0;
-  }
-}
-
--------------------------- GETTERS AND SETTERS FLUTTER --------------------------
-
-Por convencao todas as propriedades privadas sao declaradas com um underline na frente
-  exemplo: String _nome;
-
-para fazer get e set de nome, fazemos dessa maneira:
-
-  String get nome {
-    return _nome;
-  }
-
-  --- Simplificando o get ---
-
-  String get nome => _nome;
-
-  set nome(String nome){
-    _nome = nome;
-  }
-
-  --- protegendo o set ---
-
-  set altura(double altura){
-    if(altura > 0.0 && altura < 3.0){
-      _altura = altura;
-    }
-  }
-
+  WIDGETS Stateless -> Eles não mudam o seu estado, é estatico.
+  WIDGETS Stateful -> Esses nos conseguimos alterar ao longo do tempo.
