@@ -13,7 +13,6 @@ nvm use 10.0.0 -> troca para a versao que vc especificou, no caso foi a versao 1
 
 ********************************  NODE JS ********************************
 
-
 -- MODULOS --
   Todo arquivo em node .js é um MODULO.
 
@@ -25,7 +24,7 @@ nvm use 10.0.0 -> troca para a versao que vc especificou, no caso foi a versao 1
     const http = require('http'); -> http irá receber uma referencia de todo o conteudo 
       do modulo http importado
 
--- CRIANDO UM SERVIDOR --
+-- CRIANDO UM SERVIDOR( DE FORMA CRUA ( SEM FRAMEWORK ) ) --
 
 Para ENTENDER o código abaixo, e o porque ele funciona, devemos saber que:
   O Cliente(Browser), faz a requisição para o servidor e o servidor, devolve uma resposta.
@@ -35,18 +34,33 @@ Para ENTENDER o código abaixo, e o porque ele funciona, devemos saber que:
 const http = require('http'); // importo o modulo http
 
 const servidor = http.createServer((req,res) => {
-  res.end( // envio uma resposta para que o servidor possa renderizar a pagina.
-    `
-      <html>
-          <head>
-              <meta charset="utf-8">
-          </head>
-          <body>
-              <h1> Casa do Código </h1>
-          </body> 
-      </html>
-  `
-  );
+
+  let html = '';
+
+  if(req.url == '/'){ // Se cair na raiz, exibo a pagina principal
+    html = `
+        <html>
+            <head>
+                <meta charset="utf-8">
+            </head>
+            <body>
+                <h1> Casa do Código </h1>
+            </body> 
+        </html>
+    `;
+  }else if(req.url == '/livros'){ // Se cair em livros, exibo a pagina de livros
+    html = `
+        <html>
+            <head>
+                <meta charset="utf-8">
+            </head>
+            <body>
+                <h1> Listagem de Livros </h1>
+            </body> 
+        </html>
+    `;
+  }
+  res.end(html); // envio a resposta referente ao html em questão.
 }); // crio um servidor
 servidor.listen(3000) // digo ao servidor para rodar na porta 3000
 
