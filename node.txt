@@ -70,3 +70,23 @@ servidor.listen(3000) // digo ao servidor para rodar na porta 3000
   O Node trabalha muito com callbacks, createServer é uma das funções que recebe um callback
   como parametro, ele só será chamado se atender a determinada condição.
 
+
+-- Criando um node package manager --
+
+  npm init -> isso faz com que o projeto se torne parte do node.
+
+
+********************************  EXPRESS FRAMEWORK ********************************
+
+-- Instalando o FRAMEWORK EXPRESS --
+
+  npm install express@4.16.3 --save-exact -> ira instalar exatamente essa versão do express
+
+-- Estrutura de pastas --
+
+src
+  app -> armazenar código restrito a lógica da aplicação
+  config -> armazenar código de configurações da nossa aplicação.
+
+
+
