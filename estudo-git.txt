@@ -6,9 +6,9 @@
   e não apenas no projeto corrente.
 
   git config --global alias.st status -> cria um atalho para "git status"
-  git config --global alias.st 'checkout -b' -> cria um atalho para "git checkout -b"
-  git config --global alias.st 'checkout -b' -> cria um atalho para "git checkout -b"
-  git config --global alias.st '!git add -A && git commit -m' -> deve colocar ! quando quiser utilizar comandos que não são do git
+  git config --global alias.co checkout -> cria um atalho para "git checkout"
+  git config --global alias.cob 'checkout -b' -> cria um atalho para "git checkout -b"
+  git config --global alias.c '!git add -A && git commit -m' -> deve colocar ! quando quiser utilizar comandos que não são do git
 
 
 **** FORK ****

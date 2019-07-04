@@ -1,0 +1,10 @@
+************************ ACESSIBILIDADE ************************
+
+---- Downloads ----
+
+para windows -> https://www.nvaccess.org/download/
+para mac -> voiceover
+narrator -> o windows 10 já vem com esse app nativo
+
+---- Pesquisa que mostra o que os usuários com deficiencia mais utilizam ----
+  https://webaim.org/projects/screenreadersurvey7/
