@@ -8,3 +8,9 @@ narrator -> o windows 10 já vem com esse app nativo
 
 ---- Pesquisa que mostra o que os usuários com deficiencia mais utilizam ----
   https://webaim.org/projects/screenreadersurvey7/
+
+---- importante conceitos ----
+
+sempre manter apenas um h1. -> mais que um quem usa o leitor fica meio perdido do que é importante e oq n é.
+mostrar a descrição da pagina, geralmente com h2, para que a pessoa com deficiencia entenda do que aquele site
+se trata.
