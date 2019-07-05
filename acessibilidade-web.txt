@@ -11,6 +11,15 @@ narrator -> o windows 10 já vem com esse app nativo
 
 ---- importante conceitos ----
 
-sempre manter apenas um h1. -> mais que um quem usa o leitor fica meio perdido do que é importante e oq n é.
-mostrar a descrição da pagina, geralmente com h2, para que a pessoa com deficiencia entenda do que aquele site
+Sempre manter apenas um h1. -> mais que um quem usa o leitor fica meio perdido do que é importante e oq n é.
+  Apesar do NVDA não se perder e ditar o nível do heading em foco, outros leitores de tela 
+  (principalmente versões antigas) podem ler apenas o primeiro <h1> ou simplesmente se perderem, 
+  e por consequência prejudicar a experiência do usuário no site. Principalmente usando o atalho para ler o 
+  que seria o ponto mais importante do site (comumente H + 1).
+
+Mostrar a descrição da pagina, geralmente com h2, para que a pessoa com deficiencia entenda do que aquele site
 se trata.
+
+Mudar o "lang" da pagina, para o usado no momento, para que os leitores de tela leiam os textos
+  de acordo com o idioma definido no atributo lang.
+  afinal.. n faz sentido está lang="eng", sendo que a página é em pt-br.
