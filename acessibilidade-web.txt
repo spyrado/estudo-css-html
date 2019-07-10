@@ -43,7 +43,7 @@ Usar lang sempre que a palavra for em uma lingua diferente da descrita no <html 
       <p>How to speak hello in portuguese<p/>
       <span lang="pt-br">EAE PESSOAL TUDO BEM?<span/> // aqui eu defino q apenas esse trexo é em portugues (para o leitor de tela ler exatamente assim)
 
----- CUIDADOS COM A O TEXTO COLOCADO EM FOTOS ----
+---- CUIDADOS COM A O TEXTO(alt) COLOCADO EM FOTOS ----
 
   Nao precisa colocar foto de tal coisa, pois o leitor de tela informa quando é uma foto e quando não é.
   Não precisa colocar Icone do android, pois o leitor de tela ja avisa pro cara que é uma foto.
@@ -58,3 +58,30 @@ Usar lang sempre que a palavra for em uma lingua diferente da descrita no <html 
     <img src="img/sobre-apeperia.png" class="secaoSobre-imgDestaque" 
           alt="Duas pessoas escrevendo em um quadro branco">
     <img src="img/android.png" alt="Android">
+
+---- CUIDADOS COM IMAGENS QUE DEVEM SER EXIBIDAS ----
+
+  Imagens com carater de conteudo, fica em 
+    <img src="" alt="">
+  Imagens com carater visual fica no CSS, seja usando um background-image, ou um ::before ou ::after
+    em um elemento: exemplo:
+      .li:before {
+        background: url(/assets/img/vantagens/icon-spaced-repetitions.1559840840.svg);
+        width: 100px;
+        height: 78px;
+        background-size: 100px 78px;
+      }
+
+---- DESCREVENDO SVGs ----
+
+IMPORTANTE, não é interessante voce colocar um link e um svg dentro desse link (testei em 2019 e funciona)
+  tem que ver isso.
+
+Utilize a tag <title> para descrever o que o svg representa
+Utilize a tag <desc> para escrever algo adicional
+
+---- CUIDADOS COM O ALT ----
+
+Basicamente se a imagem que está na tela for apenas illustrativa, não coloque ela no html,
+se isso irá prejudicar o seo, remova o texto do alt, para que pessoas de acessibilidade,
+n tenham acesso a descricao dessa imagem, ele pula ela. na verdade nem identifica.
