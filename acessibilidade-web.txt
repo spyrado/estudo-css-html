@@ -1,5 +1,14 @@
 ************************ ACESSIBILIDADE ************************
 
+---- LEITOR DE TELA nvaccess ----
+
+SHIFT + ALGUMA LETRA ABAIXO: ELE VOLTA PARA A SELEÇÃO ANTERIOR, EXEMPLO:
+  SHIFT + H -> VOLTA PARA O ESTADO ANTERIOR
+
+H -> ELE PERCORRE PELOS Headers
+K -> ELE PERCORRE PELOS LINKS
+G -> ELE PERCORRE PELAS FOTOS
+
 ---- Downloads ----
 
 para windows -> https://www.nvaccess.org/download/
@@ -9,17 +18,70 @@ narrator -> o windows 10 já vem com esse app nativo
 ---- Pesquisa que mostra o que os usuários com deficiencia mais utilizam ----
   https://webaim.org/projects/screenreadersurvey7/
 
----- importante conceitos ----
+---- A Importancia dos Headers ----
 
-Sempre manter apenas um h1. -> mais que um quem usa o leitor fica meio perdido do que é importante e oq n é.
-  Apesar do NVDA não se perder e ditar o nível do heading em foco, outros leitores de tela 
-  (principalmente versões antigas) podem ler apenas o primeiro <h1> ou simplesmente se perderem, 
-  e por consequência prejudicar a experiência do usuário no site. Principalmente usando o atalho para ler o 
-  que seria o ponto mais importante do site (comumente H + 1).
+  Sempre manter apenas um h1. -> mais que um quem usa o leitor fica meio perdido do que é importante e oq n é.
+    Apesar do NVDA não se perder e ditar o nível do heading em foco, outros leitores de tela 
+    (principalmente versões antigas) podem ler apenas o primeiro <h1> ou simplesmente se perderem, 
+    e por consequência prejudicar a experiência do usuário no site. Principalmente usando o atalho para ler o 
+    que seria o ponto mais importante do site (comumente H + 1).
 
-Mostrar a descrição da pagina, geralmente com h2, para que a pessoa com deficiencia entenda do que aquele site
-se trata.
+  Mostrar a descrição da pagina, geralmente com h2, para que a pessoa com deficiencia entenda do que aquele site
+  se trata.
 
-Mudar o "lang" da pagina, para o usado no momento, para que os leitores de tela leiam os textos
-  de acordo com o idioma definido no atributo lang.
-  afinal.. n faz sentido está lang="eng", sendo que a página é em pt-br.
+---- Cuidados com sotaque ----
+
+  Mudar o "lang" da pagina, para o usado no momento, para que os leitores de tela leiam os textos
+    de acordo com o idioma definido no atributo lang.
+    afinal.. n faz sentido está lang="eng", sendo que a página é em pt-br.
+
+---- CUIDADOS COM A PROPRIEDADE "lang" ----
+
+Usar lang sempre que a palavra for em uma lingua diferente da descrita no <html lang="pt-br">
+  Exemplo:
+    <html lang="en"> // aquui eu defino q meu site todo é em ingles
+      <p>How to speak hello in portuguese<p/>
+      <span lang="pt-br">EAE PESSOAL TUDO BEM?<span/> // aqui eu defino q apenas esse trexo é em portugues (para o leitor de tela ler exatamente assim)
+
+---- CUIDADOS COM A O TEXTO(alt) COLOCADO EM FOTOS ----
+
+  Nao precisa colocar foto de tal coisa, pois o leitor de tela informa quando é uma foto e quando não é.
+  Não precisa colocar Icone do android, pois o leitor de tela ja avisa pro cara que é uma foto.
+
+  exemplos:
+    <img src="img/sobre-apeperia.png" class="secaoSobre-imgDestaque" 
+          alt="FOTO DE Duas pessoas escrevendo em um quadro branco">
+    <img src="img/android.png" alt="ICONE DO Android">
+
+    NÃO É NECESSÁRIO, APENAS USE DESSA FORMA.
+
+    <img src="img/sobre-apeperia.png" class="secaoSobre-imgDestaque" 
+          alt="Duas pessoas escrevendo em um quadro branco">
+    <img src="img/android.png" alt="Android">
+
+---- CUIDADOS COM IMAGENS QUE DEVEM SER EXIBIDAS ----
+
+  Imagens com carater de conteudo, fica em 
+    <img src="" alt="">
+  Imagens com carater visual fica no CSS, seja usando um background-image, ou um ::before ou ::after
+    em um elemento: exemplo:
+      .li:before {
+        background: url(/assets/img/vantagens/icon-spaced-repetitions.1559840840.svg);
+        width: 100px;
+        height: 78px;
+        background-size: 100px 78px;
+      }
+
+---- DESCREVENDO SVGs ----
+
+IMPORTANTE, não é interessante voce colocar um link e um svg dentro desse link (testei em 2019 e funciona)
+  tem que ver isso.
+
+Utilize a tag <title> para descrever o que o svg representa
+Utilize a tag <desc> para escrever algo adicional
+
+---- CUIDADOS COM O ALT ----
+
+Basicamente se a imagem que está na tela for apenas illustrativa, não coloque ela no html,
+se isso irá prejudicar o seo, remova o texto do alt, para que pessoas de acessibilidade,
+n tenham acesso a descricao dessa imagem, ele pula ela. na verdade nem identifica.
