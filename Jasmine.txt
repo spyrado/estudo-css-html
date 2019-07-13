@@ -1,9 +1,32 @@
 ********************** TESTES AUTOMATIZADOS **********************
 
 describe('nomeDaClasse', function(){}); -> uma descricao(geralmente o nome da classe, e uma funcao envolvendo ela.)
+  Podemos usar o describe como uma sub descricao.
 
 it('O QUE FAZ?', function() { //automatiza o codigo aqui }) -> uma descricao do que a funcao vai fazer, e dps automatiza ela.
 
 expect(saida()) -> qual a saida que eu espero receber de determinado metodo (no caso saida())
 
 toEqual('saidaEsperada') -> coloca o resultado da saida().
+
+beforeEach(function(){}) -> ele executa toda vez que um teste é chamado,
+  podemos inicializar um objeto ou algo que é muito utilizado por ele, e cada teste vai sempre usa-lo como referencia,
+  Exemplo de uso:
+    var paciente;
+
+    beforeEach(() => {
+      paciente = PacienteBuilder().constroi();
+    });
+    
+    describe('Consultas do tipo retorno', () => {
+      
+      it('Nao deve cobrar nada se for um retorno', () => {
+    
+        var consulta = new Consulta(paciente,[],false,false);
+        expect(consulta.preco()).toEqual(0);
+      });
+    });
+
+
+afterEach(function(){}) -> executa valores que viram depois da execucao de determinaco codigo, exemplo dos codigos
+  Async.

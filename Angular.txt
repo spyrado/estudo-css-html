@@ -1038,11 +1038,14 @@ import { isPlatformBrowser } from '@angular/common';
 @Injectable({ providedIn: 'root' })
 export class PlatformDetectorService {
 
-  constructor(@Inject(PLATFORM_ID) private platFormId: string){}
+  // INJETO UM VALOR (O ID DA PLATAFORMA) na variavel platformId, se for browser vai retornar browser.
+  // sem eu nem precisar definir valor, pois estou INJETANDO UM VALOR.
+  constructor(@Inject(PLATFORM_ID) private platformId: string){} 
 
-  // Verifica se o component está sendo renderizado em um browser.
+  // Chamo uma funcao do proprio angular, que espera um platformId,
+  // e que verifica se a plataforma é browser ou nao.
   isPlatformBrowser(){
-    return isPlatformBrowser(this.platFormId);
+    return isPlatformBrowser(this.platformId);
   }
 }
 
@@ -1055,12 +1058,16 @@ authenticate(userName: string, password: string){
         { userName, password },
         {observe: 'response'}
       )
-      .pipe(tap(res => {
+      .pipe(tap(res: HttpResponse<Object> => {
         const authToken = res.headers.get('x-access-token');
         console.log(authToken);
       }));
   }
 
+
+  OBS: O tap, servirá como um intermediador entre o envio da resposta, para quem solicitou a requisicao,
+    e para quem vai precisar do token por exemplo, ai nao precisamos em cada classe,
+    pegar esse token, ao interceptar essa requisicao, com o tap conseguimos extrair esse valor.
   OBS: Se der erro na resposta ao acessar res.headers, é pq vc n definiu o observe como response.
 
 para conseguir ter acesso aos headers da nossa requisicao, devemos setar a configuracao de observe: "response",
@@ -1708,3 +1715,39 @@ ng build --prod -> Flag to set configuration to "prod".
 
 mask no input? -> é do angular? do html?
     <input mask="00.000.000/0000-00">
+
+------------------- Renderer2 VANTAGENS -------------------
+
+NOTA: Renderer -> ele foi depreciado, pois existia um metodo que fazia com que tinhamos acesso,
+    ao dom diretamente invokeElementMethod(): void, e esse cara fazia com que as coisas nao funcionacem,
+    bem quando a aplicação fosse server side rendering.
+
+Ao utilizar renderer ao invez de nativeElement, nós nos blindamos de manipular o dom diretamente,
+e se estivermos trabalhando com server side rendering(angular universal e td mais), ele vai manter
+tudo funcionando, vai abstrair toda a complexidade para nós.
+
+EXEMPLO DE USO:
+
+import { Directive, ElementRef, HostListener, Renderer, Input, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[apDarkenOnHover]'
+})
+export class DarkenOnHoverDirective {
+
+  @Input() brightness = '70%';
+
+  constructor(
+    private el: ElementRef<HTMLElement>,
+    private render2: Renderer2) {} // Aqui usei Renderer2 pois o Renderer foi depreciado. :)
+
+  @HostListener('mouseenter')
+  onMouseEnter(){
+    this.render2.setStyle(this.el.nativeElement,'filter', `brightness(${this.brightness})`);
+  } 
+
+  @HostListener('mouseleave')
+  onMouseLeave(){
+    this.render2.setStyle(this.el.nativeElement,'filter', 'brightness(100%)');
+  } 
+}
