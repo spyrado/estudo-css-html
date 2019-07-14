@@ -30,3 +30,28 @@ beforeEach(function(){}) -> ele executa toda vez que um teste é chamado,
 
 afterEach(function(){}) -> executa valores que viram depois da execucao de determinaco codigo, exemplo dos codigos
   Async.
+
+
+********** TESTE DE UNIDADE **********
+  Normalmente Utilizado Jasmine, para fazer os testes do javascript
+  O teste de unidade é aquele que testa uma unidade (uma classe, por exemplo) isolado do resto. 
+  Esse tipo de teste não se preocupa com a integração daquela unidade com o resto. É rápido, mas não tão real.
+
+********** TESTE DE SISTEMA **********
+  Normalmente usamos Selenium para automatizar testes de interface
+  Já o teste de sistema é aquele que testa o sistema como uma caixa preta. 
+  Ele não conhece detalhes de implementação, e testa o sistema totalmente integrado. 
+  É um teste mais demorado, mas muito parecido com o mundo real.
+
+  ********** TDD (TEST-DRIVEN DEVELOPMENT) **********
+
+  TDD(Desenvolvimento Guiado Pelos Testes), oq isso significa?
+
+  que primeiro fazemos os testes, e depois desenvolvemos, com isso
+    pensamos melhor nos requisitos, n pensamos na implementação, e sim
+    no que o requisito tinha que fazer.
+
+  Ajuda na qualidade interna do codigo
+
+  Começar pelos testes, faz você pensar mais sobre o código que vai produzir e pensar melhor nos testes que precisa. 
+  E isso tem grandes vantagens!
