@@ -85,3 +85,7 @@ Utilize a tag <desc> para escrever algo adicional
 Basicamente se a imagem que está na tela for apenas illustrativa, não coloque ela no html,
 se isso irá prejudicar o seo, remova o texto do alt, para que pessoas de acessibilidade,
 n tenham acesso a descricao dessa imagem, ele pula ela. na verdade nem identifica.
+
+---- Analise a pagina ----
+
+Antes de dar um texto para um alt, analise a página.

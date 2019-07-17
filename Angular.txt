@@ -1751,3 +1751,28 @@ export class DarkenOnHoverDirective {
     this.render2.setStyle(this.el.nativeElement,'filter', 'brightness(100%)');
   } 
 }
+
+------------------- entryComponents ANGULAR -------------------
+
+Quando você adiciona componentes dinamicamente utilizando ViewContainerRef.createComponent(),
+voce deve inclui-los em entryComponents do seu módulo.
+
+Se você não listar um componente adicionado dinamicamente para entryComponentsvocê receberá
+uma mensagem de erro um ataque de uma fábrica em falta porque Angular não terá criado um.
+
+Isto é para componentes adicionados dinamicamente que são adicionados usando 
+ViewContainerRef.createComponent(). Adicioná-los à entryComponents diz o compilador modelo 
+off-line para compilá-los e criar fábricas para eles.
+
+Os componentes registrados em configurações de rota são adicionados automaticamente ao 
+entryComponentsbem, porque router-outlettambém usa ViewContainerRef.createComponent() 
+para adicionar componentes encaminhado para o DOM.
+
+Os componentes registrados em configurações de rota são adicionados automaticamente ao 
+entryComponentsbem, porque router-outlettambém usa ViewContainerRef.createComponent() 
+para adicionar componentes encaminhado para o DOM.
+
+compilador molde offline (OTC) só constrói componentes que são efectivamente utilizadas. 
+Se os componentes não são usados ​​em modelos diretamente o OTC não pode saber se eles 
+precisam ser compilados. Com entryComponents você pode dizer a OTC também compilar estes 
+componentes para que estejam disponíveis em tempo de execução.

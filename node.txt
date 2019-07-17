@@ -88,5 +88,18 @@ src
   app -> armazenar código restrito a lógica da aplicação
   config -> armazenar código de configurações da nossa aplicação.
 
+--- Criando servidor com EXPRESS ---
+
+const express = require('express');
+const app = express(); // express retorna uma função, vc deve executa-la para pegar todo o módulo
+
+app.listen(3000, function(){ // abre um servidor na porta 3000
+  console.log('Servidor iniciado.'); 
+})
+
+--- ROTAS ---
+
+ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada para a raiz nesse caso.
+
 
 
