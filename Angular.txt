@@ -1835,4 +1835,6 @@ Exemplo:
 
 ------------------- ChangeDetectionStrategy COM OBSERVABLES -------------------
 
-    
+detectChanges() -> detecta todas as mudanças e atualiza a view.
+markForCheck() -> markForCheck instrui o Angular que essa entrada específica deve acionar a detecção
+ de alterações quando estiver em mutação.
