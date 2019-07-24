@@ -883,7 +883,7 @@ IMPORTANTE!! ->
     Sempre que criar uma diretiva, faça a declaração dela em declarations, como se fosse um
         componente.
     Sempre nomeie uma diretiva com o padrao de prefixo, exemplo: [appHighlight]
-    Certifiquece de não nomear o diretiva como [ngHighlight], pois o prefixo ng é reservado
+    Certifiquece de não nomear a diretiva como [ngHighlight], pois o prefixo ng é reservado
     pelo angular, e isso pode causar bugs dificeis de diagnosticar.
     Voce usa o ElementRef no constructor para injetar uma referencia ao elemento que voce aplicou
         o appHighlight
@@ -1776,6 +1776,69 @@ compilador molde offline (OTC) só constrói componentes que são efectivamente 
 Se os componentes não são usados ​​em modelos diretamente o OTC não pode saber se eles 
 precisam ser compilados. Com entryComponents você pode dizer a OTC também compilar estes 
 componentes para que estejam disponíveis em tempo de execução.
+
+------------------- ViewContainerRef -------------------
+
+Quem receber esse cara, vai ter acesso ao view container of the element, isso vai hospedar
+dinamicamente um componente.
+
+Dicas: The <ng-template> element is a good choice for dynamic components because it doesn't render any additional output.
+
+------------------- ChangeDetectionStrategy SEM OBSERVABLES -------------------
+
+IMPORTANTE As atualizações só pararam de acontecer para items 
+MUTAVEIS(Alteráveis), os que sao IMUTÁVEIS(nasce com um valor morre com ele)
+atualizará normalmente, exemplo, se eu passa a referencia de um novo vetor, ele alterará, pois
+o angular entende que é um NOVO ELEMENTO.
+
+Utilizamos essa estratégia para impedir que o Angular atualize a view TODA HORA QUE 
+    ALGO MUDE, melhorando a performance.
+
+Ao adicionar a estrategia ao componente "changeDetection: ChangeDetectionStrategy.OnPush",
+As atualizações pararam de acontecer.(apenas para itens imutaveis)
+
+Exemplo:
+    Temos o pai:
+        export class FoodComponent {
+
+            foodNames = ['Bacon', 'Lettuce', 'Tomatoes'];
+
+            constructor() { }
+
+            addFood(food: string) {
+                console.log('Food Adicionada');
+                this.foodNames.push(food);
+                // Passando uma NOVA REFERENCIA o Angular consegue detectar as alterações.
+                // this.foodNames = [...this.foodNames, food];
+            }
+        }
+    Temos o filho:
+        @Component({
+            selector: 'app-food-list',
+            templateUrl: './food-list.component.html',
+            changeDetection: ChangeDetectionStrategy.OnPush
+        })
+        export class FoodListComponent {
+
+            @Input() foodNames: string[];
+
+            constructor(private changeDetectionRef: ChangeDetectorRef) { }
+
+            // Ao chamar essa função, o angular vai verificar o que foi mudado
+            // e irá atualizar.
+            update() {
+                this.changeDetectionRef.detectChanges();
+            }
+
+        }
+
+
+------------------- ChangeDetectionStrategy COM OBSERVABLES -------------------
+
+detectChanges() -> detecta todas as mudanças e atualiza a view.
+markForCheck() -> markForCheck instrui o Angular que essa entrada específica deve acionar a detecção
+ de alterações quando estiver em mutação.
+
 
 ------------------- UPLOAD ANGULAR -------------------
 
