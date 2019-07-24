@@ -1776,3 +1776,20 @@ compilador molde offline (OTC) só constrói componentes que são efectivamente 
 Se os componentes não são usados ​​em modelos diretamente o OTC não pode saber se eles 
 precisam ser compilados. Com entryComponents você pode dizer a OTC também compilar estes 
 componentes para que estejam disponíveis em tempo de execução.
+
+------------------- UPLOAD ANGULAR -------------------
+
+Quando um arquivo está envolvido no upload para o back-end,
+utilizamos o tipo FormData, e cadastramos os valores da seguinte forma:
+
+upload(description: string, allowComments: boolean, file: File){
+
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('allowComments', allowComments ? 'true' : 'false');
+    formData.append('imageFile', file);
+    return this.http
+        .post(API + '/photos/upload', formData);
+}
+
+obs: o primeiro dado do append é o nome da propriedade que meu back-end espera receber.
