@@ -1,0 +1,13 @@
+
+
+TestBed -> Cria um modulo de teste no Angular simulando um @NgModule.
+TestBed.configureTestingModule() -> método usa um objeto de metadados que pode ter a maioria das propriedades de um @NgModule,
+  como por exemplo:
+    TestBed.configureTestingModule({ providers: [ValueService] });
+TestBed.get(ValueService) -> pega uma instancia do seu servico, e vc pode atribuir a uma variavel, exemplo:
+  beforeEach(() => {
+    // simulo injecao de dependencias
+    TestBed.configureTestingModule({ providers: [ValueService] });
+    // pego uma instancia do meu servico injetado acima.
+    valueService = TestBed.get(ValueService);
+  });
