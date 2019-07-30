@@ -1856,3 +1856,14 @@ upload(description: string, allowComments: boolean, file: File){
 }
 
 obs: o primeiro dado do append é o nome da propriedade que meu back-end espera receber.
+
+------------------- INJECAO DE DEPENDENCIA ANGULAR -------------------
+
+Pra que serve?
+    A injecao de dependencia busca otimizar o tempo de codar / de processos,
+    ao inves de vc ir lá em uma classe, dar servico = new MeuServico();
+    basta ir no construtor e fazer constructor(servico: MeuServico) e pronto,
+    voce ja injetou o seu servico no construtor.
+Como funciona?
+    Uma classe só pode ter uma Injecao de dependencia se ela tiver a diretiva Injectable, assim
+    ela estara ápta a ser injetável em um construtor de uma outra classe, para fazer uso desse beneficio.
