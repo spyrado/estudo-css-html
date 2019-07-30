@@ -101,5 +101,15 @@ app.listen(3000, function(){ // abre um servidor na porta 3000
 
 ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada para a raiz nesse caso.
 
+--- Atualizando mudanças no servidor automaticamente ---
 
+  npm install nodemon@1.18.4 --save-dev --save-exact -> --save-dev pq eu preciso desse plugin APENAS durante o 
+    desenvolvimento da aplicação nao utilizarei a atualizacao automatica em ambiente de prod.
 
+  npm install -g nodemon@1.18.4 --save-exact -> instalamos com -g para que esteja disponivel tambem
+    no console os comandos
+
+  -- Como iniciar o servidor? --
+    nodemon nomeDoArquivo.js
+
+    E agora é alterar qualquer coisa, que ele se encarrega de identificar e restartar o servidor.
