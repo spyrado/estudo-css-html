@@ -1,0 +1,16 @@
+Como validar uma SPA no AUDITS?
+
+baixe: https://www.npmjs.com/package/local-web-server
+
+siga o passo a passo:
+
+
+1 - npm install -g local-web-server 
+2 - gere um build com --prod no angular 
+3 - vá até a pasta onde se encontra o index.html do dist que foi gerado. 
+4 - rode o comando ws -z -o --http2  --static.maxage 31536000 --spa index.html
+5 - e pronto, você já vai ter um servidor rodando para testar o Lighthouse
+
+Para mais info acesse a documentacao:
+
+https://github.com/lwsjs/local-web-server/wiki/CLI-usage

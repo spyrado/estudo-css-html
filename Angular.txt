@@ -1867,3 +1867,5 @@ Pra que serve?
 Como funciona?
     Uma classe só pode ter uma Injecao de dependencia se ela tiver a diretiva Injectable, assim
     ela estara ápta a ser injetável em um construtor de uma outra classe, para fazer uso desse beneficio.
+
+------------------- Class Binding ANGULAR -------------------
