@@ -1,4 +1,4 @@
-******************************************************************** JavaScript ****************************************************************
+﻿******************************************************************** JavaScript ****************************************************************
 
 document -> é o DOM da página, se colocarmos somente document dentro de um console.log(document); aparecera todo o conteudo da página.
 
@@ -306,3 +306,11 @@ Como criar um array?
 var nomeVariavel = []; -> cria um array vazio.
 
 nomeVariavel.push("alguma coisa"); -> o .push adiciona itens ao array.
+
+---------------------------- console ----------------------------
+
+.error()
+.warning()
+.table()
+.time() -> inicia o tempo
+.timeEnd(); -> finaliza o tempo 
