@@ -101,7 +101,7 @@ app.listen(3000, function(){ // abre um servidor na porta 3000
 
 ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada para a raiz nesse caso.
 
---- Atualizando mudanças no servidor automaticamente ---
+--- Atualizando mudanças no servidor automaticamente  NODEMOM ---
 
   npm install nodemon@1.18.4 --save-dev --save-exact -> --save-dev pq eu preciso desse plugin APENAS durante o 
     desenvolvimento da aplicação nao utilizarei a atualizacao automatica em ambiente de prod.
@@ -113,3 +113,21 @@ ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada p
     nodemon nomeDoArquivo.js
 
     E agora é alterar qualquer coisa, que ele se encarrega de identificar e restartar o servidor.
+
+--- Gerando templates com MARKO.js ---
+
+  https://markojs.com/
+
+  npm install marko@4.13.4-1 --save-exact
+
+  Configurando Marko para trabalhar junto ao express:
+    //Aqui configuramos as 2 linhas necessarias
+    require('marko/node-require').install();
+    require('marko/express');
+
+    const express = require('express');
+    const app = express();
+
+adicionando ao npm start --ignore *.marko.js
+//Assim ele ignora os arquivos de marko, e o servidor n fica atualizando atoa, dando conflito e etc 
+"start": "nodemon server.js --ignore *.marko.js"
