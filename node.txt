@@ -131,3 +131,7 @@ ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada p
 adicionando ao npm start --ignore *.marko.js
 //Assim ele ignora os arquivos de marko, e o servidor n fica atualizando atoa, dando conflito e etc 
 "start": "nodemon server.js --ignore *.marko.js"
+
+--- Instalando banco de dados sqlite3 ---
+
+npm install sqlite3@4.0.6 --save-exact
