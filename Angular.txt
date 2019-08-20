@@ -1784,6 +1784,15 @@ dinamicamente um componente.
 
 Dicas: The <ng-template> element is a good choice for dynamic components because it doesn't render any additional output.
 
+------------------- PERFORMANCE OnPush Strategy -------------------
+
+IMPORTANTE!
+    Ao ativar a estratégia de OnPush, tem algumas regras.
+    Ela só irá verificar mudanças automaticamente com valores primitivos (number,string,boolean,null, undefined)
+    Caso for do tipo Array, Object, functions, será apenas um copy of a referencia, uma copia não pode ter
+    seu item real alterado, por isso ele não altera com esses tipos (Array, object etc).
+    
+
 ------------------- ChangeDetectionStrategy SEM OBSERVABLES -------------------
 
 IMPORTANTE As atualizações só pararam de acontecer para items 
