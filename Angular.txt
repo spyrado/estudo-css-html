@@ -1786,12 +1786,27 @@ Dicas: The <ng-template> element is a good choice for dynamic components because
 
 ------------------- PERFORMANCE OnPush Strategy -------------------
 
+    Ele só vai verificar mudanças automaticas nos seguintes casos:
+        1 - The Input reference changes, porem se o dado do imput for Immutavel, ele nao vai alterar.
+
 IMPORTANTE!
     Ao ativar a estratégia de OnPush, tem algumas regras.
     Ela só irá verificar mudanças automaticamente com valores primitivos (number,string,boolean,null, undefined)
-    Caso for do tipo Array, Object, functions, será apenas um copy of a referencia, uma copia não pode ter
-    seu item real alterado, por isso ele não altera com esses tipos (Array, object etc).
-    
+    Caso for do tipo Array, Object, functions, será apenas um copy of a referencia
+    (https://stackoverflow.com/questions/13104494/does-javascript-pass-by-reference/13104500#13104500),
+    Ou seja, uma copia não consegue alterar o item original,
+    Para forçar essa mudança de estado, voce deve passar uma nova referencia seja de Array, Objeto etc.
+
+    Segue um exemplo:
+    // Objeto Immutavel
+    config = {
+        position: 'top'
+    };
+
+    onClick() {
+        this.config.position = 'bottom';
+    }
+
 
 ------------------- ChangeDetectionStrategy SEM OBSERVABLES -------------------
 
