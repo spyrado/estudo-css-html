@@ -10,3 +10,26 @@ A classe Subject serve para que a gente se INSCREVA, para saber qual há uma atu
 
     debounce.next('Nicolas'); // valor de entrada
     debounce.subscribe(nome => console.log(nome)); // Nicolas
+
+--- OPERATORS ---
+
+switchMap() -> Para de ouvir a funcao anterior e faz algo..
+firts() -> emite o ultimo valor recebido.
+debounceTime() -> da um delay de tantos milissegundos para executar a proxima acao
+tap() -> faz algo antes de enviar os dados.
+map() -> transforma o valor recibido, para o desejado. igual o map do javascript
+flatMap() -> "mergea os observables"
+    exemplo:
+        const Rx = require('rxjs');
+
+        const long$ = Rx.Observable.interval(1000).take(4);
+        const short$ = Rx.Observable.interval(500).take(4);
+
+        long$
+        .flatMap(long => short$.map(short => console.log({ long, short })))
+        .subscribe(); 
+
+        /** Output
+        { long: 0, short: 0 }
+        { long: 0, short: 1 }
+Transforma em um unico.
