@@ -2017,3 +2017,13 @@ ngForm ,ngModel, ngSubmit -> todos são do módulo FormsModule
 // com o valor para o ngForm
 <input name="nome" ngModel> // { nome: 'meuValorAqui' }
 
+-- TWO WAY DATA BINDING --
+Pode ser usado ao querer já deixar preenchido os campos, como no exemplo abaixo
+
+TS: usuario: any = {
+    nome: 'Nicolas',
+    email: 'nicolas@gmail.com'
+}
+<input name="nome" [(ngModel)]="usuario.nome"> // O valor atual será igual o valor definido no TS, no caso 'Nicolas'
+<input name="email" [(ngModel)]="usuario.email"> // O valor atual será igual o valor definido no TS, no caso 'nicolas@gmail.com'
+
