@@ -1922,3 +1922,10 @@ Como funciona?
 Quando adicionada em um elemento do DOM, ela nos dará acesso ao elemento. 
 Quando adicionada em um componente, nos dará acesso ao componente permitindo invocar métodos 
 e acessar suas propriedades.
+
+------------------- Class Binding ANGULAR -------------------
+
+@HostBinding('class') elementClass = 'h-100'; -> adiciona uma classe no componente
+@HostBinding('class') 'h-100': string; -> adiciona uma classe no componente
+
+EXEMPLO -> <app-component class="h-100"></app-component>
