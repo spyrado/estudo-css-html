@@ -1915,6 +1915,59 @@ Como funciona?
     Uma classe só pode ter uma Injecao de dependencia se ela tiver a diretiva Injectable, assim
     ela estara ápta a ser injetável em um construtor de uma outra classe, para fazer uso desse beneficio.
 
+------------------- USANDO INTERPOLATION(INTERPOLAÇÃO) Para funcoes  -------------------
+
+Aqui eu estou passando alert para getAlertClass(alert) para definir o tipo de mensagem que será exibida.
+    <div *ngFor="let alert of alerts" class="{{ getAlertClass(alert) }}">
+    {{ alert.message }}
+    </div>
+
+
+------------------- RXJS COM ANGULAR -------------------
+
+Nesse metodo eu faco o seguinte, envio o id de uma foto para o backend, e ele vai me retornar status 201 
+deu tudo certo em curtir a foto, se NAO deu tudo certo, ele me retorna 304.
+
+então qual a sacada de usar rxjs aqui?
+
+bom, temos um cenário aonde eu tenho que retornar um boolean se deu tudo certo na resposta,
+Se der erro 304 eu tenho que retornar um Observable false, SE for outro erro eu apenas retorno o erro,
+POREM se tratando do metodo POST do Http, eu tenho que retornar um Observable<boolean>, para que isso de certo.
+
+Entao vamos la, 
+    eu insiro como parametro { observe: 'response'} para receber os dados dos headers tambem e nao só do body.
+    logo em seguida eu dou um pipe com MAP, e retorno true, isso é, toda vez q a requisicao der sucesso,
+    ele vai retornar um Observable true (o map ja retorna um Observable por padrao, por isso só preciso retornar true),
+    depois dou um pipe catchError -> esse cara que vai ser responsavel por pegar os erros vindo da requisicao,
+    se for 304 eu dou um of(false) esse of é reponsavel por transformar a resposta em um observable Observable<false>,
+    se o erro nao for 304, eu retorno o erro com throwError(err).
+
+
+    like(photoId: number) {
+        return this.http.post(
+        API + '/photos/' + photoId + '/like', {}, { observe: 'response'} 
+        )
+        .pipe(map(res => true)) // Se na resposta vier tudo ok, retorna true.
+        .pipe(catchError(err => { // como se fosse o catch do trye catch, to pegando o erro q veio da resposta
+        return err.status == '304' ? of(false) : throwError(err); // se for 304 eu dou um of que retorna um Observable false
+        }));
+    }
+
+------------------- Definindo Title em sua aplicação  -------------------
+
+Para definir o title a cada pagina que voce percorre, tem duas maneiras, a primeira é bem simples,
+porem em questao de manutencao não é tão interessante.
+
+seria apenas isso que voce teria q fazer:
+
+import { Title } from '@angular/platform-browser';
+
+constructor(private titleService: Title)
+
+ngOnInit(){
+    this.titleService.setTitle('seuTitleAqui')
+}
+
 ------------------- Class Binding ANGULAR -------------------
 
 ------------------- VARIAVEIS DE TEMPLATE ANGULAR -------------------
@@ -1929,3 +1982,38 @@ e acessar suas propriedades.
 @HostBinding('class') 'h-100': string; -> adiciona uma classe no componente
 
 EXEMPLO -> <app-component class="h-100"></app-component>
+
+
+
+------------------- ANGULAR COM LOIANE -------------------
+
+------------------- DIFERENCA ENTRE TEMPLATE DRIVE / DATA DRIVEN (REATIVO) -------------------
+
+-- TEMPLATE DRIVEN --
+    com o template driven nos fazemos todas as validacoes no proprio html.
+    - Formulario é criado e configurado no html
+    - validacoes sao feitas no template HTML, como campo obrigatorio tamanho minino maximo regex, tudo isso temos no nosso INPUT. já no HTML.
+    - Angular cria/deduz  um FormGroup no codigo HTML
+    - Valores do form são submetidos com ngSubmit
+
+-- DATA DRIVEN (REATIVO) --
+    - Formulário é criado e configurado no componente.
+    - Validacoes sao feitas no proprio componente
+    - Angular usa o FormgGroup criado no Component
+    - Form já está no componente e nao precisa do ngSubmit
+
+------------------- TEMPLATE DRIVEN -------------------
+Para gerenciar o formulário via template, devemos criar uma variavel no form, e associar a diretiva
+ngForm a essa variavel, assim vamos consegui gerenciar o form atraves da variavel.
+
+ngForm ,ngModel, ngSubmit -> todos são do módulo FormsModule
+
+// Atraves da diretiva ngForm passada para nossa variavel form, que nós temos o controle do formulário
+<form #form="ngForm" (onSubmit)="onSubmit(form)>
+
+// Para que nosso ngForm identifique os valores ao submeter o formulário
+// Devemos colocar a diretiva ngModel no campo que queremos pegar o valor
+// E também devemos definir um nome para o campo, esse nome que será enviado juntamente
+// com o valor para o ngForm
+<input name="nome" ngModel> // { nome: 'meuValorAqui' }
+
