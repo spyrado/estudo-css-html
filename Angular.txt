@@ -2040,3 +2040,14 @@ Controle visitado               ng-touched                     ng-untouched
 Valor mudou                     ng-dirty                       ng-pristine
 Controle visitado               ng-touched                     ng-untouched
 
+Deixando um campo de formulário vermelho caso tenha erro:
+
+//todo input que estiver com a classe ng-invalid, vai ficar com a borda vermelha
+//POREM Ao iniciar o formulário eles já vao ficar vermelhos, pois todos estão invalidos ainda.
+// para solucionar isso vemos no proximo step
+input.ng-invalid { border: 1px solid red }
+
+// ficara vermelho somente SE estiver invalido e o campo esteja com foco
+input.ng-invalid.ng-touched { border: 1px solid red }
+
+quando demos um log no form, vemos que temos os controles de formulário
