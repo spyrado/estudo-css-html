@@ -2018,7 +2018,9 @@ ngForm ,ngModel, ngSubmit -> todos são do módulo FormsModule
 <input name="nome" ngModel> // { nome: 'meuValorAqui' }
 
 -- TWO WAY DATA BINDING --
-Pode ser usado ao querer já deixar preenchido os campos, como no exemplo abaixo
+Pode ser usado ao querer já deixar preenchido os campos E atualiza-los conforme digitamos, como no exemplo abaixo
+Se quisermos apenas o campo preenchido inicialmente, podemos apenas utilizar o Propertie binding
+que ficaria assim: [ngModel]="usario.nome"
 
 TS: usuario: any = {
     nome: 'Nicolas',
@@ -2026,4 +2028,15 @@ TS: usuario: any = {
 }
 <input name="nome" [(ngModel)]="usuario.nome"> // O valor atual será igual o valor definido no TS, no caso 'Nicolas'
 <input name="email" [(ngModel)]="usuario.email"> // O valor atual será igual o valor definido no TS, no caso 'nicolas@gmail.com'
+
+-- VALIDATIONS --
+
+O angular trabalha com algumas classes, e essas classes
+vão sendo aplicadas dependendo do estado do controle.
+
+TABELA DE CLASSE:
+Estado                            SIM                              NAO
+Controle visitado               ng-touched                     ng-untouched
+Valor mudou                     ng-dirty                       ng-pristine
+Controle visitado               ng-touched                     ng-untouched
 
