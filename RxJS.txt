@@ -13,6 +13,7 @@ A classe Subject serve para que a gente se INSCREVA, para saber qual há uma atu
 
 --- OPERATORS ---
 
+finalize() -> idependente se o subscribe der certo ou errado ele vai executar a instrucao q voce passar.
 switchMap() -> Para de ouvir a funcao anterior e faz algo..
 firts() -> emite o ultimo valor recebido.
 debounceTime() -> da um delay de tantos milissegundos para executar a proxima acao
