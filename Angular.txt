@@ -2024,7 +2024,7 @@ this.photoService
         console.error(error);
         this.alertService.success('Upload error!', true);
     }
-);
+); 
 
 
 ------------------- Class Binding ANGULAR -------------------
