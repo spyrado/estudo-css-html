@@ -152,3 +152,9 @@ HTTP1:
 
 Requisições no HTTP2 São paralelas.
     
+
+------ PROTOCOLO HTTP ------
+
+GET -> OBTER OS DADOS
+POST -> CRIAR OS DADOS
+PUT -> EDITAR OS DADOS

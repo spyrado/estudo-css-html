@@ -99,6 +99,14 @@ app.listen(3000, function(){ // abre um servidor na porta 3000
 
 --- ROTAS ---
 
+--- pegar parametros nas rotas (deixar um dado variavel) ---
+
+// aqui estou deixando um id como variavel, e pegando ele atraves do dado que veio da requisicao, entao
+// eu pego com req.params.id
+app.delete('/livros/:id', (req,res) => {
+    const ID = req.params.id;
+});
+
 ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada para a raiz nesse caso.
 
 --- Atualizando mudanças no servidor automaticamente  NODEMOM ---
@@ -135,3 +143,129 @@ adicionando ao npm start --ignore *.marko.js
 --- Instalando banco de dados sqlite3 ---
 
 npm install sqlite3@4.0.6 --save-exact
+
+--- Recebendo UNDEFINED ao fazer post ---
+
+Temos o HTML:
+  <form action="/livros" method="post">
+
+    <input type="hidden" id="id" name="id" />
+
+    <div>
+        <label for="titulo">Titulo:</label>
+        <input type="text" id="titulo" name="titulo" placeholder="coloque o titulo" />
+    </div>
+    <div>
+        <label for="preco">Preço:</label>
+        <input type="text" id="preco" name="preco" placeholder="150.25" />
+    </div>
+    <div>
+        <label for="descricao">Descrição:</label>
+        <textarea cols="20" rows="10"  id="descricao" name="descricao" placeholder="fale sobre o livro"></textarea>
+    </div>
+
+    <input type="submit" value="Salvar" />
+  </form>
+
+// Preparando o back para receber os dados 
+app.post('/livros', (req, res) => {
+  console.log(req.body); // aqui eu recebo UNDEFINED, é o padrao do node retornar undefined
+});
+
+---- middleware ----
+
+IMPORTANTE, Sua requisicao só sera executada, somente depois que todos os middlewares tiverem dado NEXT
+Sendo assim, a ordem em que os middlewares são definidos é de extrema importância!
+
+Além disso, um detalhe a ser observado, é que tudo que estiver antes da chamada da função next será executado antes 
+da rota ativada e o que estiver após a chamada da função next será executado somente ao término da rota ativada!
+
+use() -> do Express pode receber dois parâmetros, sendo o primeiro uma string que define as URLs que 
+  serão atendidas pelo middleware e como segundo parâmetro uma função. É essa função que irá definir o que o 
+  middleware deverá fazer e, por sua vez, recebe três parâmetros, a requisição, a resposta e 
+  uma função (normalmente chamada de next) que deve ser invocada para que o Express avance para o próximo middleware 
+  existente e caso não exista mais nenhum, passa a execução para a rota ativada. Sendo assim, 
+  a ordem em que os middlewares são definidos é de extrema importância!
+
+next() -> avanca sempre para a proxima middleware, caso n exista um next em uma middleware, ele ficara travado rodando,
+  infinitamente naquela middleware.
+  caso nao exista mais nenhuma middleware pendente, ele passa para a execução para a rota ativada.
+
+é como se fosse um interceptor, utilizando ele a nivel de aplicativo, toda requisicao feita,
+passa por ele, e ele executa o trecho de codigo que voce colocou.
+
+Para fazer um middleware, utilizamos app.use, exemplo:
+
+var app = express();
+
+// Essa funcao por nao ter um caminho, sempre sera executada ao receber requisicao, tipo o interceptor do angular.
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now());
+  next();
+});
+
+
+//  A função é executada para qualquer tipo de solicitação HTTP no caminho /user/:id.
+app.use('/user/:id', function (req, res, next) {
+  console.log('Request Type:', req.method);
+  next();
+});
+
+---- middleware bodyParser ----
+npm install body-parser@1.18.3 --save-exact
+
+Esse middleware vai nos ajudar a lider com o recebimento de dados, tanto em req ajax como normal(form)
+
+
+app.use(bodyParser.urlencoded({ -> urlencoded está relacionada a forma padrao de envio dos formularios html
+  extended: true -> dizendo para o bodyParser que ele está habilitado a receber objetos complexos, em formato JSON
+}));
+
+Fazendo essa configuracao, para qualquer requisicao feita, teremos nosso json no req.body
+
+---- MIDDLEWARE ARQUIVOS ESTATICOS ----
+
+//Toda requisicao que for feita para /estatico, ele irá procurar na pasta que foi configurada
+// que nesse caso foi: src/app/public
+app.use('/estatico', express.static('src/app/public'));
+
+---- Como resolver isso?  middlewares ----
+
+Precisamos pegar a requisicao que foi feita, jogar as informacoes dentro dela ANTES dela chegar lá na rota, que
+configuramos o post.
+
+Para fazermos isso precisaremos de um plugin
+npm install body-parser@1.18.3 --save-exact
+
+---- Reescrita de métodos HTTP ----
+https://github.com/expressjs/method-override#readme
+
+Precisamos do method override, quando desejamos fazer por exemplo,
+
+um post e um put na mesma rota, com formularios simples.
+
+será um middleware que vai identificar o metodo e altera-lo caso voce configure para altera-lo
+
+// MIDDLEWARE
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
+}))
+// FORM EXAMPLE
+<!-- enctype must be set to the type you will parse before methodOverride() -->
+<form method="POST" action="/resource" enctype="application/x-www-form-urlencoded">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete resource</button>
+</form>
+
+********************************  MIDDLEWARE PARA VALIDACAO DE DADOS ********************************
+
+express validator, com ele conseguimos fazer nossas validacoes corriqueiras.
+
+segue documentação: https://express-validator.github.io/docs/
+
+npm install --save express-validator
