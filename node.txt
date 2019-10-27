@@ -269,3 +269,42 @@ express validator, com ele conseguimos fazer nossas validacoes corriqueiras.
 segue documentação: https://express-validator.github.io/docs/
 
 npm install --save express-validator
+
+Podemos usar validacoes como...
+// ...rest of the initial code omitted for simplicity.
+const { check, validationResult } = require('express-validator');
+
+app.post('/user', [
+  // username must be an email
+  check('username').isEmail(),
+  // password must be at least 5 chars long
+  check('password').isLength({ min: 5 })
+], (req, res) => {
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
+  User.create({
+    username: req.body.username,
+    password: req.body.password
+  }).then(user => res.json(user));
+});
+
+--- VALIDACAO CUSTOM ---
+
+  https://express-validator.github.io/docs/custom-validators-sanitizers.html#custom-validator
+
+  Aqui podemos fazer validacoes customizadas, exemplo, podemos buscar no banco se o usuário existe, e se n existir exibimos o erro, EXEMPLO:
+  const { body } = require('express-validator');
+
+  app.post('/user', body('email').custom(value => {
+    return User.findUserByEmail(value).then(user => {
+      if (user) {
+        return Promise.reject('E-mail already in use');
+      }
+    });
+  }), (req, res) => {
+    // Handle the request
+  });
