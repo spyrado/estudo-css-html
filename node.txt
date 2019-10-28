@@ -1,5 +1,16 @@
 ----- NVM(NODE VERSION MANAGER) GERENCIADOR DE VERSÕES DO NODE ----
 
+----- ITENS BAIXADOS ATE AGORA -----
+
+"dependencies": {
+    "body-parser": "1.18.3", -> FAZ OS DADOS DOS REQUESTS APARECEREM NO BODY
+    "express": "4.16.3", -> FRAMEWORK DO NODE FACILITA VIDAS
+    "express-validator": "5.3.1", -> VALIDACOES ROTINEIRAS
+    "marko": "4.13.4-1", -> TEMPLATE DE CONEXAO ENTRE BACK E FRONT
+    "method-override": "3.0.0", -> SOBRESCREVE METODOS HTTP (NORMALMENTE USADO QUANDO UM MESMO ENDPOINT FAZ MAIS DE UM TIPO DE METODO HTTP (POST,PUT,DELETE, ETC))
+    "sqlite3": "^4.0.2" -> USADO COMO EXEMPLO PARA 
+  },
+
 NVM -> Node Version Manager
   ele gerencia o versionamento de Node
 
