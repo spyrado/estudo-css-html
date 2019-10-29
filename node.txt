@@ -120,6 +120,21 @@ app.delete('/livros/:id', (req,res) => {
 
 ERRO: Cannot GET / -> Se aparecer isso é porque não tem uma rota configurada para a raiz nesse caso.
 
+--- ROTAS ENCADEAVEIS ---
+
+Com um mesmo endpoint, podemos encadear todos os metodos HTTP
+
+app.route('/book')
+  .get(function(req, res) {
+    res.send('Get a random book');
+  })
+  .post(function(req, res) {
+    res.send('Add a book');
+  })
+  .put(function(req, res) {
+    res.send('Update the book');
+  });
+
 --- Atualizando mudanças no servidor automaticamente  NODEMOM ---
 
   npm install nodemon@1.18.4 --save-dev --save-exact -> --save-dev pq eu preciso desse plugin APENAS durante o 
