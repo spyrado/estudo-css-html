@@ -334,3 +334,22 @@ app.post('/user', [
   }), (req, res) => {
     // Handle the request
   });
+
+
+  ---- REQUIRE ----
+
+  Por padrao o node ao fazer o require de uma pasta, ele procura pra ver se a pasta tem o arquivo index.js, EXEMPLO:
+
+  view -> livros -> index.js
+  require('./view/livros') - se eu n passar o arquivo, ele por padrao pega o index js(CASO ELE TENHA DENTRO DA PASTA LIVROS)
+
+
+---- SESSÃO E AUTENTICAÇÃO ----
+
+libs para serem instaladas
+
+uuid -> irá ajudar a gerar strings aleatórias como id de cada seçao da nossa aplicacao
+express-session -> irá ajudar a criar sessoes 
+// essas duas ira ajudar agente a trabalhar com sessoes em node de uma maneira mais amigavel
+passport -> 
+passport-local ->
