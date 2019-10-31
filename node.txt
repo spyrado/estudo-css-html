@@ -353,3 +353,63 @@ express-session -> irá ajudar a criar sessoes
 // essas duas ira ajudar agente a trabalhar com sessoes em node de uma maneira mais amigavel
 passport -> 
 passport-local ->
+
+// configuracao da sessao e da autenticacao
+  passport.use(new LocalStategy(
+    {
+      usernameField: 'email', // passo o nome do inputField do template, que eu quero capturar
+      passwordField: 'senha'
+    },
+    (email, senha, done) => { // recebo os valos dos dois aqui
+      const usuarioDao = new UsuarioDao(db);
+      usuarioDao.buscaPorEmail(email) // consulto no banco pra ver se existe
+        .then(usuario => {
+          if (!usuario || senha != usuario.senha) {
+            // 1 parametro passamos null, pois a consulta foi feita com sucesso e n deu erro algum
+            // 2 parametro passamos false, pois ele não achou o usuário no banco.
+            // 3 parametro passamos uma mensagem para recuperarmos ela caso precise em algum momento.
+            return done(null, false, {
+              message: 'Login e senha incorretos!'
+            })
+          } else {
+            return done(null,usuario);
+          }
+        })
+        .catch(erro => done(erro, false));
+    }
+  ));
+
+  // configuro o serialize passando somente os dados que preciso.
+  passport.serializeUser((usuario, done) => {
+    // Passo apenas as informacoes que quero armazenar em sessao.
+    const usuarioSessao = {
+      nome: usuario.nome_completo,
+      email: usuario.email
+    };
+
+    done(null, usuarioSessao);
+  });
+
+  passport.deserializeUser((usuarioSessao, done) => {
+    done(null, usuarioSessao);
+  });
+
+  //nossa sessao é um middleware, por isso inserimos dentro de app.use
+  app.use(sessao({
+    secret: 'node alura', // serve para assinar/identificar a nossa secao
+    genid: function(req) { // o papel dela, é retornar um identificar aleatorio qualquer. o uuid faz isso para nos
+      return uuid();
+    },
+    resave: false, // dizendo que nao quero resalvar as sessoes mesmo q n tenha alteracoes nelas.
+    // nao quero que a aplicacao gere uma sessao, para todo mundo que acessar a home.
+    // apenas quando a efetivacao do login for feita com sucesso.
+    saveUninitialized: false
+  }));
+
+  // Terminando todas as configuracoes acima, temos que pedir para o passport ser iniciado, e iniciar
+  // a sessao tambem
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+Caso queira saber mais, recomendo dar uma olhada nesse link, tem toda a configuracao feita.
+  https://github.com/spyrado/Estudos/blob/master/Node/casadocodigo/src/config/sessao-autenticacao.js
