@@ -1,0 +1,32 @@
+*************** FOTOMETRIA ***************
+
+3 PILARES
+
+ISO - DIAFRAGMA - OBTURADOR
+
+DIAFRAGMA -> 
+ - Fica no corpo da lente, para obter diafragmas diferentes da lente atual, deve comprar outras lentes q te atenda. 
+ - Uma das 3 ferramentas que controla a entrada de luz.
+ - Quanto maior a abertura do diafragma ENTRA MAIS LUZ f/2.8
+ - Quanto menos a abertura do diafragma ENTRA MENOS LUZ f/12
+ - Quanto maior o numero do diafragma mais fechado ele vai ser, e consequentemente menos luz entra nele.
+ - Quanto mais ABERTO O diafragma for(f/1.8 por exemplo) mais desfoque no fundo ele vai ter.
+ - Quanto menos aberto (f/7) mais nitido sera a foto como um todo.
+
+OBTURADOR ->
+ - Obturador é como se fosse uma cortina, ele controla o quanto tempo sua foto vai ficar
+  exposta a luz, exemplo.
+  1/30(segundo) ele divide 1 segundo em 30 fracoes desse 1 segundo, e voce diz pra ele quantas fracoes
+  desse segundo voce precisa que o click fique exposto a luz. (1/30 20/30 15/30 e por ai vai), quanto
+  mais tempo ele ficar exposto a luz, mais luz vai entrar e vice versa.
+  - Se voce usar uma velocidade do obturador mais RAPIDA, voce congela o movimento dos carros passando,
+  se for mais lenta voce pode captar os traços dos carros passando.
+  - Se for fotografra na mao, é legal que fotografe a 1/60 avos de segundos, que tem menos changes de sair tremida a foto.
+
+ISO ->
+ - é a sensibilidade do sensor da camera.
+ - iso de muita luz, o iso pode ser menos sensiveis.
+ - iso de pouca luz, o iso pode ser mais sensiveis.
+ - iso mais sensiveis me permite trabalhar com o diafragma mais fechado, e velocidade de obturador mais rapida,
+  para poder congelar o assunto, e trazer foco no ambiente(alguem em movimento por exemplo)
+ - Quanto maior a sensibilidade do sensor, mais ruido pode aparecer na foto, entao o controle do iso é essencial
