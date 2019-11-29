@@ -89,3 +89,22 @@ n tenham acesso a descricao dessa imagem, ele pula ela. na verdade nem identific
 ---- Analise a pagina ----
 
 Antes de dar um texto para um alt, analise a página.
+
+
+
+
+********** ESTUDO POR FORA SOBRE ACESSIBILIDADE **********
+
+---- ROLES ----
+
+VIA DE REGRA, SEMPRE USE OS ELEMENTOS PADROES DO NAVEGADOR, SEMPRE QUE POSSIVEL,
+Caso não consiga por algum motivo, use as ROLES.
+
+Adicionar roles nos elementos NÃO adicionará as funcionalidades dessas roles, EXEMPLO:
+
+Transformar essa div em um BOTÃO, não significa q ela vai ter as funcionalidades de um botão.
+você terá que criar essas funcionalidades, de ser clicavel, poder clicar com spaco com enter e etc.
+<div role="button">Place Order</div> 
+
+Usar uma função sem cumprir a promessa dessa função é semelhante 
+  a criar um botão "Place Order" que abandona um pedido e esvazia o carrinho de compras.
