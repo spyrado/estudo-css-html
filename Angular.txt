@@ -2129,3 +2129,88 @@ Fazendo a validação:
       Nome é obrigatório.
     </div>
   </div>
+
+
+------------------- CUSTOM ERROR HANDLER -------------------
+
+import { ErrorHandler } from "@angular/core";
+// dessa maneira ele apenas vai fazer oq o angular por padrao ja faz, q é dar um throw nos erros para o console .
+export class GlobalErrorHandler implements ErrorHandler {
+  handleError(error: any): void {
+    console.log('passei pelo handler');
+    throw new error;
+  }
+}
+
+e no seu modulo use o provide para q ele funcione.
+    providers: [
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler
+        }
+    ]
+
+---- Instalando a lib stacktrace js para padronizar os erros ----
+
+// Instala a stack para funcionar
+npm install stacktrace-js
+// instala o autocomplete da stack, para melhorar a produtividade
+npm install @types/stacktrace-js
+
+atualizando o código:
+
+import { ErrorHandler } from "@angular/core";
+// Aqui eu digo, importa tudo da pasta stacktrace, nomeio esse tudo de StackTrace
+import * as StackTrace from 'stacktrace-js';
+
+export class GlobalErrorHandler implements ErrorHandler {
+  handleError(error: any): void {
+    console.log('passei pelo handler');
+    StackTrace.algumaCoisa
+    throw new error;
+  }
+}
+
+
+estruturando tudo e simulando o envio de dados para o backend
+import { ErrorHandler, Injector, Injectable } from "@angular/core";
+// Aqui eu digo, importa tudo da pasta stacktrace, nomeio esse tudo de StackTrace
+import * as StackTrace from 'stacktrace-js';
+import { LocationStrategy, PathLocationStrategy } from "@angular/common";
+import { UserService } from "../../core/user/user-service";
+
+// Usando o decorator Injectable para fazer a injecao de dependencia de INJECTOR
+@Injectable()
+export class GlobalErrorHandler implements ErrorHandler {
+  
+  constructor(private injector: Injector) {}
+
+  handleError(error: any): void {
+    console.log('passei pelo handler');
+
+    /* 
+      PORQUE NAO INJETAMOS  O USERSERVICE NO CONSTRUTOR?, POR QUE O ANGULAR PRIMEIRO VAI TENTAR INJETAR O NOSSO COMPONENTE
+      CASO NOSSO COMPONENTE DER ALGUM ERRO, O GLOBAL ERROR HANDLER NAO VAI ESTAR PRONTO,
+      por isso estamos fazendo a injecao manualmente com o injector do angular.
+    */
+    const location = this.injector.get(LocationStrategy);
+    const userService = this.injector.get(UserService);
+
+    const url = location instanceof PathLocationStrategy ? location.path() : '';
+    // Pegando a mensagem de erro
+    const message = error.message ? error.message : error.toString();
+
+    // Pegando a stack de errors
+    StackTrace
+      .fromError(error)
+      .then(stackFrames => {
+        const stackAsString = stackFrames
+          .map(stackFrame => stackFrame.toString())
+          .join('\n');
+          console.log(message);
+          console.log(stackAsString);
+          console.log('o que será enviado para o serviço');
+          console.log({ message, url, userName: userService.getUserName() ,stack: stackAsString });
+      });
+  }
+}
