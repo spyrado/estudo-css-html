@@ -2214,3 +2214,57 @@ export class GlobalErrorHandler implements ErrorHandler {
       });
   }
 }
+
+
+
+---------------- validador crossfield ----------------
+
+com o validator crossfield, podemos verificar por exemplo, se o confirm password, está igual ao password,
+    ou nesse exemplo abaixo, estou verificando se o username é diferente do password.
+
+import { ValidatorFn, FormGroup } from "@angular/forms";
+
+export const userNamePassword: ValidatorFn = (formGroup: FormGroup) => {
+  
+  const userName = formGroup.get('userName').value;
+  const password = formGroup.get('password').value;
+
+  if(userName.trim() && password.trim()) {
+    return userName != password
+    ? null
+    : { userNamePassword: true };
+  } else {
+    return null;
+  }
+}
+
+<ap-vmessage
+    *ngIf="signupForm.errors?.userNamePassword && form.submitted"
+    text="Username and password must be different">
+</ap-vmessage>
+
+
+---------------- HISTORY API, como ignorar uma rota anterior? ----------------
+
+replaceUrl: true, faz com que o angular delete a navegacao anterior da history API,
+um exemplo de uso, é quando apagamos uma foto, e redicerionamos a pessoa para listagem de fotos, 
+nao faz sentido ele conseguir voltar para uma pagina q ja n existe mais, pois a foto foi deletada.
+
+this.router.navigate(['user', this.userService.getUserName()], { replaceUrl: true });
+
+
+---------------- COMO GERAR PARAMETROS NAS ROTAS AO ATIVA-LAS? ----------------
+
+RouterStateSnapshot -> consigo pegar a url, que foi acessada.
+
+fromUrl, pode ser qualquer nome, ele que vai ser representado aqui, e o asd, é o valor q ele vai receber.
+isso é util quando voce precisa de uma info externa pra tomar alguma decisao.
+http://localhost:4200/#/home?fromUrl=asd
+this.router.navigate(
+        [''],
+        {
+          queryParams: {
+            fromUrl: 'asd'
+          }
+        }
+      );
