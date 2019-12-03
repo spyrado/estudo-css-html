@@ -2268,3 +2268,34 @@ this.router.navigate(
           }
         }
       );
+
+---------------- ANGULAR ANIMATIONS ----------------
+
+style() -> aqui colocamos todas os estilos CSS.
+state() -> recebe dois parametros sendo o primeiro o nome do estado, seguindo o padrao camelCase,
+ e o segundo parametro é a style() function, para definir os estilos CSS.
+transition() -> aceita 2 argumentos, o primeiro recebe uma expressao que define a direção
+    entre os 2 estados (fechado ou aberto (por exemplo)) transition('open' => 'close'), 
+    o segundo argumento é aceita uma ou mais funcoes de animate().
+
+Habilitando animacoes no angular, voce deve importar os seguintes modulos no root da sua aplicacao.
+    import { BrowserModule } from '@angular/platform-browser';
+    import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+----- Animando um Componente ----
+
+    Para animar um componente, voce deve usar a metadata property
+    Como no exemplo abaixo:
+    @Component({
+        selector: 'app-root',
+        templateUrl: 'app.component.html',
+        styleUrls: ['app.component.css'],
+        animations: [
+            // animation triggers go here
+        ]
+    })
+
+---- A funcao de animacao animate() ----
+
+A sintax dela é essa: 
+    animate('duration delay easing')
