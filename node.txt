@@ -413,3 +413,20 @@ passport-local ->
 
 Caso queira saber mais, recomendo dar uma olhada nesse link, tem toda a configuracao feita.
   https://github.com/spyrado/Estudos/blob/master/Node/casadocodigo/src/config/sessao-autenticacao.js
+
+---- consign ----
+
+o consign faz a ligacao dos arquivos, para que voce n precise ficar expecificando toda hora aquele modulo
+
+// configuramos assim.
+consign()
+  .include('controllers') -> nome da pasta que voce quer q ele associe com app
+  .into(app);
+
+// e exportamos assim, e ele ja vai entender 
+// esta dentro da pasta controllers
+module.exports = app => {
+  app.get('/atendimento', (req,res) => {
+    res.send('Voce esta na rota de atendimentos e esta realizando um GET');
+  });
+}
