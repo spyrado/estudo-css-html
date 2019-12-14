@@ -1,0 +1,6 @@
+********************** TIPOS DE TESTE **********************
+
+Teste unitário isolado -> teste da lógica do código.
+
+Teste unitário de componente -> ele é mais complexo de ser criado, por testar o componente todo,
+  suas dependencias html e etc.
