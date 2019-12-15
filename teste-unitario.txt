@@ -1,6 +1,8 @@
 ********************** TIPOS DE TESTE **********************
 
-Teste unitário isolado -> teste da lógica do código.
+Teste unitário isolado -> teste da lógica do código (jasmine), o jasmine segue o padrao BDD(Orientado a comportamentos)
 
 Teste unitário de componente -> ele é mais complexo de ser criado, por testar o componente todo,
   suas dependencias html e etc.
+
+Teste de Integração -> uso de selenium

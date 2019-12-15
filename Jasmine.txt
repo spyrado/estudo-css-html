@@ -9,6 +9,8 @@ expect(saida()) -> qual a saida que eu espero receber de determinado metodo (no 
 
 toEqual('saidaEsperada') -> coloca o resultado da saida().
 
+toBeDefined(); -> deve estar definido 
+
 beforeEach(function(){}) -> ele executa toda vez que um teste é chamado,
   podemos inicializar um objeto ou algo que é muito utilizado por ele, e cada teste vai sempre usa-lo como referencia,
   Exemplo de uso:
