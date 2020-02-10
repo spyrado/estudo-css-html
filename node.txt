@@ -1,5 +1,13 @@
 ----- NVM(NODE VERSION MANAGER) GERENCIADOR DE VERSÕES DO NODE ----
 
+----- PUT, PATCH, DELETE, GET, POST -----
+
+PUT -> USADO QUANDO QUEREMOS ATUALIZAR TODO O OBJETO DO BANCO.
+PATCH -> ATUALIZACAO PARCIAL DO OBJETO DO BANCO.
+DELETE -> DELETA UM OBJETO DO BANCO
+GET -> PEGA ALGO DO BANCO.
+POST -> INSERE DADOS NO BANCO.
+
 ----- ITENS BAIXADOS ATE AGORA -----
 
 "dependencies": {
@@ -430,3 +438,19 @@ module.exports = app => {
     res.send('Voce esta na rota de atendimentos e esta realizando um GET');
   });
 }
+
+---- CONEXAO COM O BANCO DE DADOS ----
+
+npm install mysql
+
+const mysql = require('mysql');
+
+const conexao = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  password: 'password',
+  user:'root',
+  database: 'agenda-petshop'
+});
+
+module.exports = conexao;

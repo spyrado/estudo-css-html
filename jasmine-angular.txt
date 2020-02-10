@@ -11,3 +11,9 @@ TestBed.get(ValueService) -> pega uma instancia do seu servico, e vc pode atribu
     // pego uma instancia do meu servico injetado acima.
     valueService = TestBed.get(ValueService);
   });
+
+  spyOn(clienteService, 'totalRegistros') -> fica monitorando o metodo totalRegistros 
+    (quando comecei eu utilizava ele, para verificar se uma funcao existia).
+  
+  spyOn(clienteService, 'totalRegistros').and.returnValue(10); -> Estou obrigando o metodo totalRegistros,
+    a retornar 10 quando ele for chamado.

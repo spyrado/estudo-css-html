@@ -1,0 +1,4 @@
+************************** IONIC **************************
+
+IONIC -> Nos prove os components
+CORDOVA -> Faz a comunicação com o dispositivo nativo
