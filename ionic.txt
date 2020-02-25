@@ -2,3 +2,16 @@
 
 IONIC -> Nos prove os components
 CORDOVA -> Faz a comunicação com o dispositivo nativo
+
+
+
+----- ALERT LOADING ----
+
+IONIC nos fornece recursos nativos para trabalhar com mobile, seja um alerta um loading, e deixa também ser customizavel.
+
+---- LIFE CYCLOS ----
+
+ionViewDidLoad -> Disparado apenas quando a view não foi armazenada na memória,
+  ele NAO é disparado caso a view já esteja na memoria:
+    EXEMPLO: Carrego uma pagina(home) com ionViewDidLoad e vou para a pagina(about),
+      se eu voltar para a pagina home, esse evento não vai ser disparado novamente, tudo já estará em cache.
