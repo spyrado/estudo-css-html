@@ -91,6 +91,16 @@ n tenham acesso a descricao dessa imagem, ele pula ela. na verdade nem identific
 Antes de dar um texto para um alt, analise a página.
 
 
+---- CUIDADO COM O CSS ----
+
+O CSS tambem influencia no leitor de tela, vou te dar exemplos:
+
+se voce colocar em um <li> o list-style: disc; vai adicionar os discs no html e o leitor vai ler eles.
+visualmente no html n vai aparecer as bolinhas mas na tela ele vai aparecer.
+
+display: none; e visibility: hidden; ambos removem o elemento da tela fazendo com que o leitor de tela
+nao leia eles, font-size: 0 e opacity resolvem esse problema.
+
 
 
 ********** ESTUDO POR FORA SOBRE ACESSIBILIDADE **********

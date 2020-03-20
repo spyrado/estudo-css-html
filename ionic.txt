@@ -15,3 +15,4 @@ ionViewDidLoad -> Disparado apenas quando a view não foi armazenada na memória
   ele NAO é disparado caso a view já esteja na memoria:
     EXEMPLO: Carrego uma pagina(home) com ionViewDidLoad e vou para a pagina(about),
       se eu voltar para a pagina home, esse evento não vai ser disparado novamente, tudo já estará em cache.
+  Ele também é carregado somente após a VIEW se iniciar.
