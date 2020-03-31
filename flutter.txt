@@ -17,3 +17,12 @@ va ate o arquivo pubspec.yaml e declare sua imagem lá, exemplo:
 
   WIDGETS Stateless -> Eles não mudam o seu estado, é estatico.
   WIDGETS Stateful -> Esses nos conseguimos alterar ao longo do tempo.
+
+
+  -------------------------- COMANDOS FLUTTER --------------------------
+
+  flutter create nomeDoProjeto -> cria uma projeto
+  flutter emulators --launch id-do-emulador -> roda o emulator 
+  flutter emulators -> pega os ids dos emuladores
+  Após rodar o emulador vá até a pasta do seu projeto e digite o comando:
+  flutter run

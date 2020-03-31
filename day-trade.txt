@@ -1,0 +1,32 @@
+************************** DAY TRADE **************************
+
+
+-------- Metodologias --------
+
+Martingale -> faça os trades normalmente, mas se perder, dobre a aposta até recuperar o que perdeu, quando recuperar,
+  volte a fazer os trades normalmente.
+
+SOROS -> Trabalha alavancado, coloque sua banca toda, e vá colocando sua banca + o lucro novamente até completar 5x.
+
+
+-------- Indicadores --------
+
+Suporte -> barra a baixo, indicando que o pico de baixa das operacoes foi naquele ponto, caso a vela rompa esse suporte,
+  temos uma forte tendencia de baixa.
+
+Resistencia -> barra a cima, indicando que o pico de alta das operacoes foi naquele ponto, caso a vela rompa essa resistencia,
+  temos uma forte tendencia de alta.
+
+4PC ->
+
+PULL BACK -> é o movimento contrario ao movimento principal do mercado, exemplo: o mercado está em alta,
+  mas as vezes ele da uma queda, essas quedas seriam o pull back, da mesma forma funciona para se ele estiver
+  como movimento principal em baixa, e der uns picos de alta, esses picos de alta sao o pull back.
+
+MARTELO ->
+
+MARTELO INVERTIDO -> 
+
+FIBONACCI / Ponto de Retomada -> É onde voce utiliza o pull back para entrar novamente na operacao,
+  voce entra na metade da alta alterior, vai ter a alta, depois vem o pull back, quando o pull back chegar na metade,
+  dessa alta, voce entra com o ponto de retomada.
