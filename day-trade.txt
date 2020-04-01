@@ -27,7 +27,8 @@ MARTELO -> Tendencia de alta (reversão) (por via de regra o ferro do martelo de
 
 MARTELO INVERTIDO -> Tendencia de alta (reversão) é necessário a segunda etapa, que seria a confirmação dessa tendencia,
   verificamos isso olhando para o candle seguinte, e verificando se a maxima e fechamento dele foi superior a ponta
-  do martelo anterior, confirmado isso pode dar um call que é sucesso ;)
+  do martelo anterior, confirmado isso pode dar um call que é sucesso ;),
+  podemos confirmar mais ainda caso o candle esteja em uma area de suporte no grafico.
 
 FIBONACCI / Ponto de Retomada -> É onde voce utiliza o pull back para entrar novamente na operacao,
   voce entra na metade da alta alterior, vai ter a alta, depois vem o pull back, quando o pull back chegar na metade,
