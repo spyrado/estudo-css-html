@@ -23,9 +23,9 @@ PULL BACK -> é o movimento contrario ao movimento principal do mercado, exemplo
   mas as vezes ele da uma queda, essas quedas seriam o pull back, da mesma forma funciona para se ele estiver
   como movimento principal em baixa, e der uns picos de alta, esses picos de alta sao o pull back.
 
-MARTELO -> Tendencia de alta (por via de regra o ferro do martelo deve ser 2x maior que sua aste)
+MARTELO -> Tendencia de alta (reversão) (por via de regra o ferro do martelo deve ser 2x maior que sua aste)
 
-MARTELO INVERTIDO -> Tendencia de baixa (por via de regra o ferro do martelo deve ser 2x maior que sua aste)
+MARTELO INVERTIDO -> Tendencia de alta (reversão) (por via de regra o ferro do martelo deve ser 2x maior que sua aste)
 
 FIBONACCI / Ponto de Retomada -> É onde voce utiliza o pull back para entrar novamente na operacao,
   voce entra na metade da alta alterior, vai ter a alta, depois vem o pull back, quando o pull back chegar na metade,
