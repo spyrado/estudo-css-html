@@ -33,3 +33,6 @@ MARTELO INVERTIDO -> Tendencia de alta (reversão) é necessário a segunda etap
 FIBONACCI / Ponto de Retomada -> É onde voce utiliza o pull back para entrar novamente na operacao,
   voce entra na metade da alta alterior, vai ter a alta, depois vem o pull back, quando o pull back chegar na metade,
   dessa alta, voce entra com o ponto de retomada.
+
+-------- Candles --------
+
