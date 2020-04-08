@@ -38,10 +38,20 @@ FIBONACCI / Ponto de Retomada -> É onde voce utiliza o pull back para entrar no
   voce entra na metade da alta alterior, vai ter a alta, depois vem o pull back, quando o pull back chegar na metade,
   dessa alta, voce entra com o ponto de retomada.
 
+RETRAÇÃO -> quando uma vela atinge o suporte ou resistencia e retrai (nao rompe), é bom fazer em operacoes de m5
+  com o minutos ainda no comeco por exemplo a vela bateu no horario 12:00 ou 01 02 até 12:03 ainda da, 
+  porque ele ainda tem 2 vela de m1 pra forcar mais a retracao e voce ganhar com isso.
+
 -------- Candles --------
 
 ENGOLFO -> 
 
+Harami de alta -> 
 
+Harami de baixa -> 
+
+Estrela da manhã ->
+
+Estrela da noite ->
 
 
