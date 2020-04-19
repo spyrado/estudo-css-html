@@ -1,0 +1,37 @@
+-------------------- Marketing Digital --------------------
+
+1 - Entender o Mercado
+
+  Produtor -> é quem produz os produtos.
+  Afiliado -> é a pessoa que ganha uma comissao com a venda de cada produto de um produtor.
+  Compradores -> Seria o publico que eu quero atingir.
+  Plataformas -> Hotmart, Monetizze e etc.
+
+2 - Difinir seu NICHO
+
+3 - Escolher o melhor produto
+
+4 - Entender o básico sobre seu link de afiliado
+  - qual seu link?
+    https://go.hotmart.com/D26473263K
+  - de onde veio a venda?
+    https://go.hotmart.com/D26473263K?src=instagram <- faca isso ?src=nome_de_onde_veio, para saber de onde foi a venda.
+    caso ja tenha um parametro no link, voce deve fazer da seguinte forma:
+    https://go.hotmart.com/D26473263K?ap=8957&src=instagram <- coloque um &src=nome_de_onde_veio
+  - como camuflar seu link?
+    https://bitly.com/ -> use esse site para camuflar e ate editar seu link, cadastre-se nele, importante.
+
+
+5 -> 2 Grandes Grupos: Pago e Orgânico.
+
+  --- Fontes de Tráfego Pago ---
+    - Requer um caixa (de no minimo R$500 a R$1000) -> PARA FICAR FAZENDO TESTES DE ESTRATEGIAS.
+    - Não precisa aparecer
+    - Resultados mais rápidos
+    - Quem tem menos aversao ao risco
+
+
+    - Facebook Ads
+    - Google Ads
+    - instagram
+    - 

@@ -1,143 +1,73 @@
-*************************  WebPack *************************
+******************************* WebPack *******************************
 
+---- Getting started ----
 
-Webpack dispensa a utilização de um module loader, justamente por criar em bundles em tempo de desenvolvimento, 
-que nada mais são do que scripts que agregam outros módulos da aplicação.
+Primeiro, instalaremos o WebPack:
+	npm install webpack
 
------------------ Configurando o WebPack -----------------
+Após instalarmos, deveremos criar o arquivo, webpack.config.js dentro da pasta raiz da nossa aplicacao,
+e fazer a seguinte configuração:
 
-Primeiro vamos preparar o "terreno" para que o webpack possa trabalhar.
-
-Em nossa aplicacao em index.html, vamos remover o systemjs, e adicionar o seguinte script:
-    <script src="dist/bundle.js"></script>
-
-    Você pode questionar a existência da pasta dist e do arquivo recém adicionado, mas eles serão gerados futuramente 
-    pelo Webpack. Estamos preparando as bases para a aplicação funcionar bem com o Webpack.
-
-Em seguida, removeremos o systemjs e o babel-cli - a ferramenta de linha de comando que permite trabalharmos com o Babel. 
-Nós não trabalharemos com essa ferramenta. Quem vai ser responsável por chamar o Babel e compilar o código, 
-será o Webpack. Realizaremos a remoção de maneira elegante, por meio do Terminal, usando o comando a seguir:
-    npm uninstall babel-cli --save-dev
-    npm uninstall systemjs  --save-dev
-
-Feito isso, vamos instalar o webpack:
-    npm install webpack@3.1.0 babel-core@6.25.0 --save-dev
-
-OBS: vamos estamos instalando o core do babel, pois o webpack precisa dele para conseguir fazer os tramites com o
-    babel, SEM o babel-cli
-
-Vamos agora na pasta raiz do projeto, e configurar o webpack:
-    cria na pasta raiz o arquivo:
-        ./webpack.config.js
-
-E dentro dele colocamos essas configurações:
-
-    const path = require('path'); // modulo node.js
-
-    module.exports = {
-        entry: './app-src/app.js', // indica o primeiro modulo q vai rodar na aplicação
-        output: { // onde vai ser gravado o bundle inicial, para que ele comece a procurar todas as dependencias.
-            filename: 'bundle.js', // nome do bundle, q nesse caso está como bundle.js
-            path: path.resolve(__dirname, 'dist') // esse path.resolve(__dirname) vai criar o caminho absoluto, até a pasta dist
-        } 
-    }
-
-Feito isso temos que arrumar uma maneira de executar nosso webpack, 
-vamos até package.json:
-
-    Apagamos os scripts:
-        "build": "babel app-src -d app --source-maps",
-        "watch": "babel app-src -d app --source-maps --watch"
-    Pois nao estamos mais utilizando o babel-cli
-
-    E colocamos em scripts:
-        "build-dev": "webpack --config webpack.config.js" 
-    Estou executando o binario do webpack e passando como arquivo de configuracao o webpack.config.js
-
-Em seguida executaremos o comando e o Webpack não processará o arquivo, como veremos na mensagem exibida logo após no 
-Terminal You may need an appropriate loader to handle this file (Em tradução livre: Você vai precisar de um loader 
-apropriado para lidar com este arquivo):
-
-
-ERROR in ./app-src/controllers/NegociacaoController.js
-Module parse failed: /Users/flavioalmeida/Desktop/20/client/app-src/controllers/NegociacaoController.js Unexpected character '@' (5:0)
-You may need an appropriate loader to handle this file type.
-| import { getNegociacaoDao, Bind, debounce, controller, bindEvent } from '../util/index.js';
-| 
-| @controller('#data', '#quantidade', '#valor')
-| export class NegociacaoController {
-| 
- @ ./app-src/app.js 1:0-77
-
-No caso, o arquivo será @controller. O problema é que este projeto está utilizando os decorators existentes no Typescript, mas que podemos utilizar no JavaScript porque estamos rodando com Babel.
-
-Porém, como o Webpack não entende que estamos utilizando a sintaxe do Babel, ele deixa de funcionar. 
-Para que isso não aconteça, precisamos configurar no Webpack o Babel, para processar o arquivo antes de o Webpack 
-tentar criar e processar os módulos.
-
-Para resolver isso, temos que pedir para o webpack solicitar o babel-core, que transcompile, que processe meus arquivos
-    antes do webpack entrar em acao para construir meus bundles.
-
-Entao vamos instalar o babel-loader:
-    npm install babel-loader@7.1.0 --save-dev
-
-para suportar tudo isso, configuramos o arquivo webpack.config.js:
-
-const path = require('path'); // modulo node.js
+const path = require('path'); -> modulo do proprio node para gerenciar path.
 
 module.exports = {
-    //entry
-    //output etc..
-    },
-    module: {
+  entry: './app-src/app.js', -> modulo inicial que resolverá as outras dependencias de modulos.
+  output: {
+    filename: 'bundle.js', -> nome do arquivo gerado pelo webpack
+    path: path.resolve(__dirname, 'dist'), -> nome da pasta e local onde ela será gerada (explicacao em Significado das propriedades)
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/, -> extensoes de arquivos que o webpack deve considerar na hora de trabalhar
+        exclude: /node_modules/, -> arquivos ou pastas que o webpack deve excluir do seu work flow
+        use: { -> peco para ele usar meu loader
+          loader: 'babel-loader' -> aqui eu passo o loader que eu quero que ele use, esse loader vai buscar as configs necessárias em .babelrc
+        } 
+      }
+    ]
+  },
+	plugins
+};
 
-        rules: [
-            {
-                test: /\.js$/, // vou passar um regex dizendo as extensoes que o webpack deve trabalhar
-                exclude: /node_modules/, // arquivos que eu n quero processar
-                use: {  // indica oq vamos utilizar
-                    loader: 'babel-loader' // utilizamos um loader chamado babel-loader
-                }
-            }
-        ]
-    }
-}
+---- Significado das propriedades ----
 
-Removemos de packagejson o modulo que n é necessário:
-    npm uninstall babel-plugin-transform-es2015-modules-systemjs --save-dev
+entry -> deve indicar qual é o modulo inicial a ser carregado pela aplicacao (importante: é apartir dele que o webpack
+	irá identificar todas as outras dependencias).
 
-Agora, precisamos alterar client/.babelrc. Em plugins, deixaremos apenas o transform-decorators-legacy:
+output -> para onde vai ser a saida de toda a compilacao do webpack.
+	-- filename -> nome do arquivo gerado pelo webpack.
+  -- path -> nome da pasta que será criada e que irá qualquer o filename.
 
-// client/.babelrc
-{
-    "presets":["es2017"],
-    "plugins" : ["transform-decorators-legacy"]
-}
+module -> SEMPRE IRÁ VERIFICAR SE EXISTE MODULOS, EXECUTALOS PARA AI SIM GERAR O BUILD FINAL.
+  Onde carregamos intermediadores, normalmente loaders, que consigam traduzir por exemplo: um decorator, para javascript
+	e assim o webpack reconhecerá esse arquivo e buildara ele normalmente.
+	-- rules[] -> é dentro de rules que criamos nossos objetos com as regras que farao o webpack ler,
+		antes de compilar.
 
-Agora vamos fazer o build-pro para a producao, que vai gerar o arquivo minificado.
-vamos em scripts no package.json e colocamos o seguinte comando.
-    "build-prod": "webpack -p --config webpack.config.js"
-esse -p é o uglify que minifica arquivos JavaScript.
+plugins -> SEMPRE EXECUTARÁ AO FINAL DO BUILD, exemplo, apos gerar nosso arquivo bundle.js, o plugin entrará,
+	em acao para fazer o papel dele, um exemplo:
+	o webpack gera o bundle.js e apos gerar, aciona o plugin do babel para minificar esse arquivo.
 
-porem n vai funcionar, pois o uglify só suporta até ECMAScript 2015, vamos ter que remover o -p, e instalar o babili,
-    ele funciona no ECMAScript 2015 em diante
+path.resolve -> nele passamos __dirname (nome do diretorio pai), e 'dist', diretorio que será criado dentro do diretorio pai
+	exemplo: se meu diretorio pai se chama 'client' quando eu fizer isso path.resolve(__dirname, 'dist'), o resultado final,
+	da compilacao do webpack será client/dist e dentro de /dist terá o seu filename, geralmente chamado de bundle.js, entao ficaria
+	client/dist/bundle.js
 
------------------ Configurando o babili -----------------
 
-    npm install babili-webpack-plugin@0.1.1 --save-dev
+------ Como identificar se é build de prod -----
 
-    Em package.json utilizamos uma variavel, para ser executada apenas em build de producao:
-        "build-prod": "NODE_ENV=production webpack --config webpack.config.js"
-    Esse NODE_ENV=production recebe um valor chamado production
+Controlamos isso via NODE_ENV=production.
 
-    Vamos no webpack.config.js
+Com isso podemos adicionar coisas que só estariam em cenário de prod, configuramos no webpack.config.js:
+	if(process.env.NODE_ENV == 'production') {
+		plugins.push(new babiliPlugin());
+	}
 
-    E configuramos:
-        const babiliPlugin = require('babili-webpack-plugin');
-        let plugins = [];
------------------ Bonus -----------------
+E em package.json adicione em "scripts":
+"build-prod": "NODE_ENV=production  webpack --config webpack.config.js"
 
-para desinstalar algo do package.json, digite:
-    npm uninstall systemjs --save ou --save-dev
-se tiver em dependencies será --save
-se tiver em devDependencies será --save-dev
+porem para esse NODE_ENV funcionar em todas as plataformas precisamos instalar o cross-env,
+	npm install cross-env@5.0.1 --save-dev
+	e adicionar ele no script: "build-prod": "cross-env NODE_ENV=production  webpack --config webpack.config.js"
+	e pronto agora ele funciona para todas as plataformas.
