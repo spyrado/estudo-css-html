@@ -71,3 +71,7 @@ porem para esse NODE_ENV funcionar em todas as plataformas precisamos instalar o
 	npm install cross-env@5.0.1 --save-dev
 	e adicionar ele no script: "build-prod": "cross-env NODE_ENV=production  webpack --config webpack.config.js"
 	e pronto agora ele funciona para todas as plataformas.
+
+------ Criando seu servidor local com WebPack ------
+
+  npm install webpack-dev-server@2.5.1 --save-dev
