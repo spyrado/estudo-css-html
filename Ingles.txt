@@ -2,13 +2,33 @@
 
 --- am / is / are ---
 
-is -> é -> singular
-are -> são -> plural
-am -> sou -> singular
+	is -> é -> singular
+	are -> são -> plural
+	am -> sou -> singular
 
--- POSITIVE --
-     Short form
-- i AM (I'am)
--- he IS (he's)
--- she IS (she's)
--- it IS (it's)
+-- SHORT FORM --
+
+	i AM (I'am)
+	he IS (he's)
+	she IS (she's)
+	it IS (it's)
+
+--- VERBO TO BE(ser, estar) ---
+
+	I am
+	You are
+	He/She/It is
+	We are
+	You are
+	They are
+
+--- Artigos Indefinidos ---
+	A -> um/uma
+	AN -> um/uma -> esse em específico é utilizado quando a outra palavra comecar com uma vogal.
+
+
+
+
+
+
+--- VOCABULARY ---
