@@ -50,4 +50,21 @@
 			entao ficaria no exemplo: cidade(substantivo) bonita(adjetivo) <- que qualifica a cidade
 			em ingles isso é o inverso, ficaria primeiro o adjetivo e depois o substantivo, exemplo:
 
+	--- IT ---
+		It não tem bem uma traducao em ingles, 
+		Pode servir para ele ou ela para coisas, pode servir tambem como substantivo oculto.
+			exemplo:
+				- New York is a very beautiful city -> Nova York é uma cidade muito bonita.
+					- Yes, it is. -> sim, ela é.
+
+	--- Verbos no infinitivo ---
+		A maravilha do ingles é que a grande maioria de seus verbos nós nao precisamos conjuga-los, isso é,
+		sempre será o mesmo, exemplo:
+			- I love - eu amo
+			- You love - voce ama
+
 --- VOCABULARY ---
+
+Who -> quem
+Where -> Onde
+What -> O que
