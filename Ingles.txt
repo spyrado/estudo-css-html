@@ -1,20 +1,17 @@
 ***************** Inicio dos estudos sobre ingles 18/08/2019 *****************
 
 --- am / is / are ---
-
 	is -> é -> singular
 	are -> são -> plural
 	am -> sou -> singular
 
 -- SHORT FORM --
-
 	i AM (I'am)
 	he IS (he's)
 	she IS (she's)
 	it IS (it's)
 
 --- VERBO TO BE(ser, estar) ---
-
 	I am
 	You are
 	He/She/It is
@@ -26,9 +23,34 @@
 	A -> um/uma
 	AN -> um/uma -> esse em específico é utilizado quando a outra palavra comecar com uma vogal.
 
+--- 2 pessoa do singular ---
+	your -> seu/sua/seus/suas (de voce)
+		exemplo: 
+			What is YOUR name? -> qual é o SEU nome?
+			Who are your students? -> quem são SEUS alunos?
+
+--- pronome possissivo da 1 pessoa ---
+	my -> meu/minha/meus/minhas
+		my name is Nicolas -> MEU nome é Nicolas
+		
+
+--- Diferenca entre from e of ---
+	INFO: from representa ida a algum lugar, um ponto de partida até outro, o of
+		seria mais algo pontual, tipo a ponta do meu lapis, the tip of my pencil.
+	from -> do/da/de/a partir de
+		significado: (proveniencia, ponto de partida).
+		exemplo: 
+			I am FROM Toronto. -> eu sou de Toronto
+			I am FROM Brazil. -> eu sou do Brazil
+			I work from 7:00 to 5:00 -> Eu trabalho das 7 horas ás 5 horas.
+
+--- Porque trocamos as palavras? cidade bonita / beautiful city ---
+	Em portugues geralmente nós colocamos o Adjetivo depois do substantivo.
+		entao ficaria no exemplo: cidade(substantivo) bonita(adjetivo) <- que qualifica a cidadeß
+		em ingles isso é o inverso, ficaria primeiro o adjetivo e depois o substantivo, exemplo:
 
 
-
+	
 
 
 --- VOCABULARY ---
