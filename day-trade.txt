@@ -1,5 +1,8 @@
 ************************** DAY TRADE **************************
 
+PRICE ACTION -> São traders que trabalham sem indicadores, apenas fazendo a analise grafica.
+Análise Técnica -> São traders que operam com indicadores.
+
 
 -------- Metodologias --------
 
@@ -11,8 +14,10 @@ SOROS -> Trabalha alavancado, coloque sua banca toda, e vá colocando sua banca 
 
 -------- Indicadores --------
 
-Suporte -> barra a baixo, indicando que o pico de baixa das operacoes foi naquele ponto, caso a vela rompa esse suporte,
-  temos uma forte tendencia de baixa. (Mais acertividade se entrar no 3º fundo)
+Suporte -> barra a baixo, indicando que o pico de baixa das operacoes foi naquele ponto.
+  Quando entrar?
+    ENTRE quando as velas de baixa estiverem perdendo força (ficando menores) conforme vao chegando até o seu suporte.ß
+    NÃO ENTRE Quando as velhas abaixarem com muita força, dando a indicação que será rompida. 
 
 Resistencia -> barra a cima, indicando que o pico de alta das operacoes foi naquele ponto, caso a vela rompa essa resistencia,
   temos uma forte tendencia de alta. (Mais acertividade se entrar no 3º topo)

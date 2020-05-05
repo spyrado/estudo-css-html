@@ -33,7 +33,11 @@
 	--- pronome possissivo da 1 pessoa ---
 		my -> meu/minha/meus/minhas
 			my name is Nicolas -> MEU nome é Nicolas
-			
+
+	--- pronome possissivo da 3 pessoa ---
+		His -> dele
+			His name is Nicolas -> O nome dele é Nicolas.
+			I am HIS friend -> Eu sou amigo deleß	
 
 	--- Diferenca entre from e of ---
 		INFO: from representa ida a algum lugar, um ponto de partida até outro, o of
@@ -64,7 +68,19 @@
 			- You love - voce ama
 
 --- VOCABULARY ---
+	Who -> quem
+	Where -> Onde
+	What -> O que
 
-Who -> quem
-Where -> Onde
-What -> O que
+--- PERGUNTAS COM E SEM O Verbo TO BE ---
+	-- Com verbo to be --
+		You are Brazilian. <- afirmacao
+		Are you Brazilian? -> invertemos o verbo para perguntas
+	-- Sem verbo to be --
+		- you live alone. <- afirmacao
+		- Do you live alone? -> Adicionamos o Do para perguntas sem verbo to be.
+		- Where do you live, Mr Kit? -> Onde voce mora, mr kit?
+--- PLURAL ---
+	year -> ano
+	years -> anos
+	

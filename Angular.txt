@@ -1503,6 +1503,10 @@ Assim, quando a página principal da aplicação é carregada, o # é colocado a
 
 ------------------- Code splitting e Lazy Loading ANGULAR -------------------
 
+// Gerar FACILMENTE uma pagina com Lazy Loading já adicionada as dependencias do AppRoutingModule *-*
+    Comando CLI: ng g m pages/home --route=home --module=app
+     --route=<nome_do_seu_modulo> --module=<nome_do_modulo_pai> nesse caso, é o AppRoutingModule. 
+
 IMPORTANTE: NUNCA CARREGUE O MODULO DO COMPONENT Q VC QUEIRA DEIXAR LAZY EM app.module, se n n faria sentido
 pois ele carregaria junto as suas dependencias, pois o app.module carrega todas suas dependencias inicialmente
 
