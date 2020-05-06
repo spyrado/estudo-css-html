@@ -17,14 +17,21 @@ SOROS -> Trabalha alavancado, coloque sua banca toda, e vá colocando sua banca 
 Suporte -> barra a baixo, indicando que o pico de baixa das operacoes foi naquele ponto.
   Quando entrar?
     ENTRE quando as velas de baixa estiverem perdendo força (ficando menores) conforme vao chegando até o seu suporte.ß
-    NÃO ENTRE Quando as velhas abaixarem com muita força, dando a indicação que será rompida. 
+    NÃO ENTRE quando as velhas abaixarem com muita força, dando a indicação que será rompida. 
 
 Resistencia -> barra a cima, indicando que o pico de alta das operacoes foi naquele ponto, caso a vela rompa essa resistencia,
   temos uma forte tendencia de alta. (Mais acertividade se entrar no 3º topo)
 
-LTA -> Linha de Tendencia de Alta, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de alta)
+LTA -> Linha de Tendencia de Alta, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de alta),
+  resumindo, um LTA é um SUPORTE inclinado para cima.
+    ENTRE quando bater nesse suporte e voce identificar que vai respeitar o suporte.
+    NÃO ENTRE quando as velhas abaixarem com muita força, dando a indicação que será rompida,
+      veja o comportamento do grafico.
 
-LTB -> Linha de Tendencia de Baixa, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de baixa)
+LTB -> Linha de Tendencia de Baixa, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de baixa),
+  resumindo, uma LTB é uma RESISTENCIA inclinada para baixo.
+    ENTRE quando bater nessa resistencia (acompanhe o movimento passado do grafico antes).
+    NAO ENTRE quando as velhas indicarem uma forca muito grande, um possivel rompimento.
 
 4PC ->
 
