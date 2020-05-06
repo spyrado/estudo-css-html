@@ -20,6 +20,13 @@
 		You are
 		They are
 
+	--- QUESTIONS WORDS ---
+		WHERE -> Onde/Em que lugar
+			exemplo:
+				- Where are you from? (De onde voce é?)
+				- Where is the paint? (Onde está a tinta?ß)
+
+
 	--- Artigos Indefinidos ---
 		A -> um/uma
 		AN -> um/uma -> esse em específico é utilizado quando a outra palavra comecar com uma vogal.
@@ -83,4 +90,7 @@
 --- PLURAL ---
 	year -> ano
 	years -> anos
-	
+
+****** EU TENHO NOVAS ROUPAS ******
+
+
