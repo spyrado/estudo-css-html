@@ -22,16 +22,19 @@ Suporte -> barra a baixo, indicando que o pico de baixa das operacoes foi naquel
 Resistencia -> barra a cima, indicando que o pico de alta das operacoes foi naquele ponto, caso a vela rompa essa resistencia,
   temos uma forte tendencia de alta. (Mais acertividade se entrar no 3º topo)
 
-LTA -> Linha de Tendencia de Alta, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de alta),
+LTA -> / Linha de Tendencia de Alta, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de alta),
   resumindo, um LTA é um SUPORTE inclinado para cima.
     ENTRE quando bater nesse suporte e voce identificar que vai respeitar o suporte.
     NÃO ENTRE quando as velhas abaixarem com muita força, dando a indicação que será rompida,
       veja o comportamento do grafico.
 
-LTB -> Linha de Tendencia de Baixa, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de baixa),
+LTB -> \ Linha de Tendencia de Baixa, sempre aposte conforme a tendencia (que nesse caso sempre vai ser de baixa),
   resumindo, uma LTB é uma RESISTENCIA inclinada para baixo.
     ENTRE quando bater nessa resistencia (acompanhe o movimento passado do grafico antes).
     NAO ENTRE quando as velhas indicarem uma forca muito grande, um possivel rompimento.
+
+CANAIS -> / / OU \ \ Os canais eles sao duas linhas seja para cima ou para baixo, que "entubao a tendencia do grafico"
+  se o grafico respeitar o "formamento" de um canal, voce pode se aproveitar dessa onda seja na queda ou na alta.
 
 4PC ->
 
@@ -54,7 +57,10 @@ RETRAÇÃO -> quando uma vela atinge o suporte ou resistencia e retrai (nao romp
   com o minutos ainda no comeco por exemplo a vela bateu no horario 12:00 ou 01 02 até 12:03 ainda da, 
   porque ele ainda tem 2 vela de m1 pra forcar mais a retracao e voce ganhar com isso.
 
--------- Candles --------
+-------- PADROES DE CANDLES --------
+
+Candle de indesição -> é um candle que tem tanto um pavil relativamente grande para cima, e para baixo,
+  formando uma indesicao do mercado, de nao saber se a tendencia é subir ou descer.
 
 ENGOLFO -> 
 
