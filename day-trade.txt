@@ -62,14 +62,20 @@ RETRAÇÃO -> quando uma vela atinge o suporte ou resistencia e retrai (nao romp
 Candle de indesição -> é um candle que tem tanto um pavil relativamente grande para cima, e para baixo,
   formando uma indesicao do mercado, de nao saber se a tendencia é subir ou descer.
 
-ENGOLFO -> 
+Candle de força -> sao os candles geralmente grandes e sem pavil, indicando que o mercado está com muita forca,
+  geralmente esses candles podem romper suportes e resistencias, ou pode acontecer de sua força acabar em um suporte/resistencia,
+  gerando um novo candle chamado de candle de exaustao, ai esse outro candle tende a retrair, ESSE CENÁRIO acontece
+  tanto para candle subindo quando para candle descendo.
 
-Harami de alta -> 
+Estrela da noite -> quando se forma um candle cinza com pavil para cima e para baixo, no topo do grafico.
+  ENTRE: VENDIDO Quando acontecer esse tipo de padrao.
 
-Harami de baixa -> 
+Estrela da manhã -> quando se forma um candle cinza com pavil para cima e para baixo, na parde de baixo do grafico.
+  ENTRE: COMPRADO Quando acontecer esse tipo de padrao.
 
-Estrela da manhã ->
-
-Estrela da noite ->
-
-
+ENGOLFO -> É uma "gravida" no inverso. um candle e logo em seguida outro candle encobrindo todo o candle anterior.
+  ENTRE: Quando acontecer isso em suporte e resistencia, para confirmar o padrao de reversao
+  
+HARAMI -> Representa uma gravida, um cadle maior encobrindo o candle menor, sendo que segue a sequencia de um candle
+  MAIOR primeiro e depois um menor na seguencia, e esse menor tem que estar DENTRO do maior anterior citado.
+  ENTRE: Quando acontecer isso em suporte e resistencia, para confirmar o padrao de reversao
