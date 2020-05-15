@@ -79,3 +79,17 @@ ENGOLFO -> É uma "gravida" no inverso. um candle e logo em seguida outro candle
 HARAMI -> Representa uma gravida, um cadle maior encobrindo o candle menor, sendo que segue a sequencia de um candle
   MAIOR primeiro e depois um menor na seguencia, e esse menor tem que estar DENTRO do maior anterior citado.
   ENTRE: Quando acontecer isso em suporte e resistencia, para confirmar o padrao de reversao
+  
+OCO -> Ombro Cabeca Ombro -> quando se forma mais o menos isso /|/\/| no todo do grafico, é um sinal de reversao.
+  ENTRE: trace uma linha ____ embaixo do /|/\/| e espere ele romper e buscar a resistencia( que era suporte ) quando 
+   bater na resistencia voce vende.
+
+OCOI -> é tudo oq foi falado em OCO só que ao contrario, ele se forma em baixa.
+
+TOPO DUPLO -> Formando topo duplo e tracando um suporte abaixo desses topos, se ele romper esse suporte a tendencia,
+  é de reversao.
+
+FUNDO DUPLO -> mesma regra do TOPO DUPLO, só que ao contrario.
+
+
+Estudar padroes de reversao < ------------------
