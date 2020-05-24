@@ -44,7 +44,9 @@
 	--- pronome possissivo da 3 pessoa ---
 		His -> dele
 			His name is Nicolas -> O nome dele é Nicolas.
-			I am HIS friend -> Eu sou amigo deleß	
+			I am HIS friend -> Eu sou amigo dele
+		Her -> dela
+		  Her name is Claudia -> O nome dela é Claudia.
 
 	--- Diferenca entre from e of ---
 		INFO: from representa ida a algum lugar, um ponto de partida até outro, o of
