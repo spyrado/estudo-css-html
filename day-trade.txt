@@ -92,7 +92,11 @@ TOPO DUPLO -> Formando topo duplo e tracando um suporte abaixo desses topos, se 
 FUNDO DUPLO -> mesma regra do TOPO DUPLO, só que ao contrario.
 
 
---------- FIGURAS ---------
+--------- FIGURAS ------ ---
 
-CONTINUIDADE -> Quando o grafico faz o formato de uma bandeira, tanto pra cima quanto para baixo,
+BANDEIRA -> Quando o grafico faz o formato de uma bandeira, tanto pra cima quanto para baixo,
   te informa que a tendencia é subir ou descer, e o alvo sempre sera do tamanho do ultimo corpo gerado.
+
+ONDAS DE ELLIOTT -> Geralmente formada por tres PERNAS de tendencia, seja de baixa ou de alta, e apos ter essas tres pernas
+  a tendencia é de reversao.
+ 

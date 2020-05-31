@@ -70,6 +70,12 @@
 				- New York is a very beautiful city -> Nova York é uma cidade muito bonita.
 					- Yes, it is. -> sim, ela é.
 
+	--- That ---
+
+	também pode ser usado como objeto indefinido.
+
+	Can you repeat THAT? -> voce pode repetir ISSO?
+
 	--- Verbos no infinitivo ---
 		A maravilha do ingles é que a grande maioria de seus verbos nós nao precisamos conjuga-los, isso é,
 		sempre será o mesmo, exemplo:
@@ -82,6 +88,11 @@
 	What -> O que
 
 --- PERGUNTAS COM E SEM O Verbo TO BE ---
+
+No geral perguntas SEM o verbo to be são seguidas de DO na frente -> Do you need help?,
+	porem tem uma excecao, que seria o CAN o verbo modal, casos com CAN, nao precisamos de DO na frente,
+	exemplo: Can you repeat that, please?
+
 	-- Com verbo to be --
 		You are Brazilian. <- afirmacao
 		Are you Brazilian? -> invertemos o verbo para perguntas
@@ -89,6 +100,8 @@
 		- you live alone. <- afirmacao
 		- Do you live alone? -> Adicionamos o Do para perguntas sem verbo to be.
 		- Where do you live, Mr Kit? -> Onde voce mora, mr kit?
+
+	
 --- PLURAL ---
 	year -> ano
 	years -> anos
