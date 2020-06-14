@@ -75,3 +75,35 @@ porem para esse NODE_ENV funcionar em todas as plataformas precisamos instalar o
 ------ Criando seu servidor local com WebPack ------
 
   npm install webpack-dev-server@2.5.1 --save-dev
+
+------ Loaders ------
+
+module: {
+  rules: [
+    {
+      test: /\.js/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader'
+      } 
+    }
+  ]
+},
+
+  São normalmente caras que que fazem o intermedio de um js ou css para algo, exemplo:
+    transpilar o novo js para dar compatibilidade aos navegadores antigos, utilizamos o babel-loader,
+    para que ele faca a ponte entre .babelrc e o webpack.config.js
+      npm install babel-loader
+
+    podemos transformar css em módulos, permitindo que cada css seja específico daquela pagina.
+      npm install css-loader@0.28.4 style-loader@0.18.2 --save-dev
+
+    tudo isso usamos os loaders para fazer esse trabalho ANTES de compilar de fato.
+
+--- css-loader ---
+  Ele pega o css, converte para JSON, para que todos os outros loaders tenham acesso ao css já configurado.
+
+-- style-loader --
+  Ele pega esse css convertido em JSON pelo css-loader, e compila ele e deixa ele todo inline lá na tag style do index.html
+  igual/similar ao que o angular faz no seu modo de producao.
+    
