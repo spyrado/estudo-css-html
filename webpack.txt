@@ -107,3 +107,18 @@ module: {
   Ele pega esse css convertido em JSON pelo css-loader, e compila ele e deixa ele todo inline lá na tag style do index.html
   igual/similar ao que o angular faz no seu modo de producao.
     
+--- Configuracao de um loader ---
+  É IMPORTANTE resaltar que podemos ter mais de um loader, como no caso abaixo "style-loader!css-loader",
+    a exclamação que separa os loaders, entao se quisermos ter mais loaders é só separar por exclamacao,
+    é importante ressaltar também que quando tem mais de um loader, no mesmo objeto de regra, como é o caso abaixo,
+    ele vai carregar da DIREITA para a ESQUERDA, entao se vc tiver um loader que depende de outro, fique atento nisso.
+    module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: {
+          loader: 'style-loader!css-loader' // IMPORTANTE essa exclamacao separa um LOADER do OUTRO, E ELE COMECA DA DIREITA PARA A ESQUEDA A LER OS LOADERS
+        }
+      }
+    ]
+  },
