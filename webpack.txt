@@ -108,17 +108,72 @@ module: {
   igual/similar ao que o angular faz no seu modo de producao.
     
 --- Configuracao de um loader ---
-  É IMPORTANTE resaltar que podemos ter mais de um loader, como no caso abaixo "style-loader!css-loader",
-    a exclamação que separa os loaders, entao se quisermos ter mais loaders é só separar por exclamacao,
-    é importante ressaltar também que quando tem mais de um loader, no mesmo objeto de regra, como é o caso abaixo,
-    ele vai carregar da DIREITA para a ESQUERDA, entao se vc tiver um loader que depende de outro, fique atento nisso.
+  É IMPORTANTE ressaltar que quando usamos mais de um loader, ele carrega sempre de baixo para cima... essa é a ordem..
+    entao caso um loader dependa do outro, deixe ele na ordem de dependencia.
     module: {
     rules: [
       {
         test: /\.css$/,
-        use: {
-          loader: 'style-loader!css-loader' // IMPORTANTE essa exclamacao separa um LOADER do OUTRO, E ELE COMECA DA DIREITA PARA A ESQUEDA A LER OS LOADERS
-        }
+        use: [
+          // style-loader
+          { loader: 'style-loader' },
+          // css-loader
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+        ]
       }
     ]
   },
+
+  -- instalando mais loaders para lidar com os tipos de fonts do bootstrap --
+    Com essas configuracoes, o webpack entende que arquivo de font la do bootstrap deve ficar na raiz da pasta /dist
+    pois ele é um arquivo que será usado para que o css possa localizar e chama-las.
+    npm install url-loader@0.5.9 file-loader@0.11.2 --save-dev
+
+    regras de configuracao:
+      { 
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff' 
+      },
+      { 
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+      },
+      { 
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+        loader: 'file-loader' 
+      },
+      { 
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml' 
+      }   
+
+---- FOUC ----
+
+Isto ocorre devido ao fouc, (flash of unstyled content, ou seja, flash de um conteúdo não estilizado), 
+o que não deveria acontecer em uma aplicação. O problema é que se analisarmos o arquivo bundle.js da pasta dist, 
+veremos que os arquivos CSS foram adicionados automaticamente. Todo arquivo CSS gerada, o Webpack agrupou em um único Bundle 
+arquivos de diferentes extensões.
+
+const extractTextPlugin = require('extract-text-webpack-plugin');
+
+let plugins = []
+
+// ADICIONANDO O PLUGIN,
+// MAIS ABAIXO, MODIFICAÇÃO DO LOADER
+
+plugins.push(
+    new extractTextPlugin("styles.css")
+);
+
+npm install extract-text-webpack-plugin@3.0.0 --save-dev
+
+test: /\.css$/,
+ use: extractTextPlugin.extract({
+     fallback: 'style-loader',
+     use: 'css-loader'
+ })
