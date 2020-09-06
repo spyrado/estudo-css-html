@@ -74,11 +74,14 @@ Estrela da manhã -> quando se forma um candle cinza com pavil para cima e para 
   ENTRE: COMPRADO Quando acontecer esse tipo de padrao.
 
 ENGOLFO -> É uma "gravida" no inverso. um candle e logo em seguida outro candle encobrindo todo o candle anterior.
-  ENTRE: Quando acontecer isso em suporte e resistencia, para confirmar o padrao de reversao
+  ENTRE: Quando acontecer isso em suporte, resistencia, rompimento e FIBONACCI, para confirmar o padrao de reversao
   
 HARAMI -> Representa uma gravida, um cadle maior encobrindo o candle menor, sendo que segue a sequencia de um candle
   MAIOR primeiro e depois um menor na seguencia, e esse menor tem que estar DENTRO do maior anterior citado.
-  ENTRE: Quando acontecer isso em suporte e resistencia, para confirmar o padrao de reversao
+  ENTRE: Quando acontecer isso em suporte, resistencia, rompimento e FIBONACCI, para confirmar o padrao de reversao
+
+PIERCING -> Quando um candle está em baixo OU em ALTA e ele da um pico e volta na reversao mais o menos 50% do candle anterior.
+ ENTRE: Quando acontecer isso em suporte, resistencia, rompimento e FIBONACCI, para confirmar o padrao de reversao.
   
 OCO -> Ombro Cabeca Ombro -> quando se forma mais o menos isso /|/\/| no todo do grafico, é um sinal de reversao.
   ENTRE: trace uma linha ____ embaixo do /|/\/| e espere ele romper e buscar a resistencia( que era suporte ) quando 
@@ -91,8 +94,11 @@ TOPO DUPLO -> Formando topo duplo e tracando um suporte abaixo desses topos, se 
 
 FUNDO DUPLO -> mesma regra do TOPO DUPLO, só que ao contrario.
 
+3 SOLDADOS DE ALTA -> Quanto 3 candles de verdes aparecem na sequencia sempre um com o fundo e topo maior que o outro
+ ENTRE: Quando esse terceiro se encerrar, entre no proximo candle. 
 
---------- FIGURAS ------ ---
+
+--------- FIGURAS ---------
 
 BANDEIRA -> Quando o grafico faz o formato de uma bandeira, tanto pra cima quanto para baixo,
   te informa que a tendencia é subir ou descer, e o alvo sempre sera do tamanho do ultimo corpo gerado.
@@ -100,3 +106,27 @@ BANDEIRA -> Quando o grafico faz o formato de uma bandeira, tanto pra cima quant
 ONDAS DE ELLIOTT -> Geralmente formada por tres PERNAS de tendencia, seja de baixa ou de alta, e apos ter essas tres pernas
   a tendencia é de reversao.
  
+
+--------- CUSTO DE OPERACAO NO DAY TRADE ---------
+
+Separamos os encargos do day trade em quatro segmentos:
+  - Corretagem
+  - Custos de Bolsa
+  - Impostos
+  - Custos de estrutura.
+
+  Encerrar a operacao 2 minutos a 5 minutos ANTES do mercado fechar, caso nao faça isso a corretora vai fechar pra voce, 
+  e te cobrar por isso.
+
+
+--------- Tape Reading --------- ( ESTUDAR MAIS SOBRE ESSE TOPICO )
+
+  video sobre todos os topicos de (BOF) - (T&T) E (VAP) https://www.youtube.com/watch?v=pSiK5fn77Ec
+
+  Book de Ofertas (BOF) -> Mostra a INTENÇÃO do mercado, em comprar ativos em determinados preços.
+
+  Times and Trade (T&T) -> Mostra o que aconteceu, ou seja qual foi os precos de FATO negociados.
+
+  Volume At Price (VAP) -> Te ajuda a identificar se as negociacoes estao perdendo forca, 
+    dando a intencao de reversao, consolidacao de preco, e etc.
+    Video de ajuda https://www.youtube.com/watch?v=Xs-YrGp1XJ4.

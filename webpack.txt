@@ -177,3 +177,93 @@ test: /\.css$/,
      fallback: 'style-loader',
      use: 'css-loader'
  })
+
+
+---- IMPORTANDO SCRIPTS ----
+
+App.js
+  import 'jquery/dist/jquery.js';
+  import 'bootstrap/js/modal.js';
+
+Ao importar o jquery em um modulo, o modal.js nao consegue visualizar o jquery, pois o jquery deve pertencer ao escopo global.
+
+para colocar o Jquery em um escopo global, vc deve fazer o seguinte:
+
+va ate o arquivo webpack.config.js e faca a seguinte configuracao:
+
+const webpack = require('webpack');
+
+let plugins = [];
+
+plugins.push(new webpack.ProvidePlugin({
+  '$': 'jquery/dist/jquery.js',
+  'jQuery': 'jquery/dist/jquery.js'
+}));
+
+
+---- PLUGINS ----
+
+- //puglin que otmiza o build de producao. (Scope Hoisting)
+  plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+
+-  // aqui vou configurar para que o webpack compile todas as bibliotecas de terceiros e deixe em um arquivo separado
+  plugins.push(
+    new webpack.optimize.CommonsChunkPlugin({ 
+      name: 'vendor', 
+      filename: 'vendor.bundle.js'
+  })); 
+  module.exports = {
+
+    entry: {
+        app: './app-src/app.js',
+        vendor: ['jquery', 'bootstrap', 'reflect-metadata'] -> aqui vc indica para o vendor quais devem ser carregados.
+    },
+
+  E detalhe, ao indicar os scripts no array, vc n precisa mais importa-los no codigo, basta apenas importar o vendor.bundle.js
+
+- npm install html-webpack-plugin@2.29.0 --save-dev -> faz com que seja possível remover os scripts e links da index.html
+
+
+plugins.push(new HtmlWebpackPlugin({
+  hash: true, -> o hash irá invalidar o cash, ou seja sempre que um arquivo for gerado ele vai ter um hash diferente.
+}));
+
+
+-------- Lazy Loading e Code Spliting --------
+
+  COM WEBPACK BASTA USARMOS System.import ou import para carregarmos dinamicamente os conteudos.
+
+ - O proprio webpack quando voce passa as instrucoes para ele, ele ja faz o lazy e o code spliting daquele arquivo.
+  exemplo: 
+    async importaNegociacoes() {
+        try {
+            const { NegociacaoService } = await System.import('../domain/negociacao/NegociacaoService.js');
+            const service = new NegociacaoService();
+
+  Nessa funcao asyncrona eu digo para esperar para importar um modulo ( NegociacaoService ) esse módulo só será carregado
+   quando essa funcao(importaNegociacoes) for chamada, e uma vez que ela for chamada o webpack é inteligente para nao buscar
+   o import novamente, ele já vai saber que foi importada..
+
+   na arquitetura fica dessa forma os arquivos:
+    0-bundle.js -> seria o conteudo de System.import('../domain/negociacao/NegociacaoService.js');
+    e seria um arquivo a parte que só será chamado pelo navegador caso aconteca o import.
+    isso minifica o bundle de certa forma, e melhor a performance da aplicacao.
+
+
+----- Como adicionar enviroments com wepack? -----
+let SERVICE_URL = JSON.stringify('http://localhost:3000');
+
+if (process.env.NODE_ENV == 'production') {
+
+  SERVICE_URL = JSON.stringify('http://endereco-da-sua-api');
+
+}
+
+plugins.push(new webpack.DefinePlugin({ SERVICE_URL }));
+
+Exemplo: obtemNegociacoesDaSemana() {
+
+        return this._http
+            .get(`${SERVICE_URL}/negociacoes/semana`)
+
+Dessa forma o toda variavel que tenha SERVICE_URL o webpack vai converter para o estado atual da aplicacao (dev ou prod)

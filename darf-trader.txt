@@ -1,0 +1,34 @@
+----------------------- DARF -----------------------
+
+A declaração de Imposto de Renda é obrigatória para todas as operações de compra e venda 
+  de ativos em Bolsa, como ações e opções.
+
+
+--------- TRADE ---------
+
+TODA DESPESA QUE VOCE TEVE NA OPERAÇÃO ( CORRETAGEM ETC ), essas despesas podem ser 
+  acrescentadas ao prejuízo OU descontadas no lucro.
+
+Vale ressaltar que em caso de prejúzio a declaração também é necessário para que assim o investidor possa abater este prejuízo de lucros futuros.
+Manter o pagamento dos Darfs em dia, servirá para você comprovar na declaração de IR que cumpriu sua obrigação ao longo do ano, além de evitar multas e juros por atraso.
+
+
+DIVIDENDOS isentos de IR, porem deve ser declarado.
+JCP(Juros Sobre o Capital Próprio) -> Devem ser declarados segue passo a passo -> 
+  “Rendimentos Sujeitos à Tributação Exclusiva”, Escolha o código 10 “Juros sobre capital próprio” 
+  e informe, para cada ação que você tenha recebido JCP, o titular, o nome da fonte pagadora, 
+  seu CNPJ e o valor, como exibido no informe.
+
+--------- SWING TRADE ---------
+
+Alíquota é de 15%.
+Rendimentos inferiores à R$ 20.000, são isentos de IR e devem ser declarados no campo “Rendimentos Isentos”.
+
+anotar na planilha por quanto voce comprou, e por quanto vendeu CADA AÇÃO, PEGAR TODAS AS DESPESAS DA OPERAÇÃO E  
+
+
+--------- DAY TRADE ---------
+
+Alíquota é de 20%.
+Não é isento de IR independente do lucro.
+Todo final do mes o trader deve calcular seus trades, caso obteve GAIN no mes, ele deve declarar.
