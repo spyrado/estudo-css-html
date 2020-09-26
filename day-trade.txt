@@ -43,11 +43,13 @@ PULL BACK -> é o movimento contrario ao movimento principal do mercado, exemplo
   como movimento principal em baixa, e der uns picos de alta, esses picos de alta sao o pull back.
 
 MARTELO -> Tendencia de alta (reversão) (por via de regra o ferro do martelo deve ser 2x maior que sua aste)
+  ENTRE: Proximo a suporte / resistencia E quando a proxima vela de fato reverter a tendencia.
 
 MARTELO INVERTIDO -> Tendencia de alta (reversão) é necessário a segunda etapa, que seria a confirmação dessa tendencia,
   verificamos isso olhando para o candle seguinte, se o proximo candle estiver com a abertura superior ao fechamento do martelo
   E o fechamento desse candle estiver acima da maxima do martelo melhor ainda, podemos confirmar mais ainda caso 
   o candle esteja em uma area de suporte no grafico.
+  ENTRE: Proximo a suporte / resistencia E quando a proxima vela de fato reverter a tendencia.
 
 FIBONACCI / Ponto de Retomada -> É onde voce utiliza o pull back para entrar novamente na operacao,
   voce entra na metade da alta alterior, vai ter a alta, depois vem o pull back, quando o pull back chegar na metade,

@@ -16,12 +16,12 @@ Manter o pagamento dos Darfs em dia, servirá para você comprovar na declaraç�
 DIVIDENDOS isentos de IR, porem deve ser declarado.
 JCP(Juros Sobre o Capital Próprio) -> Devem ser declarados segue passo a passo -> 
   “Rendimentos Sujeitos à Tributação Exclusiva”, Escolha o código 10 “Juros sobre capital próprio” 
-  e informe, para cada ação que você tenha recebido JCP, o titular, o nome da fonte pagadora, 
+  e informe, para cada ação que você tenha recebido JCP, o titular, o nom e da fonte pagadora, 
   seu CNPJ e o valor, como exibido no informe.
 
 --------- SWING TRADE ---------
 
-Alíquota é de 15%.
+Alíquota é de 15%, a tributacao de 15% é em cima do seu LUCRO LÍQUIDO.
 Rendimentos inferiores à R$ 20.000, são isentos de IR e devem ser declarados no campo “Rendimentos Isentos”.
 
 anotar na planilha por quanto voce comprou, e por quanto vendeu CADA AÇÃO, PEGAR TODAS AS DESPESAS DA OPERAÇÃO E  
