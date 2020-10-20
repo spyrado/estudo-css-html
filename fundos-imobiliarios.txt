@@ -1,0 +1,5 @@
+*********************** FII (FUNDO DE INVESTIMENTO IMOBILIÁRIO) ***********************
+
+Indice de FII -> IFIX ( seria como se fosse o IBOV ), é onde medimos a média como um todo do crescimento ou não de fundos.
+
+Fundo Imobiliario 
