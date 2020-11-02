@@ -208,6 +208,10 @@ app.post('/livros', (req, res) => {
 
 ---- middleware ----
 
+IMPORTANTISSIMO -> Todo middleware DEVE ser inserido logo depois da declaração de app.
+  pois se executarmos os middlewares depois das declaracoes de rotas, eles nunca serao executados..
+  eles devem ficar apos a declaracao do app, para que possa interceptar todas as rotas.
+
 IMPORTANTE, Sua requisicao só sera executada, somente depois que todos os middlewares tiverem dado NEXT
 Sendo assim, a ordem em que os middlewares são definidos é de extrema importância!
 
