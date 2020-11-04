@@ -212,6 +212,64 @@ IMPORTANTISSIMO -> Todo middleware DEVE ser inserido logo depois da declaração
   pois se executarmos os middlewares depois das declaracoes de rotas, eles nunca serao executados..
   eles devem ficar apos a declaracao do app, para que possa interceptar todas as rotas.
 
+
+  EXEMPLO DE MIDDLEWARE CUSTOMIZADO: 
+    function logRequests(request, response, next) {
+      const { method, url } = request;
+      const logLabel = `[${method.toUpperCase()}] ${url}`;
+      console.log(logLabel);
+      return next();
+    }
+  podemos criar middlewares personalizados globais ( para se executado a cada rota que é chamada )
+    para esse tipo fazemos dessa forma:
+      //usando o middleware de logs customizado.
+      app.use(logRequests);
+
+  mas tambem podemos usar middleware para uma rota específica, que ficaria dessa forma:
+    app.get('/projects', logRequests, (request, response) => {
+      const { title } = request.query;
+      const results = title
+        ? projects.filter(project => project.title.includes(title))
+        : projects;
+      return response.json(results);
+    });
+  
+  E podemos utilizar mais de UM middleware para uma mesma rota dessa forma:
+    app.get('/projects', logRequests, middleware2, middleware3, (request, response) => {
+      const { title } = request.query;
+      const results = title
+        ? projects.filter(project => project.title.includes(title))
+        : projects;
+      return response.json(results);
+    });
+
+    o middleware também tem uma peculiaridade, ele SEMPRE VAI SER NESSA ORDEM: 
+    1 - executa a lógica ANTES do next()
+    2 - executa o next e cai na requisicao chamada e executa ela.
+    3 - CASO tenha alguma lógica DEPOIS do next() ele vai executar.
+
+    entao é sempre nessa ordem -> middleware -> rota -> middleware (caso tenha logica depois do next)
+
+    um exemplo disso seria esse:
+      function logRequests(request, response, next) {
+        const { method, url } = request;
+        const logLabel = `[${method.toUpperCase()}] ${url}`;
+        console.time(logLabel);
+        next();
+        console.timeEnd(logLabel);
+      }
+
+    também podemos travar um request com um middleware, vamos supor que queremos validar se o id da requisição é válido:
+      function validateProjectId(request, response, next) {
+        const { id } = request.params;
+
+        // Quando um middleware da um return de um response, ele nem precisa chamar o next,
+        // pois aqui eu já estou travando totalmente a operacao e o usuário recebeu esse erro.
+        if(!isUuid(id)) {
+          return response.status(400).json({ error: 'Invalid project ID.' });
+        }
+      }
+
 IMPORTANTE, Sua requisicao só sera executada, somente depois que todos os middlewares tiverem dado NEXT
 Sendo assim, a ordem em que os middlewares são definidos é de extrema importância!
 
