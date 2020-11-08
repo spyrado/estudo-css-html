@@ -1,0 +1,12 @@
+************************ REACT JS ************************
+
+para instalar o React Dom, digite:
+  yarn add react react-dom
+        OU
+  npm install react react-dom
+
+----- AUTOCOMPLETE DE HTML NO JAVASCRIPT CONFIGS ADICIONAIS NO VS CODE -----
+   Vá até COMMAND + SHIFT + P procure por Open Json ( o arquivo de config do vs code ), e adicione o codigo
+     abaixo:
+    "emmet.syntaxProfiles": { "javascript": "jsx" },
+    "emmet.includeLanguages": { "javascript": "javascriptreact" },

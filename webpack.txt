@@ -267,3 +267,10 @@ Exemplo: obtemNegociacoesDaSemana() {
             .get(`${SERVICE_URL}/negociacoes/semana`)
 
 Dessa forma o toda variavel que tenha SERVICE_URL o webpack vai converter para o estado atual da aplicacao (dev ou prod)
+
+---- LOADERS WEBPACK ----
+
+ os loaders fazem com que peguemos determinados arquivos e transformamos eles para que o browser entenda..
+  exemplo: o babel-loader fazer a traducao do js do react ou qualquer outro, para que o browser enteda.
+  css-loader, ele faz com que ele entenda os imports css.
+  image-loader -> faz com que entenda e transpile o codigo para que o browser entenda.
