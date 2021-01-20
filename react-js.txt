@@ -5,6 +5,31 @@ para instalar o React Dom, digite:
         OU
   npm install react react-dom
 
+-- Instalando webpack e loaders para o react --
+
+  yarn add @babel/core @babel/preset-env @babel/preset-react @babel/cli webpack webpack-cli
+
+-- utilizando o babel para gerar nosso bundle.js -- 
+
+-- Qual a funcao do babel? --
+ fazer com que os browsers mais antigos entendam as novas sintax do javascript moderno.
+ ou seja ele transpila o código moderno para um mais antigo para dar suporte/ compatibilidade com os browsers antigos.
+
+// aqui eu digo que ele vai executar o babel pegar todas as configuracoes definidas em babel.config.js
+// e aplicar ao arquivo src/index.js e o --out-file fala que eu quero que o código gerado vá para a pasta
+// public e crie um arquivo bundle.js
+  yarn babel src/index.js --out-file public/bundle.js
+
+-- Facilitando a vida com webpack --
+  -- Qual a funcao do webpack? --
+  automatizar processos.
+yarn add babel-loader // para que o webpack identifique o babel.config.js e carregue suas configuracoes
+
+yarn webpack --mode development // executa o webpack em modo de desenvolvimento.
+
+adicionando live reload no react:
+yarn add webpack-dev-server -D
+
 ----- AUTOCOMPLETE DE HTML NO JAVASCRIPT CONFIGS ADICIONAIS NO VS CODE -----
    Vá até COMMAND + SHIFT + P procure por Open Json ( o arquivo de config do vs code ), e adicione o codigo
      abaixo:

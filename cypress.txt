@@ -1,0 +1,38 @@
+************************ Cypress ************************
+
+---- Arquitetura do Cypress ----
+  - fixtures -> onde colocamos mocks, para facilitar os testes.
+  - integration -> onde realizamos os testes
+  - plugins -> onde colocamos os plugins
+  - support -> ????
+
+---- <reference types="cypress" /> ----
+utilizado no inicio de todo aquivo de teste
+  ele ajuda a listar os comandos e também exibe a biblioteca do cypress.
+
+  para n precisar digitar essa configuracao(<reference types="cypress" />) em todos os inicios de arquivos de teste.
+  criamos um arquivo chamado jsconfig.json e incluimos o seguinte conteudo:
+    {​​
+      "include": [
+        "/node_modules/cypress",
+        "cypress/**/*.js"
+      ]
+    }
+  e pronto, agora nao precisaremos ficar digitando aquele codigo toda hora
+
+---- PLUGINS ----
+
+- ES6 Mocha Snippets
+  auto complete para testes.
+
+---- EXECUTAR APENAS OS Its que voce deseja, ou escapar algum teste que nao deve rodar. ----
+
+  it.only -> executa apenas essa tarefa.
+  it.skip -> pula aquela task
+
+---- CYPRESS USA JQUERY ----
+  Para usar o jquery use o cy.get('#codigo').invoke('nomeDaFuncaoDoJquery').then(res => { console.log(res) });
+    exemplo: cy.get('#codigo').invoke('nomeDaFuncaoDoJquery').then(res => { console.log(res) });
+  
+  para conseguir mais que uma funcao utilizamos cy.get('#codigo').then(res => { console.log(res) });
+    sem o invoke, e ai temos toda a lib do JQuery disponível.
