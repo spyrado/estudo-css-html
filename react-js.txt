@@ -35,3 +35,39 @@ yarn add webpack-dev-server -D
      abaixo:
     "emmet.syntaxProfiles": { "javascript": "jsx" },
     "emmet.includeLanguages": { "javascript": "javascriptreact" },
+
+
+--- COMPONENTIZACAO DO REACT ---
+
+
+
+--- FRAGMANT === NG-CONTAINER DO ANGULAR ---
+
+quando voce deseja adicionar o mesmo elemento varias vezes o react nao permite fazer isso dessa forma:
+(
+  <Header />
+  <Header />
+)
+
+voce deve adicionar o fragment que seria como se fosse um container segue exemplo abaixo.
+
+import React from 'react';
+import Header from './components/Header';
+function App() {
+  return (
+    <> // ISSO É UM FRAGMENT
+      <Header />
+      <Header />
+      <Header />
+    </> // E AQUI VC FECHA.
+  );
+}
+
+export default App;
+
+ou se nao quiser usar o fragment pode usar direto um vetor que já funciona tambem
+
+[
+  <Header />,
+  <Header />
+]
