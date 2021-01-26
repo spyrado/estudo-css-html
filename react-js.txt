@@ -71,3 +71,13 @@ ou se nao quiser usar o fragment pode usar direto um vetor que já funciona tamb
   <Header />,
   <Header />
 ]
+
+--- Como atualizar um component react? (useState) ---
+
+- const [projects, setProjects] = useState(['Desenvolvimento de app', 'Front-end web']);
+  Retorna um valor e uma função para atualizar o valor.
+
+  quando utilizamos por exemplo: setProjects([...projects, 'New Item']);
+    estamos falando que quero atualizar projects na tela do UI.
+    ou seja o setProjects identifica os argumentos passados e inclui no estado definido que é projects,
+    nesse caso estou passando um novo array de projects, ai ele inclui isso em projects e atualiza a UI
