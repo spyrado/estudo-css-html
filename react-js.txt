@@ -81,3 +81,28 @@ ou se nao quiser usar o fragment pode usar direto um vetor que já funciona tamb
     estamos falando que quero atualizar projects na tela do UI.
     ou seja o setProjects identifica os argumentos passados e inclui no estado definido que é projects,
     nesse caso estou passando um novo array de projects, ai ele inclui isso em projects e atualiza a UI
+
+
+--- Adicionando css ao react ---
+
+  yarn add style-loader css-loader
+
+  adicionar no webpack a seguinte configuracao:
+    {
+        test: /\.css/,
+        exclude: /node_modules/, 
+        use: [
+          { loader: 'style-loader' }, // vai pegar oq o css loader identificou e injetar isso dentro do html.
+          { loader: 'css-loader' }, // vai ler o arquivo e interpretar as importacoes que tem la dentro.
+        ]
+      }
+
+--- Adicionando FILES IMAGENS ao react ---
+  yarn add file-loader
+  adicionar no webpack a seguinte configuracao:
+  {
+    test: /.*\.(gif|png|jpe?g)$/i,
+    use: {
+      loader: 'file-loader'
+    }
+  }
