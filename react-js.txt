@@ -72,7 +72,7 @@ ou se nao quiser usar o fragment pode usar direto um vetor que já funciona tamb
   <Header />
 ]
 
---- Como atualizar um component react? (useState) ---
+--- Como atualizar um component react? (useState) HOOK ---
 
 - const [projects, setProjects] = useState(['Desenvolvimento de app', 'Front-end web']);
   Retorna um valor e uma função para atualizar o valor.
@@ -106,3 +106,11 @@ ou se nao quiser usar o fragment pode usar direto um vetor que já funciona tamb
       loader: 'file-loader'
     }
   }
+
+--- COMO CRIAR SERVICOS COM REACT ---
+
+yarn add axios -> esse cara que lida com as requisicoes.
+
+--- ATUALIZANDO COMPONENTES VIA API ---
+
+componentDidMount E useEffect ambos seriam similar a um NgOnInit ou seja para carregar apis e etc sao bem interecantes.
