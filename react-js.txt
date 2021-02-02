@@ -114,3 +114,26 @@ yarn add axios -> esse cara que lida com as requisicoes.
 --- ATUALIZANDO COMPONENTES VIA API ---
 
 componentDidMount E useEffect ambos seriam similar a um NgOnInit ou seja para carregar apis e etc sao bem interecantes.
+
+useEffect -> tem dois parametros o primeiro é qual funcao eu quero disparar.
+  o segundo parametros é quando eu quero disparar essa funcao.
+  exemplo:
+  se eu quisesse que essa funcao fosse disparada apenas quando o componente fosse mostrado em tela eu deixava dessa forma
+  useEffect(() => {}, []); // nao passo nenhum item no array, ou seja faca o seu ciclo normal de carregamento.
+  useEffect(() => {}, [projects]) -> aqui estou falando, dispare minha funcao TODA VEZ que HOUVER uma alteracao na
+    prop projects.
+
+--- como fazer funcionar async/await no babel ---
+
+yarn add @babel/plugin-transform-runtime -D
+
+//babel.config.js
+module.exports = {
+  presets: [ // presets geralmente sao desenvolvimento de terceiros
+    '@babel/preset-env',
+    '@babel/preset-react',
+  ],
+  plugins: [
+    '@babel/plugin-transform-runtime' <- esse cara aqui
+  ]
+};
