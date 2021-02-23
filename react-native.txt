@@ -1,2 +1,16 @@
 *********  React Native *********
 
+StatusBar -> é a barra de status onde fica a bateria wifi hora e etc..
+  props de StatusBar:
+    barStyle -> aqui eu posso definir qual cor vai ficar todos os "texto/icones da StatusBar.
+    backgroundColor -> para o android definimos isso caso agt queira um background, um exemplo é 
+      deixar a statusBar do android com a mesma cor da aplicacao
+    translucent -> quando eu desejo que o conteudo possa ficar abaixo da statusBar do android
+    dentre outras props intereçantes https://reactnative.dev/docs/statusbar
+
+
+******* PERFORMANCEEE ********
+
+Para uso de listas pesadas utilize o FlatList pois ele carrega os items da lista apenas os que 
+  estao visiveis na tela, conforme vai fazendo o scroll vai carregamento mais.
+  diferente do scroll view que n ajuda na performance, mas tem a mesma funcionalidade VISUAL do flatlist
