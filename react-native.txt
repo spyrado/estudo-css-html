@@ -14,3 +14,13 @@ StatusBar -> é a barra de status onde fica a bateria wifi hora e etc..
 Para uso de listas pesadas utilize o FlatList pois ele carrega os items da lista apenas os que 
   estao visiveis na tela, conforme vai fazendo o scroll vai carregamento mais.
   diferente do scroll view que n ajuda na performance, mas tem a mesma funcionalidade VISUAL do flatlist
+
+******* EVENTOS *******
+
+  No react native nao existe on click, iremos utilizar o on press
+
+******* BOTOES *******
+
+O React por padrao tem um button que já está estilizado tanto para ios como para android, mas podemos
+ tambem usar outros tipos de botoes, eles sao nomeados como touchableAlgumaCoisa
+ podemos escoler um que se destaca ao clicar um q fica opaco ao clicar e assim por diante.
