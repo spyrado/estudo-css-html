@@ -1,0 +1,26 @@
+***** COMO FUNCIONA? *****
+
+***** VAMOS instalar *****
+ o yarn add typescript e yarn add express
+
+  feito isso criaremos uma pasta chamada source e dentro dela um arquivo chamado index.typescript
+    dentro desse arquivo colocaremos a seguinte declaracao:
+      import express from 'express'; // OBS: como é typescript nao precisamos utilizar require, ele já entende o import
+      const app = express();
+
+      porem ele nao faz o autocomplete... para fazer o autocomplete devemos passa o mouse emcima
+        da paravra from 'express', e lá vai aparecer oq vc deve fazer, nesse caso apareceu
+         que devemos incluir um Try `npm i --save-dev @types/express`, que com yarn seria:
+          yarn add @types/express -D
+
+      e pronto, fazendo isso o intelisence vai identificar tudo que precisa para fazer o autocomplete.
+
+***** COMPILANDO O TYPESCRIPT *****
+
+  para compilar o projeto node fariamos o seguinte:
+    node src/index.ts
+  porem o node nao consegue entender um arquivo typescript, entao temos que usar o bin do typescript
+    chamado de tsc localizado em node_modules/.bin
+  e devemos executar:
+  yarn tsc src/index.ts
+
