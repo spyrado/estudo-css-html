@@ -1,5 +1,10 @@
 ************************ REACT JS ************************
 
+INSTALACAO SIMPLES E PRATICA:
+  create-react-app nome-do-seu-projeto --template=typescript
+    dessa forma o react já vai criar o projeto completo pra voce com todas as dependencias.
+    OBS: seria a mesma coisa que dar um ng new nome-projeto no angular.
+
 para instalar o React Dom, digite:
   yarn add react react-dom
         OU

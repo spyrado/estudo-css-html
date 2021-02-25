@@ -1,0 +1,23 @@
+************** FERRAMENTAS UTEIS ******************
+
+--- PADRONIZACAO DE CODIGO ---
+  utilize o arquivo ".editorconfig"
+  para padronizar a escrita do código da equipe, para isso deve-se baixar o plugin do editor config,
+  basta procurar no menu de extensoes e baixar.
+
+--- LINT COM TYPESCRIPT ---
+
+yarn add eslint -D -> para instalar
+yarn eslint --init -> para iniciar nosso eslint, ele fará algumas perguntas, selecione a ultima
+  para forçar o code style, selecione depois a primeira opcao javascript import export, e dps a primeira
+  novamente caso utilize React
+  responda mais algumas perguntas, e dps caso esteja utilizando yarn nao confirme a opcao de usar npm,
+  coloque nao e ele vai gerar um script a cima copie todo ele de 
+  yarn add E_COLE_AQUI_O_SCRIPT -D
+
+feito isso podemos criar um arquivo .eslintignore
+e la colocar tudo que deve ser ignorado por ele
+
+--- PRETTIER ---
+
+yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
