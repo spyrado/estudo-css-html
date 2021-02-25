@@ -24,3 +24,14 @@
   e devemos executar:
   yarn tsc src/index.ts
 
+  porem por nao conter um arquivo tsconfig.json ele vai gerar alguns erros, entao devemos gerar esse arquivo, 
+    pelo comando:
+      yarn tsc --init
+  
+  e agora podemos rodar apenas "yarn tsc" que ele já vai executar o transpiler
+
+  e para ficar ainda melhor vamos migrar esse transpiler para uma pasta dist, indo ate tsconfig.json
+    descomentando esse codigo:
+      "outDir": "./dist", ele vai estar apenas como "./" adicione dist, e compile novamente,
+        agora todos os arquivos .ts dentro de src, vao para a pasta dist/ como .js
+
