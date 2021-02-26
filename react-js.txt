@@ -147,3 +147,11 @@ module.exports = {
 
   para configurar rotas iremos instalar uma lib famosa chamada:
     yarn add react-router-dom
+
+-> Switch -> quando fazemos um Switch estamos indicando para a aplicação que quando ela mudar para uma das rotas
+  definidas em <Route> ela deve trocar de rota, se utilizarmos apenas Route sem Switch, ao redirecionar para outra pagina
+  iremos ter 2 rotas em uma unica pagina.
+  <Switch>
+		<Route path="/" exact component={Dashboard} />
+		<Route path="/repository" exact component={Repository} />
+	</Switch>
