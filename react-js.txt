@@ -128,7 +128,7 @@ useEffect -> tem dois parametros o primeiro é qual funcao eu quero disparar.
   useEffect(() => {}, [projects]) -> aqui estou falando, dispare minha funcao TODA VEZ que HOUVER uma alteracao na
     prop projects.
 
---- como fazer funcionar async/await no babel ---
+--- COMO FAZER FUNCIONAR ASYNC/AWAIT NO BABEL ---
 
 yarn add @babel/plugin-transform-runtime -D
 
@@ -142,3 +142,8 @@ module.exports = {
     '@babel/plugin-transform-runtime' <- esse cara aqui
   ]
 };
+
+--- CONFIGURAÇÃO DE ROTAS ---
+
+  para configurar rotas iremos instalar uma lib famosa chamada:
+    yarn add react-router-dom
