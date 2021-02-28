@@ -1,0 +1,62 @@
+--- STYLED COMPONENTES ---
+
+npm install --save-dev styled-components
+
+junto da lib, instale a extensao do styled components no vs code, para ficar melhor.
+
+
+--- Criando Componentes com o Styled Components ---
+
+export const Button = styled.button`
+  background: transparent;
+  border: 1px solid blue;
+  padding: 0.2rem 2rem;
+`;
+
+<Button>CLIQUE AQUI</Button> -> fazendo isso temos um componente chamado  Button com todos os estilos.
+
+
+<ThemeProvider> -> com ele conseguimos passar variaveis globais para toda a aplicacao, podendo 
+desde criar temas passando cores até espacos, enfim podemos passar qualquer coisa.
+
+  // import styled, { ThemeProvider } from 'styled-components'
+
+  const Box = styled.div`
+    color: ${props => props.theme.color}; // aqui é como acessamos essa informacao
+  `
+
+  render(
+    <ThemeProvider theme={{ color: 'mediumseagreen' }}> // aqui passamos o theme e a variavel
+      <Box>I'm mediumseagreen!</Box>
+    </ThemeProvider>
+  )
+
+podemos criar variaveis javascript e passar dentro dos estilos css, enfim, podemos fazer qualquer coisa
+  que o javascript permita fazer junto com a template string.. isso é muito bom.
+
+--- GLOBAL STYLE ---
+
+const App: React.FC = () =>
+  (
+    <>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+      <GlobalStyle/>
+    </>
+  );
+
+  import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #F0F0F5;
+  }
+`;
