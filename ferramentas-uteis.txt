@@ -21,3 +21,10 @@ e la colocar tudo que deve ser ignorado por ele
 --- PRETTIER ---
 
 yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+--- POLISHED ---
+
+ yarn add polished
+
+ Ele tem funções que melhoram a compatibilidade com pessoas com dautonismo por exemplo:
+   Vamos supor que temos que escurecer uma cor verde, ele vai pegar essa cor ver a porcentagem de escuro que queremos e colocar a cor mais próxima que não afete a experiencia de usuários com daltonismo e tals, essa lib é muito interessante.
