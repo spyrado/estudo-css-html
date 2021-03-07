@@ -27,6 +27,8 @@ O React por padrao tem um button que já está estilizado tanto para ios como pa
 
 ******* NAVIGATION *******
 
+  OBS: SIGA A DOC: https://reactnavigation.org/docs/getting-started
+  
 - yarn add @react-navigation/native
 - yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 - Para mac devemos instalar o cocoapods caso nao tenhamos ele instalado.
@@ -34,4 +36,3 @@ O React por padrao tem um button que já está estilizado tanto para ios como pa
 - e ele irá instalar as dependencias necessárias
 
 caso esteja utilizando npm leia a doc, lá também tem os instaladores para npm
-doc: https://reactnavigation.org/docs/getting-started
