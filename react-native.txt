@@ -49,3 +49,24 @@ caso esteja utilizando npm leia a doc, lá também tem os instaladores para npm
 
   SEMPRE QUE RODAR o POD INSTALL vc deve rodar o app dnv ou seja yarn ios ou npx run ios
 
+******* IMAGENS EM APPS *******
+
+para fazer o app parar de reclamar da imagem, apenas crie uma pasta chamada @types/index.d.ts
+  e coloque essa linha nele:
+    declare module '*.png';
+  e pronto o app parará de acusar erro ao importar imagens.
+  
+Diferente da web, para exibirmos imagens melhores para diferentes tipos de densidade de pixel,
+  devemos ter o mesmo nome de arquivo, porem com densidade de pixels diferentes.
+  
+  O React automaticamente detecta isso e reflete para o dispositivo atual.
+
+  Além disso, se você tiver 
+    my-image.ios.png e 
+    my-image.android.png, 
+  o packager irá escolher o arquivo correto para a plataforma.
+
+  Você também pode usar os sufixos @2x e @3x para fornecer imagens para diferentes densidades de tela.
+    image.png
+    image@2x.png
+    image@3x.png
