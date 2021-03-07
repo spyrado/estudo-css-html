@@ -28,11 +28,24 @@ O React por padrao tem um button que já está estilizado tanto para ios como pa
 ******* NAVIGATION *******
 
   OBS: SIGA A DOC: https://reactnavigation.org/docs/getting-started
-  
+
 - yarn add @react-navigation/native
 - yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+- yarn add @react-navigation/stack
 - Para mac devemos instalar o cocoapods caso nao tenhamos ele instalado.
 - apos isso devemos ir para a pasta meuprojetoapp/ios e executar pod install
 - e ele irá instalar as dependencias necessárias
 
 caso esteja utilizando npm leia a doc, lá também tem os instaladores para npm
+
+.Navigator 
+  por padrao ele tem um header ativo, podemos customizar esse header, porem caso agt não queira esse header
+  podemos utilizar a prop screenOptions e definir para  headerShow: false podemos definir a estilizacao do card
+  com o cardStyle e mt mais
+.Screen -> aqui damos um nome para relacionar com o nosso componente e passamos o componente
+
+
+******* POD INSTALL *******
+
+  SEMPRE QUE RODAR o POD INSTALL vc deve rodar o app dnv ou seja yarn ios ou npx run ios
+
