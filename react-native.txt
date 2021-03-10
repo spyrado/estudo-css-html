@@ -55,7 +55,7 @@ para fazer o app parar de reclamar da imagem, apenas crie uma pasta chamada @typ
   e coloque essa linha nele:
     declare module '*.png';
   e pronto o app parará de acusar erro ao importar imagens.
-  
+
 Diferente da web, para exibirmos imagens melhores para diferentes tipos de densidade de pixel,
   devemos ter o mesmo nome de arquivo, porem com densidade de pixels diferentes.
   
@@ -70,3 +70,75 @@ Diferente da web, para exibirmos imagens melhores para diferentes tipos de densi
     image.png
     image@2x.png
     image@3x.png
+
+
+******* INCLUINDO FONTES DENTRO DO REACT NATIVE *******
+
+artigo de consulta: https://medium.com/@mehrankhandev/ultimate-guide-to-use-custom-fonts-in-react-native-77fcdf859cf4
+
+Pode baixar uma do google fonts se for o caso, mas tem q baixar mesmo, pra ter o arquivo .tff em maos, e
+  incluir esse arquivo dentro do codigo.
+
+Você precisa verificar o nome do arquivo antes de usá-lo. O Android usará o nome da fonte, 
+  mas no IOS usará o “nome PostScript”. É a parte complicada, deixe-me explicar para você.
+
+******* INPUT *******
+  TextInput keyboardAppearance="dark" -> Apenas para ios conseguimos controler qual a cor que o teclado irá abrir.
+
+******* VECTOR ICONS *******
+
+  https://www.npmjs.com/package/react-native-vector-icons
+  npm i react-native-vector-icons
+
+  vai para a pasta ios e digite pod install
+
+  para colocar a fonte que voce deseja siga o tutorial no link OU, para IOS va ate ios/seuProjeto/info.plist
+    e dentro de UIAppFonts insira a fonte desejada
+    <key>UIAppFonts</key>
+    <array>
+      <string>RobotoSlab-Medium.ttf</string>
+      <string>RobotoSlab-Regular.ttf</string>
+      <string>Feather.ttf</string>
+    </array>
+
+  rode yarn ios
+
+  para android
+    vá até: android/app/build.gradle
+    lá no final do arquivo digite isso:
+      project.ext.vectoricons = [
+        iconFontNames: [ 'Feather.ttf'] // Name of the font files you want to copy
+      ]
+      apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+  e depois caso utilize android rode yarn android
+
+******* HELPERS *******
+  yarn add react-native-iphone-x-helper
+    helper iphone X entre outras coisas ele calcula o tamanho da 
+      barrinha embaixo do iphone para dar o espaco correto, quando for 
+      versoes que tenham essa barrinha exemplo iphone x para cima..
+
+******* COMO FAZER UM TECLADO SUBIR E A TELA ACOMPANHAR ELE? *******
+
+KeyboardAvoidingView -> faz com que o conteudo da tela acompanhe o teclado
+  e nela temos que setar algumas configs para android e para ios
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      enabled
+    >
+
+ Texto nesse formato geralmente buga, entao é recomendado envolver os textos
+  dentro de uma <View></View>
+
+
+Dentro de KeyboardAvoidingView caso necessário, utilizamos um ScrollView
+  para que alem de subir o teclado o usuário possa scrollar a tela
+  para isso utilizamos dessa forma:
+    <ScrollView 
+      contentContainerStyle={{flex: 1}}
+      keyboardShouldPersistTaps="handled"
+    >
+  handled significa que se eu clicar nos inputs e rolar, ele n vai fechar
+   o teclado, mas se eu apenas clicar e n fazer mais nada, ele fecha o teclado.
