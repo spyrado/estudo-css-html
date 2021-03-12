@@ -42,6 +42,8 @@ caso esteja utilizando npm leia a doc, lá também tem os instaladores para npm
   por padrao ele tem um header ativo, podemos customizar esse header, porem caso agt não queira esse header
   podemos utilizar a prop screenOptions e definir para  headerShow: false podemos definir a estilizacao do card
   com o cardStyle e mt mais
+  -> parametro initialRouteName="nomeDaRota" indica para o react qual será
+    a primeira rota da aplicação.
 .Screen -> aqui damos um nome para relacionar com o nosso componente e passamos o componente
 
 
@@ -142,3 +144,13 @@ Dentro de KeyboardAvoidingView caso necessário, utilizamos um ScrollView
     >
   handled significa que se eu clicar nos inputs e rolar, ele n vai fechar
    o teclado, mas se eu apenas clicar e n fazer mais nada, ele fecha o teclado.
+
+******* DEVICE FARM DO GOOGLE *******
+
+ONDE PODEMOS TESTAR NOSSA APLICACAO PARA VER SE ELA ESTA RODANDO BEM EM DIFERENTES TIPOS DE CELULARES
+
+******* HOOKS *******
+
+  userRef -> utilizado para referenciar um item, por exemplo um input, e tendo acesso a ele
+    conseguimos manipular valor foco e etc.
+  useCallback -> utilizado quando queremos atualizar uma informacao sempre que que a funcao é chamada.
