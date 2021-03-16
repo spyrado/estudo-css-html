@@ -157,7 +157,26 @@ ONDE PODEMOS TESTAR NOSSA APLICACAO PARA VER SE ELA ESTA RODANDO BEM EM DIFERENT
   para remover teremos que colocar:
     autoCorrect={false} -> remove as sugestoes de texto.
     autoCapitalize={'none'} -> remove ao digitar o primeiro digito ele n fica em maiuscula
-    keyboardType={'email-address'} -> indico que vou receber um e-mail nesse campo
+    keyboardType={'email-address'} -> indico que vou receber um e-mail nesse campo, e ele 
+      habilita o @ no keyboard
+
+      <Input
+        autoCorrect={false}
+        autoCapitalize={'none'}
+        keyboardType={'email-address'}
+        name="email"
+        icon="mail"
+        placeholder="E-mail"
+      />
+
+  para senhas utilizamos apenas a prop secureTextEntry
+  
+    <Input
+      name="password"
+      icon="lock"
+      placeholder="Senha"
+      secureTextEntry
+    />
 
 ******* HOOKS *******
 
