@@ -149,6 +149,16 @@ Dentro de KeyboardAvoidingView caso necessário, utilizamos um ScrollView
 
 ONDE PODEMOS TESTAR NOSSA APLICACAO PARA VER SE ELA ESTA RODANDO BEM EM DIFERENTES TIPOS DE CELULARES
 
+******* ACESSIBILIDADE *******
+
+  PARA tornarmos os inputs mais acessíveis em determinados caso, como por exemplo o e-mail, se mantermos
+   o comportamento padrao todo primeiro digito do input será em maiusculo.
+
+  para remover teremos que colocar:
+    autoCorrect={false} -> remove as sugestoes de texto.
+    autoCapitalize={'none'} -> remove ao digitar o primeiro digito ele n fica em maiuscula
+    keyboardType={'email-address'} -> indico que vou receber um e-mail nesse campo
+
 ******* HOOKS *******
 
   userRef -> utilizado para referenciar um item, por exemplo um input, e tendo acesso a ele
