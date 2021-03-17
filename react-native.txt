@@ -187,6 +187,23 @@ ONDE PODEMOS TESTAR NOSSA APLICACAO PARA VER SE ELA ESTA RODANDO BEM EM DIFERENT
       ...
       returnKeyType={'send'}
     />
+    
+  returnKeyType={'next'} -> usado para ir para o proximo input.
+    <Input
+      ...
+      returnKeyType={'send'}
+    />
+
+******* DICAS *******
+
+  para passarmos uma propriedade ref para o nosso componente devemos fazer algumas coisas.
+    o nosso componente n seria mais do tipo React.FC , agora ele passa a ser React.ForwardRefRenderFunction
+
+    nterface InputRef {
+      focus(): void;
+    }
+
+    const Input: React.ForwardRefRenderFunction<InputRef ,InputProps> = ({ name, icon, ...rest }, ref) 
 
 ******* HOOKS *******
 
