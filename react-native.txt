@@ -210,3 +210,10 @@ ONDE PODEMOS TESTAR NOSSA APLICACAO PARA VER SE ELA ESTA RODANDO BEM EM DIFERENT
   userRef -> utilizado para referenciar um item, por exemplo um input, e tendo acesso a ele
     conseguimos manipular valor foco e etc.
   useCallback -> utilizado quando queremos atualizar uma informacao sempre que que a funcao é chamada.
+
+******* VALIDAÇÃO DE FORMULÁRIOS *******
+  em React consumamos usar o YUP como validador de formulários.
+  se voce utiliza Typescrip devemos instalar os @types dele.
+
+  npm install yup
+  npm install @types/yup -D

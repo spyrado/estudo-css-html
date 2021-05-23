@@ -1,0 +1,31 @@
+******** IMPOSTO DE RENDA ********
+
+---- AÇÕES ----
+
+	-- Como declarar? --
+		Para declarar ações, primeiro você precisa estar com todos os informes de rendimentos e eles são fornecidos pelos BANCOS ESCRITURADORES
+		todo ATIVO listado na BOLSA tem o seu BANCO ESCRITURADOR (ITAU, BRADESCO, BANCO DO BRASIL E ETC.)
+
+		E caso você não receba esse informe, você pode entrar em contato com o RI(RELAÇÃO COM OS INVESTIDORES) e perguntar com o BANCO ESCRITURADOR
+		dessa empresa, e assim ligar para esse banco e solicitar o informe.
+
+		EXEMPLO PRATICO:
+		 Tenho na minha carteira:
+		 ITUB4 -> banco itau que é o banco escriturador dessa empresa (exemplo)
+		 PETR4 -> banco do brasil é o banco escriturador dessa empresa (exemplo)
+		 DMMO3 -> banco bradesco é o dessa aqui..
+
+		 voce vai ter que caso não receba o informe desses bancos com esses ativos, voce deve procurar o banco e pedir o informe.
+
+		 ENTRE NO CEI ( CANAL ELETRONICO DO INVESTIDOR )
+
+	-- COMO DECLARAR AÇÕES COMPRADAS E VENDIDAS NO MESMO ANO? --
+		Ou seja comprei 100 ações de PETR4 e VENDI as 100 ações no MESMO ANO
+		eu NÃO declaro essas ações em BENS E DIREITOS, LÁ EU SÓ DECLARO ATIVOS QUE EU TIVER NA CARTEIRA AINDA.. NO FINAL DO ANO.. 31/12/20XX
+
+		SE OBTEVE LUCRO E A MOVIMENTAÇÃO FOI ABAIXO DE 20MIL
+			LUCROS ISENTOS E NÃO TRIBUTÁVEIS
+		SE OBTEVE LUCRO E A MOVIMENTAÇÃO FOI ACIMA DE 20MIL ( LUCRO TRIBUTÁVEL )
+			VAI NO MENU RENDA VARIÁVEL
+		SE OBTEVE PREJUÍZO NA VENDA
+			VAI NO MENU RENDA VARIÁVEL

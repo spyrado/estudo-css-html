@@ -1,0 +1,16 @@
+Jobs -> Jobs podem ser nomeados como você desejar, porem evite nomea-lo com palavras reservadas.
+	jobs obrigatóriamente devem contem um script abaixo dele.
+Exemplo de um Job:
+	job1:
+		script: xpto
+
+	meu primeiro job:
+		script: xpto
+
+SCRIPT -> O script é onde conseguimos falar para o docker o que queremos executar dentro daquele ambiente.
+  exemplo...
+		instalando angular e gerando build de prod:
+			script: 
+				- cd indo_para_o_package.json_do_angular/etc
+				- npm install
+				- npm run build:prod
