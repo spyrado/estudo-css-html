@@ -1,4 +1,6 @@
-Jobs -> Jobs podem ser nomeados como você desejar, porem evite nomea-lo com palavras reservadas.
+*********************** JOBS ***********************
+
+Jobs podem ser nomeados como você desejar, porem evite nomea-lo com palavras reservadas.
 	jobs obrigatóriamente devem contem um script abaixo dele.
 Exemplo de um Job:
 	job1:
@@ -7,10 +9,57 @@ Exemplo de um Job:
 	meu primeiro job:
 		script: xpto
 
-SCRIPT -> O script é onde conseguimos falar para o docker o que queremos executar dentro daquele ambiente.
+*********************** SCRIPT ***********************
+
+ -> O script é onde conseguimos falar para o docker o que queremos executar dentro daquele ambiente.
   exemplo...
 		instalando angular e gerando build de prod:
 			script: 
 				- cd indo_para_o_package.json_do_angular/etc
 				- npm install
 				- npm run build:prod
+
+image: -> ao trabalhar no ambiente docker podemos pegar algumas "imagens" que precisamos..
+	um bom exemplo é que se eu tentar executar um npm install como script, ele não rodará pois, tem a dependencia
+	do node para executálo.
+	e o docker fornece imagens dessas dependencias para que ele consiga instalar essa dependencia e dar sequencia 
+	nos scripts.
+	EXEMPLO: https://hub.docker.com/search?q=node&type=image
+		// Aqui eu estou falando instala o node pegando a imagem que o docker nos fornece ( site acima )
+		// e executa esse job (construir site) e execute todos os scripts dentro dele.
+		image: node
+		construir site:
+			script:
+				- cd website
+				- npm install
+				- npm run build
+
+*********************** STAGE ***********************
+
+	Por padrao o gitlab caso não tenha STAGE ele considera a seguinte linha de raciocinio:
+
+	  stages:
+			- build
+			- test
+			- deploy
+
+	IMPORTANTE: FONTE(https://docs.gitlab.com/ee/ci/yaml/README.html#stages)
+		A ordem dos stages itens define a ordem de execução dos trabalhos:
+			Os trabalhos no mesmo estágio são executados em paralelo.
+			Os trabalhos no próximo estágio são executados depois que os trabalhos do estágio anterior são concluídos com sucesso.
+
+*********************** ARTIFACTS ***********************
+
+	Usamos artefatos para indicar uma lista de arquivos e diretórios que são anexados á tarefa quando ela é 
+	bem sucedida
+	falha OU sempre.
+	isso é configurado com o artifact:when
+
+	exemplo de uso:
+	artifacts:
+    when: always -> quando será disponibilizado ( sempre (always) mesmo se der sucesso ou falha. )
+    expire_in: 2h20min -> remova os arquivos disponibilizado depois de 2 horas e 20 min
+    paths:
+      - ./website/build/missaodevops -> disponibilize todo esse conteudo.
+
+
