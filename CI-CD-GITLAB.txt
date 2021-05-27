@@ -9,6 +9,11 @@ Exemplo de um Job:
 	meu primeiro job:
 		script: xpto
 
+
+Cada job é uma espécie de container, e um job não guarda a referente para a execução do proximo job
+	temos que usar o cache nesse caso
+
+
 *********************** SCRIPT ***********************
 
  -> O script é onde conseguimos falar para o docker o que queremos executar dentro daquele ambiente.
@@ -62,4 +67,39 @@ image: -> ao trabalhar no ambiente docker podemos pegar algumas "imagens" que pr
     paths:
       - ./website/build/missaodevops -> disponibilize todo esse conteudo.
 
+*********************** 
+	SURGE.SH ( NAO TEM A VER COM O GITLAB POREM ELE PUBLICA CONTEUDOS ESTATATICOS PARA APRENDIZADO É OTIMO.) 
+***********************
 
+https://surge.sh/
+
+	npm install --global surge
+
+	surge login ( aqui voce cria um login )
+
+	surge list -> lista os domínios que voce tem
+
+	surge --project path/do/projeto/que/sera/publicado --domain nome-do-dominio.surge.sh
+
+*********************** CACHE ***********************
+
+	Guarda valores, para que um job especifico recupere, ou caso o cache fique em local global (na raiz do yml)
+	todo job executado executa ele.
+
+	cache: -> aqui eu estou definindo o cache globalmente, ou seja todo job vai usa-lo.
+		paths:
+			- my/files
+
+	rspec:
+		script: test
+		cache: -> aqui eu uso o cache em um job especifico, logo esse cache irá sobrescrevrer tudo do cache global, cachear apenas - binaries/
+			key: rspec
+			paths:
+			- binaries/
+
+*********************** BEFORE E AFTER SCRIPT ***********************
+
+	before_script E after_script ambos fazem exatamente o que está escrito, 
+		executam um script ANTES ou DEPOIS do script do job por exemplo ( caso esteja dentro do job essa nomenclatura) OU
+		executam um script ANTES ou DEPOIS de todos os jobs, caso essa nomenclatura esteja no espaço GLOBAL
+ 
