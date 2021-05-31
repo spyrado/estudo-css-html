@@ -102,4 +102,11 @@ https://surge.sh/
 	before_script E after_script ambos fazem exatamente o que está escrito, 
 		executam um script ANTES ou DEPOIS do script do job por exemplo ( caso esteja dentro do job essa nomenclatura) OU
 		executam um script ANTES ou DEPOIS de todos os jobs, caso essa nomenclatura esteja no espaço GLOBAL
+
+	before_script ->
+
+	after_script -> uma das vantagens é separar scrips essenciais que devem executar independente se no seu
+		script normal falhar algo, entao exemplo.. independente se falhar o job deve mandar um e-mail, entao colocamos 
+		essa linha de comando no after_script, que vai executar independente de falha ou sucesso.
+
  
