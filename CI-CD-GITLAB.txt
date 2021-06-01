@@ -109,4 +109,19 @@ https://surge.sh/
 		script normal falhar algo, entao exemplo.. independente se falhar o job deve mandar um e-mail, entao colocamos 
 		essa linha de comando no after_script, que vai executar independente de falha ou sucesso.
 
+*********************** ENVIRONMENT ***********************
+
+	Podemos usar environment em stages de deploy, para indicarmos em qual ambiente estamos fazendo aquele deploy
+		EXEMPLO:
+			environment:
+				name: homologacao
+    		url: http://nick-teste.surge.sh
+
+	Podemos também indicar para o gitlab em qual url esse ambiente irá carregar, passando a url propertie.
+		environment:
+			name: homologacao
+			url: http://nick-teste.surge.sh -> ao inserir a url, para conferir a publicação
+				pelo botão, é só entrar no git lab vá no menu Operations -> Environments -> lá vai ter os seus 
+				Environments listados e um 3 botões, para visualizar seu site é o primeiro.
+
  
