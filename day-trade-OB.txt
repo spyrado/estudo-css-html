@@ -1,0 +1,15 @@
+*********************** CALENDÁRIO ECONOMICO ***********************
+
+	https://br.investing.com/economic-calendar/
+
+	Nesse site você consegue acompanhar os horários que você não deve 
+		operar (esperar uns 15 minutos para analizar para onde a tendencia irá seguir, pois em horários com touros
+		sua analize grafica não adianta de nada, pois o mercado será impactado com noticias boas ou ruins.)
+
+	Hora -> é a hora que acontecerá a notícia.
+	Moeda -> qual moeda sofrerá impacto (positivo ou negativo)
+	import -> o qual importante é essa notícia ( quanto mais importante mais impacto a moeda terá no grafico  )
+	evento -> qual assunto será abordado a essa hora.
+	atual -> A porcentagem que está ali 
+	projeção ->
+	prévio ->
