@@ -124,4 +124,22 @@ https://surge.sh/
 				pelo botão, é só entrar no git lab vá no menu Operations -> Environments -> lá vai ter os seus 
 				Environments listados e um 3 botões, para visualizar seu site é o primeiro.
 
+
+*********************** LIBS INTERESSANTES PARA TESTE ***********************
+
+npm install -g broken-link-checker
+
+exemplo de uso após a instalação ( exemplo rodando localmente )
+
+blc --recursive --external-links http://localhost:3000
+
+falo para ser recursivo (rodar o site todo)
+falo para ignorar links externos ( facebook etc.. )
+e passo o link que ele deve ter como referencia para buscar as rotas internas desse link
+
+Executando esse comando ele vai te passar todos os links que estão OK e os NÃO OK também
+
+	esse cara verifica todos os links do seu site e testa para ver se estão funcionando, ou seja é um validador
+		de links, muito útil para inserir no pipeline para verificar se todos os links estão íntegros.
+
  
