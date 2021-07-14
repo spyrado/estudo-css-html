@@ -37,15 +37,69 @@ Subject Pronounce and Verb to be
 	- (plural) You (Vocês) --------> are
 	- They --------> are
 
----- Contractions ----
+---- Contractions ---- (youtube bom para treinar as Pronounces https://www.youtube.com/watch?v=MzhjD-XrYjg)
 
 	-- Affirmative --									-- Negative --
 		I'm -> Aim												I'm not
-		You're -> Your										You're not / you aren't -> iour
+		You're -> iur											You're not / you aren't -> iur not / iur arent
 		He's -> ris												He's not / he isn't
 		She's -> xis											She's not / she isn't
 		It's -> itis											It's not / it isn't
-		We're -> ??												We're not / we aren't
-		You're -> ??                      You're not / you aren't
-		They're -> ??											They're not / they aren't
+		We're -> uãr											We're not / we aren't
+		You're -> iur                     You're not / you aren't
+		They're -> Dér ( com a lingua )	  They're not / they aren't
+
+
+---- Periodos ----
+
+1 - afternoon
+2 - evening
+3 - night
+4 - morning
+
+---- Formas de se falar Hello ----
+	-- Saying Hello --
+		Good evening -> boa noite ( apenas quando chegamos nos lugares )
+		Good morning ->
+		Good afternoon -> boa tarde
+		Good night -> boa noite ( quando voce está indo embora dos lugares ( e a hora está das 19 para mais ))
+		Hello ->
+		Hi ->
+		How are you ->
+		What's up? ->
+		How is it going? ->
+		How are you doing? ->
+		Hey -> 
+
+	-- Saying Goodbye --
+		Good night
+		See you later
+		See you
+		See you tomorrow
+		See you next class / week
+		Bye
+		Bye-bye
+		Goodbye
+		Have a nice weekend
+		Have a good week
+
+
+
+Greate -> Ótimo.
+
+--- FALANDO EMAIL ---
+	. -> dot -> nick.gmop@gmail.com
+	. -> point -> exemple: 5.9
+	. -> full stop / period -> utilizado em frases
+
+	- -> hífen
+	_ -> underline or underscore
+	/ -> slash
+
+---- POSSESSIVE PRONOUN ----
+
+Her -> Dela -> exemplo: Her name is -> O nome DELE é.
+His -> Dele -> exemplo: His name is -> O nome DELA é.
+
+
 
