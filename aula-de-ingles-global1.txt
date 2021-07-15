@@ -26,7 +26,7 @@ Subject Pronounce and Verb to be
 	- It -> usado para ( coisas/objetos/paises )
 	- We -> We é quando eu estou incluido no pacote -> We are in the class
 	- (plural) You (Vocês) -> EXEMPLO: Guys you have to do anything ( pesquisar sobre you no plural e como utilizar ), exemplo 2: You are a nice guy
-	- They -> 
+	- They -> Eles / Elas
 
 	- I --------> am
 	- (singular) You -------->  are
@@ -96,10 +96,67 @@ Greate -> Ótimo.
 	_ -> underline or underscore
 	/ -> slash
 
----- POSSESSIVE PRONOUN ----
+---- POSSESSIVE PRONOUN / adjective ----
+																						poss.pronoun + object + verb
+My -> Meu / Minha / Meus																						My car is red.
+Your -> Seus / Suas																									Your chair is nice.
+His -> Dele -> exemplo: His name is -> O nome DELA é.								His name is Kennet.
+Her -> Dela -> exemplo: Her name is -> O nome DELE é.								Her name is Ines.
+it
+our -> pronuncia: auor -> (nossas / nossas)
+your ->
+their -> der ( deles / delas )
 
-Her -> Dela -> exemplo: Her name is -> O nome DELE é.
-His -> Dele -> exemplo: His name is -> O nome DELA é.
 
+
+
+(Subject)
+	They sempre verbo
+	(Sujeitos sao sempre seguidos de verbos)
+
+	Their sempre antes um objeto
+	(Possessive adjetivos sempre sao seguidos de objetos)
+
+
+first name
+surname
+address -> adréss
+phone number
+email address
+
+
+
+
+1 - ok
+2 - NOT ok
+3 - not ok
+4 - not ok
+5 - ok
+
+---- EMAIL ----
+
+---- Genre (Genero) ----
+	Greetings (Saudações)
+
+Structure:
+	introduction -> falar o pq eu estou enviando esse e-mail
+	main body ( details ) -> falar os detalhes do pq estou enviando o e-mail
+	closing	
+
+
+informal -> cheers final de e-mail -> no lugar de See you / Thanks // xoxo ( beijo e abraço )
+
+formal (final de e-mail) ->  Best wishes / Best regards
+
+
+---- Indefinite Article (Artico Indefinido) ----
+
+pronuncia -> a -> a chair or ei chair
+
+ a / an ( sempre utilizado no singular ) -> 
+ 
+a backpack / an apple -> aqui mostro que ela pode ser usada como usar quando é consoante e com vogal
+
+a hotel / an hour -> nesse caso eu mostro que pode acontecer quando a palavra seguinte tem SOM de VOGAL ai mesmo sendo uma consoante agt usa dessa forma.
 
 
