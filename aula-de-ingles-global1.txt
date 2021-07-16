@@ -151,12 +151,77 @@ formal (final de e-mail) ->  Best wishes / Best regards
 
 ---- Indefinite Article (Artico Indefinido) ----
 
-pronuncia -> a -> a chair or ei chair
+	pronuncia -> a -> a chair or ei chair
 
- a / an ( sempre utilizado no singular ) -> 
- 
-a backpack / an apple -> aqui mostro que ela pode ser usada como usar quando é consoante e com vogal
+	a / an ( sempre utilizado no singular ) -> 
+	
+	a backpack / an apple -> aqui mostro que ela pode ser usada como usar quando é consoante e com vogal
 
-a hotel / an hour -> nesse caso eu mostro que pode acontecer quando a palavra seguinte tem SOM de VOGAL ai mesmo sendo uma consoante agt usa dessa forma.
+	a hotel / an hour -> nesse caso eu mostro que pode acontecer quando a palavra seguinte tem SOM de VOGAL ai mesmo sendo uma consoante agt usa dessa forma.
+
+---- Plural Form ----
+
+	Words ending in: -s, -sh, -ch, -x, and -o
+		iremos acrescentar es
+
+	exemple:
+		laptop case(s)
+		bus(es)
+		brush(es)
+		watch(es)
+		box(es)
+		potato(es)
+
+	Words ending in -y
+		iremos colocar ies
+	
+	exemple:
+		city -> cities
+		body -> bodies
+
+	Words ending in -f or -fe
+		iremos colocar ves
+		exemple:
+			wolf -> wolves
+			wife -> wives
+			knife -> knifes
+			life -> lives
+	-- Irregular Words --
+		man(singular) -> men(plural)
+		    woman(singular) -> women(plural)
 
 
+---- There is / There are ----
+
+	Have a shopping mall in Mauá ->>> DESTA FORMA ESTÁ ERRADA pq eu não TENHO UM shopping
+	There is a shopping mall in Mauá ->>> desta forma está correta, tem um shopping em mauá
+
+	There is -> existe / tem ( singular ) - pronuncia: dér is
+	There are -> existem, tem ( plural ) - - pronuncia: dér ar
+
+They are used to describe describe places, houses, rooms, cities, countries, etc. They are used only for description
+
+
+---- Have ----
+	IMPORTANTE ->>>> Indica posse
+
+	I have a dog -> eu tenho um cachorro
+
+	Have a shopping mall in Mauá ->>> DESTA FORMA ESTÁ ERRADA pq eu não TENHO UM shopping
+	There is a shopping mall in Mauá ->>> desta forma está correta, tem um shopping em mauá
+
+
+
+---- AFFIRMATIVE / NEGATIVE / Interrogative ----
+
+	There are many museums in São Paulo
+		-	Yes, there are. ( nunca podemos na AFIRMATIVA falar apenas (There're))
+
+	There aren't many museums in São Paulo
+		-	No, there aren't. ( quando for na negativa podemos deixar mais curto como ( There aren't ) )
+
+	Are There many museums in São Paulo?
+
+---- SHORT ENSOR (RESPOSTA CURTA) ----
+
+	Yes
