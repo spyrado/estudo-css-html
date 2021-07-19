@@ -254,7 +254,11 @@ They are used to describe describe places, houses, rooms, cities, countries, etc
 	shopping mall -> shopping center
 	shopping -> as compras
 
-	Can i have a discount?
+	Can i have a discount? -> pode me dar um desconto?
+	bargain -> pexinxa
+	It's expensive -> caro
+		cheap -> caro
+		reasonable -> rasoavel
 
 ---- NUMEROS ----
 
