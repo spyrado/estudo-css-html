@@ -1,18 +1,18 @@
 **************************** GLOBAL ONE ****************************
 
 Titles
-	- Mr (male)
-	- Mrs (female married)
-	- Miss (singles female) -> (passarinho)
-	- Ms. (neutral) -> (zebrinha - z)
+	- Mr (male) -> mister
+	- Mrs (female married) -> mises
+	- Miss (singles female) -> (passarinho) -> miss
+	- Ms. (neutral) -> (zebrinha - z) -> mizz
 
 How are you?
 	- I'm fine thanks
 	- I'm good
 	- I'm ok ( aqui eu posso juntar, talvez por causa da das vogais? )
-	- I'm tired
+	- I'm tired -> taired
 	- So-so 
-	- More or Less
+	- More or Less -> morless
 
 stress
 
@@ -234,3 +234,47 @@ They are used to describe describe places, houses, rooms, cities, countries, etc
 	among -> é o mesmo sentido de betweem POREM é quando tem mais de 2 pessoas, quando tiver 3 pessoas ou mais agt n fala betweem agt fala among -> por isso nome do jogo AMONG US ( ENTRE NOS )
 	next to -> the ball is next to the box -> proximo
 	beside -> the ball is beside the box -> ao lado
+
+
+
+
+---- MERCADO DE RUA ----
+	- street market
+
+	- They are on a stree market
+
+	- Do you like to go shopping? -> voce gosta de ir as compras? de comprar?
+		- Yes, I do.
+		- No, I don't.
+
+	- What do you like to buy?
+		- I Like to buy eletronic items
+
+
+	shopping mall -> shopping center
+	shopping -> as compras
+
+	Can i have a discount?
+
+---- NUMEROS ----
+
+11 -> eleven -> eleven
+12 -> twelve -> tuelve
+13 -> thirteen -> surtin (MASSINHA)
+20 -> pronuncia: tueni OU tuenti
+21 -> twenty - one -> tueni uan OR tuenti uan
+30 -> thirty -> sãrti 
+31 -> 
+
+100 - a hundred / one hundred
+101 - a hundred and one OR a hundred one
+200 -> two hundred
+1000 - a thousand / one thousand
+1001 - a thousand and one
+
+---- MOEDAS ----
+ £10 -> essa moeda é LIBRA porem lá chamamos de POUNDS
+
+ How much is it? -> singular
+ How much are they? -> plural -> podemos usar dessa forma OUUUU
+ How much are the pens? -> plural -> dessa forma.
