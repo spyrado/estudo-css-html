@@ -276,9 +276,33 @@ They are used to describe describe places, houses, rooms, cities, countries, etc
 1000 - a thousand / one thousand
 1001 - a thousand and one
 
----- MOEDAS ----
+---- Currency(s) / MOEDAS ----
+
+	R$ 5,00 -> ureal -> it's five reals
  £10 -> essa moeda é LIBRA porem lá chamamos de POUNDS
+ $10 -> dollar
+ 25 -> EUROS
+
+ quando é centavos eles chamam de penny e vai até one POUNDS
+
+ 0.75 pennys
 
  How much is it? -> singular
  How much are they? -> plural -> podemos usar dessa forma OUUUU
  How much are the pens? -> plural -> dessa forma.
+
+
+---- questions with verb to be ----
+
+Com verbo to be não precisamos de auxiliarea como o Do por exemplo, precisamos apenas inverter You are para Are you
+
+Are you busy?
+Are these CDs?
+
+
+
+
+---- PLURAL AND SINGULAR ----
+
+this -> isso, isto -> SINGULAR
+these -> essas esses -> PLURAL de this
