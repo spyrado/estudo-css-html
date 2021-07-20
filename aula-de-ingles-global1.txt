@@ -306,3 +306,25 @@ Are these CDs?
 
 this -> isso, isto -> SINGULAR
 these -> essas esses -> PLURAL de this
+
+
+---- SINGULAR ----
+
+Is this bicycle new? -> essa bicicleta é nova?
+Is this book new? -> esse livro é novo?
+Yes, it is or No, isn't.
+
+---- PLURAL ----
+
+Are these magazines old? Yes, they are. OU No, they aren't.
+	watches
+	cameras
+
+Is this bicycle NEW? RISING INTONATION ON THE WORD [NEW]
+
+falling intonation -> caindo intonação
+
+rising intonation -> subindo intonação
+
+
+am i late?
