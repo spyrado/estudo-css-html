@@ -103,7 +103,7 @@ Your -> Seus / Suas																									Your chair is nice.
 His -> Dele -> exemplo: His name is -> O nome DELA é.								His name is Kennet.
 Her -> Dela -> exemplo: Her name is -> O nome DELE é.								Her name is Ines.
 it
-our -> pronuncia: auor -> (nossas / nossas)
+our -> pronuncia: auor -> (nosso / nossos / nossa / nossas)
 your ->
 their -> der ( deles / delas )
 
@@ -365,3 +365,22 @@ Turn it on -> pronunciar isso depois para pegar a ligação de rn it E it on
 
 In my office, there is a blue table.
 In my office, there are five black tables.
+
+
+---- IDADE / HOW OLD ARE YOU? ----
+
+How old are you?
+	i am 30 years old. -> CORRETO
+
+	i'm 30. -> CORRETO
+
+	i'm 30 years -> ERRADO years tem que vir com OLD junto. (years old)
+
+	I have 30 years old. -> ESTA ERRADO, temos que responder com verbo TO BE ( I AM 30 years old )
+
+---- WH-questions ----
+
+What -> O que
+When -> Quando
+Where -> Onde
+How -> como
