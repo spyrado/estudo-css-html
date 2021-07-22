@@ -419,10 +419,29 @@ INTRODUCE ONE PARENT (MOTHER, FATHER, SISTER AND ETC)
 
 This is my mother
 Her name is Nanci
-She is the magic  number years old.
+She is 50 years old and i don't know what she works
+She's from br
 
 
 -- Family member
 -- name
 -- age
 -- profession/job
+
+--- LIVE ----
+
+	live contexto de ( verbo ) -> pronuncia LIVE
+	live contexto de ( adjetivo ) -> pronuncia LAIVE
+
+	exemplo: 
+		- He's live in Brazil -> PRONUNCIA LIVE
+		- We are a live -> PRONUNCIA LAIVE
+
+
+--- TERCEIRA PESSOA DO SINGULAR ELE MUDA DE LIVE PARA LIVE[S] ---
+	I live
+	You live
+	He lives 
+	She lives
+	It lives
+
