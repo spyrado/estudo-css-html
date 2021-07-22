@@ -384,3 +384,45 @@ What -> O que
 When -> Quando
 Where -> Onde
 How -> como
+
+
+Who are they?
+	They're the Simpsons!
+
+
+---- FAMILIA EM INGLES / FAMILY IN ENGLISH ----
+
+sister -> irmã -> sister
+daughter -> filha -> dórer
+brother -> irmão 
+son -> filho -> són
+grandson -> neto -> grand són
+granddaughter -> neta -> grend dórer
+wife -> esposa
+mother -> mae
+sister -> irmã -> sister
+daughter-in-law -> nora
+father -> pai
+brother-in-law -> cunhado???
+grandfather -> vovô
+grandpa -> vovô(informal)
+father-in-law -> sogro
+aunts -> tias -> ânts
+sisters-in-law -> cunhada -> in ló
+nephew -> sobrinho
+niece -> sobrinha -> niiice
+
+
+--- HOME WORK ---
+
+INTRODUCE ONE PARENT (MOTHER, FATHER, SISTER AND ETC)
+
+This is my mother
+Her name is Nanci
+She is the magic  number years old.
+
+
+-- Family member
+-- name
+-- age
+-- profession/job
