@@ -411,6 +411,8 @@ aunts -> tias -> ânts
 sisters-in-law -> cunhada -> in ló
 nephew -> sobrinho
 niece -> sobrinha -> niiice
+guitar -> violão
+eletric guitar -> guitarra
 
 
 --- HOME WORK ---
@@ -438,10 +440,22 @@ She's from br
 		- We are a live -> PRONUNCIA LAIVE
 
 
---- TERCEIRA PESSOA DO SINGULAR ELE MUDA DE LIVE PARA LIVE[S] ---
+--- TERCEIRA PESSOA DO SINGULAR ADICIONAMOS O [S] NO FINAL OU SEJA ELE MUDA DE LIVE PARA LIVE[S] ---
 	I live
 	You live
 	He lives 
 	She lives
 	It lives
+	we live
+	You live
 
+--- UN negação em alguns casos ----
+	employed -> empregado
+	unemployed -> desempregado
+	subscribe -> sobrescrito
+	unsubiscribe -> desobrecrito
+
+---- Diffetence betweem song and music ----
+
+I love funk music
+I love the song "Vida louca" by Mc Poze
