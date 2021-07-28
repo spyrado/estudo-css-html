@@ -51,12 +51,21 @@ His leg is sore -> A perna dele está doendo.
 patient -> paciente -> PAICHIENT
 TGIF -> Thank God is Friday -> É SEXTA-FEITA PORRA
 i am ugly -> estou feio
+shop assistant -> vendedor
+guessing -> advinhar
+guessing gamer -> jogo de advinhação
+young -> jovem
+old -> velho
 
 
 also e too -> o also agt usa no começo e too agt usa no final, porem ambos tem o mesmo significado ( também )
 	i'm a stay-at-home dad, too.
 	i'm also a stay-at-home dad.
 
+
+"idioms" -> procurar depois, são expreções idiomaticas como..
+
+Kick the bucket -> no brasil agt fala chutar o balde, porem na gringa significa que ele/ela morreu
 
 
 
