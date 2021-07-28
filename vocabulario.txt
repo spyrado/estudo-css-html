@@ -56,7 +56,28 @@ guessing -> advinhar
 guessing gamer -> jogo de advinhação
 young -> jovem
 old -> velho
+comics -> estórica em quadrinho
+wake up -> acordar
+get up -> levantar
+strech out -> se expreguissar
+brush my teeth -> escovar meus dentes
+1 tooth -> 1 dente
+33 teeth -> 33 dentes
+brush my teeth -> escovar meus dentes
+dress up -> se vestir
+get dressed -> se vestir
+take a shower -> tomar banho
+hurry up -> se apresse
+hurry up, we-re late for work -> se apresse nós estamos atrasado para o trabalho
 
+---- TERCEIRA PESSOA -----
+	He wakes up
+	He gets up
+	He brushes his teeth
+	He takes a shower
+	He dresses up
+	He gets dressed
+	He goes to work
 
 also e too -> o also agt usa no começo e too agt usa no final, porem ambos tem o mesmo significado ( também )
 	i'm a stay-at-home dad, too.
