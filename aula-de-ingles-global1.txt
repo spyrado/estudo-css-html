@@ -380,7 +380,7 @@ How old are you?
 
 ---- WH-questions ----
 
-What -> O que
+What -> O que ou Qual
 When -> Quando
 Where -> Onde
 How -> como
@@ -500,4 +500,23 @@ two feet -> dois pés
 
 
 ---- DIFERENÇA ENTRE DO E I AM ----
+
+
+
+
+---- ----
+
+never -> nunca
+often -> frequentemente
+always -> sempre
+rarely -> raramente
+usually -> usualmente
+sometimes -> as vezes
+once a week -> uma vez por semana
+twice a week -> duas vezes por semana
+three times a week -> tres vezes na semana
+three times a month -> tres vezes ao mes
+every day -> todo dia
+hardly ever -> quase nunca  ( dificilmente acontece )
+every other sunday -> a ideia é um domingo sim outro não
 

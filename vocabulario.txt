@@ -96,6 +96,8 @@ snack -> lanche ( like petiscos algo assim.)
 eggplant -> beringela
 plums -> ameixas
 peach -> pessego -> PRONUNCIA: PIT
+grapes -> uvas
+potatoes -> batatas
 
 ---- TERCEIRA PESSOA -----
 	He wakes up
