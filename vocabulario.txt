@@ -86,10 +86,16 @@ sauce -> molho
 tomato sauce -> molho de tomate
 delicious -> delichãs
 Carrots -> cenouras 
-
+Corn -> milho
+Peas -> ervilhas
 Breakfast -> BRÉK FAST
 Lunch -> Almoço
 DINNER -> Janta
+dessert -> sobremesa
+snack -> lanche ( like petiscos algo assim.)
+eggplant -> beringela
+plums -> ameixas
+peach -> pessego -> PRONUNCIA: PIT
 
 ---- TERCEIRA PESSOA -----
 	He wakes up
