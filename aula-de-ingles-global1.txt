@@ -386,6 +386,8 @@ Where -> Onde
 How -> como
 
 
+How ofter -> Com que frenquencia
+
 Who are they?
 	They're the Simpsons!
 
