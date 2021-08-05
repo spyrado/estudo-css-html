@@ -397,6 +397,7 @@ Who are they?
 sister -> irmã -> sister
 daughter -> filha -> dórer
 brother -> irmão 
+siblings -> irmãos
 son -> filho -> són
 grandson -> neto -> grand són
 granddaughter -> neta -> grend dórer
@@ -525,3 +526,14 @@ every other sunday -> a ideia é um domingo sim outro não
 
 
 --------- subject pronouns ------------
+
+
+---- EXEMPLO DE UM E-MAIL ----
+
+To: james.johson@mail.com
+From: luke.stevens@mail.com
+
+Hi, Mr Johnson.
+Here's my information for your address book. My first name is Lukas (but my nickname is Luke). My surname is Stevens.
+My address is 103, Eglinton Ave. My phone number is +1 604 555 5555 and my email address is luke.stevens@mail.com.
+See you!
