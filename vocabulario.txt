@@ -98,6 +98,10 @@ plums -> ameixas
 peach -> pessego -> PRONUNCIA: PIT
 grapes -> uvas
 potatoes -> batatas
+STAY IN TOUCH -> manter contato -> exemplo... sei que moramos longe um do outro mas vamos manter o contato
+purchase -> comprar
+	- to buy a product [Students usually purchase books to study.]
+PARTNER -> parceiro
 
 ---- TERCEIRA PESSOA -----
 	He wakes up
