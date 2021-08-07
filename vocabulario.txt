@@ -102,6 +102,7 @@ STAY IN TOUCH -> manter contato -> exemplo... sei que moramos longe um do outro 
 purchase -> comprar
 	- to buy a product [Students usually purchase books to study.]
 PARTNER -> parceiro
+over there -> bem ali
 
 ---- TERCEIRA PESSOA -----
 	He wakes up

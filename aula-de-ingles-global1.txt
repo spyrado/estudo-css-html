@@ -192,6 +192,8 @@ formal (final de e-mail) ->  Best wishes / Best regards
 
 
 ---- There is / There are ----
+  Indicar aonde tem as coisas
+	Look there's a sale over there -> Olha, tem uma venda bem ali
 
 	Have a shopping mall in Mauá ->>> DESTA FORMA ESTÁ ERRADA pq eu não TENHO UM shopping
 	There is a shopping mall in Mauá ->>> desta forma está correta, tem um shopping em mauá
