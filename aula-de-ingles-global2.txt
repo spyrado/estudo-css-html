@@ -1,0 +1,10 @@
+---- Pessoa 1 - Pessoa 2 ----
+
+Nice to meet you - Nice to meet you too -> Neutral nem formal nem informal
+Glad to meet you - Glad to meet you too -> formal
+Pleased to meet you - Pleased to meet you too -> BEM FORMAL
+
+Bye! It was nice meeting you. - bye you too
+Goodbye - see you ->
+See you later - see you
+See you soon - see you
