@@ -8,3 +8,22 @@ Bye! It was nice meeting you. - bye you too
 Goodbye - see you ->
 See you later - see you
 See you soon - see you
+
+
+----------
+
+What's your adress? <-- tentar entender como funciona isso?
+ - I live at 1400 pedro xavi potuvera.
+ - It is 292, Coronel gonzaga street
+
+---- familia -----
+
+brother-in-law -> cunhado ( irmão do marido / esposa ) -> toda a familia da minha esposa seria sister-in-law
+sister-in-law -> segue a mesma regra de cima e etc
+siblings-in-law -> cunhados
+father-in-law -> sogro
+mother-in-law -> sogra
+
+
+
+

@@ -103,6 +103,12 @@ purchase -> comprar
 	- to buy a product [Students usually purchase books to study.]
 PARTNER -> parceiro
 over there -> bem ali
+half-sister -> refi sister
+talk -> tók
+brother -> irmão
+brother-in-law -> cunhado ( irmão do marido / esposa ) -> toda a familia da minha esposa seria sister-in-law
+
+It was -> pronuncia -> iuós
 
 ---- TERCEIRA PESSOA -----
 	He wakes up
