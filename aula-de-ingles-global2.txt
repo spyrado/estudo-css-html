@@ -24,6 +24,33 @@ siblings-in-law -> cunhados
 father-in-law -> sogro
 mother-in-law -> sogra
 
+father
+dad
+daddy
+
+mother
+mom
+mommy
+
+parents
+
+children
+son
+daughter
+
+step-brother
+step-mother
+step-father
+step-sister
+
+uncle -> tio
+aunt -> tia 
+
+cousins -> primos
+
+nephew -> sobrinho
+niece -> sobrinha
+
 
 
 
