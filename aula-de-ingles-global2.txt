@@ -32,21 +32,23 @@ mother
 mom
 mommy
 
-parents
+parents -> qualquer um da sua familia
 
-children
-son
-daughter
+children -> mais de um filho
+child -> filho / filha
+son -> filho
+daughter -> filhja
 
-step-brother
-step-mother
-step-father
-step-sister
+step-brother -> meio irmao
+step-mother -> madrasta
+step-father -> padrasto
+step-sister -> meia irmã
 
-uncle -> tio
-aunt -> tia 
+uncle -> tio -> ANCOU
+aunt -> tia -> EMTI
 
-cousins -> primos
+cousins -> primos / primas -> CÂSINS
+cousin -> primo / prima -> CÂSIN
 
 nephew -> sobrinho
 niece -> sobrinha
@@ -58,6 +60,9 @@ niece -> sobrinha
 Nicola's book
 Nicolas's car -> o carro do Nicolas
 McDonald's Restaurant -> O restaurante do Mc Donalds
+My sister's flat is in Rio.
+Samira is Sandra's sister
+Sandra's father is Jonas
 
 your husband's or wife's mother: mother-in-law
 
@@ -102,9 +107,69 @@ children -> filhos
     R:
   How many people use the internet in the USA?
     R:
-  
 
 
+---- PREPOSITION -----
+
+oxford collocations dictionary -> exemplo de food https://www.freecollocation.com/search?word=food se vc pesquisar sobre fast nesse link vc vai achar ou seja podemos usar fast para fast food, porem vc n vai achar QUICK nesse dicionario pq n podemos usar
+
+existem dois tipos de prepositions
+
+position é mais objetivo: 
+  - o livro está em cima da mesma
+  - ON the table
+
+collocations -> Uma collocation ou colocação é uma maneira como o povo usa a palavras
+  EXEMPLO: quick / fast
+    McDonalds is a FAST food restaurant. -> ninguem usa  is a QUICK food nesse caso, mesmo sendo o mesmo significado, entao fast é uma collocation
+  fast / quick
+
+  McDonalds is a FAST food restaurant.
+  o jeito que estamos acostumados a ouvir 
+
+position              collocations
+
+em cima
+em baixo
+do lado
+
+at
+to
+in
+on
+about
+under
+of
+above
+near
+next
+last  
+
+
+-----------------
+
+"In addition" E However tem . antes e , depois exemplo abaixo
+but tem virgula sempre antes dele , but -> exemplo abaixo
+
+I lide sports and music. In addition, I love reading books in free time. 
+
+I can speak German, but I can't speak French.
+
+I speak Portuguese very well. However, my Spanish is terrible.
+
+Hi! My name’s Nícolas and my surname is Matheus. I’m from Brazil, but i live in China. I’m a developer and i speak portuguese and english. However my english is not so good. 
+
+Correção do texto a cima :
+ - Hi! My name’s Nícolas and my surname is Matheus. I’m from Brazil, but "I" live in China. I’m a developer and "I" speak "P"ortuguese and english. However"," my english is not so good. 
+ - erros listados: I -> P -> e comma(,)
+
+-------- moveis e apartamento ---------
+
+floors -> andares
+
+sofa -> sofa
+armchair -> poltrona
+lamp -> abajur
 
 
 
