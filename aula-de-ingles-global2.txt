@@ -76,6 +76,20 @@ We can / (can't) use 'your' to refer to a man or woman
 (example: She is Brazilian and YOUR family is from Brazil) <--- está errado a forma correta vou colocar abaixo.
 She is Brazilian and her family is from Brazil.
 
+lets training:
+
+My sister's flat is in Rio.
+Her flat is in Rio.
+
+His sister's jobs are interesting.
+their jobs are interesting.
+
+Your children's cars are black.
+Their cars are black.
+
+Our mom and dad's house is very big.
+Their house is very big.
+
 
 
 ---- habilidades para aprender em ingles -----
