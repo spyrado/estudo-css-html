@@ -57,6 +57,11 @@ niece -> sobrinha
 
 ----- Possesive with 's -----
 
+OBS: sempre que o nome terminar com S colocamos dessa forma 
+
+Houses' Nicolas -> apostrofe no final para Objetos
+Nicola's Mother -> apostrofe + s para nomes
+
 Nicola's book
 Nicolas's car -> o carro do Nicolas
 McDonald's Restaurant -> O restaurante do Mc Donalds
@@ -170,6 +175,54 @@ floors -> andares
 sofa -> sofa
 armchair -> poltrona
 lamp -> abajur
+
+
+-------- Comodos --------
+
+room -> comodo
+living rooom  -> sala de estar
+kitchen -> cozinha
+bathroom -> banheiro
+bedroom -> quarto
+
+
+This living room is beautiful
+kitchen  modern
+bathroom  clean
+bedroom big
+
+ugly
+old
+airy
+confortable / cozy
+small
+warm
+
+I have a sofa and an armchair in my apartment.
+a desk and a lamp
+cupboards and drawers
+blinds and rugs
+
+There are a sofa and armchair in apartment brother. -> arrumar isso dps
+
+
+NORMALMENTE SÃO UTILIZADOS DESSA FORMA
+SOME -> PARA FRASES AFIRMATIVAS
+ANY -> PARA INTERROGATIVAS E NEGATIVAS
+NO -> NÃO EXISTIR / DUPLA NEGATIVAS
+
+Do you have any water?
+
+
+----- THIS / THAT / THESE / THOSE -----
+
+this -> isso / isto -> utilizado para coisas que estão perto. no singular
+
+that ->  aquele / aquelas -> utilizado para coisas que estão longe. no singular.
+
+these -> essas / estas -> 
+
+those -> aquelas / aqueles ->
 
 
 

@@ -112,6 +112,8 @@ floors -> andares
 blinds -> percianas
 curtains -> cortinas
 furniture -> tudo que preenche sua casa
+flash light -> touca
+hat -> touca
 
 It was -> pronuncia -> iuós
 
