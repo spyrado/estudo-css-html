@@ -396,6 +396,8 @@ What -> O que ou Qual
 When -> Quando
 Where -> Onde
 How -> como
+Whould -> -ria ( gostaria )
+What if -> E se -> What if i pay in cash? E se eu pagar em dinheiro?
 
 
 How ofter -> Com que frenquencia
