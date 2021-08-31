@@ -280,7 +280,15 @@ the other is ... $ 850 dollars
 
 How much is it? <- certo
 How much is this? <- errado 
-How much is this one? <- certo
+How much is this one? <- certo]
+
+
+----------- PERSONAL INFORMATION TEXT EXAMPLE -----------
+
+EXAMPLE TEXT
+Hi! My name’s Paula and I’m a teacher. My email address is paula433@mymail.com.
+On weekdays, I work and study English. In addition, at weekends I go to the park. I can play the guitar and cook. However, I can't ride a horse.
+In my free time, I like watching TV series and movies, but I don't like going to the gym. I have a small family. I only have one sister!
 
 
 
