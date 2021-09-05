@@ -19,6 +19,14 @@ stress
 Subject Pronounce and Verb to be
 
 ---- Subject Pronounce ----
+
+	speaking in the first person (I, we)
+	speaking in the second person (you)
+	speaking in the third person plural (they)
+
+	speaking in the third person singular (he, she, and it).
+
+
 	- I -> SEMPRE quando falar de mim, ele SEMPRE será com a LETRA MAIUSCULA independente em que momento da frase ele estiver ( no começo no meio no fim ).
 	- (singular) You -> EXEMPLO: You are a nice guy
 	- He (ele)

@@ -359,5 +359,21 @@ Perhaps -> Possívelmente
 
 
 
+------------- Has / Have -------------
+
+
+	speaking in the first person (I, we)
+	speaking in the second person (you)
+	speaking in the third person plural (they)
+
+  I Have
+  You Have
+  They Have
+
+	speaking in the third person singular (he, she, and it).
+
+  He Has
+  She Has 
+  It Has
 
 
