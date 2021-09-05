@@ -118,7 +118,10 @@ polluted -> poluido
 expensive -> caro 
 cheap -> barato
 It was -> pronuncia -> iuós
-
+aloud -> em voz alta
+the odd one out ->  alguem ou alguma coisa diferente ou estranha - 
+	um item DIFERENTE dos outros, exemplo.. eu tenho Rede de basquete bola de basque e gol de futebol, escolha qual é o the odd one out ( qual é o DIFERENTE entre eles? )
+	ou She was always the odd one out at school - she didn't have many friends. ( ela sempre foi a ESTRANHA da escola)
 
 
 
@@ -210,3 +213,11 @@ So, which places in the city are .... good to play?
 Well, there's this place called .. 
 
 expensive and good
+
+
+
+------------------------------------------------------------------------------------------------
+														ENTENDER O QUE SIGNIFICA ISSO
+														
+subject  -> sujeito
+pronoun -> pronome
