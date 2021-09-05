@@ -377,3 +377,10 @@ Perhaps -> Possívelmente
   It Has
 
 
+Who plays a musical instrument? *
+Who likes reading? *
+
+pq likes 
+pq plays
+
+

@@ -11,14 +11,22 @@ each -> iti -> cada
 busy -> bizi -> ocupado
 these -> quando estamos se referindo a objetos e eles são no plural -> Are THESE CDs? -> PRONUNCIA: DIZi
 couch / sofa -> sofa
-pillows -> 
+pillows -> travesseiros
+lamp -> lampada -> lemp
 rug -> tapete menorzinho
 living room -> sala de estar
 meeting room -> sala de reuniões
-carpet -> Cárpet
+carpet -> Cárpet -> tapete
+rug -> tapete -> URAG
+cupboard -> armário -> cãboard
 floor -> FLÓUR ( CHÃO )
+bottle -> garrafa -> BÓROU
+gloves -> luvas -> GLÓVIS
+torch (or flashlight) -> lanterna
+balcony -> sacada -> BALCONI
 it's an office -> it'sa  noficce
 lockers -> armario de universidade ( armarinho )
+armchair -> poltrona
 school hallway -> corredor da escola
 because -> porque
 Writing -> REDAÇÃO
@@ -106,7 +114,8 @@ brother-in-law -> cunhado ( irmão do marido / esposa ) -> toda a familia da min
 look after -> fica de olho
 floors -> andares
 blinds -> percianas
-curtains -> cortinas
+curtains -> cortinas -> CARNS
+drawer -> gaveta
 furniture -> tudo que preenche sua casa
 flash light -> touca
 hat -> touca
@@ -122,7 +131,17 @@ aloud -> em voz alta
 the odd one out ->  alguem ou alguma coisa diferente ou estranha - 
 	um item DIFERENTE dos outros, exemplo.. eu tenho Rede de basquete bola de basque e gol de futebol, escolha qual é o the odd one out ( qual é o DIFERENTE entre eles? )
 	ou She was always the odd one out at school - she didn't have many friends. ( ela sempre foi a ESTRANHA da escola)
-
+classmate -> colega de sala/aula
+come -> vir
+spouse -> cÔnjuge
+widow -> viuva -> UIDO
+widower -> viuvo -> UIDOER
+profession -> profissão7
+lawyer -> advogado -> LÓIER
+roller blades -> Patins -> U-ROLLER BLADES
+pantry (or larder) -> dispensa
+	Uso da palvra: There isn't a pantry in my house
+Without further ado -> sem mais delongas
 
 
 
@@ -218,6 +237,6 @@ expensive and good
 
 ------------------------------------------------------------------------------------------------
 														ENTENDER O QUE SIGNIFICA ISSO
-														
+
 subject  -> sujeito
 pronoun -> pronome
