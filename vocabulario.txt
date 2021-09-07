@@ -145,6 +145,7 @@ Without further ado -> sem mais delongas
 tall -> a tall girl -> uma garota alta
 small -> a small person
 tiny -> pequeno / pequena -> a tiny dog ( um cachorro pequeno )
+ill -> doente -> Iluu
 
 
 
