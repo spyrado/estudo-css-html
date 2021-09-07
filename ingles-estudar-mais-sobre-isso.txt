@@ -55,4 +55,7 @@ Exemplo: Ela é minha convidada.
 O pronome é Ela
 
 
-  
+-----------
+
+I'm tired this morning -> Estou cansado a esta manhã
+ pq aqui não é assim? I'm tired IN this morning.
