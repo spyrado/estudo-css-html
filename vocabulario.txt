@@ -23,7 +23,6 @@ floor -> FLÓUR ( CHÃO )
 bottle -> garrafa -> BÓROU
 gloves -> luvas -> GLÓVIS
 torch (or flashlight) -> lanterna
-balcony -> sacada -> BALCONI
 it's an office -> it'sa  noficce
 lockers -> armario de universidade ( armarinho )
 armchair -> poltrona
@@ -139,13 +138,27 @@ widower -> viuvo -> UIDOER
 profession -> profissão7
 lawyer -> advogado -> LÓIER
 roller blades -> Patins -> U-ROLLER BLADES
-pantry (or larder) -> dispensa
-	Uso da palvra: There isn't a pantry in my house
 Without further ado -> sem mais delongas
 tall -> a tall girl -> uma garota alta
 small -> a small person
 tiny -> pequeno / pequena -> a tiny dog ( um cachorro pequeno )
 ill -> doente -> Iluu
+beverages -> bebidas ( em geral ).
+stove - forno
+cooker -> fogão
+cook -> cozinhar
+washing machine -> maquina de lavar
+clothes dryer 	-> secadora de roupa
+sink -> pia
+
+living room -> sala de estar
+dining room -> sala de jantar
+bedroom -> quarto
+kitchen -> cozinha
+Pantry or larder -> dispensa
+Laundry room -> lavanderia
+Bathroom -> banheiro
+balcony -> sacada -> BALCONI
 
 
 
