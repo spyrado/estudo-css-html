@@ -35,5 +35,24 @@ Frase de uso:
 ------------- Has / Have -------------
 
   This apartment has a big living room.
+  '    It      '
 
-------------- Has / Have -------------
+
+
+------------- ADJETIVE / ADJECTIVES -------------
+
+O que é um adjetivo:
+
+Adjetivo é toda palavra que caracteriza o substantivo, indicando-lhe qualidade, defeito, estado, condição
+
+------------- PRONOUN -------------
+
+Pronome é a classe de palavras que substitui o substantivo (nome). 
+Tem a finalidade de indicar a pessoa do discurso ou situar no tempo e espaço, 
+sem utilizar o seu nome.
+
+Exemplo: Ela é minha convidada.
+O pronome é Ela
+
+
+  
