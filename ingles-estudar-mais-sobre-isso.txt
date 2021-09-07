@@ -63,3 +63,10 @@ I'm tired this morning -> Estou cansado a esta manhã
 -------------- PREPOSITIONS QUANDO COLOCAR ELAS? EM QUE SITUAÇÃO? --------------
 
   How to Use Preposition in English Grammar (On, At, In, Of, For)
+
+  On -> 
+    Sobre alguma coisa: The book is ON the table.
+    Especificar dias e datas: 
+      I will come ON Monday. (dias)
+      Radha was born ON 15th August. (datas)
+    Referente a Tv ou outros dispositivos: Nicolas is ON the phone.
