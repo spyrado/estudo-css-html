@@ -383,4 +383,5 @@ Who likes reading? *
 pq likes 
 pq plays
 
-
+Go to the theatres
+Visit museums

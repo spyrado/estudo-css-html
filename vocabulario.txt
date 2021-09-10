@@ -160,6 +160,12 @@ Laundry room -> lavanderia
 Bathroom -> banheiro
 balcony -> sacada -> BALCONI
 
+climbing shoes -> sapatos de escalada
+
+lunchtime -> hora do almoço?
+
+cafés -> buteco -> lugar informal no brasil agt chama de buteco
+
 
 
 
