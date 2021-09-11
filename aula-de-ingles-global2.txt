@@ -385,3 +385,17 @@ pq plays
 
 Go to the theatres
 Visit museums
+
+
+
+-----------------
+
+AFFIRMATIVE -> My book is from Japan
+NEGATIVE -> My book isn't from Japan
+INTERROGATIVE -> Is your book from Japan?
+INTERROGATIVE -> Is this book Japanese?
+
+Their shoes are Australian -> Australian eu quero dizer que ele é tipo.. Brasileiro..
+Their shoes are from Australia -> Aqui eu quero dizer que ele é do PAIS Brazil 
+
+
