@@ -390,10 +390,12 @@ Visit museums
 
 -----------------
 
-AFFIRMATIVE -> My book is from Japan
-NEGATIVE -> My book isn't from Japan
-INTERROGATIVE -> Is your book from Japan?
-INTERROGATIVE -> Is this book Japanese?
+AFFIRMATIVE -> My book is from Japan -> é do Japão
+AFFIRMATIVE -> My book is Japanese -> é Japones
+NEGATIVE -> My book isn't from Japan -> não é do Japão
+NEGATIVE -> My book isn't Japanese -> não é Japones 
+INTERROGATIVE -> Is your book from Japan? -> ele é do Japão?
+INTERROGATIVE -> Is this book Japanese? ->  Seu livro é japones?
 
 Their shoes are Australian -> Australian eu quero dizer que ele é tipo.. Brasileiro..
 Their shoes are from Australia -> Aqui eu quero dizer que ele é do PAIS Brazil 
