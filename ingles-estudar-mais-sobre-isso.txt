@@ -153,3 +153,23 @@ What’s that there?
 Does -> usamos com HE / SHE / IT
 
 Do -> usamos sem ser com I / YOU / WE / THEY 
+
+
+------------ PLURAL DOS SUBSTANTIVOS / PLURAL NOUNS -------------------
+
+-s / -sh / -ch / -x / -o -> -es
+  - bus -> buses
+  - dish -> dishes
+  - church -> churches
+  - box -> boxes
+  - potato -> potatoes
+
+-y -> -ies 
+  - baby -> babies
+  - dictionary -> dictionaries
+  - party -> parties
+  
+
+-ay / -oy -> -ys
+
+-f / -fe -> -ves 
