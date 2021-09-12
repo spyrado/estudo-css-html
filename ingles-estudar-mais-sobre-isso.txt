@@ -39,11 +39,14 @@ Frase de uso:
 
 
 
-------------- ADJETIVE / ADJECTIVES -------------
+------------- ADJETIVE / ADJECTIVES  -------------
 
 O que é um adjetivo:
 
 Adjetivo é toda palavra que caracteriza o substantivo, indicando-lhe qualidade, defeito, estado, condição
+  E todo adjetivo vem sempre ANTES do substantivo exemplo:
+
+This is a NICE book.   (NICE ===  adjective /  book === noun (substantivo))
 
 ------------- PRONOUN -------------
 

@@ -236,15 +236,17 @@ Do you have any water?
 
 ----- THIS / THAT / THESE / THOSE -----
 
-this -> isso / isto -> utilizado para coisas que estão perto. no singular
+this -> isso / isto -> utilizado para coisas que estão perto. no singular ( this tem uma pronuncia curta )
+these -> essas / estas ->  utilizado para coisas que estão perto. no plural ( these tem uma pronuncia alongada no e theese )
 
 that ->  aquele / aquelas -> utilizado para coisas que estão longe. no singular.
+those -> aquelas / aqueles -> utilizado para coisas que estão longe. no plural.
 
-these -> essas / estas -> 
-
-those -> aquelas / aqueles ->
-
-
+EXEMPLOS:
+  What's this?
+  What's that?
+  What are these?
+  What are those?
 
 -------- perguntas em compras ----------
 
