@@ -388,7 +388,7 @@ Visit museums
 
 
 
------------------
+----------------- FALANDO DE ONDE É OU DE ONDE VEM O ITEM -----------------
 
 AFFIRMATIVE -> My book is from Japan -> é do Japão
 AFFIRMATIVE -> My book is Japanese -> é Japones
