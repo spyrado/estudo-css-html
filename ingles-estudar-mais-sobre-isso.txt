@@ -58,7 +58,12 @@ Exemplo: Ela é minha convidada.
 O pronome é Ela
 
 
------------
+----------- noun / SUBSTANTIVO -----------
+
+substantivo é a palavra que nomeia os seres 
+  EX: mar, cidade, mulher, Brasil
+
+------
 
 I'm tired this morning -> Estou cansado a esta manhã
  pq aqui não é assim? I'm tired IN this morning.

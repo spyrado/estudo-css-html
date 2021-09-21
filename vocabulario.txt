@@ -122,6 +122,7 @@ Would you like -> gostaria -> uudiulike
 noisy -> barulhento
 free -> gratis
 crowded -> cheio / lotado -> the city is crowded
+empty -> vazio -> em-ty EMITI
 polluted -> poluido
 expensive -> caro 
 cheap -> barato
@@ -159,6 +160,7 @@ Pantry or larder -> dispensa
 Laundry room -> lavanderia
 Bathroom -> banheiro
 balcony -> sacada -> BALCONI
+neighbourhood -> vizinhança
 
 climbing shoes -> sapatos de escalada
 
@@ -166,6 +168,17 @@ lunchtime -> hora do almoço?
 
 cafés -> buteco -> lugar informal no brasil agt chama de buteco
 
+go past (coloccation) -> vai passar
+go across -> cruzar
+
+how can i get to the London Eye? -> Como eu posso chegar em London Eye?
+
+modern -> moderno
+old -> velho
+new -> novo
+
+clean -> limpo
+dirty -> sujo
 
 
 
