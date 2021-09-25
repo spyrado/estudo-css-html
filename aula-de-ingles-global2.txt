@@ -415,6 +415,9 @@ Their shoes are from Australia -> Aqui eu quero dizer que ele é do PAIS Brazil
 
 ------------- Cardinal e Ordinal ( page 38 ) -------------
 
+CARDINAL NUMBERS are like: 1 2 3 4
+ORDINAL NUMBER ARE LIKE: first, second, sixth
+
 1 -> one
 1 -> first 1st
 Data -> 31 de Janeiro -> January 31st (Januari tueni first)
