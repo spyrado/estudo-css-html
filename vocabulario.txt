@@ -188,6 +188,9 @@ like enjoy and hate sempre vão estar com ing
 	i like fishing ( pode ser pescaria ou pescando ( depende do contexto ))
 
 to be lost -> estar perdido
+lunchtime -> hora do almoço
+dinner time -> hora da janta 
+breakfast time -> hora do café da manhã
 
 
 
