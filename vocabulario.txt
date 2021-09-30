@@ -290,3 +290,7 @@ expensive and good
 
 subject  -> sujeito
 pronoun -> pronome
+
+coming through -> passando
+
+i got -> eu peguei

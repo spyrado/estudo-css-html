@@ -177,6 +177,19 @@ near
 next
 last  
 
+PARA LUGARES 
+maior que bairro usamos IN -> In Month - In Year 
+estrada avenida rua usamos ON -> On street
+quando falamos de um lugar específico -> at pedro xavi, at my work , at my home
+
+PARA TEMPO 
+
+de mes para cima usamos IN -> In January
+tudo que for dia usamos ON -> On my birthday -> On Monday -> is on the 29th
+tudo que for menor que um dia é AT -> At one minute
+
+
+
 
 -----------------
 
