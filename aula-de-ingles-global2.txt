@@ -188,6 +188,13 @@ de mes para cima usamos IN -> In January
 tudo que for dia usamos ON -> On my birthday -> On Monday -> is on the 29th
 tudo que for menor que um dia é AT -> At one minute
 
+--------------------------------
+
+when i use -ing
+
+I like swimming 
+
+I like to swim on the beach
 
 
 
