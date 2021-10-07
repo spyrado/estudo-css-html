@@ -192,6 +192,11 @@ lunchtime -> hora do almoço
 dinner time -> hora da janta 
 breakfast time -> hora do café da manhã
 
+oil -> olho de cozinha  
+olive oil -> azeite
+rice -> arroz
+onios -> cebola?
+
 
 
 
