@@ -12,6 +12,10 @@ Para questions utilizamos ANY nas perguntas, exemplo:
 ANY -> Utilizamos para questions e negativas 
 SOME -> Utilizamos para afirmativas.
 
+POREM TEMOS UMA EXCESSÃO -> Quando eu ofereço algo em Questios, eu posso user SOME.
+  EXEMPLO: 
+    Would you like to drink some beer?
+    
 Exemplos: 
   - 
 
