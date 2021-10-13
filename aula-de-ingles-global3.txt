@@ -15,7 +15,8 @@ SOME -> Utilizamos para afirmativas.
 POREM TEMOS UMA EXCESSÃO -> Quando eu ofereço algo em Questios, eu posso user SOME.
   EXEMPLO: 
     Would you like to drink some beer?
-    
+    Can I have some water?
+
 Exemplos: 
   - 
 
