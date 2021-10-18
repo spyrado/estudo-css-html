@@ -196,22 +196,19 @@ oil -> olho de cozinha
 olive oil -> azeite
 rice -> arroz
 onios -> cebola?
+sauce -> molho
+
+deep-fried -> frito
+dish -> prato 
+deep-fried dish -> prato frito -> 'Aracajé' is a deep-fried dish
+stew -> ensopado
+fudge -> faj -> doce de açuçar
+
+flour -> farinha -> Fláuer
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Healthy Eating -> alimentação saudável ( RELTH EATING)
+Olive oil -> Olivoil
 
 
 

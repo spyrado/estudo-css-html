@@ -274,3 +274,15 @@ I like fishing -> pq uso fishing aqui?
 I like to go fish 
 
 I go running after lunch. -> pq uso running? em vez de run ?
+
+
+---------------- Frequencia: --------------------
+
+---- Estudar mais sobre frequencia. ----
+
+once a week/month 
+twice 
+always
+sometimes
+never 
+rarely
