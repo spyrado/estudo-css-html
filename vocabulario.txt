@@ -210,6 +210,18 @@ flour -> farinha -> Fláuer
 Healthy Eating -> alimentação saudável ( RELTH EATING)
 Olive oil -> Olivoil
 
+-- Temos algumas possibilidades de falar integral --
+
+Whole e Brown
+
+whole -> integral 
+whole grains -> rouli grains ( pronunciation )
+whole rice -> arroz integral  -> pronunciation -> 
+white rice -> arroz branco 
+brown rice -> arroz integral 
+brown sugar -> açucar integral 
+
+
 
 
 
