@@ -319,3 +319,49 @@ pronoun -> pronome
 coming through -> passando
 
 i got -> eu peguei
+
+
+-------- PEDIDOS EM RESTAURANTES ( Ordering  ) ------------
+
+meal -> refeição 
+
+menu -> 
+dishes -> 
+
+entreée -> entrada
+starters -> entradas
+appetizers -> aperetivos ( entradas )
+
+main couse -> prato principal 
+main dish -> prato principal
+
+dessert -> sobremesa -> dIZART
+
+DRINKS 
+ - Still water -> sem gás
+ - sparkling water -> agua com gás
+
+drinks -> bebidas
+beverage -> bebidas 
+
+Questions para fazer  ->
+
+Questions a waiter can ask you to take your order? 
+	Waiter -> 
+		- Can I get you anything to drink first?
+		- Are you ready to order?
+		- Any starters?
+		- Can I get you anything else?
+
+Expressions you can use to order
+	I'd like a bottle of water, please. Sparkling.
+	I'll have a seafood pizza.
+	I'd like a mushroom and spinach burger.
+
+An expression you can use to ask for the check/bill?
+	Could we have the bill, please?
+
+
+Could we -> Kud we 
+Could I -> KudÍ
+
