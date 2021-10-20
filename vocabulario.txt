@@ -357,6 +357,7 @@ Expressions you can use to order
 	I'd like a bottle of water, please. Sparkling.
 	I'll have a seafood pizza.
 	I'd like a mushroom and spinach burger.
+	
 
 An expression you can use to ask for the check/bill?
 	Could we have the bill, please?
