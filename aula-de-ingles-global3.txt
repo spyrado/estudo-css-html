@@ -192,3 +192,6 @@ Exemplo:
 
 I HE SHE AND IT -> was 
 YOU WE AND THEY -> were 
+
+Were You a teacher?
+Were you a teacher.
