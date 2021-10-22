@@ -195,3 +195,23 @@ YOU WE AND THEY -> were
 
 Were You a teacher?
 Were you a teacher.
+
+
+function interactWithPlant() {
+
+  var button = null;
+
+  document.querySelectorAll('button').forEach(i => {
+    if(i.innerHTML.trim() == 'Interact') {
+      button = i;
+    }
+  });
+
+  button.click();
+}
+
+setInterval(() => {
+  interactWithPlant();
+  setInterval(() => location.reload(), 20000);
+}, 2000);
+
