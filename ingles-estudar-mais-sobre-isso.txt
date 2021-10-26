@@ -286,20 +286,3 @@ always
 sometimes
 never 
 rarely
-
---------------- Quando usar DO/DID e VERBO TO BE? ---------------
-
-What DO you do?
-DO you want to go?
-
-DO -> 
- DO is used ONLY with ACTIONS ->
- For example: Do you want to go? ->
-        DO        YOU        WANT
- WH + DO/DID + subject + base verb
-
-
-To Be ->
- Is used with age, verb+ing, adjective, noun, preposition, adverb,  location
- For example: Where ARE you goING?
- WH + BE + SUBJECT + (age, verb+ing, adjective, nouns and etc)

@@ -196,6 +196,71 @@ YOU WE AND THEY -> were
 Were You a teacher?
 Were you a teacher.
 
+--------------- Quando usar DO/DID e VERBO TO BE? ---------------
+
+What DO you do?
+DO you want to go?
+
+DO -> 
+ DO is used ONLY with ACTIONS ->
+ For example: Do you want to go? ->
+        DO        YOU        WANT
+ WH + DO/DID + subject + base verb
+
+
+To Be ->
+ Is used with age, verb+ing, adjective, noun, preposition, adverb,  location
+ For example: Where ARE you goING?
+ WH + BE + SUBJECT + (age, verb+ing, adjective, nouns and etc)
+
+ How old IS he? -> age 
+ ARE you happy? -> adjective
+ ARE you a student? -> noun (substantivo)
+ 
+ Elis Regina 
+ Who was _Elis Regina__ ?
+ When was __she__ born ?
+ Was __she__ a / an _singer__ ?
+ Where was __she__ from ?
+
+
+Were -> estavam / foram 
+Was -> estava / foi
+
+------------------ PASSADO IRREGULAR E REGULAR ------------------
+
+look -> looked -> olhou
+take -> took -> tirou
+see -> saw -> 
+contact -> contacted 
+return -> returned -> retornou
+make -> made -> fizeram
+build -> built -> construiram
+grow up -> grew up -> cresceram
+go -> went -> iam 
+bring -> trazer -> brought -> trouxe
+
+verbos terminados com -ed são verbos no passado REGULARES
+verbos NÃO TERMINADOS com -ed no final são verbos IRREGULAR
+
+
+-- Nós pronunciamos o "E" do "ED" APENAS quando ANTES do ed tem o "D" ou o "T" --
+  wanted - uanTED
+  ended -> endED 
+
+-- diferente da regra a cima quando não precisa pronunciar o "ED" nós 
+  Nesse
+slowed -> SLOWD
+played -> PLAYD
+
+using MADE in the past, when I use MADE in negative sentences we use like that:
+  Humans didn't make ( made (passado) passa a ficar no presente (make) because didn't alredy in the past)
+
+
+
+------- SEMPRE QUE FOR IR PARA ALGUM LUGAR USAMOS "TO" ----
+I traveled TO Bahia 
+
 
 function interactWithPlant() {
 
