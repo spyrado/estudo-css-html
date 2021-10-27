@@ -262,21 +262,5 @@ using MADE in the past, when I use MADE in negative sentences we use like that:
 I traveled TO Bahia 
 
 
-function interactWithPlant() {
 
-  var button = null;
-
-  document.querySelectorAll('button').forEach(i => {
-    if(i.innerHTML.trim() == 'Interact') {
-      button = i;
-    }
-  });
-
-  button.click();
-}
-
-setInterval(() => {
-  interactWithPlant();
-  setInterval(() => location.reload(), 20000);
-}, 2000);
 

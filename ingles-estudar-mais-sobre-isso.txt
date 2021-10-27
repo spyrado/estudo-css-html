@@ -286,3 +286,8 @@ always
 sometimes
 never 
 rarely
+
+
+================= VERBO NO INFINITIVO =================
+
+É o verbo no seu inherit.
