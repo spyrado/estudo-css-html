@@ -366,3 +366,7 @@ lazy -> lazier
 Quando termina com CONSÇOANTE + VOGAL + CONSOANTE agt dobra a ultima concoante exemplo:
 
 big -> bigger
+
+In my opinion, white chocolates IS BETTER THAN dark chocolate
+
+In my opinion, dark chocolate IS WORSE THAN white chocolate.
