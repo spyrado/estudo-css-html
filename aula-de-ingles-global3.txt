@@ -342,6 +342,11 @@ kangaroo -> canguru -> kanguuru
 
 --------------- COMPARE USING ADJECTIVES ------------------
 
+Adjective  Comparative adjective  Superlative adjective
+  long            longer              the longest
+  expensive    more expensive        most expensive
+  
+
 ---- When we compare adjectives we add ER at the end of the word.
 OR we use MORE depends of the context 
 
@@ -385,6 +390,10 @@ ADJETIVOS LONGOS:
 
 
 
+----- EXERCICIOS -----
 
+PAGE 92 EXCERCISE 3
 
------- SUPERLATIVE ------
+2 - A Porshe can travel faster than Mini. Mini can travel slower than Porshe
+
+3 - This house is more expensive than an apartment. This apartment is cheaper than house.
