@@ -356,3 +356,12 @@ dangerous; safe;
 fangtooth ( species fish )
 ferryboat -> balsa
 boat -> branco
+
+
+is best known -> melhor conhecida 
+	example: Sao Paulo is best known for the economy
+
+in a post office -> correios
+
+Are you a many gruber? -> você é pão duro(a)?
+

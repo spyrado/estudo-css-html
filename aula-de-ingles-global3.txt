@@ -431,3 +431,23 @@ Do you go to work by bus?
 Do you take a taxi or uber at weekends?
 
 Did you drive to work on Friday?
+
+---------------------   MONEY   --------------------------
+
+spend money -> gastar dinheiro 
+save money -> guardar dinheiro 
+deposit money -> depositar dinheiro 
+take money -> pegar dinheiro 
+lend money -> emprestar dinheiro 
+collect money -> coletar dinheiro 
+pay by credit card 
+pay in cash 
+borrow -> emprestar 
+
+can I borrow - > (emprestar) borrow usamos para pedir emprestado quando falamos de Nós e não de outros ( Can I )
+can you lend -> (emprestar) usamos lend para voce, Voce pode me emprestar dinheiro? ( Can you )
+
+a dime -> some money -> Can you give me a dime?
+
+I save 10% on average of my salary -> eu guardo 10% mais ou menos do meu salário.
+
