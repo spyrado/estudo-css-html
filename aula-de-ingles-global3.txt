@@ -245,8 +245,8 @@ verbos NÃO TERMINADOS com -ed no final são verbos IRREGULAR
 
 
 -- Nós pronunciamos o "E" do "ED" APENAS quando ANTES do ed tem o "D" ou o "T" --
-  wanted - uanTED
-  ended -> endED 
+  wanted - uanTED -> no youtube todos falam UANED
+  ended -> endED -> aqui ta certo
 
 -- diferente da regra a cima quando não precisa pronunciar o "ED" nós 
   Nesse
@@ -451,3 +451,8 @@ a dime -> some money -> Can you give me a dime?
 
 I save 10% on average of my salary -> eu guardo 10% mais ou menos do meu salário.
 
+
+
+-------------- PAST OF CAN -----------------
+
+CAN(pode) -> Could(poderiam)  
