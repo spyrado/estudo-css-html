@@ -438,4 +438,10 @@ chest -> peito
 pecs -> peitoral
 nipples -> mamilos
 breast -> seio
-belly/stomach -> abdomem
+belly/stomach -> abdomem / barriga 
+back -> costas
+belly buttom -> umbigo
+hand -> mão 
+wrist -> pulso 
+fingers -> dedos
+nail -> unhas
