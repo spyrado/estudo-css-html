@@ -445,3 +445,10 @@ hand -> mão
 wrist -> pulso 
 fingers -> dedos
 nail -> unhas
+knee -> joelho
+butt -> bumbum
+ass -> bunda
+tights -> coxa 
+calf -> panturrilha
+ankle -> tornozelo
+heel -> calcanhar
