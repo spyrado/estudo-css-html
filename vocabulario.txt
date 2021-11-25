@@ -407,3 +407,35 @@ trousers and pants -> calça
 sandals -> sandalias 
 coat -> casaco
 tank top -> camiseta regata
+
+
+they are in a festival
+
+they are in a parede (Carnaval)
+
+they are wearing costumes (eles estão vestindo fantasias) -> CÓSTCHUMES
+
+feet -> pés
+legs -> pernas 
+shoulders -> ombros
+faces -> rosto
+hair -> cabelo 
+heads -> cabeças
+eyes -> olhos
+eyebrow -> sombrancelha
+eyelashes -> sícilos
+mouths -> bocas 
+ear -> orelha
+moustache -> bigode
+beard -> barba
+cheeks -> bochecha
+neck -> pescoço
+forehead -> testa 
+chin -> queixo
+arm -> braço
+elbow -> cotovelo
+chest -> peito 
+pecs -> peitoral
+nipples -> mamilos
+breast -> seio
+belly/stomach -> abdomem
