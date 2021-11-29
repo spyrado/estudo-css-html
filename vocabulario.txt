@@ -468,3 +468,6 @@ obese -> obeso ( medical terms )
 short -> pequeno 
 tall -> alto 
 medium-height -> estatura média
+
+
+wrestlers -> lutador
