@@ -452,3 +452,19 @@ tights -> coxa
 calf -> panturrilha
 ankle -> tornozelo
 heel -> calcanhar
+
+unfortunately -> infelizmente -> ANfortchun
+
+Thin -> magricelo ( pejorativo )
+Skinny -> magrelo ( pejorativo )
+Fat -> gordo ( pejorativo )
+slim -> magro ( não pejorativo )
+Chubby -> gordo ( não pejorativo )
+Big -> ( medical terms )
+Overweight -> acima do peso  ( medical terms )
+obese -> obeso ( medical terms )
+
+--------- altura ----------
+short -> pequeno 
+tall -> alto 
+medium-height -> estatura média
