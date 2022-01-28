@@ -1,0 +1,8 @@
+****************** NODE JS ******************
+
+EXPRESS -> Utilizado para facilitar o processo de protocolo HTTP
+ ( conectar no servidor, criar endpoints POST PUT DELETE PATH e etc.. )
+
+ SEQUELIZE ORM -> Facilita a conversa com o banco de dados, todo ORM faz isso, no caso do 
+  NODE JS utilizamos sequelize, ao invez de dar um INSET INTO usuarios, nós simplesmente
+  fazemos: 
