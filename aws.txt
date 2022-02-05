@@ -1,5 +1,16 @@
 ******************** INICIANDO ESTUDOS AWS ********************
 
+AWS Service offering ( link contendo mais descrito os produtos https://aws.amazon.com/pt/products/?aws-products-all.sort-by=item.additionalFields.productNameLowercase&aws-products-all.sort-order=asc&awsf.re%3AInvent=*all&awsf.Free%20Tier=*all&awsf.tech-category=*all )
+  - Compute
+  - Storage
+  - Network security
+  - Blockchain
+  - Machine Learning
+  - Artificial Intelligence
+  - Robot development
+  - Video production
+  - Orbital Satellites
+
 Amazon EC2 -> servidor virtual da amazon
 
 Quando o cliente faz uma requisição para o servidor da amazon o Amazon Elastic Compute Cloud ( EC2 ) entra em ação, 
