@@ -127,19 +127,44 @@ https://surge.sh/
 
 *********************** LIBS INTERESSANTES PARA TESTE ***********************
 
-npm install -g broken-link-checker
 
-exemplo de uso após a instalação ( exemplo rodando localmente )
+------------------------ BROKEN LINK CHECKER ------------------------
 
-blc --recursive --external-links http://localhost:3000
+	npm install -g broken-link-checker
 
-falo para ser recursivo (rodar o site todo)
-falo para ignorar links externos ( facebook etc.. )
-e passo o link que ele deve ter como referencia para buscar as rotas internas desse link
+	exemplo de uso após a instalação ( exemplo rodando localmente )
 
-Executando esse comando ele vai te passar todos os links que estão OK e os NÃO OK também
+	blc --recursive --external-links http://localhost:3000
 
-	esse cara verifica todos os links do seu site e testa para ver se estão funcionando, ou seja é um validador
-		de links, muito útil para inserir no pipeline para verificar se todos os links estão íntegros.
+	falo para ser recursivo (rodar o site todo)
+	falo para ignorar links externos ( facebook etc.. )
+	e passo o link que ele deve ter como referencia para buscar as rotas internas desse link
 
- 
+	Executando esse comando ele vai te passar todos os links que estão OK e os NÃO OK também
+
+		esse cara verifica todos os links do seu site e testa para ver se estão funcionando, ou seja é um validador
+			de links, muito útil para inserir no pipeline para verificar se todos os links estão íntegros.
+
+------------------------ WAIT ON ------------------------
+
+	npm install wait-on
+
+	Vc pode usar esse cara via linha de comando para esperar por exemplo... por uma url
+	Imagina o seguinte cenário, vc precisa startar um servidor angular para testar se as urls dentro dele
+	estão funcionando, POREM tem que ser tudo via linha de comando, segue um exemplo: 
+
+	- npm install && npm run start &
+  - blc --recursive --exclude-external http://localhost:3000
+
+	Se eu fizer só isso, o terminal vai dar erro, pois o npm run start está executando em 
+		background ( por causa do & no final dele (COMANDO LINUX para deixar em background a execução.)
+		ai o segundo comando tentaria acessar o servidor ( http://localhost:3000 ) porem não encontraria
+		então daria erro...
+
+	para solucionar esse problema tudo via linha de comando, temos o WAIT-ON para nos auxiliar.
+
+	o códgio final ficaria assim:
+
+	- npm install && npm run start & // instalando e rodando servidor
+	- wait-on http://localhost:3000/ --timeout 30000 // com wait-on eu falo para esperar http://localhost:3000/ ficar no ar, coloco uma opção de esperar até 30 segundos, pois se demorar muito já disparamos o erro logo e n ficamos prendendo o servidor.
+  - blc --recursive --exclude-external http://localhost:3000 // e finalmente aqui eu peço para o broken link checker verificar o sistema para ver se está tudo ok.

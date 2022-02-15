@@ -6,3 +6,14 @@ EXPRESS -> Utilizado para facilitar o processo de protocolo HTTP
  SEQUELIZE ORM -> Facilita a conversa com o banco de dados, todo ORM faz isso, no caso do 
   NODE JS utilizamos sequelize, ao invez de dar um INSET INTO usuarios, nós simplesmente
   fazemos: 
+
+MYSQL2 -> Dependencia que o SEQUELIZE precisa pra se conectar com o banco de dados 
+
+BODY-PARSER -> precisamos dele para o node conseguir receber via body.
+
+todas essas dependencias aqui
+
+"body-parser": "^1.19.1",
+"express": "^4.17.2",
+"mysql2": "^2.3.3",
+"sequelize": "^6.16.1"

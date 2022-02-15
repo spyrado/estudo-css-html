@@ -16,7 +16,7 @@ Amazon EC2 -> servidor virtual da amazon
 Quando o cliente faz uma requisição para o servidor da amazon o Amazon Elastic Compute Cloud ( EC2 ) entra em ação, 
   uma EC2 instance ( a virtual server )
 
-Pay for what you need -> A Amazon trabalha sob demanda, ou seja se o seu site não tem muitos acessos, os servidores trabalham com baixo custo
+Pay for what you need (FIRST KEY VALUE) -> A Amazon trabalha sob demanda, ou seja se o seu site não tem muitos acessos, os servidores trabalham com baixo custo
   porem se vc vai lançar algo e precisa de mais capacidade, com apenas um click vc pode fazer ele ter a capacidade necessária para tal operação.
   e o melhor disso tudo é que vc não precisa pagar antecipadamente para ter esse recurso, ele é pago on demand.
 
