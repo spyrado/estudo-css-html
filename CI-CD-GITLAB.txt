@@ -166,6 +166,19 @@ https://surge.sh/
   only:
     - /^master$/
 
+*********************** GIT_STRATEGY ***********************
+	
+	tem 3 opções: fetch, clone e none 
+
+	fetch -> é considerada a mais rapida, pois se já tiver algo no workspace ele só atualiza,
+		se n tiver ele da um clone.
+	clone -> é a mais lenta, ele sempre pega todo o repositório, e se ja tiver um ele exclui.
+	none -> não faz nada, ou seja em alguns casos é bom colocar ele para n perder tempo dando fetch ou clone
+		pois as vezes voce ja tem toda a informação que precisa em cache.
+
+	variables: 
+		URL_STAGING: staging-nick-javascript-lover.surge.sh 
+		GIT_STRATEGY: none
 
 *********************** LIBS INTERESSANTES PARA TESTE ***********************
 
