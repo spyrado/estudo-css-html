@@ -1,3 +1,13 @@
+IMPORTANTÍSSIMOOOOO: -----> SEMPRE LEMBRE DE COLOCAR A VERSÃO DA LIB/FRAMEWORK que vc está 
+	instalando, pois o yml, não sabe identificar as libs avulsas que vc coloca para teste,
+	exemplo.... 
+
+	npm install wait-on -> se eu n coloco a versao aqui, o dia que o dono dessa lib, fizer um BREAK-CHANGE
+		meu pipeline vai quebrar também, então sempre mantenha a versão que foi testada..
+
+	JEITO CERTO:	npm install wait-on@^2.1.0 
+		ASSIM eu GARANTO que meu pipeline sempre vai funcionar com a versão certa e sem BREAK CHANGE
+
 *********************** JOBS ***********************
 
 Jobs podem ser nomeados como você desejar, porem evite nomea-lo com palavras reservadas.
@@ -124,6 +134,38 @@ https://surge.sh/
 				pelo botão, é só entrar no git lab vá no menu Operations -> Environments -> lá vai ter os seus 
 				Environments listados e um 3 botões, para visualizar seu site é o primeiro.
 
+*********************** VARIAVEIS ***********************
+
+	Podemos criar variaveis globais e local ( no proprio job ), porem a local obviamente
+		só pode ser replicada para o proprio job, e a global conversa entre todos os jobs.
+
+	Exemplo de uso local (global funciona da mesma forma porem declarada no root da aplicação):
+
+	EXEMPLO GLOBAL:
+	variables:
+		URL_PRODUCTION: XPTO
+
+	EXEMPLO LOCAL:
+
+	deploy to production:
+  stage: deploy
+  variables:
+    URL_PRODUCTION: nick-javascript-lover.surge.sh // aqui eu declaro
+  cache: # como é só um teste to reaproveitando o path, mas se fosse real, teria que gerar um novo build apontando para produção.
+    key: build-site
+    policy: pull 
+    paths:
+      - ./website/build
+  before_script:
+    - npm install --global surge@0.23.0
+  script:
+    - surge --project ./website/build --domain $URL_PRODUCTION // aqui eu uso 
+  environment:
+    name: production
+    url: $URL_PRODUCTION // aqui eu uso 
+  only:
+    - /^master$/
+
 
 *********************** LIBS INTERESSANTES PARA TESTE ***********************
 
@@ -168,3 +210,29 @@ https://surge.sh/
 	- npm install && npm run start & // instalando e rodando servidor
 	- wait-on http://localhost:3000/ --timeout 30000 // com wait-on eu falo para esperar http://localhost:3000/ ficar no ar, coloco uma opção de esperar até 30 segundos, pois se demorar muito já disparamos o erro logo e n ficamos prendendo o servidor.
   - blc --recursive --exclude-external http://localhost:3000 // e finalmente aqui eu peço para o broken link checker verificar o sistema para ver se está tudo ok.
+
+	------------------------ SNYK ------------------------
+
+		Ferramenta utilizada para verificar vulnerabilidades no código.
+
+	  1º Instale: npm install -g snyk
+		2º autentique ele na sua maquina, para isso vc vai precisar entrar aqui para pegar 
+			seu token ( deve fazer o login ) https://app.snyk.io/account
+		3º rode o comando: snyk "auth SEU_TOKEN_AQUI" e de enter
+		4º rode o comando snyk monitor -> ele vai te dar um link para vc ver as vulnerabilidades.
+		5º rode: "snyk wizard" ele te dirá oq está vulneravel, e oq vc precisa fazer para resolver.
+
+		mas no ci, vc vai fazer um pouco diferente..
+			vunerabilities check:
+				stage: test
+				before_script:
+					- cd website
+					- npm install //instalo todas as dependencias
+					- yarn install // aqui também caso precise
+				script:
+					- npm run test:vulnerabilidade:snyk // como instalei o snyk localmente, eu posso rodar esse comando,
+							// porem esse comando depende de autenticação, e para autenticar vc n precisa jogar um 
+							// snyk auth SEU_TOKEN_AQUI, vc simplesmente vai no gitlab -> settings -> CI/CD -> Variables
+							// e cadastra a chave SNYK_TOKEN com o SEU_TOKEN e pronto, assim que executar esse comando 
+							// npm run test:vulnerabilidade:snyk ele já vai ver que o gitlab possui as credenciais 
+							// para ter acesso
