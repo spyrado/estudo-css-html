@@ -180,6 +180,20 @@ https://surge.sh/
 		URL_STAGING: staging-nick-javascript-lover.surge.sh 
 		GIT_STRATEGY: none
 
+*********************** COMBINAÇÕES ***********************
+
+review_app:
+	stage: deploy
+	script: make deploy-app
+	environment:
+		name: review
+		on_stop: stop_review_app # aqui eu 
+
+stop_review_app
+	when: manual -> como eu quero stopar o app, se eu n colocar when manual ele vai se autostopar.
+	environment:
+		action: stop
+
 *********************** LIBS INTERESSANTES PARA TESTE ***********************
 
 
