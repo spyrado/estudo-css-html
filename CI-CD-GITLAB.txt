@@ -182,6 +182,10 @@ https://surge.sh/
 
 *********************** COMBINAÇÕES ***********************
 
+CI_COMMIT_REF_SLUG -> CI_COMMIT_REF_NAME in lowercase, shortened to 63 bytes, 
+	and with everything except 0-9 and a-z replaced with -. No leading / trailing -. 
+	Use in URLs, host names and domain names.
+
 review_app:
 	stage: deploy
 	script: make deploy-app
@@ -193,6 +197,37 @@ stop_review_app
 	when: manual -> como eu quero stopar o app, se eu n colocar when manual ele vai se autostopar.
 	environment:
 		action: stop
+
+
+*********************** MERGE ***********************
+
+No arquivo YML, podemos dar merge de algumas informações e sobrescrever informações específicas
+quando necessário, no mundo da programação seria como se fosse um implements
+
+
+exemplo temos mais de um script que faz deploy e eles tem muitas coisas em comum, então utilizamos 
+"&nome_do_pai_que_servira_de_base" e para os jobs filhos utilizamos o "<<: *nome_do_pai_que_servira_de_base" :
+
+job1: &deploy # aqui indicamos que esse job1 servira de base para o resto
+	script: xpto run
+	after_script: xpto start
+	only:
+		develop
+
+job2: *deploy # aqui indicamos  que o job 2 vai fazer TUDO que o job1 faz
+
+job3: 
+ <<: *deploy # aqui indicamos  que o job 3 vai fazer QSE TUDO que o job1 faz 
+ after_script: xpto stop_aplicacao
+ only:
+  master
+
+
+aqui é só um exemplo de uso, que tem dois cenários:
+
+tenho um JOB pai base, e posso mergear ele todo com outro job sem fazer modificação.
+OUUU eu posso mergear E FAZER modificações.
+
 
 *********************** LIBS INTERESSANTES PARA TESTE ***********************
 
