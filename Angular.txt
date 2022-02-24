@@ -131,6 +131,31 @@ declarados no array.
 
 --- Diretivas ---
 
+Tipos de Diretivas: 
+    - temos a que muda estilo e comportamentos 
+        exemplo:
+            estilo: muda a cor da label pra red
+            comportamento: ao passar o mouse nessa label ela balança.
+    - temos as diretivas estruturais tambem
+        exemplo:
+            *ngFor é uma diretiva estrutural, podemos criar nossa propria diretiva estrutural.
+             Para criar fazemos da seguinte forma, de criamos a diretiva normalmente
+             por exemplo ficaria assim: 
+                @Directive({
+                    selector: [myCustomFor]
+                })
+
+                ....
+
+                @Input('myCustomForEm') numbers: number[]; // ou seja tudo que vem depois de myCustomFor é a variavel que eu espero no html como mostro abaixo
+                    OU
+                @Input('myCustomForAlgumaCoisa') texto: string;
+
+                e no html implementando ficaria assim:
+
+                <li *myCustomFor="let n em [1,2,3] algumaCoisa 'teste'"></li> // aqui eu mostro as variaveis em e algumaCoisa que eu espero lá na minha diretiva
+
+
 app.component.ts:
 
 Temos uma classe, q tem como valor array de objetos photos.
