@@ -332,3 +332,62 @@ OUUU eu posso mergear E FAZER modificações.
 							// e cadastra a chave SNYK_TOKEN com o SEU_TOKEN e pronto, assim que executar esse comando 
 							// npm run test:vulnerabilidade:snyk ele já vai ver que o gitlab possui as credenciais 
 							// para ter acesso
+
+
+
+*********************** AWS ***********************
+
+	Tutorial como publicar na AWS usando CI/CD
+		Video de referencia ( vou mudar a imagem que ele usa, 
+			pois ele usou uma não oficial, e hoje em dia já temos uma imagem oficial da propria amazon ): 
+			https://www.youtube.com/watch?v=dhlhg7a1Q7I
+	
+	IMAGEM Utilizada: amazonlinux  ->  https://hub.docker.com/_/amazonlinux
+
+	1º Crie uma conta na amazon web services.
+	2º Acesse o S3 da amazon e crie um BUCKET
+	3º Guarde o nome(codigo) da região desse bucket que vc pegou no meu exemplo vai ser de sp entao 
+		o codigo é: sa-east-1 ( vc vai usar ele futuramente )
+	4º Agora vc deve criar um usuário interno na amazon ( para te dar acesso ao CLI e outras coisas. )
+	5º pesquise por (IAM) é aonde vc gerencia todos os seus acessos
+	6º clique em Gerenciamento de acessos -> Usuários no menu esquerdo
+	7º Adiciona/Crie um novo usuário
+	8º De um nome para esse usuário, no exemplo será nick_s3_full ( para identificar que esse 
+		usuário tera full acesso ao s3 )
+	9º DEIXE HABILITADA a opção de "Chave de acesso: acesso programático" ( sem ela tickada vc não vai conseguir 
+		ter acesso ao CLI )
+	10º O proximo passo vc clica em next/avançar ou qualquer coisa nesse sentido..
+	11º vai entrar na area de definir permissões para esse usuário 
+	12º Clique no card escrito "Anexar políticas existentes de forma direta 
+	13º filtre por s3 
+	14º escolha a opção AmazonS3FullAccess
+	15º de um next, vai aparecer uma tela opcional de add tags, vc da um next denovo.
+	16º vai dar um resumo do que vc escolheu ai é só clicar em criar usuário.
+
+	MUITO IMPORTANTE AGORA..
+
+	17º Nessa parte vai te mostrar os acessos necessários para vc configurar no gitlab
+		São elas:
+			- AWS_ACCESS_KEY_ID
+			- AWS_SECRET_ACCESS_KEY 
+		Os valores dessas chaves está na tela que vc está agora, guarde esses valores..
+			os valores de "ID da chave de acesso" e "Chave de acesso secreta"
+	
+	GITLAB
+
+	18º Agora com essas informações vamos até o GITLAB configurar 3 variáveis, para nosso pipe.
+		São elas:
+			- AWS_ACCESS_KEY_ID (config obrigatória) esta info está no passo 17º
+			- AWS_SECRET_ACCESS_KEY (config obrigatória) esta info está no passo 17º
+			- S3_BUCKET (config opcional) // Aqui nós pegamos o nome do nosso bucket para isso fazemos o seguinte:
+				pesquise por S3 e procure pelo nome do bucket desejado, no meu caso será: spyrado-teste-ci-cd, 
+				Certifique-se de não deixar espaços sobrando.
+	
+	CONFIGURANDO PIPELINE AWS
+
+	19º
+
+		deploy to production:
+			stage: deploy
+			image: amazonlinux // Utilizamos essa imagem que já contem o CLI da amazon, assim conseguimos ter acesso ao CLI DELES, e executar os comandos deles.
+			

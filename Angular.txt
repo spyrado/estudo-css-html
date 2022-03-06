@@ -132,6 +132,7 @@ declarados no array.
 --- Diretivas ---
 
 Tipos de Diretivas: 
+    - Video de referencia: https://www.youtube.com/watch?v=DSnsRruN7jk
     - temos a que muda estilo e comportamentos 
         exemplo:
             estilo: muda a cor da label pra red

@@ -1,3 +1,8 @@
+BANCO DE DADOS LOCAL: Para usar o MySql, na minha maquina eu deixo ele desligado
+
+para ligar, va até WINDOWS + R digite "services.msc" de enter procure por MySql clique com o direito
+  e depois clique em "iniciar" e pronto, vc já estara habilitado a usar o MYSQL no workbench
+
 ****************** NODE JS ******************
 
 EXPRESS -> Utilizado para facilitar o processo de protocolo HTTP
