@@ -22,3 +22,13 @@ todas essas dependencias aqui
 "express": "^4.17.2",
 "mysql2": "^2.3.3",
 "sequelize": "^6.16.1"
+
+****************** SEQUELIZE ******************
+
+  Relacionamentos ( banco de dados ), utilizando sequelize
+
+  belongsTo() -> [ relacionamento 1 - P - 1 ] significa que "pertence a" 
+    exemplo: Casa.belongsTo(Pessoa), ou seja uma Casa pertence a Uma Pessoa.
+  
+  hasMany -> [ relacionamento 1 - p - N ] significa que "tem muito"
+    exemplo: Pessoa.hasMany(Casa), ou seja uma pessoa tem uma ou mais casas.
