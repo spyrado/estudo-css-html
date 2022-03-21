@@ -1,0 +1,9 @@
+**************** AWS S3 ****************
+
+AWS S3 ( Simple Store Service ), é aonde nós armazenamos nosso source
+
+- Armazenamento de arquivos
+- Provedor de páginas estáticas
+- Versionamento
+- Criptografia
+- Replica entre regiões

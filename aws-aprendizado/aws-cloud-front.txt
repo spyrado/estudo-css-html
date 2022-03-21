@@ -1,0 +1,27 @@
+**************** AWS CLOUD FRONT ****************
+
+O Cloud Front da AWS é uma CDN ( Content Delivery Network )
+
+Qual a ideia de um CDN? é fazer cache das suas páginas no lugar mais próximo que o usuário está,
+exemplo:
+  TEMOS NOSSO S3 que armazena nosso HTML 
+  e ai temos um intermediário que é o CLOUD FRONT ( Nosso CDN ), e pra que ele vai nos servir?
+  imagina que temos um usuário no japão e ele vai acessar nossa aplicação, porem nosso servidor
+  fica em são paulo, ele vai ter um delay pra acessar nossa aplicação, e isso é ruim, o CDN
+  vem justamente para arrumar isso, todo cdn tem varios servidores espalhados pelo mundo,
+  chamamos eles de Edge Server, e oq ele faz? 
+  
+  basicamente quando agt faz a requisição pela 
+  
+  1º vez:
+  ele vai do chrome faz a requisição -> chama o edge server -> que chama o cloud front -> que chama 
+    o s3 ( onde se encontra nossos arquivos para carregar para o usuário ) e devolve para o chrome.
+
+  2º vez:
+  Quando ele faz a requisição pela segunda vez ele já deixa tudo que voce precisa no edge server 
+    mais proximo de vc, isso faz com que a sua aplicação carregue extretamente mais rápida.
+
+  3º vez:
+    Vai bater no Edge Server e ja vai devolver para o chrome. =)
+
+  
