@@ -1,0 +1,12 @@
+**************** AWS ROUTE 53 ****************
+
+Seria o serviço de DNS da Amazon.
+
+Como funciona um DNS? ( Domain Name System )
+
+Ele traduz um nome de um dominio para um endereço de IP que o navegador entenda e consiga buscar ele.
+  ou seja, quando eu digito www.google.com o dns converte para o IP do google, e busca por IP.
+
+ponto importante, pode ser que um dia vc tente buscar por www.google.com e demore a carregar, um dos 
+  motivos pode ser o seu dns, afinal, se o seu servidor de dns estiver com lentidão, ele vai demorar
+  a pegar o site digitado, que no caso foi www.google.com converter para ip e processar a requisição.

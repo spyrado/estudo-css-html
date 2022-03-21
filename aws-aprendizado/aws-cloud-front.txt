@@ -24,4 +24,8 @@ exemplo:
   3º vez:
     Vai bater no Edge Server e ja vai devolver para o chrome. =)
 
+  Caso o arquivo mude sla.. era verde o site agora ficou azul, o Cloud Front tem um recurso, que você
+    manda invalidar aquele arquivo, fazendo isso o cloud vai saber que aquele arquivo já está defazado
+    e que deve carregar o arquivo indicado lá do servidor core.
+
   

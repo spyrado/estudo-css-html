@@ -1,0 +1,5 @@
+**************** AWS Certification Manager ****************
+
+Aqui nós administramos o nosso site, e colocamos o certificado nele, o famoso HTTPS,
+Um certificado nada mais é do que ele garante que vc será redirecionado para o site correto,
+um site sem certificado está sujeito a interceptação de hak
