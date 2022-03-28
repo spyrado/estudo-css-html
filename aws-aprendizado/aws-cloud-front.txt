@@ -28,4 +28,15 @@ exemplo:
     manda invalidar aquele arquivo, fazendo isso o cloud vai saber que aquele arquivo já está defazado
     e que deve carregar o arquivo indicado lá do servidor core.
 
-  
+
+====================== COMO CONFIGURAR O CLOUD FRONT COM ANGULAR? ======================
+
+  1º Ter um bucket criado, para poder associar dps nas configurações do cloud front.
+  2º Abrir o Cloud Front
+  3º Criar uma Distribuição(Distribution)
+  4º No CARD Origin:
+    - Origin domain clique e selecione o bucket que voce criou
+    - vai abrir mais opções, escolha essa "Yes use OAI (bucket can restrict access to only CloudFront)"
+    - em Bucket policy selecione "Yes, update the bucket policy".
+    - Fazendo tudo isso vc fala para a aws que quer que apenas o cloud front tenha acesso ao bucket
+      e pede para ela atualizar na policy do bucket essa regra.
