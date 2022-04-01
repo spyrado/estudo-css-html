@@ -1,0 +1,73 @@
+***************** MICRO FRONT END *****************
+
+baseado nesse artigo: https://dzone.com/articles/scaling-micro-frontends-using-angular-elements
+video ver apartir do da hora 1:32:30 -> https://www.youtube.com/watch?v=tF9r-gNx2Pc 
+
+Modificado por mim:
+
+1º Crie um projeto a parte angular que servira como micro front end, exemplo.. uma lista de usuário,
+um filtro generico, algo que possa ser reutilizado por mais de uma aplicação.
+
+2º Com o projeto criado voce vai precisar instalar essas duas dependencias:
+  npm install @angular/elements --save
+  npm install ngx-build-plus --save
+
+The Angular element will allow you to create a custom element 
+and ngx-build-plus will allow you to create a single .js file.
+
+3º Crie um componente, exemplo: ng g c user-list
+
+4º Configure esse componente no seu AppModule como no exemplo abaixo: 
+
+export class AppModule { 
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const myCustomElement = createCustomElement(UserListComponent, { injector: this.injector });
+    customElements.define('app-user-list', myCustomElement);
+  }
+}
+
+5º No arquivo angular.json, vc deve alterar as configurações para:
+
+  -- "build": {  "builder": "ngx-build-plus:build",
+  -- "serve": {  "builder": "ngx-build-plus:dev-server",
+  -- "test":  {  "builder": "ngx-build-plus:karma",
+
+6º precisamos mudar o build, para que ele não gere hash e também que gere um unico arquvio .js
+  mude seu package.json build para:
+  - "build": "ng build --prod --output-hashing none --single-bundle true",
+
+7º No arquivo index.html crie uma div com um id de mesmo nome que vc 
+  deu no "customElements.define('app-user-list', myCustomElement);"
+  que nesse caso foi app-user-list, e também crie a tag do componente DENTRO da div, segue 
+  o exemplo:
+
+  OBS: REMOVA O <app-root></app-root> do index.html
+
+  o códgio deve ficar assim: 
+
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularListUser</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  </head>
+  <body>
+    <div id="app-user-list">
+      <app-user-list></app-user-list>
+    </div>
+  </body>
+  </html>
+
+8º devemos remover do app.module o bootstrap que n vai ser utilizado, e também todos os arquivos app.component
+  pois não vamos utilizar nada deles, juntamente com eles remover todas as dependencias do app.module de 
+  AppComponent
+  REMOVER TAMBÉM ESSE BOOTSTRAP IMPORTANTE
+  bootstrap: [AppComponent],
+
+9º ADICIONAR entryComponents ao app.module: 
+  entryComponents: [UserListComponent],

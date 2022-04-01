@@ -40,3 +40,6 @@ exemplo:
     - em Bucket policy selecione "Yes, update the bucket policy".
     - Fazendo tudo isso vc fala para a aws que quer que apenas o cloud front tenha acesso ao bucket
       e pede para ela atualizar na policy do bucket essa regra.
+  5º por fim, no CARD Settings:
+    - Procure por Default root object - optional -> e coloque o index.html como Default
+  6º fim, voce acaba de fazer uma configuração basica do Cloud front linkando com seu S3
